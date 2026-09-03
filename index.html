@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>onespace</title>
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#f4f6f8">
   
   <style>
     * { -webkit-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -97,16 +97,14 @@
     .habit-check-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 13px; font-weight: bold; cursor: pointer; line-height: 26px; margin: 0 auto; }
     .habit-check-btn.checked { color: #fff; border-color: transparent; }
 
-    /* SIGNALS & CARDS */
+    /* SIGNALS & HINGE CARDS */
     .bento-pill-scroll { overflow-x: auto; white-space: nowrap; padding: 4px 0 10px 0; width: 100%; }
-    .bento-signal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 12px; }
-    .bento-signal-card.ipo-card .ipo-expanded-body { display: none; }
-    .bento-signal-card.ipo-card.is-open .ipo-expanded-body { display: block; }
-    .bento-meta-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; font-size: 11px; color: #64748b; font-family: monospace; margin-bottom: 6px; }
-    .bento-headline { font-size: 14px; font-weight: bold; line-height: 1.35; color: #1e293b; text-decoration: none; display: block; margin-bottom: 4px; }
-    .bento-body { font-size: 12px; line-height: 1.6; color: #334155; }
-    .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 11px; color: #0369a1; line-height: 1.5; margin: 6px 0; }
-    .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 8px; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+    .bento-signal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .bento-meta-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; font-size: 11px; color: #64748b; font-family: monospace; margin-bottom: 8px; }
+    .bento-headline { font-size: 16px; font-weight: bold; line-height: 1.35; color: #1e293b; text-decoration: none; display: block; margin-bottom: 8px; }
+    .bento-body { font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 10px; }
+    .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 12px; color: #0369a1; line-height: 1.5; margin: 8px 0; }
+    .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid #e2e8f0; }
     
     .signal-meter { display: inline-block; vertical-align: middle; margin-right: 4px; }
     .signal-meter .bar { display: inline-block; width: 3px; background: #cbd5e1; border-radius: 1px; margin-right: 1px; }
@@ -126,15 +124,6 @@
     .code-box { background: #0f172a; color: #f1f5f9; border-radius: 10px; border: 1px solid #334155; overflow: hidden; font-family: monospace; font-size: 11px; margin: 8px 0; }
     .code-box-header { background: #1e293b; padding: 8px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; border-bottom: 1px solid #334155; font-size: 10px; color: #94a3b8; }
     .code-box pre { margin: 0; padding: 12px; overflow-x: auto; line-height: 1.5; max-height: 300px; }
-
-    .ladder-card-clean { border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; background: #f4f6f8; margin-bottom: 8px; }
-    .ladder-card-clean.solved { background: #f0fdf4; border-color: #bbf7d0; }
-    .ladder-top-row { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start; width: 100%; }
-    .ladder-content { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-width: 0; padding-left: 6px; }
-    .ladder-tier { font-size: 9px; font-weight: bold; text-transform: uppercase; font-family: monospace; padding: 1px 5px; border-radius: 3px; background: #e0e7ff; color: #4338ca; display: inline-block; }
-    .ladder-title-text { font-size: 13px; font-weight: bold; color: #1e293b; text-decoration: none; line-height: 1.4; display: block; margin-top: 2px; }
-    .ladder-card-clean.solved .ladder-title-text { text-decoration: line-through; color: #64748b; }
-    .ladder-bottom-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding-top: 6px; border-top: 1px solid rgba(0, 0, 0, 0.05); margin-top: 4px; }
 
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
@@ -169,204 +158,32 @@
     }
     .repeat-day-btn.active { background: #6366f1; border-color: #6366f1; color: #ffffff; }
 
-    /* ==========================================================================
-       OVERHAULED FULLSCREEN LANDSCAPE FLIP CLOCK FOCUS HUD (EXPLICIT PIXELS)
-       ========================================================================== */
-    .desk-hud-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #000000;
-      color: #ffffff;
-      z-index: 9999;
-      display: none;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      padding: 16px 20px;
-      overflow: hidden;
-    }
+    /* PITCH BLACK FLIP CLOCK FOCUS HUD */
+    .desk-hud-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000000; color: #ffffff; z-index: 600; display: none; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; padding: 18px 14px; }
+    .hud-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; width: 100%; }
+    .hud-project-pill { background: #161a22; border: 1px solid #2d3342; border-radius: 99px; padding: 4px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; }
+    .hud-project-select { background: transparent; border: none; color: #94a3b8; font-size: 11px; font-weight: bold; text-transform: uppercase; outline: none; cursor: pointer; }
 
-    .hud-top-bar {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      justify-content: space-between;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      width: 100%;
-      height: 38px;
-      position: relative;
-      z-index: 10;
-    }
-    .hud-project-pill {
-      background: #161a22;
-      border: 1px solid #2d3342;
-      border-radius: 99px;
-      padding: 5px 14px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-    .hud-project-select {
-      background: transparent;
-      border: none;
-      color: #94a3b8;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      outline: none;
-      cursor: pointer;
-      font-family: monospace;
-    }
-
-    .flip-clock-canvas {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      flex: 1;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      width: 100%;
-    }
-    .flip-clock-heading {
-      color: #ffffff;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-      text-align: center;
-      opacity: 0.95;
-    }
-    .flip-cards-container {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      width: 100%;
-    }
+    .flip-clock-canvas { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; align-items: center; width: 100%; }
+    .flip-clock-heading { color: #ffffff; font-size: 16px; font-weight: bold; letter-spacing: -0.02em; margin-bottom: 24px; text-align: center; }
+    .flip-cards-container { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; width: 100%; max-width: 480px; }
     
-    /* EXPLICIT DIMENSIONS FOR TABLET & WEBKIT (NO CLAMP) */
     .flip-card-box {
-      width: 210px;
-      height: 270px;
-      background: #141720;
-      border-radius: 24px;
-      border: 1px solid #222733;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      justify-content: space-between;
-      padding: 16px 20px;
-      position: relative;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
-      margin: 0 14px;
-      overflow: hidden;
+      width: 140px; height: 180px; background: #11141a; border-radius: 20px; border: 1px solid #222733;
+      display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; padding: 12px 14px; position: relative;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.8);
+      margin: 0 7px;
     }
-    .flip-card-box.tilt-left {
-      -webkit-transform: rotate(-3.5deg);
-      transform: rotate(-3.5deg);
-    }
-    .flip-card-box.tilt-right {
-      -webkit-transform: rotate(3.5deg);
-      transform: rotate(3.5deg);
-    }
-    .flip-card-divider {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      height: 2px;
-      background: #000000;
-      z-index: 4;
-      opacity: 0.85;
-    }
-    .flip-card-header {
-      font-size: 12px;
-      font-weight: bold;
-      color: #64748b;
-      font-family: monospace;
-      letter-spacing: 0.06em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    .flip-card-digits {
-      font-size: 115px;
-      font-weight: 900;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      text-align: center;
-      line-height: 0.9;
-      letter-spacing: -0.05em;
-      margin: auto 0;
-      z-index: 2;
-    }
-    .flip-card-footer {
-      font-size: 12px;
-      font-weight: bold;
-      color: #475569;
-      font-family: monospace;
-      text-align: right;
-    }
+    .flip-card-box.tilt-left { -webkit-transform: rotate(-3deg); transform: rotate(-3deg); }
+    .flip-card-box.tilt-right { -webkit-transform: rotate(3deg); transform: rotate(3deg); }
+    .flip-card-divider { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #000000; z-index: 2; opacity: 0.7; }
+    .flip-card-header { font-size: 10px; font-weight: bold; color: #64748b; font-family: monospace; letter-spacing: 0.05em; text-align: center; }
+    .flip-card-digits { font-size: 64px; font-weight: 800; color: #ffffff; font-family: -apple-system, sans-serif; text-align: center; line-height: 1; margin: auto 0; letter-spacing: -0.04em; }
+    .flip-card-footer { font-size: 10px; font-weight: bold; color: #475569; font-family: monospace; text-align: right; }
 
-    .hud-controls-bar {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      padding: 12px 0 6px 0;
-      position: relative;
-      z-index: 10;
-    }
-    .hud-ctrl-btn {
-      background: #161a22;
-      border: 1px solid #2d3342;
-      color: #fff;
-      border-radius: 99px;
-      padding: 9px 20px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 0 6px;
-    }
-
-    @media (max-width: 640px) {
-      .flip-card-box {
-        width: 140px;
-        height: 190px;
-        padding: 12px 14px;
-        margin: 0 6px;
-      }
-      .flip-card-digits {
-        font-size: 72px;
-      }
-    }
+    .hud-controls-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; padding: 14px 0 6px 0; }
+    .hud-ctrl-btn { background: #161a22; border: 1px solid #2d3342; color: #fff; border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: bold; cursor: pointer; margin: 0 4px; }
 
     /* REPORTS */
     .report-table { width: 100%; border-collapse: collapse; font-size: 12px; }
@@ -396,6 +213,8 @@
       .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; z-index: 50; }
       .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 10px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
+      .flip-card-box { width: 115px; height: 155px; padding: 10px; margin: 0 4px; }
+      .flip-card-digits { font-size: 50px; }
     }
     @media (min-width: 641px) {
       .mobile-nav { display: none; }
@@ -544,7 +363,7 @@
       <div id="learning-bento-container"></div>
     </section>
 
-    <!-- 5. SIGNALS FEED TAB -->
+    <!-- 5. SIGNALS FEED TAB (HINGE CARD DISCOVERY FORMAT) -->
     <section id="sec-signals" class="content-section">
       <header class="workspace-header">
         <h1 class="section-title">SIGNALS FEED</h1>
@@ -555,9 +374,10 @@
       </header>
 
       <div class="bento-pill-scroll" id="bento-track-pills"></div>
-      <div id="bento-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Connecting to live signals stream…</div>
-      <div id="bento-signals-container"></div>
-      <div id="signals-load-more" style="display:none; text-align:center; padding:16px; color:#64748b; font-size:11px; font-family:monospace;">Loading more signals…</div>
+      <div id="bento-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Loading unread signals (past 7 days)…</div>
+      
+      <!-- HINGE CARD SINGLE VIEW CONTAINER -->
+      <div id="hinge-card-container"></div>
     </section>
 
     <!-- 6. REPORTS TAB -->
@@ -583,7 +403,7 @@
     <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">Reports</button>
   </div>
 
-  <!-- PITCH BLACK FLIP CLOCK FOCUS HUD (SCREENSHOT ACCURATE & LANDSCAPE-FIRST) -->
+  <!-- PITCH BLACK FLIP CLOCK FOCUS HUD -->
   <div class="desk-hud-overlay" id="desk-hud">
     <div class="hud-top-bar">
       <button class="btn btn-secondary btn-sm" style="background:#161a22; color:#fff; border-color:#2d3342;" onclick="closeDeskHud()">✕ Exit</button>
@@ -595,15 +415,12 @@
     <div class="flip-clock-canvas">
       <div class="flip-clock-heading" id="hud-sub-heading">What September - December is going to look like.</div>
       <div class="flip-cards-container">
-        <!-- LEFT TILTED HOURS/MINUTES CARD -->
         <div class="flip-card-box tilt-left">
           <div class="flip-card-header" id="flip-card-date">SEP 03, 2026</div>
           <div class="flip-card-digits" id="flip-digits-hours">00</div>
           <div class="flip-card-divider"></div>
           <div class="flip-card-footer" id="flip-card-ampm">AM</div>
         </div>
-
-        <!-- RIGHT TILTED MINUTES/SECONDS CARD -->
         <div class="flip-card-box tilt-right">
           <div class="flip-card-header" id="flip-card-day">THURSDAY</div>
           <div class="flip-card-digits" id="flip-digits-mins">00</div>
@@ -697,7 +514,6 @@
       <div id="news-loading" style="text-align:center; padding:2rem 1rem; color:#52564C; font-family:monospace; font-size:11px;">Loading today's issue…</div>
       <div id="news-empty" style="display:none; text-align:center; padding:2rem 1rem; color:#52564C; font-family:monospace; font-size:11px;">Nothing cleared the signal threshold in this track today.</div>
       <div id="news-content-list"></div>
-      <div id="news-load-more" style="display:none; text-align:center; padding:16px; color:#52564C; font-family:monospace; font-size:11px;">Loading earlier articles…</div>
     </div>
   </div>
 
@@ -1120,7 +936,7 @@
 
     /* ==========================================================================
        LOOPS & HABIT TRACKING (5-DAY MATRIX & HEATMAP)
-       ========================================================================= */
+       ========================================================================== */
     function getLastFiveDays() {
       var days = [];
       var dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
@@ -1589,7 +1405,7 @@
     }
 
     /* ==========================================================================
-       PITCH BLACK FLIP CLOCK FOCUS HUD (RUNNING STOPWATCH & FULLSCREEN LANDSCAPE)
+       PITCH BLACK FLIP CLOCK FOCUS HUD (EXPLICIT PIXELS FOR ANDROID 4.2)
        ========================================================================== */
     function openDeskHud() {
       var select = document.getElementById('hud-project-select');
@@ -2359,7 +2175,9 @@
       });
     }
 
-    /* LEARNING HUB (FULL CURRICULUM, LADDERS & PATTERNS) */
+    /* ==========================================================================
+       LEARNING HUB (FULL CURRICULUM, LADDERS & PATTERNS)
+       ========================================================================== */
     function renderLearningHub() {
       var container = document.getElementById('learning-bento-container');
       if (!container) return;
@@ -2458,7 +2276,6 @@
         return;
       }
 
-      // Fetch latest drill using Range header
       sbClient.request('dsa_daily_drills?select=*&order=drill_date.desc', 'GET', null, { 'Range': '0-0', 'Range-Unit': 'items' }, function(err, drills) {
         drills = (!err && drills && Array.isArray(drills)) ? drills : [];
         if (drills.length === 0) {
@@ -2612,7 +2429,7 @@
     }
 
     /* ==========================================================================
-       SIGNALS FEED & READER (RESTORED TAGS & COUNTS)
+       SIGNALS FEED & HINGE CARD DISCOVERY ENGINE
        ========================================================================== */
     function signalMeter(score) {
       var bars = '';
@@ -2630,7 +2447,7 @@
         signalsHasMore = true;
         if (bentoLoader) {
           bentoLoader.style.display = 'block';
-          bentoLoader.innerText = 'Connecting to live signals stream…';
+          bentoLoader.innerText = 'Loading unread signals (past 7 days)…';
         }
       }
 
@@ -2658,11 +2475,7 @@
           if (issueDateEl) issueDateEl.textContent = formatEditorialDate(latestDate);
         }
 
-        renderBentoSignals();
-        var overlay = document.getElementById('newspaper-overlay');
-        if (overlay && overlay.style.display === 'block') {
-          openNewspaperOverlay();
-        }
+        renderHingeSignals();
       };
 
       var rangeHeaders = {
@@ -2670,7 +2483,12 @@
         'Range-Unit': 'items'
       };
 
-      sbClient.request('articles?select=*&order=id.desc', 'GET', null, rangeHeaders, function(err, data) {
+      // Calculate date 7 days ago for filtering
+      var sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+      var sevenDaysStr = formatDateLocal(sevenDaysAgo);
+
+      sbClient.request('articles?select=*&date=gte.' + sevenDaysStr + '&order=date.desc,id.desc', 'GET', null, rangeHeaders, function(err, data) {
         fetchedArticles = (!err && data && Array.isArray(data)) ? data : [];
         
         if (isReset) {
@@ -2704,9 +2522,9 @@
 
     function refreshSignalsFromTop() { fetchSupabaseSignals(true); }
 
-    function renderBentoSignals() {
+    function renderHingeSignals() {
       var pillBox = document.getElementById('bento-track-pills');
-      var container = document.getElementById('bento-signals-container');
+      var container = document.getElementById('hinge-card-container');
       if (!pillBox || !container) return;
 
       pillBox.innerHTML = '';
@@ -2738,139 +2556,100 @@
           chip.innerText = track === 'IPOs' ? '📈 IPOs (' + count + ')' : track + ' (' + count + ')';
           chip.onclick = function() {
             activeTrack = track;
-            renderBentoSignals();
+            renderHingeSignals();
           };
           pillBox.appendChild(chip);
         })(dynamicTracks[dt]);
       }
 
+      // Filter out already read/archived signals
+      var unreadArticles = ALL_ARTICLES.filter(function(a) {
+        return archivedSignals.indexOf(a.id) === -1;
+      });
+
+      if (activeTrack !== 'All' && activeTrack !== 'Archived' && activeTrack !== 'IPOs') {
+        unreadArticles = unreadArticles.filter(function(a) {
+          return (a.track || '').toLowerCase().indexOf(activeTrack.toLowerCase()) !== -1;
+        });
+      }
+
+      if (activeTrack === 'Archived') {
+        unreadArticles = ALL_ARTICLES.filter(function(a) {
+          return archivedSignals.indexOf(a.id) !== -1;
+        });
+      }
+
       if (activeTrack === 'IPOs') {
         if (ALL_IPOS.length === 0) {
-          container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b; font-size:12px;">No evaluated IPOs found in database.</div>';
+          container.innerHTML = '<div style="text-align:center; padding:40px; color:#64748b; font-size:12px;">No evaluated IPOs found.</div>';
           return;
         }
-
-        for (var ip = 0; ip < ALL_IPOS.length; ip++) {
-          var ipo = ALL_IPOS[ip];
-          var gmpColor = (ipo.gmp_percent || 0) >= 30 ? '#16a34a' : (ipo.gmp_percent || 0) >= 15 ? '#d97706' : '#64748b';
-          var verdictBg = (ipo.score || 0) >= 75 ? 'background:#dcfce7; color:#166534;' : (ipo.score || 0) >= 50 ? 'background:#fef3c7; color:#92400e;' : 'background:#fee2e2; color:#991b1b;';
-          var reasonsList = Array.isArray(ipo.reasons) ? ipo.reasons : [];
-
-          var card = document.createElement('div');
-          card.className = 'bento-signal-card ipo-card';
-          card.id = 'ipo-card-' + ip;
-          card.style.borderLeft = '4px solid ' + ((ipo.score || 0) >= 75 ? '#22c55e' : (ipo.score || 0) >= 50 ? '#f59e0b' : '#ef4444');
-
-          var reasonsHtml = '';
-          for (var r = 0; r < reasonsList.length; r++) {
-            reasonsHtml += '<span class="pill pill-tag" style="background:#f4f6f8; font-size:10px;">' + escapeHtml(reasonsList[r]) + '</span>';
-          }
-
-          card.innerHTML = 
-            '<div onclick="toggleIpoExpand(' + ip + ')">' +
-              '<div class="bento-meta-bar">' +
-                '<div>' +
-                  '<span class="pill" style="' + verdictBg + ' font-weight:bold;">' + escapeHtml(ipo.verdict || 'EVALUATED') + '</span> ' +
-                  '<strong>Score: ' + (ipo.score || 0) + '/100</strong>' +
-                '</div>' +
-                '<div>' +
-                  '<button class="btn btn-secondary btn-sm" onclick="hideIpoCard(\'' + escapeHtml(ipo.symbol) + '\', event)">✕ Hide</button>' +
-                '</div>' +
-              '</div>' +
-              '<div>' +
-                '<h3 style="font-size:14px; font-weight:bold; margin-bottom:4px; color:#1e293b;">' + escapeHtml(ipo.company_name) + '</h3>' +
-                '<div style="font-size:11px; font-family:monospace;">' +
-                  '<span>Band: <strong>₹' + (ipo.issue_price || 0) + '</strong> | </span>' +
-                  '<span style="color:' + gmpColor + ';">GMP: <strong>₹' + (ipo.gmp || 0) + ' (+' + (ipo.gmp_percent || 0) + '%)</strong></span>' +
-                '</div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="ipo-expanded-body" style="margin-top:8px;">' +
-              (ipo.sector_analysis ? '<div style="background:#f8fafc; border-left:3px solid #6366f1; padding:6px 10px; margin-bottom:6px; font-size:11px;"><strong>Sector:</strong> ' + escapeHtml(ipo.sector_analysis) + '</div>' : '') +
-              (ipo.governance_risks ? '<div style="background:#fef2f2; border-left:3px solid #ef4444; padding:6px 10px; margin-bottom:6px; color:#991b1b; font-size:11px;"><strong>Risks:</strong> ' + escapeHtml(ipo.governance_risks) + '</div>' : '') +
-              (ipo.llm_verdict ? '<div class="bento-deep-dive"><strong>Take:</strong> ' + escapeHtml(ipo.llm_verdict) + '</div>' : '') +
-              reasonsHtml +
-              '<div class="bento-footer">' +
-                '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'Apply IPO: ' + escapeHtml(ipo.company_name).replace(/'/g, "\\'") + '\', \'\', \'Finance\')">📅 Schedule Event</button>' +
-                '<a class="btn btn-secondary btn-sm" href="https://www.google.com/search?q=' + encodeURIComponent(ipo.company_name + ' IPO') + '" target="_blank">Search ↗</a>' +
-              '</div>' +
-            '</div>';
-
-          container.appendChild(card);
-        }
-        return;
-      }
-
-      var filtered = [];
-      if (activeTrack === 'Archived') {
-        filtered = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) !== -1; });
-      } else if (activeTrack === 'All') {
-        filtered = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; });
-      } else {
-        filtered = ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(activeTrack.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; });
-      }
-
-      if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b; font-size:12px;">No signals in this view.</div>';
-        return;
-      }
-
-      for (var f = 0; f < filtered.length; f++) {
-        var article = filtered[f];
-        var isArchived = archivedSignals.indexOf(article.id) !== -1;
-        var tagsList = Array.isArray(article.tags) ? article.tags : [];
-        var targetUrl = article.url || article.link || ('https://www.google.com/search?q=' + encodeURIComponent(article.headline));
-
-        var aTagsHtml = '';
-        for (var at = 0; at < tagsList.length; at++) {
-          aTagsHtml += '<span class="pill pill-tag">#' + escapeHtml(tagsList[at]) + '</span>';
-        }
-
-        var artCard = document.createElement('div');
-        artCard.className = 'bento-signal-card';
-        artCard.innerHTML = 
-          '<div class="bento-meta-bar">' +
-            '<div>' +
-              signalMeter(article.relevance || 3) +
-              '<strong>' + escapeHtml(article.source || 'Signal') + '</strong> · ' + (article.date || '') +
-            '</div>' +
-            '<button class="btn btn-secondary btn-sm" onclick="toggleArchiveArticle(' + article.id + ')">' + (isArchived ? '↩ Unarchive' : '✓ Mark Read') + '</button>' +
-          '</div>' +
-          '<a href="' + targetUrl + '" target="_blank" class="bento-headline">' + escapeHtml(article.headline) + '</a>' +
-          '<p class="bento-body">' + escapeHtml(article.body) + '</p>' +
-          (article.deep_dive ? '<div class="bento-deep-dive">' + renderMarkdownText(article.deep_dive) + '</div>' : '') +
-          aTagsHtml +
+        // Show first IPO card in hinge style
+        var ipo = ALL_IPOS[0];
+        var card = document.createElement('div');
+        card.className = 'bento-signal-card';
+        card.innerHTML = 
+          '<div class="bento-meta-bar"><strong>📈 IPO EVALUATION</strong><span>Score: ' + (ipo.score || 0) + '/100</span></div>' +
+          '<h3 style="font-size:16px; font-weight:bold; margin-bottom:6px;">' + escapeHtml(ipo.company_name) + '</h3>' +
+          '<div style="font-size:12px; margin-bottom:10px; font-family:monospace;">Price: ₹' + (ipo.issue_price || 0) + ' | GMP: ₹' + (ipo.gmp || 0) + ' (+' + (ipo.gmp_percent || 0) + '%)</div>' +
+          '<p class="bento-body">' + escapeHtml(ipo.sector_analysis || ipo.llm_verdict) + '</p>' +
           '<div class="bento-footer">' +
-            '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'' + escapeHtml(article.headline).replace(/'/g, "\\'") + '\', \'' + (targetUrl || '') + '\', \'' + escapeHtml(article.track || 'General') + '\')">📅 Schedule Event</button>' +
-            '<a class="btn btn-secondary btn-sm" href="' + targetUrl + '" target="_blank">Read Source ↗</a>' +
+            '<button class="btn btn-sm" onclick="hideIpoCard(\'' + escapeHtml(ipo.symbol) + '\')">✓ Mark Read & Next</button>' +
+            '<a class="btn btn-secondary btn-sm" href="https://www.google.com/search?q=' + encodeURIComponent(ipo.company_name + ' IPO') + '" target="_blank">Search ↗</a>' +
           '</div>';
-
-        container.appendChild(artCard);
+        container.appendChild(card);
+        return;
       }
-    }
 
-    function toggleIpoExpand(index) {
-      var card = document.getElementById('ipo-card-' + index);
-      if (card) {
-        if (card.className.indexOf('is-open') !== -1) card.className = card.className.replace(/\bis-open\b/g, '');
-        else card.className += ' is-open';
+      if (unreadArticles.length === 0) {
+        container.innerHTML = 
+          '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:14px; border:1px solid #e2e8f0;">' +
+            '<div style="font-size:24px; margin-bottom:8px;">🎉</div>' +
+            '<h3 style="font-size:15px; font-weight:bold; color:#1e293b;">You\'re all caught up!</h3>' +
+            '<p style="font-size:12px; color:#64748b; margin-top:4px;">No unread articles in this track for the past 7 days.</p>' +
+            '<button class="btn btn-sm" style="margin-top:14px;" onclick="activeTrack=\'All\'; renderHingeSignals();">View All Tracks</button>' +
+          '</div>';
+        return;
       }
+
+      // DISPLAY EXACTLY ONE (THE FIRST) UNREAD ARTICLE HINGE STYLE
+      var article = unreadArticles[0];
+      var tagsList = Array.isArray(article.tags) ? article.tags : [];
+      var targetUrl = article.url || article.link || ('https://www.google.com/search?q=' + encodeURIComponent(article.headline));
+
+      var aTagsHtml = '';
+      for (var at = 0; at < tagsList.length; at++) {
+        aTagsHtml += '<span class="pill pill-tag">#' + escapeHtml(tagsList[at]) + '</span>';
+      }
+
+      var hingeCard = document.createElement('div');
+      hingeCard.className = 'bento-signal-card';
+      hingeCard.innerHTML = 
+        '<div class="bento-meta-bar">' +
+          '<div>' + signalMeter(article.relevance || 3) + ' <strong>' + escapeHtml(article.source || 'Signal') + '</strong> · ' + (article.date || '') + '</div>' +
+          '<span style="font-size:10px; font-family:monospace; color:#64748b;">' + unreadArticles.length + ' remaining</span>' +
+        '</div>' +
+        '<a href="' + targetUrl + '" target="_blank" class="bento-headline">' + escapeHtml(article.headline) + '</a>' +
+        '<p class="bento-body">' + escapeHtml(article.body) + '</p>' +
+        (article.deep_dive ? '<div class="bento-deep-dive">' + renderMarkdownText(article.deep_dive) + '</div>' : '') +
+        aTagsHtml +
+        '<div class="bento-footer">' +
+          '<button class="btn btn-sm" onclick="markHingeReadAndNext(' + article.id + ')">✓ Read & Next</button>' +
+          '<div>' +
+            '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'' + escapeHtml(article.headline).replace(/'/g, "\\'") + '\', \'' + (targetUrl || '') + '\', \'' + escapeHtml(article.track || 'General') + '\')">📅 Schedule</button>' +
+            '<a class="btn btn-secondary btn-sm" style="margin-left:4px;" href="' + targetUrl + '" target="_blank">Source ↗</a>' +
+          '</div>' +
+        '</div>';
+
+      container.appendChild(hingeCard);
     }
 
-    function hideIpoCard(symbol, event) {
-      if (event && event.stopPropagation) event.stopPropagation();
-      if (!confirm('Hide this IPO from your signals feed?')) return;
-      ALL_IPOS = ALL_IPOS.filter(function(item) { return item.symbol !== symbol; });
-      renderBentoSignals();
-      sbClient.request('ipo_evaluations?symbol=eq.' + encodeURIComponent(symbol), 'PATCH', { is_hidden: true }, null, function() {});
-    }
-
-    function toggleArchiveArticle(articleId) {
-      var idx = archivedSignals.indexOf(articleId);
-      if (idx !== -1) archivedSignals.splice(idx, 1);
-      else archivedSignals.push(articleId);
-      localStorage.setItem('the_signal_archived_ids', JSON.stringify(archivedSignals));
-      renderBentoSignals();
+    function markHingeReadAndNext(articleId) {
+      if (archivedSignals.indexOf(articleId) === -1) {
+        archivedSignals.push(articleId);
+        localStorage.setItem('the_signal_archived_ids', JSON.stringify(archivedSignals));
+      }
+      renderHingeSignals();
     }
 
     function openNewspaperOverlay() {
@@ -2976,7 +2755,7 @@
     }
 
     /* ==========================================================================
-       PULL DOWN TO REFRESH (RESTORED FOR TOUCH & ANDROID 4.2)
+       PULL DOWN TO REFRESH & INFINITE SCROLL
        ========================================================================== */
     var touchStartY = 0;
     var isPulling = false;
@@ -3035,37 +2814,6 @@
         pullDistance = 0;
       }
     }, false);
-
-    /* ==========================================================================
-       AUTO INFINITE SCROLL (BOTH FEED & READER MODE)
-       ========================================================================== */
-    mainScroll.onscroll = function() {
-      var activeSec = document.querySelector('.content-section.active');
-      if (activeSec && activeSec.getAttribute('id') === 'sec-signals') {
-        if (mainScroll.scrollTop + mainScroll.clientHeight >= mainScroll.scrollHeight - 120) {
-          if (!isFetchingSignals && signalsHasMore && activeTrack !== 'IPOs' && activeTrack !== 'Archived') {
-            var loadMoreIndicator = document.getElementById('signals-load-more');
-            if (loadMoreIndicator) loadMoreIndicator.style.display = 'block';
-            fetchSupabaseSignals(false);
-          }
-        }
-      }
-    };
-
-    var newsOverlay = document.getElementById('newspaper-overlay');
-    if (newsOverlay) {
-      newsOverlay.onscroll = function() {
-        if (newsOverlay.style.display === 'block') {
-          if (newsOverlay.scrollTop + newsOverlay.clientHeight >= newsOverlay.scrollHeight - 120) {
-            if (!isFetchingSignals && signalsHasMore && activeTrack !== 'Archived') {
-              var newsLoadMoreIndicator = document.getElementById('news-load-more');
-              if (newsLoadMoreIndicator) newsLoadMoreIndicator.style.display = 'block';
-              fetchSupabaseSignals(false);
-            }
-          }
-        }
-      };
-    }
 
     // Initialize application safely
     syncAllSupabaseData();
