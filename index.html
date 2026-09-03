@@ -86,7 +86,7 @@
     .sub-item { font-size: 12px; color: #1e293b; padding: 2px 0; }
     .sub-item.done span { text-decoration: line-through; color: #64748b; }
 
-    /* LOOPS HABIT MATRIX TABLE */
+    /* LOOPS TABLE MATRIX */
     .loops-table-wrap { width: 100%; overflow-x: auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; margin-top: 8px; }
     .loops-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .loops-table th, .loops-table td { padding: 10px 8px; text-align: center; border-bottom: 1px solid #e2e8f0; }
@@ -153,17 +153,38 @@
     .time-block-card { border: 1px solid #e2e8f0; background: #f4f6f8; padding: 8px 10px; border-radius: 8px; border-left: 4px solid #1e293b; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start; margin-bottom: 6px; width: 100%; }
     .time-block-card.is-starred { border-left-color: #f59e0b; background: #fffdf5; }
 
-    .desk-hud-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #0f172a; color: #ffffff; z-index: 600; display: none; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; padding: 18px; }
-    .hud-header-fixed { text-align: center; padding-bottom: 12px; border-bottom: 1px solid #1e293b; width: 100%; }
-    .hud-header-select { background: transparent; border: none; color: #94a3b8; font-size: 13px; font-weight: bold; text-transform: uppercase; text-align: center; }
-    .hud-clock { font-family: monospace; font-size: 2.5rem; font-weight: bold; margin: 4px 0; color: #38bdf8; }
-    .hud-scroll-body { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; overflow-y: auto; padding: 16px 0; }
-    .hud-hero-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px; margin-bottom: 10px; }
-    .hud-footer-fixed { text-align: center; padding-top: 12px; border-top: 1px solid #1e293b; }
+    /* REPEATING DAY BUTTONS */
+    .repeat-day-btn {
+      width: 30px; height: 30px; border-radius: 50%; border: 1px solid #cbd5e1; background: #ffffff;
+      color: #64748b; font-size: 11px; font-weight: bold; cursor: pointer; text-align: center; line-height: 28px;
+    }
+    .repeat-day-btn.active { background: #6366f1; border-color: #6366f1; color: #ffffff; }
 
-    .report-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    .report-table th, .report-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e2e8f0; }
-    .report-table th { font-family: monospace; font-size: 10px; color: #64748b; text-transform: uppercase; background: #f4f6f8; }
+    /* PITCH BLACK FLIP CLOCK FOCUS HUD (MATCHING SCREENSHOT) */
+    .desk-hud-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000000; color: #ffffff; z-index: 600; display: none; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; padding: 18px 14px; }
+    .hud-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; width: 100%; }
+    .hud-project-pill { background: #161a22; border: 1px solid #2d3342; border-radius: 99px; padding: 4px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; }
+    .hud-project-select { background: transparent; border: none; color: #94a3b8; font-size: 11px; font-weight: bold; text-transform: uppercase; outline: none; cursor: pointer; }
+
+    .flip-clock-canvas { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; align-items: center; width: 100%; }
+    .flip-clock-heading { color: #ffffff; font-size: 16px; font-weight: bold; letter-spacing: -0.02em; margin-bottom: 24px; text-align: center; }
+    .flip-cards-container { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; gap: 14px; width: 100%; max-width: 480px; }
+    
+    .flip-card-box {
+      width: 140px; height: 180px; background: #11141a; border-radius: 20px; border: 1px solid #222733;
+      display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+      -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; padding: 12px 14px; position: relative;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.8);
+    }
+    .flip-card-box.tilt-left { -webkit-transform: rotate(-3deg); transform: rotate(-3deg); }
+    .flip-card-box.tilt-right { -webkit-transform: rotate(3deg); transform: rotate(3deg); }
+    .flip-card-divider { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #000000; z-index: 2; opacity: 0.7; }
+    .flip-card-header { font-size: 10px; font-weight: bold; color: #64748b; font-family: monospace; letter-spacing: 0.05em; text-align: center; }
+    .flip-card-digits { font-size: 64px; font-weight: 800; color: #ffffff; font-family: -apple-system, sans-serif; text-align: center; line-height: 1; margin: auto 0; letter-spacing: -0.04em; }
+    .flip-card-footer { font-size: 10px; font-weight: bold; color: #475569; font-family: monospace; text-align: right; }
+
+    .hud-controls-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; gap: 10px; padding: 14px 0 6px 0; }
+    .hud-ctrl-btn { background: #161a22; border: 1px solid #2d3342; color: #fff; border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: bold; cursor: pointer; }
 
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: none; z-index: 1000; overflow-y: auto; padding: 14px; }
     .modal { background: #ffffff; border-radius: 12px; width: 100%; max-width: 440px; margin: 20px auto; padding: 18px; border: 1px solid #e2e8f0; }
@@ -175,6 +196,8 @@
       .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; z-index: 50; }
       .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 11px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
+      .flip-card-box { width: 115px; height: 155px; padding: 10px; }
+      .flip-card-digits { font-size: 52px; }
     }
     @media (min-width: 641px) {
       .mobile-nav { display: none; }
@@ -296,7 +319,6 @@
           <thead>
             <tr id="loops-matrix-header-row">
               <th style="width: 45%;">HABIT</th>
-              <!-- 5 day columns populated dynamically -->
             </tr>
           </thead>
           <tbody id="loops-matrix-body"></tbody>
@@ -323,7 +345,7 @@
     </section>
   </main>
 
-  <!-- MOBILE BOTTOM NAVIGATION (4 TABS) -->
+  <!-- MOBILE BOTTOM NAVIGATION (STRICT 4 TABS) -->
   <div class="mobile-nav">
     <button class="nav-btn active" onclick="switchTab('calendar', this)">Schedule</button>
     <button class="nav-btn" onclick="switchTab('tasks', this)">Tasks</button>
@@ -331,11 +353,48 @@
     <button class="nav-btn" onclick="switchTab('signals', this)">Signals</button>
   </div>
 
-  <!-- HABIT DETAIL & GITHUB-STYLE HEATMAP MODAL -->
+  <!-- PITCH BLACK FLIP CLOCK FOCUS HUD OVERLAY -->
+  <div class="desk-hud-overlay" id="desk-hud">
+    <div class="hud-top-bar">
+      <button class="btn btn-secondary btn-sm" style="background:#161a22; color:#fff; border-color:#2d3342;" onclick="closeDeskHud()">✕ Exit</button>
+      <div class="hud-project-pill">
+        <select id="hud-project-select" class="hud-project-select" onchange="onHudProjectChange()"></select>
+      </div>
+    </div>
+
+    <div class="flip-clock-canvas">
+      <div class="flip-clock-heading" id="hud-sub-heading">What September - December is going to look like.</div>
+      <div class="flip-cards-container">
+        <!-- LEFT TILTED HOURS CARD -->
+        <div class="flip-card-box tilt-left">
+          <div class="flip-card-header" id="flip-card-date">SEP 03, 2026</div>
+          <div class="flip-card-digits" id="flip-digits-hours">05</div>
+          <div class="flip-card-divider"></div>
+          <div class="flip-card-footer" id="flip-card-ampm">AM</div>
+        </div>
+
+        <!-- RIGHT TILTED MINUTES CARD -->
+        <div class="flip-card-box tilt-right">
+          <div class="flip-card-header" id="flip-card-day">THURSDAY</div>
+          <div class="flip-card-digits" id="flip-digits-mins">00</div>
+          <div class="flip-card-divider"></div>
+          <div class="flip-card-footer" id="flip-card-secs">00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-controls-bar">
+      <button class="hud-ctrl-btn" onclick="toggleGlobalTracking()"><span id="hud-pause-text">▶ Start Focus</span></button>
+      <button class="hud-ctrl-btn" onclick="addFiveMinsToTracking()">+5 Mins</button>
+      <button class="hud-ctrl-btn" style="background:#ef4444; border-color:#ef4444;" onclick="stopAndSaveTracking()">⏹ Stop & Save</button>
+    </div>
+  </div>
+
+  <!-- HABIT DETAIL & GITHUB HEATMAP MODAL -->
   <div class="modal-overlay" id="habit-detail-modal">
-    <div class="modal" style="max-width: 520px;">
+    <div class="modal" style="max-width: 500px;">
       <div style="display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 8px;">
-        <h2 style="font-size: 15px; font-weight: bold;" id="hd-title">Habit Heatmap</h2>
+        <h2 style="font-size: 15px; font-weight: bold;" id="hd-title">Habit Details</h2>
         <span class="pill" id="hd-tag-pill" style="background:#e2e8f0;">Group</span>
       </div>
 
@@ -353,9 +412,12 @@
       <div style="font-size: 11px; font-weight: bold; color: #64748b; margin-bottom: 4px;">ACTIVITY HEATMAP (LAST 70 DAYS):</div>
       <div id="hd-heatmap-svg-wrap" style="overflow-x: auto; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center;"></div>
 
-      <div class="modal-actions">
-        <button class="btn btn-danger btn-sm" style="float: left;" onclick="deleteCurrentHabit()">Delete Habit</button>
-        <button class="btn btn-secondary" onclick="closeModal('habit-detail-modal')">Close</button>
+      <div class="modal-actions" style="display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;">
+        <button class="btn btn-secondary btn-sm" onclick="scheduleHabitToCalendar(currentViewingHabit)">📅 Schedule Block</button>
+        <div>
+          <button class="btn btn-danger btn-sm" onclick="deleteCurrentHabit()">Delete</button>
+          <button class="btn btn-secondary btn-sm" onclick="closeModal('habit-detail-modal')">Close</button>
+        </div>
       </div>
     </div>
   </div>
@@ -365,10 +427,10 @@
     <div class="modal">
       <h2 style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">Create New Habit</h2>
       <input type="text" id="nh-title" placeholder="Habit Title (e.g. 45m Outdoor Workout)">
-      <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block;">GROUP / TAG:</label>
+      <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block;">GROUP / CHALLENGE TAG:</label>
       <input type="text" id="nh-tag" placeholder="e.g. 30 Day Hard, Mindfulness, Health">
       <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block;">COLOR HEX:</label>
-      <input type="text" id="nh-color" value="#6366f1" placeholder="#6366f1">
+      <input type="text" id="nh-color" value="#6366f1">
       <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block;">TARGET DAYS:</label>
       <input type="number" id="nh-target" value="30" min="1">
       <div class="modal-actions">
@@ -378,7 +440,7 @@
     </div>
   </div>
 
-  <!-- PROFILE / SETTINGS MODAL -->
+  <!-- PROFILE / MENU MODAL -->
   <div class="modal-overlay" id="profile-modal">
     <div class="modal">
       <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Workspace Menu</h2>
@@ -386,7 +448,7 @@
       <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="closeModal('profile-modal'); openLearningModal();">📚 Learning Hub & System Design</button>
       <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="closeModal('profile-modal'); openProjectManagerModal();">📂 Manage & Add Projects</button>
       <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="exportData()">💾 Backup Workspace JSON</button>
-      <button class="btn btn-danger" style="width: 100%; text-align: left;" onclick="clearCompletedTasks()">🗑️ Clear All Completed Tasks</button>
+      <button class="btn btn-danger" style="width: 100%; text-align: left;" onclick="clearCompletedTasks()">🗑️ Clear Completed Tasks</button>
       <div class="modal-actions">
         <button class="btn btn-secondary" onclick="closeModal('profile-modal')">Close</button>
       </div>
@@ -448,23 +510,6 @@
       <div id="news-load-more" style="text-align:center; padding:12px;">
         <button class="btn btn-secondary btn-sm" onclick="fetchSupabaseSignals(false)">Load Earlier Articles</button>
       </div>
-    </div>
-  </div>
-
-  <!-- FOCUS MODE DESK HUD -->
-  <div class="desk-hud-overlay" id="desk-hud">
-    <div class="hud-header-fixed">
-      <div style="text-align:left; margin-bottom:4px;">
-        <button class="btn btn-secondary btn-sm" style="background:#1e293b; color:#fff; border-color:#334155;" onclick="closeDeskHud()">✕ Exit HUD</button>
-      </div>
-      <select id="hud-project-select" class="hud-header-select" onchange="onHudProjectChange()"></select>
-      <div class="hud-clock" id="hud-clock-text">00:00:00</div>
-    </div>
-    <div class="hud-scroll-body" id="hud-scroll-body"></div>
-    <div class="hud-footer-fixed">
-      <button class="btn btn-secondary" style="background:#1e293b; color:#fff; border-color:#334155; padding:8px 14px;" onclick="toggleGlobalTracking()"><span id="hud-pause-text">▶ Start Focus</span></button>
-      <button class="btn btn-secondary" style="background:#1e293b; color:#fff; border-color:#334155; padding:8px 14px;" onclick="addFiveMinsToTracking()">+5 Mins</button>
-      <button class="btn btn-danger" style="padding:8px 14px;" onclick="stopAndSaveTracking()">⏹ Stop & Save</button>
     </div>
   </div>
 
@@ -539,7 +584,7 @@
     </div>
   </div>
 
-  <!-- CALENDAR EVENT MODAL -->
+  <!-- CALENDAR EVENT MODAL (ENHANCED WITH RECURRING DAYS) -->
   <div class="modal-overlay" id="calendar-modal">
     <div class="modal">
       <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;" id="cal-modal-title">Event Block</h2>
@@ -547,7 +592,10 @@
       <input type="hidden" id="cal-linked-task-id">
       <input type="text" id="cal-title" placeholder="Event Title">
       <textarea id="cal-desc" placeholder="Description (optional)" rows="2"></textarea>
+      
+      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">START DATE:</label>
       <input type="date" id="cal-date">
+      
       <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">TIME BUCKET:</label>
       <select id="cal-bucket-select">
         <option value="morning">🌅 Morning (till 12 PM)</option>
@@ -555,16 +603,48 @@
         <option value="evening">🌆 Evening (4 PM - 8 PM)</option>
         <option value="others">🌙 Others / Night (8 PM onwards)</option>
       </select>
+
       <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">START / END TIME:</label>
       <div style="display: -webkit-box; display: -webkit-flex; display: flex;">
         <input type="time" id="cal-start-time" style="margin-right: 6px;">
         <input type="time" id="cal-end-time">
       </div>
-      <div style="margin: 6px 0;">
+
+      <!-- RECURRENCE SELECTION -->
+      <div style="margin-top: 6px;">
+        <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block; margin-bottom: 2px;">RECURRENCE:</label>
+        <select id="cal-repeat-type" onchange="toggleRepeatDaysVisibility()">
+          <option value="none">Does not repeat</option>
+          <option value="custom_days">Specific days of week</option>
+          <option value="daily">Every day</option>
+        </select>
+      </div>
+
+      <div id="cal-repeat-days-wrap" style="display: none; margin-top: 6px;">
+        <div style="font-size: 10px; font-weight: bold; color: #64748b; margin-bottom: 4px;">REPEAT ON:</div>
+        <div style="display: -webkit-box; display: -webkit-flex; display: flex; gap: 4px;">
+          <button type="button" class="repeat-day-btn" data-day="1" onclick="toggleDayPill(this)">M</button>
+          <button type="button" class="repeat-day-btn" data-day="2" onclick="toggleDayPill(this)">T</button>
+          <button type="button" class="repeat-day-btn" data-day="3" onclick="toggleDayPill(this)">W</button>
+          <button type="button" class="repeat-day-btn" data-day="4" onclick="toggleDayPill(this)">T</button>
+          <button type="button" class="repeat-day-btn" data-day="5" onclick="toggleDayPill(this)">F</button>
+          <button type="button" class="repeat-day-btn" data-day="6" onclick="toggleDayPill(this)">S</button>
+          <button type="button" class="repeat-day-btn" data-day="0" onclick="toggleDayPill(this)">S</button>
+        </div>
+      </div>
+
+      <div id="cal-repeat-until-wrap" style="display: none; margin-top: 6px;">
+        <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block; margin-bottom: 2px;">REPEAT UNTIL (optional):</label>
+        <input type="date" id="cal-repeat-until">
+      </div>
+
+      <div style="margin: 8px 0;">
         <label><input type="checkbox" id="cal-starred"> ⭐ Priority Focus Block</label>
       </div>
+
       <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">ASSIGN PROJECT:</label>
       <select id="cal-project-select"></select>
+
       <div class="modal-actions">
         <button class="btn btn-danger btn-sm" id="cal-delete-btn" style="display:none; float:left;" onclick="deleteCalendarEvent()">Delete</button>
         <button class="btn btn-secondary" onclick="closeModal('calendar-modal')">Cancel</button>
@@ -643,7 +723,7 @@
 
     /* LOOPS STATE */
     var ALL_HABITS = [];
-    var ALL_HABIT_LOGS = {}; // key: "habitId_YYYY-MM-DD" -> true/false
+    var ALL_HABIT_LOGS = {};
     var activeHabitGroup = "ALL";
     var currentViewingHabit = null;
 
@@ -744,14 +824,6 @@
       return 'morning';
     }
 
-    function getCurrentSystemBucket() {
-      var currentH = new Date().getHours();
-      if (currentH < 12) return 'morning';
-      if (currentH < 16) return 'afternoon';
-      if (currentH < 20) return 'evening';
-      return 'others';
-    }
-
     function loadMeta() {
       var saved = localStorage.getItem('onespace_meta_data');
       if (saved) {
@@ -807,9 +879,7 @@
 
       if (tab === 'calendar') renderScheduleCalendar();
       if (tab === 'tasks') renderTaskStack();
-      if (tab === 'loops') {
-        fetchHabitsAndLogs();
-      }
+      if (tab === 'loops') fetchHabitsAndLogs();
       if (tab === 'signals') {
         if (ALL_ARTICLES.length === 0) fetchSupabaseSignals(true);
         else renderBentoSignals();
@@ -848,7 +918,7 @@
     }
 
     /* ==========================================================================
-       LOOPS & HABIT TRACKING (5-DAY MATRIX & GITHUB HEATMAP)
+       LOOPS & HABIT TRACKING (5-DAY MATRIX & HEATMAP)
        ========================================================================== */
     function getLastFiveDays() {
       var days = [];
@@ -869,7 +939,6 @@
       sbClient.request('habit_loops?select=*&archived=neq.true&order=id.asc', 'GET', null, null, function(err, habits) {
         if (!err && habits) ALL_HABITS = habits;
 
-        // Fetch logs for the past 90 days for heatmap and 5-day view
         var past90 = new Date();
         past90.setDate(past90.getDate() - 90);
         var past90Str = formatDateLocal(past90);
@@ -898,7 +967,6 @@
         '</th>';
       }
 
-      // Group Pills (Option 2)
       var groupPillsWrap = document.getElementById('loops-group-pills');
       groupPillsWrap.innerHTML = '';
       var groupMap = { 'ALL': true };
@@ -990,13 +1058,9 @@
           habit_id: habitId,
           log_date: dateStr,
           completed: true
-        }, { 'Prefer': 'resolution=merge-duplicates' }, function(err) {
-          if (err) console.error("Log error:", err);
-        });
+        }, { 'Prefer': 'resolution=merge-duplicates' }, function(err) {});
       } else {
-        sbClient.request('habit_logs?habit_id=eq.' + habitId + '&log_date=eq.' + dateStr, 'DELETE', null, null, function(err) {
-          if (err) console.error("Delete log error:", err);
-        });
+        sbClient.request('habit_logs?habit_id=eq.' + habitId + '&log_date=eq.' + dateStr, 'DELETE', null, null, function(err) {});
       }
     }
 
@@ -1030,7 +1094,6 @@
       });
     }
 
-    /* GITHUB STYLE HEATMAP GENERATOR (PURE SVG FOR ANDROID 4.2) */
     function openHabitDetailModal(habit) {
       currentViewingHabit = habit;
       document.getElementById('hd-title').innerText = habit.title;
@@ -1038,7 +1101,6 @@
       document.getElementById('hd-tag-pill').style.backgroundColor = habit.color;
       document.getElementById('hd-tag-pill').style.color = getContrastTextColor(habit.color);
 
-      // Calculate streak & total
       var totalCompleted = 0;
       var currentStreak = 0;
       var streakBroken = false;
@@ -1051,19 +1113,15 @@
         if (isDone) totalCompleted++;
         if (!streakBroken) {
           if (isDone) currentStreak++;
-          else if (d > 0) streakBroken = true; // allow today to be pending
+          else if (d > 0) streakBroken = true;
         }
       }
 
       document.getElementById('hd-streak-current').innerText = currentStreak + ' days';
       document.getElementById('hd-total-completed').innerText = totalCompleted + ' / ' + (habit.target_days || 30);
 
-      // Render 70 Days Grid (10 Weeks x 7 Days)
       var svgWrap = document.getElementById('hd-heatmap-svg-wrap');
-      var boxSize = 12;
-      var gap = 3;
-      var cols = 10;
-      var rows = 7;
+      var boxSize = 12, gap = 3, cols = 10, rows = 7;
       var totalWidth = cols * (boxSize + gap);
       var totalHeight = rows * (boxSize + gap);
 
@@ -1090,6 +1148,22 @@
       document.getElementById('habit-detail-modal').style.display = 'block';
     }
 
+    function scheduleHabitToCalendar(habit) {
+      if (!habit) return;
+      closeModal('habit-detail-modal');
+      openCalendarEventModal(null);
+      document.getElementById('cal-title').value = habit.title;
+      document.getElementById('cal-repeat-type').value = 'daily';
+      toggleRepeatDaysVisibility();
+
+      var untilDate = new Date();
+      untilDate.setDate(untilDate.getDate() + (habit.target_days || 30));
+      document.getElementById('cal-repeat-until').value = formatDateLocal(untilDate);
+      
+      var p = getProjectByName(habit.tag);
+      if (p) document.getElementById('cal-project-select').value = p.id;
+    }
+
     function deleteCurrentHabit() {
       if (!currentViewingHabit) return;
       if (!confirm('Delete habit "' + currentViewingHabit.title + '" and all its logs?')) return;
@@ -1102,244 +1176,104 @@
       sbClient.request('habit_loops?id=eq.' + targetId, 'DELETE', null, null, function() {});
     }
 
-    /* MODAL MANAGERS */
-    function openReportsModal() {
-      document.getElementById('reports-modal').style.display = 'block';
-      renderReports();
+    /* ==========================================================================
+       SCHEDULE ENGINE (RECURRING DAYS SUPPORT)
+       ========================================================================== */
+    function toggleRepeatDaysVisibility() {
+      var rType = document.getElementById('cal-repeat-type').value;
+      var showDays = (rType === 'custom_days');
+      var showUntil = (rType !== 'none');
+      
+      document.getElementById('cal-repeat-days-wrap').style.display = showDays ? 'block' : 'none';
+      document.getElementById('cal-repeat-until-wrap').style.display = showUntil ? 'block' : 'none';
     }
 
-    function openLearningModal() {
-      document.getElementById('learning-modal').style.display = 'block';
-      renderLearningHub();
+    function toggleDayPill(btn) {
+      if (btn.className.indexOf('active') !== -1) {
+        btn.className = btn.className.replace(/\bactive\b/g, '').trim();
+      } else {
+        btn.className += ' active';
+      }
     }
 
-    /* OTHER CORE MODULES (TASKS, CALENDAR, HUD, REPORTS) */
-    function createGlobalTask(taskObj) {
-      var resolvedProjectId = taskObj.project_id ? Number(taskObj.project_id) : null;
-      var resolvedProjectName = taskObj.project;
+    function getSelectedRepeatDays() {
+      var activeBtns = document.querySelectorAll('#cal-repeat-days-wrap .repeat-day-btn.active');
+      var days = [];
+      for (var i = 0; i < activeBtns.length; i++) {
+        days.push(parseInt(activeBtns[i].getAttribute('data-day'), 10));
+      }
+      return days;
+    }
 
-      if (!resolvedProjectId && taskObj.project) {
-        var p = getProjectByName(taskObj.project);
-        if (p) {
-          resolvedProjectId = p.id;
-          resolvedProjectName = p.name;
+    function setSelectedRepeatDays(daysArray) {
+      var btns = document.querySelectorAll('#cal-repeat-days-wrap .repeat-day-btn');
+      daysArray = daysArray || [];
+      for (var i = 0; i < btns.length; i++) {
+        var dayVal = parseInt(btns[i].getAttribute('data-day'), 10);
+        if (daysArray.indexOf(dayVal) !== -1) {
+          if (btns[i].className.indexOf('active') === -1) btns[i].className += ' active';
+        } else {
+          btns[i].className = btns[i].className.replace(/\bactive\b/g, '').trim();
         }
-      } else if (resolvedProjectId && !resolvedProjectName) {
-        var proj = getProjectById(resolvedProjectId);
-        if (proj) resolvedProjectName = proj.name;
-      }
-
-      var cleanPayload = {
-        title: String(taskObj.title).trim(),
-        description: taskObj.description ? String(taskObj.description).trim() : null,
-        project_id: resolvedProjectId,
-        project: resolvedProjectName || 'General',
-        status: taskObj.status || 'todo',
-        tags: Array.isArray(taskObj.tags) ? taskObj.tags : [taskObj.tags],
-        parent_id: taskObj.parent_id ? Number(taskObj.parent_id) : null,
-        source_type: taskObj.source_type || 'manual'
-      };
-
-      sbClient.request('tasks', 'POST', cleanPayload, { 'Prefer': 'return=representation' }, function(err, data) {
-        if (!err && data && data[0]) {
-          ALL_TASKS.unshift(data[0]);
-          renderTaskStack();
-          renderTagFilters();
-        }
-      });
-    }
-
-    function openProjectManagerModal() {
-      renderProjectManagerList();
-      document.getElementById('project-mgr-modal').style.display = 'block';
-    }
-
-    function saveSupabaseProject() {
-      var nameInput = document.getElementById('new-proj-name');
-      var colorInput = document.getElementById('new-proj-color');
-      var limitInput = document.getElementById('new-proj-limit');
-
-      var name = nameInput.value.trim();
-      var color = colorInput.value.trim() || '#6366f1';
-      var weekly_limit_hours = limitInput.value ? parseFloat(limitInput.value) : null;
-      if (!name) return;
-
-      var payload = { name: name, color: color, weekly_limit_hours: weekly_limit_hours, updated_at: new Date().toISOString() };
-      sbClient.request('projects', 'POST', payload, { 'Prefer': 'return=representation' }, function(err, data) {
-        if (!err && data && data[0]) ALL_PROJECTS.push(data[0]);
-        renderProjectManagerList();
-        updateProjectDropdowns();
-        renderTaskStack();
-      });
-      nameInput.value = '';
-    }
-
-    function deleteSupabaseProject(projectId, projName) {
-      if (!confirm('Delete project "' + projName + '"?')) return;
-      ALL_PROJECTS = ALL_PROJECTS.filter(function(p) { return Number(p.id) !== Number(projectId); });
-      renderProjectManagerList();
-      updateProjectDropdowns();
-      sbClient.request('projects?id=eq.' + projectId, 'DELETE', null, null, function() {});
-    }
-
-    function renderProjectManagerList() {
-      var wrapper = document.getElementById('project-list-wrapper');
-      wrapper.innerHTML = '';
-      for (var i = 0; i < ALL_PROJECTS.length; i++) {
-        var proj = ALL_PROJECTS[i];
-        var item = document.createElement('div');
-        item.style.cssText = "padding:8px; background:#f4f6f8; border:1px solid #e2e8f0; border-radius:8px; margin-bottom:6px;";
-        item.innerHTML = '<span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:' + proj.color + '; margin-right:6px;"></span><strong>' + escapeHtml(proj.name) + '</strong> <button class="btn btn-danger btn-sm" style="float:right;" onclick="deleteSupabaseProject(' + proj.id + ', \'' + escapeHtml(proj.name) + '\')">Delete</button>';
-        wrapper.appendChild(item);
       }
     }
-
-    function updateProjectDropdowns() {
-      var taskProj = document.getElementById('task-project-filter');
-      var calProj = document.getElementById('cal-project-select');
-      var mProj = document.getElementById('m-project-select');
-      var tModalProj = document.getElementById('t-project');
-
-      var filterOpts = '<option value="ALL">ALL PROJECTS</option>';
-      var selectOpts = '';
-
-      for (var i = 0; i < ALL_PROJECTS.length; i++) {
-        var p = ALL_PROJECTS[i];
-        filterOpts += '<option value="' + p.id + '">' + escapeHtml(p.name.toUpperCase()) + '</option>';
-        selectOpts += '<option value="' + p.id + '">' + escapeHtml(p.name) + '</option>';
-      }
-
-      if (taskProj) taskProj.innerHTML = filterOpts;
-      if (calProj) calProj.innerHTML = selectOpts;
-      if (mProj) mProj.innerHTML = selectOpts;
-      if (tModalProj) tModalProj.innerHTML = selectOpts;
-    }
-
-    function toggleSectionCollapse(sectionId) {
-      var card = document.getElementById('card-section-' + sectionId);
-      if (card) {
-        if (card.className.indexOf('collapsed') !== -1) card.className = card.className.replace(/\bcollapsed\b/g, '');
-        else card.className += ' collapsed';
-      }
-    }
-
-    function renderTaskStack() {
-      var searchQuery = (document.getElementById('search-input').value || '').toLowerCase();
-      var selectedFilter = document.getElementById('task-project-filter').value;
-      var isAll = !selectedFilter || selectedFilter === 'ALL';
-
-      var focusList = document.getElementById('list-focus');
-      var backlogList = document.getElementById('list-backlog');
-      var completedList = document.getElementById('list-completed');
-
-      focusList.innerHTML = '';
-      backlogList.innerHTML = '';
-      completedList.innerHTML = '';
-
-      var focusCount = 0, backlogCount = 0, completedCount = 0;
-
-      for (var j = 0; j < ALL_TASKS.length; j++) {
-        var task = ALL_TASKS[j];
-        if (task.parent_id) continue;
-
-        var taskProj = getProjectById(task.project_id) || getProjectByName(task.project);
-        var taskProjId = taskProj ? String(taskProj.id) : null;
-        if (!isAll && taskProjId !== selectedFilter) continue;
-        if (searchQuery && task.title.toLowerCase().indexOf(searchQuery) === -1) continue;
-
-        var status = task.status || 'todo';
-        var projName = taskProj ? taskProj.name : (task.project || 'General');
-        var projColor = taskProj ? taskProj.color : '#e2e8f0';
-
-        var card = document.createElement('div');
-        card.className = 'reminder-card ' + (status === 'done' ? 'completed' : '');
-        card.innerHTML = 
-          '<div class="reminder-row">' +
-            '<div class="reminder-circle" onclick="toggleTaskStatus(' + task.id + ')">' + (status === 'done' ? '✓' : '') + '</div>' +
-            '<div class="reminder-title-text">' + escapeHtml(task.title) + '</div>' +
-            '<button class="btn btn-secondary btn-sm" onclick="deleteTask(' + task.id + ')">✕</button>' +
-          '</div>' +
-          '<div class="reminder-meta"><span class="pill" style="background:' + projColor + '; color:' + getContrastTextColor(projColor) + ';">' + escapeHtml(projName) + '</span></div>';
-
-        if (status === 'in_progress') { focusList.appendChild(card); focusCount++; }
-        else if (status === 'done') { completedList.appendChild(card); completedCount++; }
-        else { backlogList.appendChild(card); backlogCount++; }
-      }
-
-      document.getElementById('badge-focus').innerText = focusCount;
-      document.getElementById('badge-backlog').innerText = backlogCount;
-      document.getElementById('badge-completed').innerText = completedCount;
-    }
-
-    function toggleTaskStatus(taskId) {
-      var numericId = Number(taskId);
-      var task = null;
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        if (Number(ALL_TASKS[i].id) === numericId) { task = ALL_TASKS[i]; break; }
-      }
-      if (!task) return;
-      var nextStatus = (task.status === 'done') ? 'todo' : 'done';
-      task.status = nextStatus;
-      renderTaskStack();
-      sbClient.request('tasks?id=eq.' + numericId, 'PATCH', { status: nextStatus, updated_at: new Date().toISOString() }, null, function() {});
-    }
-
-    function openTaskModal(taskId) {
-      updateProjectDropdowns();
-      document.getElementById('edit-task-id').value = '';
-      document.getElementById('t-title').value = '';
-      document.getElementById('t-desc').value = '';
-      document.getElementById('task-modal').style.display = 'block';
-    }
-
-    function saveTask() {
-      var title = document.getElementById('t-title').value.trim();
-      if (!title) return;
-      var project_id = Number(document.getElementById('t-project').value);
-      var status = document.getElementById('t-status').value;
-      closeModal('task-modal');
-      createGlobalTask({ title: title, project_id: project_id, status: status });
-    }
-
-    function deleteTask(id) {
-      if (!confirm("Delete task?")) return;
-      ALL_TASKS = ALL_TASKS.filter(function(t) { return Number(t.id) !== Number(id); });
-      renderTaskStack();
-      sbClient.request('tasks?id=eq.' + id, 'DELETE', null, null, function() {});
-    }
-
-    function handleSearchInput() { renderTaskStack(); }
-    function renderTagFilters() {}
-    function filterTasksByProjectSelect() { renderTaskStack(); }
 
     function renderScheduleCalendar() {
       var viewInput = document.getElementById('cal-view-date');
       if (!viewInput.value) viewInput.value = formatDateLocal(new Date());
       var dateStr = viewInput.value.split('T')[0];
-      document.getElementById('cal-day-label').innerText = new Date(dateStr + 'T00:00:00').toDateString();
+      var activeDateObj = new Date(dateStr + 'T00:00:00');
+      var activeDayOfWeek = activeDateObj.getDay();
+
+      document.getElementById('cal-day-label').innerText = activeDateObj.toDateString();
 
       var area = document.getElementById('calendar-render-area');
       area.innerHTML = '';
 
       var buckets = [
-        { id: 'morning', title: '🌅 Morning' },
-        { id: 'afternoon', title: '☀️ Afternoon' },
-        { id: 'evening', title: '🌆 Evening' },
-        { id: 'others', title: '🌙 Others' }
+        { id: 'morning', title: '🌅 Morning', subtitle: 'Till 12 PM' },
+        { id: 'afternoon', title: '☀️ Afternoon', subtitle: '12 PM - 4 PM' },
+        { id: 'evening', title: '🌆 Evening', subtitle: '4 PM - 8 PM' },
+        { id: 'others', title: '🌙 Others', subtitle: '8 PM onwards' }
       ];
 
-      var dayEvents = ALL_EVENTS.filter(function(e) { return String(e.event_date).split('T')[0] === dateStr; });
+      var dayEvents = ALL_EVENTS.filter(function(e) {
+        var eventStartStr = String(e.event_date).split('T')[0];
+        if (dateStr < eventStartStr) return false;
+
+        if (e.repeat_until) {
+          var untilStr = String(e.repeat_until).split('T')[0];
+          if (dateStr > untilStr) return false;
+        }
+
+        if (!e.repeat_type || e.repeat_type === 'none') return eventStartStr === dateStr;
+        if (e.repeat_type === 'daily') return true;
+        if (e.repeat_type === 'custom_days') {
+          var repeatDays = e.repeat_days || [];
+          return repeatDays.indexOf(activeDayOfWeek) !== -1;
+        }
+        return false;
+      });
 
       var html = '';
       for (var b = 0; b < buckets.length; b++) {
         var bucket = buckets[b];
         var bucketEvents = dayEvents.filter(function(e) { return getEventBucket(e) === bucket.id; });
         html += '<div class="schedule-bucket-card"><div class="schedule-bucket-header"><div class="schedule-bucket-title">' + bucket.title + ' (' + bucketEvents.length + ')</div></div>';
-        if (bucketEvents.length === 0) html += '<div style="font-size:11px; color:#64748b;">No blocks.</div>';
+        if (bucketEvents.length === 0) html += '<div style="font-size:11px; color:#64748b;">No blocks scheduled.</div>';
         else {
           for (var k = 0; k < bucketEvents.length; k++) {
             var evt = bucketEvents[k];
-            html += '<div class="time-block-card ' + (evt.is_starred ? 'is-starred' : '') + '"><div><strong>' + escapeHtml(evt.title) + '</strong><div style="font-size:10px; color:#64748b;">' + (evt.start_time || '') + '</div></div><button class="btn btn-secondary btn-sm" onclick="openCalendarEventModal(' + evt.id + ')">Edit</button></div>';
+            html += '<div class="time-block-card ' + (evt.is_starred ? 'is-starred' : '') + '">' +
+              '<div><strong>' + (evt.is_starred ? '⭐ ' : '') + escapeHtml(evt.title) + '</strong>' +
+                '<div style="font-size:10px; color:#64748b; font-family:monospace;">' + 
+                  (evt.start_time ? evt.start_time.slice(0,5) + (evt.end_time ? ' - ' + evt.end_time.slice(0,5) : '') + ' | ' : '') + 
+                  escapeHtml(evt.project || 'General') + 
+                  (evt.repeat_type && evt.repeat_type !== 'none' ? ' (Recurring)' : '') +
+                '</div>' +
+              '</div>' +
+              '<button class="btn btn-secondary btn-sm" onclick="openCalendarEventModal(' + evt.id + ')">Edit</button>' +
+            '</div>';
           }
         }
         html += '</div>';
@@ -1349,31 +1283,273 @@
 
     function openCalendarEventModal(eventId) {
       updateProjectDropdowns();
-      document.getElementById('cal-edit-id').value = '';
-      document.getElementById('cal-title').value = '';
-      document.getElementById('cal-date').value = document.getElementById('cal-view-date').value || formatDateLocal(new Date());
+      var delBtn = document.getElementById('cal-delete-btn');
+      if (eventId) {
+        var numericId = Number(eventId);
+        var evt = null;
+        for (var i = 0; i < ALL_EVENTS.length; i++) {
+          if (Number(ALL_EVENTS[i].id) === numericId) { evt = ALL_EVENTS[i]; break; }
+        }
+        if (evt) {
+          document.getElementById('cal-edit-id').value = evt.id;
+          document.getElementById('cal-title').value = evt.title;
+          document.getElementById('cal-desc').value = evt.description || '';
+          document.getElementById('cal-date').value = evt.event_date ? String(evt.event_date).split('T')[0] : '';
+          document.getElementById('cal-bucket-select').value = evt.time_bucket || 'morning';
+          document.getElementById('cal-start-time').value = evt.start_time || '';
+          document.getElementById('cal-end-time').value = evt.end_time || '';
+          document.getElementById('cal-repeat-type').value = evt.repeat_type || 'none';
+          document.getElementById('cal-repeat-until').value = evt.repeat_until ? String(evt.repeat_until).split('T')[0] : '';
+          setSelectedRepeatDays(evt.repeat_days || []);
+          toggleRepeatDaysVisibility();
+          document.getElementById('cal-project-select').value = evt.project_id || (ALL_PROJECTS[0] ? ALL_PROJECTS[0].id : '');
+          document.getElementById('cal-starred').checked = !!evt.is_starred;
+          delBtn.style.display = 'inline-block';
+        }
+      } else {
+        document.getElementById('cal-edit-id').value = '';
+        document.getElementById('cal-title').value = '';
+        document.getElementById('cal-desc').value = '';
+        document.getElementById('cal-date').value = document.getElementById('cal-view-date').value || formatDateLocal(new Date());
+        document.getElementById('cal-bucket-select').value = 'morning';
+        document.getElementById('cal-start-time').value = '';
+        document.getElementById('cal-end-time').value = '';
+        document.getElementById('cal-repeat-type').value = 'none';
+        document.getElementById('cal-repeat-until').value = '';
+        setSelectedRepeatDays([]);
+        toggleRepeatDaysVisibility();
+        document.getElementById('cal-starred').checked = false;
+        delBtn.style.display = 'none';
+      }
       document.getElementById('calendar-modal').style.display = 'block';
     }
 
     function saveCalendarEvent() {
       var title = document.getElementById('cal-title').value.trim();
       if (!title) return;
+      var editId = document.getElementById('cal-edit-id').value;
       var event_date = document.getElementById('cal-date').value;
       var time_bucket = document.getElementById('cal-bucket-select').value;
+      var start_time = document.getElementById('cal-start-time').value || null;
+      var end_time = document.getElementById('cal-end-time').value || null;
       var project_id = Number(document.getElementById('cal-project-select').value);
+      var projObj = getProjectById(project_id);
+      var project = projObj ? projObj.name : 'General';
+      var is_starred = document.getElementById('cal-starred').checked;
+      var description = document.getElementById('cal-desc').value;
+
+      var repeat_type = document.getElementById('cal-repeat-type').value;
+      var repeat_days = (repeat_type === 'custom_days') ? getSelectedRepeatDays() : [];
+      var repeat_until = document.getElementById('cal-repeat-until').value || null;
+
       closeModal('calendar-modal');
 
-      sbClient.request('schedule_events', 'POST', {
-        title: title, event_date: event_date, time_bucket: time_bucket, project_id: project_id, project: 'General'
-      }, { 'Prefer': 'return=representation' }, function(err, data) {
-        if (!err && data && data[0]) {
-          ALL_EVENTS.push(data[0]);
-          renderScheduleCalendar();
-        }
-      });
+      var payload = {
+        title: title,
+        description: description,
+        event_date: event_date,
+        time_bucket: time_bucket,
+        start_time: start_time,
+        end_time: end_time,
+        project_id: project_id,
+        project: project,
+        is_starred: is_starred,
+        repeat_type: repeat_type,
+        repeat_days: repeat_days,
+        repeat_until: repeat_until,
+        updated_at: new Date().toISOString()
+      };
+
+      if (editId) {
+        var numericId = Number(editId);
+        sbClient.request('schedule_events?id=eq.' + numericId, 'PATCH', payload, null, function(err) {
+          syncAllSupabaseData();
+        });
+      } else {
+        sbClient.request('schedule_events', 'POST', payload, { 'Prefer': 'return=representation' }, function(err, data) {
+          if (!err && data && data[0]) {
+            ALL_EVENTS.push(data[0]);
+            renderScheduleCalendar();
+          }
+        });
+      }
     }
 
-    function deleteCalendarEvent() {}
+    function deleteCalendarEvent() {
+      var editId = document.getElementById('cal-edit-id').value;
+      if (!editId) return;
+      if (confirm("Delete this block?")) {
+        closeModal('calendar-modal');
+        sbClient.request('schedule_events?id=eq.' + editId, 'DELETE', null, null, function() {
+          syncAllSupabaseData();
+        });
+      }
+    }
+
+    /* ==========================================================================
+       PITCH BLACK FLIP CLOCK FOCUS HUD (MATCHING SCREENSHOT)
+       ========================================================================== */
+    var flipClockInterval = null;
+
+    function openDeskHud() {
+      var select = document.getElementById('hud-project-select');
+      select.innerHTML = '<option value="">⚡ UNSCHEDULED FOCUS</option>';
+      for (var i = 0; i < ALL_PROJECTS.length; i++) {
+        select.innerHTML += '<option value="' + ALL_PROJECTS[i].id + '">' + escapeHtml(ALL_PROJECTS[i].name).toUpperCase() + '</option>';
+      }
+
+      updateFlipClockFace();
+      if (!flipClockInterval) {
+        flipClockInterval = setInterval(updateFlipClockFace, 1000);
+      }
+      document.getElementById('desk-hud').style.display = 'block';
+    }
+
+    function closeDeskHud() {
+      if (flipClockInterval) {
+        clearInterval(flipClockInterval);
+        flipClockInterval = null;
+      }
+      document.getElementById('desk-hud').style.display = 'none';
+    }
+
+    function updateFlipClockFace() {
+      var now = new Date();
+      var hours = now.getHours();
+      var ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 12hr format
+
+      var hStr = String(hours);
+      if (hStr.length < 2) hStr = '0' + hStr;
+
+      var mStr = String(now.getMinutes());
+      if (mStr.length < 2) mStr = '0' + mStr;
+
+      var sStr = String(now.getSeconds());
+      if (sStr.length < 2) sStr = '0' + sStr;
+
+      var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+      var dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+
+      document.getElementById('flip-card-date').innerText = months[now.getMonth()] + ' ' + (now.getDate() < 10 ? '0' : '') + now.getDate() + ', ' + now.getFullYear();
+      document.getElementById('flip-card-day').innerText = dayNames[now.getDay()];
+      document.getElementById('flip-digits-hours').innerText = hStr;
+      document.getElementById('flip-digits-mins').innerText = mStr;
+      document.getElementById('flip-card-secs').innerText = sStr;
+      document.getElementById('flip-card-ampm').innerText = ampm;
+
+      if (trackingState.isRunning && !trackingState.isPaused) {
+        var h = Math.floor(trackingState.accumulatedSec / 3600);
+        var m = Math.floor((trackingState.accumulatedSec % 3600) / 60);
+        var s = trackingState.accumulatedSec % 60;
+        document.getElementById('hud-sub-heading').innerText = 'Focus Session Active: ' + (h > 0 ? h + 'h ' : '') + m + 'm ' + s + 's';
+      }
+    }
+
+    function onHudProjectChange() {
+      var val = document.getElementById('hud-project-select').value;
+      trackingState.targetProjId = val ? Number(val) : null;
+    }
+
+    function toggleGlobalTracking() {
+      var btn = document.getElementById('hud-pause-text');
+      if (!trackingState.isRunning) {
+        trackingState.isRunning = true;
+        trackingState.isPaused = false;
+        trackingState.lastTickTime = Date.now();
+        if (!trackingState.sessionStartTimestamp) trackingState.sessionStartTimestamp = new Date();
+        trackingState.timerId = setInterval(function() {
+          if (!trackingState.isRunning || trackingState.isPaused) return;
+          var now = Date.now();
+          var delta = Math.floor((now - trackingState.lastTickTime) / 1000);
+          if (delta > 0) {
+            trackingState.accumulatedSec += delta;
+            trackingState.lastTickTime = now;
+          }
+        }, 1000);
+        btn.innerText = '⏸ Pause';
+      } else if (trackingState.isRunning && !trackingState.isPaused) {
+        trackingState.isPaused = true;
+        btn.innerText = '▶ Resume';
+      } else {
+        trackingState.isPaused = false;
+        trackingState.lastTickTime = Date.now();
+        btn.innerText = '⏸ Pause';
+      }
+    }
+
+    function addFiveMinsToTracking() {
+      trackingState.accumulatedSec += 300;
+    }
+
+    function stopAndSaveTracking() {
+      if (!trackingState.isRunning && trackingState.accumulatedSec === 0) {
+        closeDeskHud();
+        return;
+      }
+      clearInterval(trackingState.timerId);
+      var projObj = getProjectById(trackingState.targetProjId);
+      var projName = projObj ? projObj.name : 'General';
+      var projId = projObj ? projObj.id : (ALL_PROJECTS[0] ? ALL_PROJECTS[0].id : null);
+      var savedSec = trackingState.accumulatedSec;
+
+      var now = new Date();
+      var startDateTime = trackingState.sessionStartTimestamp || new Date(now.getTime() - savedSec * 1000);
+
+      trackingState.isRunning = false;
+      trackingState.isPaused = false;
+      trackingState.accumulatedSec = 0;
+      trackingState.sessionStartTimestamp = null;
+      trackingState.timerId = null;
+
+      document.getElementById('hud-pause-text').innerText = '▶ Start Focus';
+      document.getElementById('hud-sub-heading').innerText = 'What September - December is going to look like.';
+      closeDeskHud();
+
+      if (projId && savedSec > 0) {
+        sbClient.request('project_time_logs', 'POST', {
+          project_id: projId,
+          duration_seconds: savedSec,
+          source: 'focus_mode',
+          log_date: formatDateLocal(now),
+          start_time: formatTime24H(startDateTime),
+          end_time: formatTime24H(now)
+        }, null, function() {
+          renderReports();
+        });
+      }
+
+      alert('Saved ' + formatTime(savedSec) + ' to ' + projName + '!');
+    }
+
+    /* ==========================================================================
+       CROSS-MODULE ACTIONS (CONVERT TO CALENDAR EVENT)
+       ========================================================================== */
+    function scheduleReadingToCalendar(headline, sourceUrl, track) {
+      openCalendarEventModal(null);
+      document.getElementById('cal-title').value = 'Read: ' + headline;
+      document.getElementById('cal-desc').value = sourceUrl || '';
+      document.getElementById('cal-bucket-select').value = 'evening';
+      var p = getProjectByName(track);
+      if (p) document.getElementById('cal-project-select').value = p.id;
+    }
+
+    function scheduleStudyToCalendar(title, trackType) {
+      closeModal('learning-modal');
+      openCalendarEventModal(null);
+      document.getElementById('cal-title').value = 'Study ' + trackType + ': ' + title;
+      document.getElementById('cal-bucket-select').value = 'morning';
+      var p = getProjectByName('Engineering');
+      if (p) document.getElementById('cal-project-select').value = p.id;
+    }
+
+    /* SIGNALS */
+    function signalMeter(score) {
+      var bars = '';
+      for (var i = 1; i <= 5; i++) bars += '<span class="bar ' + (i <= score ? 'on' : '') + '"></span>';
+      return '<span class="signal-meter">' + bars + '</span>';
+    }
 
     function fetchSupabaseSignals(isReset) {
       if (isFetchingSignals) return;
@@ -1402,52 +1578,152 @@
         card.innerHTML = 
           '<div class="bento-meta-bar"><strong>' + escapeHtml(art.source || 'Signal') + '</strong> · ' + (art.date || '') + '</div>' +
           '<a href="' + (art.url || '#') + '" target="_blank" class="bento-headline">' + escapeHtml(art.headline) + '</a>' +
-          '<p class="bento-body">' + escapeHtml(art.body) + '</p>';
+          '<p class="bento-body">' + escapeHtml(art.body) + '</p>' +
+          '<div class="bento-footer">' +
+            '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'' + escapeHtml(art.headline).replace(/'/g, "\\'") + '\', \'' + (art.url || '') + '\', \'' + escapeHtml(art.track || 'General') + '\')">📅 Schedule Event</button>' +
+            '<a class="btn btn-secondary btn-sm" href="' + (art.url || '#') + '" target="_blank">Read Source ↗</a>' +
+          '</div>';
         container.appendChild(card);
       }
     }
 
-    function openNewspaperOverlay() {
-      document.getElementById('newspaper-overlay').style.display = 'block';
-    }
+    function openNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'block'; }
     function closeNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'none'; }
 
-    /* HUD */
-    function openDeskHud() {
-      document.getElementById('desk-hud').style.display = 'block';
-    }
-    function closeDeskHud() { document.getElementById('desk-hud').style.display = 'none'; }
-    function onHudProjectChange() {}
-    function toggleGlobalTracking() {}
-    function addFiveMinsToTracking() {}
-    function stopAndSaveTracking() { closeDeskHud(); }
-
-    /* LEARNING & REPORTS */
+    /* LEARNING */
     function renderLearningHub() {
       var container = document.getElementById('learning-bento-container');
-      container.innerHTML = '<div style="text-align:center; padding:20px; font-size:12px; color:#64748b;">Loading pattern...</div>';
+      container.innerHTML = '<div style="text-align:center; padding:20px; font-size:12px; color:#64748b;">Loading pattern…</div>';
       sbClient.request('dsa_daily_drills?select=*&order=drill_date.desc&limit=1', 'GET', null, null, function(err, drills) {
         if (!err && drills && drills[0]) {
-          container.innerHTML = '<div class="bento-card"><strong>' + escapeHtml(drills[0].pattern_name) + '</strong><div class="code-box"><pre><code>' + escapeHtml(drills[0].template_code || '// code') + '</code></pre></div></div>';
+          var drill = drills[0];
+          container.innerHTML = 
+            '<div class="bento-card">' +
+              '<strong>' + escapeHtml(drill.pattern_name) + '</strong>' +
+              '<div class="code-box"><pre><code>' + escapeHtml(drill.template_code || '// code') + '</code></pre></div>' +
+              '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(drill.pattern_name).replace(/'/g, "\\'") + '\', \'DSA\')">📅 Schedule Study Block</button>' +
+            '</div>';
         }
       });
     }
 
-    function setLearningTrack(track, el) {
+    function setLearningTrack(track, el) { renderLearningHub(); }
+
+    /* REPORTS */
+    function openReportsModal() {
+      document.getElementById('reports-modal').style.display = 'block';
+      renderReports();
+    }
+
+    function openLearningModal() {
+      document.getElementById('learning-modal').style.display = 'block';
       renderLearningHub();
     }
 
     function renderReports() {
       var container = document.getElementById('report-container');
-      container.innerHTML = '<div style="padding:10px;">Weekly Limits & Project Logs tracked via focus mode.</div>';
+      container.innerHTML = '<div style="padding:10px;">Time logs tracked via Focus Mode.</div>';
     }
 
-    function openManualTimeModal() {}
-    function saveManualTime() {}
+    /* GENERAL HELPERS & TASK BACKLOG */
+    function createGlobalTask(taskObj) {
+      var cleanPayload = {
+        title: String(taskObj.title).trim(),
+        project_id: taskObj.project_id || null,
+        project: taskObj.project || 'General',
+        status: taskObj.status || 'todo'
+      };
+      sbClient.request('tasks', 'POST', cleanPayload, { 'Prefer': 'return=representation' }, function(err, data) {
+        if (!err && data && data[0]) {
+          ALL_TASKS.unshift(data[0]);
+          renderTaskStack();
+        }
+      });
+    }
+
+    function renderTaskStack() {
+      var focusList = document.getElementById('list-focus');
+      var backlogList = document.getElementById('list-backlog');
+      var completedList = document.getElementById('list-completed');
+
+      focusList.innerHTML = ''; backlogList.innerHTML = ''; completedList.innerHTML = '';
+      var fc = 0, bc = 0, cc = 0;
+
+      for (var j = 0; j < ALL_TASKS.length; j++) {
+        var task = ALL_TASKS[j];
+        var card = document.createElement('div');
+        card.className = 'reminder-card ' + (task.status === 'done' ? 'completed' : '');
+        card.innerHTML = 
+          '<div class="reminder-row">' +
+            '<div class="reminder-circle" onclick="toggleTaskStatus(' + task.id + ')">' + (task.status === 'done' ? '✓' : '') + '</div>' +
+            '<div class="reminder-title-text">' + escapeHtml(task.title) + '</div>' +
+            '<button class="btn btn-secondary btn-sm" onclick="deleteTask(' + task.id + ')">✕</button>' +
+          '</div>';
+
+        if (task.status === 'in_progress') { focusList.appendChild(card); fc++; }
+        else if (task.status === 'done') { completedList.appendChild(card); cc++; }
+        else { backlogList.appendChild(card); bc++; }
+      }
+      document.getElementById('badge-focus').innerText = fc;
+      document.getElementById('badge-backlog').innerText = bc;
+      document.getElementById('badge-completed').innerText = cc;
+    }
+
+    function toggleTaskStatus(taskId) {
+      var task = ALL_TASKS.filter(function(t) { return Number(t.id) === Number(taskId); })[0];
+      if (!task) return;
+      var ns = task.status === 'done' ? 'todo' : 'done';
+      task.status = ns;
+      renderTaskStack();
+      sbClient.request('tasks?id=eq.' + taskId, 'PATCH', { status: ns }, null, function() {});
+    }
+
+    function openTaskModal() {
+      updateProjectDropdowns();
+      document.getElementById('task-modal').style.display = 'block';
+    }
+
+    function saveTask() {
+      var title = document.getElementById('t-title').value.trim();
+      var pId = Number(document.getElementById('t-project').value);
+      var st = document.getElementById('t-status').value;
+      closeModal('task-modal');
+      createGlobalTask({ title: title, project_id: pId, status: st });
+    }
+
+    function deleteTask(id) {
+      ALL_TASKS = ALL_TASKS.filter(function(t) { return Number(t.id) !== Number(id); });
+      renderTaskStack();
+      sbClient.request('tasks?id=eq.' + id, 'DELETE', null, null, function() {});
+    }
+
+    function openProjectManagerModal() { document.getElementById('project-mgr-modal').style.display = 'block'; }
+    function saveSupabaseProject() {}
+    function updateProjectDropdowns() {
+      var calProj = document.getElementById('cal-project-select');
+      var tModalProj = document.getElementById('t-project');
+      var selectOpts = '';
+      for (var i = 0; i < ALL_PROJECTS.length; i++) {
+        selectOpts += '<option value="' + ALL_PROJECTS[i].id + '">' + escapeHtml(ALL_PROJECTS[i].name) + '</option>';
+      }
+      if (calProj) calProj.innerHTML = selectOpts;
+      if (tModalProj) tModalProj.innerHTML = selectOpts;
+    }
+
+    function formatTime(sec) {
+      var h = Math.floor(sec / 3600);
+      var m = Math.floor((sec % 3600) / 60);
+      var s = sec % 60;
+      return (h > 0 ? h + 'h ' : '') + m + 'm ' + s + 's';
+    }
+
     function openProfileModal() { document.getElementById('profile-modal').style.display = 'block'; }
-    function clearCompletedTasks() {}
-    function exportData() {}
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    function handleSearchInput() { renderTaskStack(); }
+    function toggleSectionCollapse(id) {
+      var c = document.getElementById('card-section-' + id);
+      if (c) c.className = c.className.indexOf('collapsed') !== -1 ? c.className.replace(/\bcollapsed\b/g, '') : c.className + ' collapsed';
+    }
 
     // Init
     syncAllSupabaseData();
