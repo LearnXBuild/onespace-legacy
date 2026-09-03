@@ -127,6 +127,15 @@
     .code-box-header { background: #1e293b; padding: 8px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; border-bottom: 1px solid #334155; font-size: 10px; color: #94a3b8; }
     .code-box pre { margin: 0; padding: 12px; overflow-x: auto; line-height: 1.5; max-height: 300px; }
 
+    .ladder-card-clean { border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; background: #f4f6f8; margin-bottom: 8px; }
+    .ladder-card-clean.solved { background: #f0fdf4; border-color: #bbf7d0; }
+    .ladder-top-row { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start; width: 100%; }
+    .ladder-content { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-width: 0; padding-left: 6px; }
+    .ladder-tier { font-size: 9px; font-weight: bold; text-transform: uppercase; font-family: monospace; padding: 1px 5px; border-radius: 3px; background: #e0e7ff; color: #4338ca; display: inline-block; }
+    .ladder-title-text { font-size: 13px; font-weight: bold; color: #1e293b; text-decoration: none; line-height: 1.4; display: block; margin-top: 2px; }
+    .ladder-card-clean.solved .ladder-title-text { text-decoration: line-through; color: #64748b; }
+    .ladder-bottom-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding-top: 6px; border-top: 1px solid rgba(0, 0, 0, 0.05); margin-top: 4px; }
+
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
     .news-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 1rem; }
@@ -187,6 +196,24 @@
     .hud-controls-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; padding: 14px 0 6px 0; }
     .hud-ctrl-btn { background: #161a22; border: 1px solid #2d3342; color: #fff; border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: bold; cursor: pointer; margin: 0 4px; }
 
+    /* REPORTS */
+    .report-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .report-table th, .report-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e2e8f0; }
+    .report-table th { font-family: monospace; font-size: 10px; color: #64748b; text-transform: uppercase; background: #f4f6f8; }
+
+    .donut-chart-container { text-align: center; }
+    .donut-legend { margin-top: 8px; }
+    .legend-item { display: inline-block; font-size: 11px; font-weight: bold; color: #1e293b; margin: 3px 6px; }
+    .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 3px; }
+
+    .gantt-chart-container { margin-top: 8px; }
+    .gantt-time-scale { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; font-family: monospace; font-size: 9px; color: #64748b; margin-left: 30px; margin-right: 50px; padding-bottom: 2px; border-bottom: 1px dashed #e2e8f0; }
+    .gantt-row { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 4px; }
+    .gantt-day-label { width: 28px; font-family: monospace; font-size: 10px; font-weight: bold; color: #64748b; }
+    .gantt-bar-track { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; height: 18px; background: #f4f6f8; border-radius: 3px; position: relative; overflow: hidden; border: 1px solid #e2e8f0; }
+    .gantt-block { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
+    .gantt-time-label { width: 50px; font-family: monospace; font-size: 10px; font-weight: bold; color: #64748b; text-align: right; }
+
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: none; z-index: 1000; overflow-y: auto; padding: 14px; }
     .modal { background: #ffffff; border-radius: 12px; width: 100%; max-width: 440px; margin: 20px auto; padding: 18px; border: 1px solid #e2e8f0; }
     .modal-actions { text-align: right; margin-top: 14px; }
@@ -195,7 +222,7 @@
       body { -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; }
       aside { display: none; }
       .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; z-index: 50; }
-      .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 11px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
+      .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 10px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
       .flip-card-box { width: 115px; height: 155px; padding: 10px; margin: 0 4px; }
       .flip-card-digits { font-size: 50px; }
@@ -221,8 +248,10 @@
     <nav class="sidebar-nav">
       <button class="nav-btn active" data-tab="calendar" onclick="switchTab('calendar')">Schedule</button>
       <button class="nav-btn" data-tab="tasks" onclick="switchTab('tasks')">Tasks & Backlog</button>
-      <button class="nav-btn" data-tab="loops" onclick="switchTab('loops')">Loops</button>
+      <button class="nav-btn" data-tab="loops" onclick="switchTab('loops')">Loops Habits</button>
+      <button class="nav-btn" data-tab="learning" onclick="switchTab('learning')">Learning Hub</button>
       <button class="nav-btn" data-tab="signals" onclick="switchTab('signals')">Signals Feed</button>
+      <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">Reports</button>
     </nav>
   </aside>
 
@@ -327,7 +356,25 @@
       </div>
     </section>
 
-    <!-- 4. SIGNALS FEED TAB -->
+    <!-- 4. LEARNING HUB TAB -->
+    <section id="sec-learning" class="content-section">
+      <header class="workspace-header">
+        <h1 class="section-title">LEARNING HUB</h1>
+        <div>
+          <button class="btn btn-secondary btn-sm" onclick="renderLearningHub()">↻ Refresh</button>
+        </div>
+      </header>
+
+      <div class="bento-pill-scroll" id="learning-track-pills">
+        <span class="filter-chip active" onclick="setLearningTrack('DSA', this)">DSA</span>
+        <span class="filter-chip" onclick="setLearningTrack('LLD', this)">LLD</span>
+        <span class="filter-chip" onclick="setLearningTrack('HLD', this)">HLD</span>
+      </div>
+
+      <div id="learning-bento-container"></div>
+    </section>
+
+    <!-- 5. SIGNALS FEED TAB -->
     <section id="sec-signals" class="content-section">
       <header class="workspace-header">
         <h1 class="section-title">SIGNALS FEED</h1>
@@ -344,14 +391,28 @@
         <button class="btn btn-secondary btn-sm" onclick="fetchSupabaseSignals(false)">Load More Signals</button>
       </div>
     </section>
+
+    <!-- 6. REPORTS TAB -->
+    <section id="sec-reports" class="content-section">
+      <header class="workspace-header">
+        <h1 class="section-title">REPORTS & LIMITS</h1>
+        <div>
+          <button class="btn btn-secondary btn-sm" onclick="openManualTimeModal()">+ Log Time</button>
+          <button class="btn btn-secondary btn-sm" onclick="renderReports()">↻ Refresh</button>
+        </div>
+      </header>
+      <div id="report-container"></div>
+    </section>
   </main>
 
-  <!-- MOBILE BOTTOM NAVIGATION (4 TABS) -->
+  <!-- MOBILE BOTTOM NAVIGATION -->
   <div class="mobile-nav">
     <button class="nav-btn active" data-tab="calendar" onclick="switchTab('calendar')">Schedule</button>
     <button class="nav-btn" data-tab="tasks" onclick="switchTab('tasks')">Tasks</button>
     <button class="nav-btn" data-tab="loops" onclick="switchTab('loops')">Loops</button>
+    <button class="nav-btn" data-tab="learning" onclick="switchTab('learning')">Learning</button>
     <button class="nav-btn" data-tab="signals" onclick="switchTab('signals')">Signals</button>
+    <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">Reports</button>
   </div>
 
   <!-- PITCH BLACK FLIP CLOCK FOCUS HUD OVERLAY -->
@@ -441,55 +502,15 @@
     </div>
   </div>
 
-  <!-- PROFILE / MENU MODAL -->
+  <!-- PROFILE / SETTINGS MODAL -->
   <div class="modal-overlay" id="profile-modal">
     <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Workspace Menu</h2>
-      <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="closeModal('profile-modal'); openReportsModal();">📊 Performance Reports & Time Logs</button>
-      <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="closeModal('profile-modal'); openLearningModal();">📚 Learning Hub & System Design</button>
+      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Workspace Settings</h2>
       <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="closeModal('profile-modal'); openProjectManagerModal();">📂 Manage & Add Projects</button>
       <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="exportData()">💾 Backup Workspace JSON</button>
       <button class="btn btn-danger" style="width: 100%; text-align: left;" onclick="clearCompletedTasks()">🗑️ Clear Completed Tasks</button>
       <div class="modal-actions">
         <button class="btn btn-secondary" onclick="closeModal('profile-modal')">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- REPORTS MODAL OVERLAY -->
-  <div class="modal-overlay" id="reports-modal">
-    <div class="modal" style="max-width: 600px;">
-      <header class="workspace-header">
-        <h1 class="section-title">REPORTS & LIMITS</h1>
-        <div>
-          <button class="btn btn-secondary btn-sm" onclick="openManualTimeModal()">+ Log Time</button>
-          <button class="btn btn-secondary btn-sm" onclick="renderReports()">↻ Refresh</button>
-        </div>
-      </header>
-      <div id="report-container"></div>
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('reports-modal')">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- LEARNING HUB MODAL OVERLAY -->
-  <div class="modal-overlay" id="learning-modal">
-    <div class="modal" style="max-width: 640px;">
-      <header class="workspace-header">
-        <h1 class="section-title">LEARNING HUB</h1>
-        <div>
-          <button class="btn btn-secondary btn-sm" onclick="renderLearningHub()">↻ Refresh</button>
-        </div>
-      </header>
-      <div class="bento-pill-scroll" id="learning-track-pills">
-        <span class="filter-chip active" onclick="setLearningTrack('DSA', this)">DSA</span>
-        <span class="filter-chip" onclick="setLearningTrack('LLD', this)">LLD</span>
-        <span class="filter-chip" onclick="setLearningTrack('HLD', this)">HLD</span>
-      </div>
-      <div id="learning-bento-container"></div>
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('learning-modal')">Close</button>
       </div>
     </div>
   </div>
@@ -891,10 +912,12 @@
       if (tab === 'calendar') renderScheduleCalendar();
       if (tab === 'tasks') renderTaskStack();
       if (tab === 'loops') fetchHabitsAndLogs();
+      if (tab === 'learning') renderLearningHub();
       if (tab === 'signals') {
         if (ALL_ARTICLES.length === 0) fetchSupabaseSignals(true);
         else renderBentoSignals();
       }
+      if (tab === 'reports') renderReports();
 
       if (tab === 'tasks' || tab === 'calendar') syncAllSupabaseData();
     }
@@ -1069,9 +1092,9 @@
           habit_id: habitId,
           log_date: dateStr,
           completed: true
-        }, { 'Prefer': 'resolution=merge-duplicates' }, function() {});
+        }, { 'Prefer': 'resolution=merge-duplicates' }, function(err) {});
       } else {
-        sbClient.request('habit_logs?habit_id=eq.' + habitId + '&log_date=eq.' + dateStr, 'DELETE', null, null, function() {});
+        sbClient.request('habit_logs?habit_id=eq.' + habitId + '&log_date=eq.' + dateStr, 'DELETE', null, null, function(err) {});
       }
     }
 
@@ -1546,7 +1569,6 @@
     }
 
     function scheduleStudyToCalendar(title, trackType) {
-      closeModal('learning-modal');
       openCalendarEventModal(null);
       document.getElementById('cal-title').value = 'Study ' + trackType + ': ' + title;
       document.getElementById('cal-bucket-select').value = 'morning';
@@ -1937,14 +1959,6 @@
 
     /* REPORTS & SVG CHARTS */
     function openProfileModal() { document.getElementById('profile-modal').style.display = 'block'; }
-    function openReportsModal() {
-      document.getElementById('reports-modal').style.display = 'block';
-      renderReports();
-    }
-    function openLearningModal() {
-      document.getElementById('learning-modal').style.display = 'block';
-      renderLearningHub();
-    }
 
     function clearCompletedTasks() {
       if (!confirm("Delete completed tasks?")) return;
@@ -2014,6 +2028,12 @@
       }
     }
 
+    function timeStringToMinutes(timeStr) {
+      if (!timeStr) return null;
+      var parts = timeStr.split(':');
+      return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+    }
+
     function renderReports() {
       var container = document.getElementById('report-container');
       container.innerHTML = '<div style="text-align:center; padding:20px; color:#64748b;">Loading time logs…</div>';
@@ -2022,17 +2042,82 @@
       var weekInfo = getISOWeekDates(new Date());
       var startDate = weekInfo.startDate;
       var endDate = weekInfo.endDate;
+      var allDays = weekInfo.allDays;
 
-      sbClient.request('project_time_logs?select=project_id,duration_seconds,log_date&log_date=gte.' + startDate + '&log_date=lte.' + endDate, 'GET', null, null, function(err, logs) {
+      sbClient.request('project_time_logs?select=project_id,duration_seconds,log_date,start_time,end_time&log_date=gte.' + startDate + '&log_date=lte.' + endDate, 'GET', null, null, function(err, logs) {
         logs = (!err && logs) ? logs : [];
         var aggregatedTimes = {};
+        var rawDayLogs = {};
+        for (var d = 0; d < allDays.length; d++) rawDayLogs[allDays[d]] = [];
         var totalWeeklySec = 0;
 
         for (var i = 0; i < logs.length; i++) {
           var pId = Number(logs[i].project_id);
           var sec = Number(logs[i].duration_seconds) || 0;
+          var dateStr = String(logs[i].log_date).split('T')[0];
+
           aggregatedTimes[pId] = (aggregatedTimes[pId] || 0) + sec;
           totalWeeklySec += sec;
+          if (rawDayLogs[dateStr]) rawDayLogs[dateStr].push(logs[i]);
+        }
+
+        var TOTAL_WEEK_CAPACITY_SEC = 7 * 24 * 3600;
+        var unscheduledSec = Math.max(0, TOTAL_WEEK_CAPACITY_SEC - totalWeeklySec);
+
+        var radius = 68;
+        var circumference = 2 * Math.PI * radius;
+        var strokeOffset = 0;
+        var donutSvg = '<circle cx="100" cy="100" r="' + radius + '" fill="transparent" stroke="#f1f5f9" stroke-width="20" />';
+        var donutLegend = '';
+
+        for (var p = 0; p < ALL_PROJECTS.length; p++) {
+          var proj = ALL_PROJECTS[p];
+          var projSec = aggregatedTimes[proj.id] || 0;
+          if (projSec > 0) {
+            var percentOfCapacity = projSec / TOTAL_WEEK_CAPACITY_SEC;
+            var percentOfTracked = totalWeeklySec > 0 ? (projSec / totalWeeklySec) * 100 : 0;
+            var dashLength = percentOfCapacity * circumference;
+
+            donutSvg += '<circle cx="100" cy="100" r="' + radius + '" fill="transparent" stroke="' + proj.color + '" stroke-width="20" stroke-dasharray="' + dashLength + ' ' + (circumference - dashLength) + '" stroke-dashoffset="' + (-strokeOffset) + '" transform="rotate(-90 100 100)" />';
+            strokeOffset += dashLength;
+
+            donutLegend += '<div class="legend-item"><span class="legend-dot" style="background:' + proj.color + ';"></span><span>' + escapeHtml(proj.name) + ' (' + Math.round(percentOfTracked) + '%)</span></div>';
+          }
+        }
+
+        donutLegend += '<div class="legend-item"><span class="legend-dot" style="background:#cbd5e1;"></span><span style="color:#64748b;">Unscheduled (' + Math.round((unscheduledSec / TOTAL_WEEK_CAPACITY_SEC) * 100) + '%)</span></div>';
+
+        var dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        var ganttRows = '';
+
+        for (var dayIdx = 0; dayIdx < allDays.length; dayIdx++) {
+          var dStr = allDays[dayIdx];
+          var dayLogs = rawDayLogs[dStr] || [];
+          var dayTotalSec = 0;
+          var blocksHtml = '';
+
+          for (var dl = 0; dl < dayLogs.length; dl++) {
+            var log = dayLogs[dl];
+            var pr = getProjectById(log.project_id);
+            var col = pr ? pr.color : '#6366f1';
+            var durMins = Math.max(1, Math.round((Number(log.duration_seconds) || 0) / 60));
+            dayTotalSec += (Number(log.duration_seconds) || 0);
+
+            var startMin = timeStringToMinutes(log.start_time);
+            if (startMin === null) startMin = 540;
+
+            var leftPercent = Math.max(0, Math.min(100, (startMin / 1440) * 100));
+            var widthPercent = Math.max(1, Math.min(100 - leftPercent, (durMins / 1440) * 100));
+
+            blocksHtml += '<div class="gantt-block" style="left:' + leftPercent + '%; width:' + widthPercent + '%; background:' + col + ';"></div>';
+          }
+
+          ganttRows += 
+            '<div class="gantt-row">' +
+              '<span class="gantt-day-label">' + dayNames[dayIdx] + '</span>' +
+              '<div class="gantt-bar-track">' + blocksHtml + '</div>' +
+              '<span class="gantt-time-label">' + (dayTotalSec > 0 ? formatTime(dayTotalSec) : '—') + '</span>' +
+            '</div>';
         }
 
         var tableRows = '';
@@ -2052,12 +2137,21 @@
         }
 
         container.innerHTML = 
-          '<div class="bento-card" style="text-align:center;">' +
-            '<div style="font-weight:bold; font-size:12px; color:#64748b;">TOTAL TRACKED TIME (' + startDate + ' → ' + endDate + ')</div>' +
-            '<div style="font-size:24px; font-weight:bold; margin:6px 0; color:#1e293b;">' + formatTime(totalWeeklySec) + '</div>' +
+          '<div class="bento-card donut-chart-container">' +
+            '<div style="font-weight:bold; font-size:13px; margin-bottom:6px;">🥧 WEEKLY ALLOCATION (168h TOTAL)</div>' +
+            '<svg width="200" height="200" viewBox="0 0 200 200">' + donutSvg + '</svg>' +
+            '<div style="font-weight:bold; font-size:16px; margin-top:4px;">' + formatTime(totalWeeklySec) + '</div>' +
+            '<div class="donut-legend">' + donutLegend + '</div>' +
           '</div>' +
+
           '<div class="bento-card">' +
-            '<div style="font-weight:bold; font-size:13px; margin-bottom:8px;">📋 WEEKLY SUMMARY (' + currentWeekKey + ')</div>' +
+            '<div style="font-weight:bold; font-size:13px; margin-bottom:6px;">📊 24-HOUR GANTT TIMELINE (' + startDate + ' → ' + endDate + ')</div>' +
+            '<div class="gantt-time-scale"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>' +
+            '<div class="gantt-chart-container">' + ganttRows + '</div>' +
+          '</div>' +
+
+          '<div class="bento-card">' +
+            '<div style="font-weight:bold; font-size:14px; margin-bottom:8px;">📋 WEEKLY SUMMARY (' + currentWeekKey + ')</div>' +
             '<table class="report-table">' +
               '<thead><tr><th>Project</th><th>Time</th><th>Limit</th><th>Status</th></tr></thead>' +
               '<tbody>' + (tableRows || '<tr><td colspan="4">No projects</td></tr>') + '</tbody>' +
@@ -2066,10 +2160,10 @@
       });
     }
 
-    /* LEARNING HUB (FULL CURRICULUM & PATTERNS) */
+    /* LEARNING HUB (FULL CURRICULUM, LADDERS & PATTERNS) */
     function renderLearningHub() {
       var container = document.getElementById('learning-bento-container');
-      container.innerHTML = '<div style="text-align:center; padding:20px; font-size:12px; color:#64748b;">Loading pattern…</div>';
+      container.innerHTML = '<div style="text-align:center; padding:20px; font-size:12px; color:#64748b;">Loading curriculum…</div>';
 
       if (activeLearningTrack === 'HLD') {
         sbClient.request('hld_modules?select=*&order=id.asc', 'GET', null, null, function(err, modules) {
@@ -2079,20 +2173,82 @@
             return;
           }
 
-          var groupsHtml = '';
+          var catMap = {};
+          var completedCount = 0;
           for (var i = 0; i < modules.length; i++) {
-            var item = modules[i];
+            if (modules[i].status === 'completed' || modules[i].status === 'mastered') completedCount++;
+            if (modules[i].track_category) catMap[modules[i].track_category] = true;
+          }
+
+          var categories = ["All"].concat(Object.keys(catMap));
+          var totalCount = modules.length;
+          var percentDone = Math.round((completedCount / totalCount) * 100) || 0;
+
+          var filteredModules = activeHldCategory === "All" ? modules : modules.filter(function(m) { return m.track_category === activeHldCategory; });
+          var grouped = {};
+          for (var j = 0; j < filteredModules.length; j++) {
+            var cat = filteredModules[j].track_category || 'General Concepts';
+            if (!grouped[cat]) grouped[cat] = [];
+            grouped[cat].push(filteredModules[j]);
+          }
+
+          var pillsHtml = '';
+          for (var c = 0; c < categories.length; c++) {
+            pillsHtml += '<span class="filter-chip ' + (activeHldCategory === categories[c] ? 'active' : '') + '" onclick="setHldCategory(\'' + categories[c] + '\')">' + categories[c] + '</span>';
+          }
+
+          var groupsHtml = '';
+          var groupKeys = Object.keys(grouped);
+          for (var g = 0; g < groupKeys.length; g++) {
+            var catName = groupKeys[g];
+            var items = grouped[catName];
+            var doneItems = 0;
+            for (var d = 0; d < items.length; d++) {
+              if (items[d].status === 'completed' || items[d].status === 'mastered') doneItems++;
+            }
+            var cardId = 'hld-cat-card-' + g;
+
+            var itemsHtml = '';
+            for (var it = 0; it < items.length; it++) {
+              var item = items[it];
+              var isDone = item.status === 'completed' || item.status === 'mastered';
+              itemsHtml += 
+                '<div class="ladder-card-clean ' + (isDone ? 'solved' : '') + '">' +
+                  '<div class="ladder-top-row">' +
+                    '<input type="checkbox" ' + (isDone ? 'checked' : '') + ' onchange="toggleHldModuleMastered(' + item.id + ', this.checked)">' +
+                    '<div class="ladder-content">' +
+                      '<span class="ladder-tier">' + (item.difficulty || 'Concept') + '</span>' +
+                      '<a href="' + (item.reference_url || '#') + '" target="_blank" class="ladder-title-text">' + escapeHtml(item.module_title) + '</a>' +
+                    '</div>' +
+                  '</div>' +
+                  '<div class="ladder-bottom-bar">' +
+                    '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(item.module_title).replace(/'/g, "\\'") + '\', \'HLD\')">📅 Schedule Event</button>' +
+                    (item.reference_url ? '<a href="' + item.reference_url + '" target="_blank" class="btn btn-secondary btn-sm">Read ↗</a>' : '') +
+                  '</div>' +
+                '</div>';
+            }
+
             groupsHtml += 
-              '<div class="ladder-card-clean">' +
-                '<div style="font-weight:bold; font-size:13px;">' + escapeHtml(item.module_title) + '</div>' +
-                '<div style="font-size:10px; color:#64748b;">' + (item.track_category || 'General') + ' • ' + (item.difficulty || 'Concept') + '</div>' +
-                '<div style="margin-top:6px;">' +
-                  '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(item.module_title).replace(/'/g, "\\'") + '\', \'HLD\')">📅 Schedule Event</button>' +
-                  (item.reference_url ? ' <a href="' + item.reference_url + '" target="_blank" class="btn btn-secondary btn-sm">Read ↗</a>' : '') +
+              '<div class="bento-card hld-category-card" id="' + cardId + '">' +
+                '<div class="hld-category-header" onclick="toggleHldCategory(\'' + cardId + '\')">' +
+                  '<div><strong>📌 ' + escapeHtml(catName) + '</strong> (' + doneItems + '/' + items.length + ')</div>' +
+                  '<span>▼</span>' +
                 '</div>' +
+                '<div class="hld-category-body"><div class="ladder-list">' + itemsHtml + '</div></div>' +
               '</div>';
           }
-          container.innerHTML = '<div class="bento-card">' + groupsHtml + '</div>';
+
+          container.innerHTML = 
+            '<div class="bento-card">' +
+              '<div style="font-size:11px; color:#6366f1; font-weight:bold;">🏗️ SYSTEM DESIGN ROADMAP</div>' +
+              '<h2 style="font-size:16px; margin:4px 0 8px;">Awesome System Design Curriculum</h2>' +
+              '<div style="font-size:11px; color:#64748b; margin-bottom:4px;">PROGRESS: ' + completedCount + ' / ' + totalCount + ' (' + percentDone + '%)</div>' +
+              '<div style="width:100%; height:6px; background:#e2e8f0; border-radius:99px; overflow:hidden;">' +
+                '<div style="width:' + percentDone + '%; height:100%; background:#6366f1;"></div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="bento-pill-scroll">' + pillsHtml + '</div>' +
+            groupsHtml;
         });
         return;
       }
@@ -2103,19 +2259,84 @@
       }
 
       sbClient.request('dsa_daily_drills?select=*&order=drill_date.desc&limit=1', 'GET', null, null, function(err, drills) {
-        if (!err && drills && drills[0]) {
-          var drill = drills[0];
+        drills = (!err && drills) ? drills : [];
+        if (drills.length === 0) {
+          container.innerHTML = '<div class="bento-card">No DSA drill found.</div>';
+          return;
+        }
+
+        CURRENT_DRILL = drills[0];
+        var drill = CURRENT_DRILL;
+        var pIds = drill.problem_ids || [];
+
+        sbClient.request('dsa_questions?select=*&id=in.(' + pIds.join(',') + ')', 'GET', null, null, function(qErr, questions) {
+          questions = (!qErr && questions) ? questions : [];
+          var qMap = {};
+          for (var i = 0; i < questions.length; i++) qMap[questions[i].id] = questions[i];
+          var hasNotes = drill.article_url && drill.article_url.trim().length > 0;
+
+          var cuesHtml = '';
+          var cues = drill.trigger_cues || [];
+          for (var c = 0; c < cues.length; c++) cuesHtml += '<li>' + escapeHtml(cues[c]) + '</li>';
+
+          var ladderHtml = '';
+          for (var p = 0; p < pIds.length; p++) {
+            var q = qMap[pIds[p]];
+            if (!q) continue;
+            var isSolved = q.status === 'solved';
+            var tier = p === 0 ? 'Foundation' : p === 1 ? 'Core SDE-2' : 'Curveball';
+
+            ladderHtml += 
+              '<div class="ladder-card-clean ' + (isSolved ? 'solved' : '') + '">' +
+                '<div class="ladder-top-row">' +
+                  '<input type="checkbox" ' + (isSolved ? 'checked' : '') + ' onchange="toggleProblemSolved(' + q.id + ', this.checked)">' +
+                  '<div class="ladder-content">' +
+                    '<span class="ladder-tier">' + tier + '</span>' +
+                    '<a href="' + q.url + '" target="_blank" class="ladder-title-text">' + escapeHtml(q.title) + '</a>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="ladder-bottom-bar">' +
+                  '<span style="font-size:10px; color:#64748b;">' + q.platform + ' • ' + q.difficulty + '</span>' +
+                  '<div>' +
+                    '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(q.title).replace(/'/g, "\\'") + '\', \'DSA\')">📅 Schedule Event</button> ' +
+                    '<a href="' + q.url + '" target="_blank" class="btn btn-secondary btn-sm">Solve ↗</a>' +
+                  '</div>' +
+                '</div>' +
+              '</div>';
+          }
+
           container.innerHTML = 
             '<div class="bento-card">' +
               '<div style="font-size:10px; color:#6366f1; font-weight:bold;">⚡ PATTERN OF THE DAY (' + drill.drill_date + ')</div>' +
-              '<h2 style="font-size:15px; margin:4px 0 8px;">' + escapeHtml(drill.pattern_name) + '</h2>' +
-              '<div class="code-box">' +
-                '<div class="code-box-header"><span>Java Skeleton</span><button class="btn btn-secondary btn-sm" onclick="copyJavaTemplate()">Copy</button></div>' +
-                '<pre><code id="java-code-content">' + escapeHtml(drill.template_code || '// code') + '</code></pre>' +
+              '<h2 style="font-size:15px; margin-top:4px;">' + escapeHtml(drill.pattern_name) + '</h2>' +
+              '<div style="margin:8px 0; background:#f4f6f8; padding:8px 10px; border-radius:8px;">' +
+                '<strong style="font-size:10px; color:#64748b; text-transform:uppercase;">Triggers:</strong>' +
+                '<ul style="font-size:11px; padding-left:14px; margin-top:3px;">' + cuesHtml + '</ul>' +
               '</div>' +
-              '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(drill.pattern_name).replace(/'/g, "\\'") + '\', \'DSA\')">📅 Schedule Study Block</button>' +
+              (drill.common_pitfall ? '<div style="background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:6px 8px; font-size:11px; color:#b91c1c;"><strong>⚠️ Pitfall:</strong> ' + escapeHtml(drill.common_pitfall) + '</div>' : '') +
+            '</div>' +
+
+            '<div class="code-box">' +
+              '<div class="code-box-header">' +
+                '<span>☕ Java Skeleton</span>' +
+                '<button class="btn btn-secondary btn-sm" onclick="copyJavaTemplate()">Copy</button>' +
+              '</div>' +
+              '<pre><code id="java-code-content">' + escapeHtml(drill.template_code) + '</code></pre>' +
+            '</div>' +
+
+            '<div class="bento-card">' +
+              '<div style="font-size:10px; font-weight:bold; color:#64748b;">PATTERN NOTES & REFERENCE</div>' +
+              '<div style="font-size:12px; margin:4px 0 6px;">' +
+                (hasNotes ? '<a href="' + drill.article_url + '" target="_blank" style="color:#6366f1; word-break:break-all;">' + escapeHtml(drill.article_url) + ' ↗</a>' : '<span style="color:#64748b; font-style:italic;">No notes link attached yet</span>') +
+              '</div>' +
+              '<button class="btn btn-secondary btn-sm" onclick="openPatternNotesModal(\'' + escapeHtml(drill.pattern_name).replace(/'/g, "\\'") + '\', \'' + (drill.article_url || '') + '\')">' + (hasNotes ? '✏️ Edit Link' : '+ Add Notes Link') + '</button>' +
+            '</div>' +
+
+            '<div class="bento-card">' +
+              '<div style="font-size:10px; font-weight:bold; color:#64748b; text-transform:uppercase;">🪜 Problem Ladder</div>' +
+              '<div class="ladder-list">' + ladderHtml + '</div>' +
             '</div>';
-        }
+        });
       });
     }
 
@@ -2125,6 +2346,33 @@
       for (var i = 0; i < chips.length; i++) chips[i].className = chips[i].className.replace(/\bactive\b/g, '').trim();
       if (el) el.className += ' active';
       renderLearningHub();
+    }
+
+    function setHldCategory(cat) {
+      activeHldCategory = cat;
+      renderLearningHub();
+    }
+
+    function toggleHldCategory(cardId) {
+      var card = document.getElementById(cardId);
+      if (card) {
+        if (card.className.indexOf('collapsed') !== -1) card.className = card.className.replace(/\bcollapsed\b/g, '');
+        else card.className += ' collapsed';
+      }
+    }
+
+    function toggleHldModuleMastered(moduleId, isCompleted) {
+      var newStatus = isCompleted ? 'completed' : 'todo';
+      sbClient.request('hld_modules?id=eq.' + moduleId, 'PATCH', { status: newStatus, completed_at: isCompleted ? new Date().toISOString() : null }, null, function() {
+        renderLearningHub();
+      });
+    }
+
+    function toggleProblemSolved(problemId, isCompleted) {
+      var newStatus = isCompleted ? 'solved' : 'todo';
+      sbClient.request('dsa_questions?id=eq.' + problemId, 'PATCH', { status: newStatus, last_attempted_at: isCompleted ? new Date().toISOString() : null }, null, function() {
+        renderLearningHub();
+      });
     }
 
     function copyJavaTemplate() {
@@ -2138,54 +2386,252 @@
       alert('Java template copied!');
     }
 
-    /* SIGNALS & IPO CARDS */
+    function openPatternNotesModal(patternName, currentUrl) {
+      document.getElementById('edit-pattern-key').value = patternName;
+      document.getElementById('edit-pattern-label').innerText = patternName;
+      document.getElementById('edit-pattern-url').value = currentUrl && currentUrl !== 'null' ? currentUrl : '';
+      document.getElementById('pattern-notes-modal').style.display = 'block';
+    }
+
+    function savePatternNotesUrl() {
+      var patternName = document.getElementById('edit-pattern-key').value;
+      var newUrl = document.getElementById('edit-pattern-url').value.trim();
+      closeModal('pattern-notes-modal');
+
+      if (CURRENT_DRILL) CURRENT_DRILL.article_url = newUrl;
+      renderLearningHub();
+
+      sbClient.request('dsa_patterns?title=eq.' + encodeURIComponent(patternName), 'PATCH', { article_url: newUrl }, null, function() {});
+      sbClient.request('dsa_daily_drills?pattern_name=eq.' + encodeURIComponent(patternName), 'PATCH', { article_url: newUrl }, null, function() {});
+    }
+
+    /* ==========================================================================
+       SIGNALS FEED & READER (FIXED POSTGREST REST ENDPOINT)
+       ========================================================================== */
+    function signalMeter(score) {
+      var bars = '';
+      for (var i = 1; i <= 5; i++) bars += '<span class="bar ' + (i <= score ? 'on' : '') + '"></span>';
+      return '<span class="signal-meter">' + bars + '</span>';
+    }
+
     function fetchSupabaseSignals(isReset) {
       if (isFetchingSignals) return;
       isFetchingSignals = true;
-      if (isReset) signalsOffset = 0;
-      sbClient.request('articles?select=*&order=date.desc,id.desc&offset=' + signalsOffset + '&limit=' + SIGNALS_PAGE_SIZE, 'GET', null, null, function(err, data) {
+      var bentoLoader = document.getElementById('bento-loading');
+
+      if (isReset) {
+        signalsOffset = 0;
+        signalsHasMore = true;
+        if (bentoLoader) bentoLoader.style.display = 'block';
+      }
+
+      var from = signalsOffset;
+      var articlesLoaded = false, iposLoaded = !isReset;
+      var fetchedArticles = [];
+
+      var finishSignals = function() {
+        if (!articlesLoaded || !iposLoaded) return;
         isFetchingSignals = false;
-        document.getElementById('bento-loading').style.display = 'none';
-        var fetched = (!err && data) ? data : [];
-        if (isReset) ALL_ARTICLES = fetched;
-        else ALL_ARTICLES = ALL_ARTICLES.concat(fetched);
-        signalsOffset += SIGNALS_PAGE_SIZE;
+        if (bentoLoader) bentoLoader.style.display = 'none';
+
+        if (ALL_ARTICLES.length > 0) {
+          var latestDate = ALL_ARTICLES[0].date || new Date().toISOString().split('T')[0];
+          document.getElementById('news-issue-date').textContent = formatEditorialDate(latestDate);
+        }
+
         renderBentoSignals();
+      };
+
+      // Valid PostgREST single-column order
+      sbClient.request('articles?select=*&order=id.desc&offset=' + from + '&limit=' + SIGNALS_PAGE_SIZE, 'GET', null, null, function(err, data) {
+        fetchedArticles = (!err && data) ? data : [];
+        if (isReset) {
+          ALL_ARTICLES = fetchedArticles;
+        } else {
+          var existingMap = {};
+          for (var i = 0; i < ALL_ARTICLES.length; i++) existingMap[ALL_ARTICLES[i].id] = true;
+          for (var j = 0; j < fetchedArticles.length; j++) {
+            if (!existingMap[fetchedArticles[j].id]) ALL_ARTICLES.push(fetchedArticles[j]);
+          }
+        }
+
+        if (fetchedArticles.length < SIGNALS_PAGE_SIZE) signalsHasMore = false;
+        else signalsOffset += SIGNALS_PAGE_SIZE;
+
+        articlesLoaded = true;
+        finishSignals();
       });
+
+      if (isReset) {
+        sbClient.request('ipo_evaluations?select=*&is_hidden=neq.true&order=score.desc', 'GET', null, null, function(err, data) {
+          if (!err && data) ALL_IPOS = data;
+          iposLoaded = true;
+          finishSignals();
+        });
+      }
     }
 
     function refreshSignalsFromTop() { fetchSupabaseSignals(true); }
 
     function renderBentoSignals() {
+      var pillBox = document.getElementById('bento-track-pills');
       var container = document.getElementById('bento-signals-container');
+      if (!pillBox || !container) return;
+
+      pillBox.innerHTML = '';
       container.innerHTML = '';
-      for (var f = 0; f < ALL_ARTICLES.length; f++) {
-        var art = ALL_ARTICLES[f];
-        var isArchived = archivedSignals.indexOf(art.id) !== -1;
-        var card = document.createElement('div');
-        card.className = 'bento-signal-card';
-        card.innerHTML = 
+
+      var trackMap = {};
+      for (var i = 0; i < ALL_ARTICLES.length; i++) {
+        if (ALL_ARTICLES[i].track) {
+          var parts = ALL_ARTICLES[i].track.split(',');
+          for (var p = 0; p < parts.length; p++) {
+            var tr = parts[p].trim();
+            if (tr) trackMap[tr] = true;
+          }
+        }
+      }
+
+      var dynamicTracks = ["All", "IPOs"].concat(Object.keys(trackMap).sort()).concat(["Archived"]);
+
+      for (var dt = 0; dt < dynamicTracks.length; dt++) {
+        (function(track) {
+          var count = 0;
+          if (track === 'IPOs') count = ALL_IPOS.length;
+          else if (track === 'Archived') count = archivedSignals.length;
+          else if (track === 'All') count = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; }).length;
+          else count = ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(track.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; }).length;
+
+          var chip = document.createElement('span');
+          chip.className = 'filter-chip ' + (activeTrack === track ? 'active' : '');
+          chip.innerText = track === 'IPOs' ? '📈 IPOs (' + count + ')' : track + ' (' + count + ')';
+          chip.onclick = function() {
+            activeTrack = track;
+            renderBentoSignals();
+          };
+          pillBox.appendChild(chip);
+        })(dynamicTracks[dt]);
+      }
+
+      if (activeTrack === 'IPOs') {
+        if (ALL_IPOS.length === 0) {
+          container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b; font-size:12px;">No evaluated IPOs found in database.</div>';
+          return;
+        }
+
+        for (var ip = 0; ip < ALL_IPOS.length; ip++) {
+          var ipo = ALL_IPOS[ip];
+          var gmpColor = (ipo.gmp_percent || 0) >= 30 ? '#16a34a' : (ipo.gmp_percent || 0) >= 15 ? '#d97706' : '#64748b';
+          var verdictBg = (ipo.score || 0) >= 75 ? 'background:#dcfce7; color:#166534;' : (ipo.score || 0) >= 50 ? 'background:#fef3c7; color:#92400e;' : 'background:#fee2e2; color:#991b1b;';
+          var reasonsList = Array.isArray(ipo.reasons) ? ipo.reasons : [];
+
+          var card = document.createElement('div');
+          card.className = 'bento-signal-card ipo-card';
+          card.id = 'ipo-card-' + ip;
+          card.style.borderLeft = '4px solid ' + ((ipo.score || 0) >= 75 ? '#22c55e' : (ipo.score || 0) >= 50 ? '#f59e0b' : '#ef4444');
+
+          var reasonsHtml = '';
+          for (var r = 0; r < reasonsList.length; r++) {
+            reasonsHtml += '<span class="pill pill-tag" style="background:#f4f6f8; font-size:10px;">' + escapeHtml(reasonsList[r]) + '</span>';
+          }
+
+          card.innerHTML = 
+            '<div onclick="toggleIpoExpand(' + ip + ')">' +
+              '<div class="bento-meta-bar">' +
+                '<div>' +
+                  '<span class="pill" style="' + verdictBg + ' font-weight:bold;">' + escapeHtml(ipo.verdict || 'EVALUATED') + '</span> ' +
+                  '<strong>Score: ' + (ipo.score || 0) + '/100</strong>' +
+                '</div>' +
+                '<div>' +
+                  '<button class="btn btn-secondary btn-sm" onclick="hideIpoCard(\'' + escapeHtml(ipo.symbol) + '\', event)">✕ Hide</button>' +
+                '</div>' +
+              '</div>' +
+              '<div>' +
+                '<h3 style="font-size:14px; font-weight:bold; margin-bottom:4px; color:#1e293b;">' + escapeHtml(ipo.company_name) + '</h3>' +
+                '<div style="font-size:11px; font-family:monospace;">' +
+                  '<span>Band: <strong>₹' + (ipo.issue_price || 0) + '</strong> | </span>' +
+                  '<span style="color:' + gmpColor + ';">GMP: <strong>₹' + (ipo.gmp || 0) + ' (+' + (ipo.gmp_percent || 0) + '%)</strong></span>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="ipo-expanded-body" style="margin-top:8px;">' +
+              (ipo.sector_analysis ? '<div style="background:#f8fafc; border-left:3px solid #6366f1; padding:6px 10px; margin-bottom:6px; font-size:11px;"><strong>Sector:</strong> ' + escapeHtml(ipo.sector_analysis) + '</div>' : '') +
+              (ipo.governance_risks ? '<div style="background:#fef2f2; border-left:3px solid #ef4444; padding:6px 10px; margin-bottom:6px; color:#991b1b; font-size:11px;"><strong>Risks:</strong> ' + escapeHtml(ipo.governance_risks) + '</div>' : '') +
+              (ipo.llm_verdict ? '<div class="bento-deep-dive"><strong>Take:</strong> ' + escapeHtml(ipo.llm_verdict) + '</div>' : '') +
+              reasonsHtml +
+              '<div class="bento-footer">' +
+                '<button class="btn btn-secondary btn-sm" onclick="createGlobalTask({ title: \'Apply IPO: ' + escapeHtml(ipo.company_name).replace(/'/g, "\\'") + '\', project: \'Finance\', tags: [\'ipo\', \'finance\'], source_type: \'ipo\' }); alert(\'Added to Tasks!\')">+ Add Reminder</button>' +
+                '<a class="btn btn-secondary btn-sm" href="https://www.google.com/search?q=' + encodeURIComponent(ipo.company_name + ' IPO') + '" target="_blank">Search ↗</a>' +
+              '</div>' +
+            '</div>';
+
+          container.appendChild(card);
+        }
+        return;
+      }
+
+      var filtered = [];
+      if (activeTrack === 'Archived') {
+        filtered = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) !== -1; });
+      } else if (activeTrack === 'All') {
+        filtered = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; });
+      } else {
+        filtered = ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(activeTrack.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; });
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b; font-size:12px;">No signals in this view.</div>';
+        return;
+      }
+
+      for (var f = 0; f < filtered.length; f++) {
+        var article = filtered[f];
+        var isArchived = archivedSignals.indexOf(article.id) !== -1;
+        var tagsList = Array.isArray(article.tags) ? article.tags : [];
+        var targetUrl = article.url || article.link || ('https://www.google.com/search?q=' + encodeURIComponent(article.headline));
+
+        var aTagsHtml = '';
+        for (var at = 0; at < tagsList.length; at++) {
+          aTagsHtml += '<span class="pill pill-tag">#' + escapeHtml(tagsList[at]) + '</span>';
+        }
+
+        var artCard = document.createElement('div');
+        artCard.className = 'bento-signal-card';
+        artCard.innerHTML = 
           '<div class="bento-meta-bar">' +
-            '<div>' + signalMeter(art.relevance || 3) + ' <strong>' + escapeHtml(art.source || 'Signal') + '</strong> · ' + (art.date || '') + '</div>' +
-            '<button class="btn btn-secondary btn-sm" onclick="toggleArchiveArticle(' + art.id + ')">' + (isArchived ? '↩ Unarchive' : '✓ Mark Read') + '</button>' +
+            '<div>' +
+              signalMeter(article.relevance || 3) +
+              '<strong>' + escapeHtml(article.source || 'Signal') + '</strong> · ' + (article.date || '') +
+            '</div>' +
+            '<button class="btn btn-secondary btn-sm" onclick="toggleArchiveArticle(' + article.id + ')">' + (isArchived ? '↩ Unarchive' : '✓ Mark Read') + '</button>' +
           '</div>' +
-          '<a href="' + (art.url || '#') + '" target="_blank" class="bento-headline">' + escapeHtml(art.headline) + '</a>' +
-          '<p class="bento-body">' + escapeHtml(art.body) + '</p>' +
-          (art.deep_dive ? '<div class="bento-deep-dive">' + renderMarkdownText(art.deep_dive) + '</div>' : '') +
+          '<a href="' + targetUrl + '" target="_blank" class="bento-headline">' + escapeHtml(article.headline) + '</a>' +
+          '<p class="bento-body">' + escapeHtml(article.body) + '</p>' +
+          (article.deep_dive ? '<div class="bento-deep-dive">' + renderMarkdownText(article.deep_dive) + '</div>' : '') +
+          aTagsHtml +
           '<div class="bento-footer">' +
-            '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'' + escapeHtml(art.headline).replace(/'/g, "\\'") + '\', \'' + (art.url || '') + '\', \'' + escapeHtml(art.track || 'General') + '\')">📅 Schedule Event</button>' +
-            '<a class="btn btn-secondary btn-sm" href="' + (art.url || '#') + '" target="_blank">Read Source ↗</a>' +
+            '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'' + escapeHtml(article.headline).replace(/'/g, "\\'") + '\', \'' + (targetUrl || '') + '\', \'' + escapeHtml(article.track || 'General') + '\')">📅 Schedule Event</button>' +
+            '<a class="btn btn-secondary btn-sm" href="' + targetUrl + '" target="_blank">Read Source ↗</a>' +
           '</div>';
-        container.appendChild(card);
+
+        container.appendChild(artCard);
       }
     }
 
-    function toggleArchiveArticle(articleId) {
-      var idx = archivedSignals.indexOf(articleId);
-      if (idx !== -1) archivedSignals.splice(idx, 1);
-      else archivedSignals.push(articleId);
-      localStorage.setItem('the_signal_archived_ids', JSON.stringify(archivedSignals));
+    function toggleIpoExpand(index) {
+      var card = document.getElementById('ipo-card-' + index);
+      if (card) {
+        if (card.className.indexOf('is-open') !== -1) card.className = card.className.replace(/\bis-open\b/g, '');
+        else card.className += ' is-open';
+      }
+    }
+
+    function hideIpoCard(symbol, event) {
+      if (event && event.stopPropagation) event.stopPropagation();
+      if (!confirm('Hide this IPO from your signals feed?')) return;
+      ALL_IPOS = ALL_IPOS.filter(function(item) { return item.symbol !== symbol; });
       renderBentoSignals();
+      sbClient.request('ipo_evaluations?symbol=eq.' + encodeURIComponent(symbol), 'PATCH', { is_hidden: true }, null, function() {});
     }
 
     function openNewspaperOverlay() {
