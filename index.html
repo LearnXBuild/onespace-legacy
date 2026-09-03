@@ -387,9 +387,7 @@
       <div class="bento-pill-scroll" id="bento-track-pills"></div>
       <div id="bento-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Connecting to live signals stream…</div>
       <div id="bento-signals-container"></div>
-      <div id="signals-load-more" style="text-align:center; padding:12px;">
-        <button class="btn btn-secondary btn-sm" onclick="fetchSupabaseSignals(false)">Load More Signals</button>
-      </div>
+      <div id="signals-load-more" style="display:none; text-align:center; padding:16px; color:#64748b; font-size:11px; font-family:monospace;">Loading more signals…</div>
     </section>
 
     <!-- 6. REPORTS TAB -->
@@ -529,9 +527,7 @@
       <div id="news-loading" style="text-align:center; padding:2rem 1rem; color:#52564C; font-family:monospace; font-size:11px;">Loading today's issue…</div>
       <div id="news-empty" style="display:none; text-align:center; padding:2rem 1rem; color:#52564C; font-family:monospace; font-size:11px;">Nothing cleared the signal threshold in this track today.</div>
       <div id="news-content-list"></div>
-      <div id="news-load-more" style="text-align:center; padding:12px;">
-        <button class="btn btn-secondary btn-sm" onclick="fetchSupabaseSignals(false)">Load Earlier Articles</button>
-      </div>
+      <div id="news-load-more" style="display:none; text-align:center; padding:16px; color:#52564C; font-family:monospace; font-size:11px;">Loading earlier articles…</div>
     </div>
   </div>
 
@@ -727,6 +723,7 @@
               }
               if (callback) callback(null, respData);
             } else {
+              console.error('Supabase XHR Error [' + xhr.status + ']:', xhr.responseText);
               if (callback) callback(new Error('HTTP Error: ' + xhr.status + ' - ' + xhr.responseText), null);
             }
           }
@@ -2452,6 +2449,12 @@
         isFetchingSignals = false;
         if (bentoLoader) bentoLoader.style.display = 'none';
 
+        var loadMoreIndicator = document.getElementById('signals-load-more');
+        if (loadMoreIndicator) loadMoreIndicator.style.display = 'none';
+
+        var newsLoadMoreIndicator = document.getElementById('news-load-more');
+        if (newsLoadMoreIndicator) newsLoadMoreIndicator.style.display = 'none';
+
         if (ALL_ARTICLES.length > 0) {
           var latestDate = ALL_ARTICLES[0].date || new Date().toISOString().split('T')[0];
           var issueDateEl = document.getElementById('news-issue-date');
@@ -2459,6 +2462,10 @@
         }
 
         renderBentoSignals();
+        var overlay = document.getElementById('newspaper-overlay');
+        if (overlay && overlay.style.display === 'block') {
+          openNewspaperOverlay();
+        }
       };
 
       // Proper PostgREST pagination using Range header
@@ -2482,12 +2489,8 @@
 
         if (fetchedArticles.length < SIGNALS_PAGE_SIZE) {
           signalsHasMore = false;
-          var loadMoreBtn = document.getElementById('signals-load-more');
-          if (loadMoreBtn) loadMoreBtn.style.display = 'none';
         } else {
           signalsOffset += SIGNALS_PAGE_SIZE;
-          var loadMoreBtn2 = document.getElementById('signals-load-more');
-          if (loadMoreBtn2) loadMoreBtn2.style.display = 'block';
         }
 
         articlesDone = true;
@@ -2674,6 +2677,9 @@
       renderBentoSignals();
     }
 
+    /* ==========================================================================
+       SIGNALS FEED & READER (RESTORED TAGS & COUNTS)
+       ========================================================================== */
     function openNewspaperOverlay() {
       document.getElementById('newspaper-overlay').style.display = 'block';
       var tabsContainer = document.getElementById('news-tabs-bar');
@@ -2774,6 +2780,98 @@
         if (c.className.indexOf('collapsed') !== -1) c.className = c.className.replace(/\bcollapsed\b/g, '').trim();
         else c.className += ' collapsed';
       }
+    }
+
+    /* ==========================================================================
+       PULL DOWN TO REFRESH (RESTORED FOR TOUCH & ANDROID 4.2)
+       ========================================================================== */
+    var touchStartY = 0;
+    var isPulling = false;
+    var pullDistance = 0;
+    var ptrIndicator = document.getElementById('ptr-indicator');
+    var mainScroll = document.getElementById('main-scroll-container');
+
+    mainScroll.addEventListener('touchstart', function(e) {
+      if (mainScroll.scrollTop <= 5) {
+        touchStartY = e.touches[0].clientY;
+        isPulling = true;
+        pullDistance = 0;
+      } else {
+        isPulling = false;
+      }
+    }, false);
+
+    mainScroll.addEventListener('touchmove', function(e) {
+      if (!isPulling) return;
+      var currentY = e.touches[0].clientY;
+      pullDistance = currentY - touchStartY;
+
+      if (pullDistance > 65) {
+        ptrIndicator.innerText = "↻ Release to refresh...";
+        ptrIndicator.className = 'visible';
+      } else if (pullDistance > 20) {
+        ptrIndicator.innerText = "↓ Pull down to refresh";
+        ptrIndicator.className = 'visible';
+      } else if (pullDistance < 0) {
+        ptrIndicator.className = '';
+      }
+    }, false);
+
+    mainScroll.addEventListener('touchend', function() {
+      if (!isPulling) return;
+      var triggered = pullDistance > 65;
+      isPulling = false;
+
+      if (triggered) {
+        ptrIndicator.innerText = "Syncing with Supabase...";
+        ptrIndicator.className = 'visible';
+
+        syncAllSupabaseData();
+        fetchHabitsAndLogs();
+        fetchSupabaseSignals(true);
+
+        setTimeout(function() {
+          ptrIndicator.innerText = "✓ Updated";
+          setTimeout(function() {
+            ptrIndicator.className = '';
+            pullDistance = 0;
+          }, 400);
+        }, 800);
+      } else {
+        ptrIndicator.className = '';
+        pullDistance = 0;
+      }
+    }, false);
+
+    /* ==========================================================================
+       AUTO INFINITE SCROLL (BOTH FEED & READER MODE)
+       ========================================================================== */
+    mainScroll.onscroll = function() {
+      var activeSec = document.querySelector('.content-section.active');
+      if (activeSec && activeSec.getAttribute('id') === 'sec-signals') {
+        if (mainScroll.scrollTop + mainScroll.clientHeight >= mainScroll.scrollHeight - 120) {
+          if (!isFetchingSignals && signalsHasMore && activeTrack !== 'IPOs' && activeTrack !== 'Archived') {
+            var loadMoreIndicator = document.getElementById('signals-load-more');
+            if (loadMoreIndicator) loadMoreIndicator.style.display = 'block';
+            fetchSupabaseSignals(false);
+          }
+        }
+      }
+    };
+
+    var newsOverlay = document.getElementById('newspaper-overlay');
+    if (newsOverlay) {
+      newsOverlay.onscroll = function() {
+        if (newsOverlay.style.display === 'block') {
+          if (newsOverlay.scrollTop + newsOverlay.clientHeight >= newsOverlay.scrollHeight - 120) {
+            if (!isFetchingSignals && signalsHasMore && activeTrack !== 'Archived') {
+              var newsLoadMoreIndicator = document.getElementById('news-load-more');
+              if (newsLoadMoreIndicator) newsLoadMoreIndicator.style.display = 'block';
+              fetchSupabaseSignals(false);
+            }
+          }
+        }
+      };
     }
 
     // Initialize application safely
