@@ -427,20 +427,20 @@
     <div class="flip-clock-canvas">
       <div class="flip-clock-heading" id="hud-sub-heading">What September - December is going to look like.</div>
       <div class="flip-cards-container">
-        <!-- LEFT TILTED HOURS CARD -->
+        <!-- LEFT TILTED CARD (HOURS OR MINUTES) -->
         <div class="flip-card-box tilt-left">
-          <div class="flip-card-header" id="flip-card-date">SEP 03, 2026</div>
-          <div class="flip-card-digits" id="flip-digits-hours">05</div>
+          <div class="flip-card-header" id="flip-card-unit-left">MINS</div>
+          <div class="flip-card-digits" id="flip-digits-hours">00</div>
           <div class="flip-card-divider"></div>
-          <div class="flip-card-footer" id="flip-card-ampm">AM</div>
+          <div class="flip-card-footer" id="flip-card-state">IDLE</div>
         </div>
 
-        <!-- RIGHT TILTED MINUTES CARD -->
+        <!-- RIGHT TILTED CARD (MINUTES OR SECONDS) -->
         <div class="flip-card-box tilt-right">
-          <div class="flip-card-header" id="flip-card-day">THURSDAY</div>
+          <div class="flip-card-header" id="flip-card-unit-right">SECS</div>
           <div class="flip-card-digits" id="flip-digits-mins">00</div>
           <div class="flip-card-divider"></div>
-          <div class="flip-card-footer" id="flip-card-secs">00</div>
+          <div class="flip-card-footer" id="flip-card-secs">00s</div>
         </div>
       </div>
     </div>
@@ -1422,10 +1422,8 @@
     }
 
     /* ==========================================================================
-       PITCH BLACK FLIP CLOCK FOCUS HUD
+       PITCH BLACK FLIP CLOCK FOCUS HUD (RUNNING STOPWATCH)
        ========================================================================== */
-    var flipClockInterval = null;
-
     function openDeskHud() {
       var select = document.getElementById('hud-project-select');
       select.innerHTML = '<option value="">⚡ UNSCHEDULED FOCUS</option>';
@@ -1434,57 +1432,61 @@
       }
 
       updateFlipClockFace();
-      if (!flipClockInterval) {
-        flipClockInterval = setInterval(updateFlipClockFace, 1000);
-      }
       document.getElementById('desk-hud').style.display = 'block';
     }
 
     function closeDeskHud() {
-      if (flipClockInterval) {
-        clearInterval(flipClockInterval);
-        flipClockInterval = null;
-      }
       document.getElementById('desk-hud').style.display = 'none';
     }
 
     function updateFlipClockFace() {
-      var now = new Date();
-      var hours = now.getHours();
-      var ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
+      var totalSec = trackingState.accumulatedSec || 0;
+      var hours = Math.floor(totalSec / 3600);
+      var minutes = Math.floor((totalSec % 3600) / 60);
+      var seconds = totalSec % 60;
 
       var hStr = String(hours);
       if (hStr.length < 2) hStr = '0' + hStr;
 
-      var mStr = String(now.getMinutes());
+      var mStr = String(minutes);
       if (mStr.length < 2) mStr = '0' + mStr;
 
-      var sStr = String(now.getSeconds());
+      var sStr = String(seconds);
       if (sStr.length < 2) sStr = '0' + sStr;
 
-      var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-      var dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-
-      document.getElementById('flip-card-date').innerText = months[now.getMonth()] + ' ' + (now.getDate() < 10 ? '0' : '') + now.getDate() + ', ' + now.getFullYear();
-      document.getElementById('flip-card-day').innerText = dayNames[now.getDay()];
-      document.getElementById('flip-digits-hours').innerText = hStr;
-      document.getElementById('flip-digits-mins').innerText = mStr;
-      document.getElementById('flip-card-secs').innerText = sStr;
-      document.getElementById('flip-card-ampm').innerText = ampm;
-
-      if (trackingState.isRunning && !trackingState.isPaused) {
-        var h = Math.floor(trackingState.accumulatedSec / 3600);
-        var m = Math.floor((trackingState.accumulatedSec % 3600) / 60);
-        var s = trackingState.accumulatedSec % 60;
-        document.getElementById('hud-sub-heading').innerText = 'Focus Session Active: ' + (h > 0 ? h + 'h ' : '') + m + 'm ' + s + 's';
+      // Flip between Hours:Minutes and Minutes:Seconds for maximum readability
+      if (hours > 0) {
+        document.getElementById('flip-card-unit-left').innerText = 'HOURS';
+        document.getElementById('flip-digits-hours').innerText = hStr;
+        document.getElementById('flip-card-unit-right').innerText = 'MINUTES';
+        document.getElementById('flip-digits-mins').innerText = mStr;
+      } else {
+        document.getElementById('flip-card-unit-left').innerText = 'MINUTES';
+        document.getElementById('flip-digits-hours').innerText = mStr;
+        document.getElementById('flip-card-unit-right').innerText = 'SECONDS';
+        document.getElementById('flip-digits-mins').innerText = sStr;
       }
+
+      document.getElementById('flip-card-secs').innerText = sStr + 's';
+
+      var stateEl = document.getElementById('flip-card-state');
+      if (!trackingState.isRunning) {
+        stateEl.innerText = 'IDLE';
+      } else if (trackingState.isPaused) {
+        stateEl.innerText = 'PAUSED';
+      } else {
+        stateEl.innerText = 'RUNNING';
+      }
+
+      var projObj = getProjectById(trackingState.targetProjId);
+      var projName = projObj ? projObj.name : 'Unassigned';
+      document.getElementById('hud-sub-heading').innerText = 'Focus Session: ' + projName;
     }
 
     function onHudProjectChange() {
       var val = document.getElementById('hud-project-select').value;
       trackingState.targetProjId = val ? Number(val) : null;
+      updateFlipClockFace();
     }
 
     function toggleGlobalTracking() {
@@ -1494,6 +1496,7 @@
         trackingState.isPaused = false;
         trackingState.lastTickTime = Date.now();
         if (!trackingState.sessionStartTimestamp) trackingState.sessionStartTimestamp = new Date();
+        
         trackingState.timerId = setInterval(function() {
           if (!trackingState.isRunning || trackingState.isPaused) return;
           var now = Date.now();
@@ -1502,6 +1505,7 @@
             trackingState.accumulatedSec += delta;
             trackingState.lastTickTime = now;
           }
+          updateFlipClockFace();
         }, 1000);
         btn.innerText = '⏸ Pause';
       } else if (trackingState.isRunning && !trackingState.isPaused) {
@@ -1512,10 +1516,12 @@
         trackingState.lastTickTime = Date.now();
         btn.innerText = '⏸ Pause';
       }
+      updateFlipClockFace();
     }
 
     function addFiveMinsToTracking() {
       trackingState.accumulatedSec += 300;
+      updateFlipClockFace();
     }
 
     function stopAndSaveTracking() {
@@ -1957,7 +1963,7 @@
       if (tModalProj) tModalProj.innerHTML = selectOpts;
     }
 
-    /* REPORTS & SVG CHARTS */
+    /* REPORTS & TIME LOGS */
     function openProfileModal() { document.getElementById('profile-modal').style.display = 'block'; }
 
     function clearCompletedTasks() {
@@ -2160,325 +2166,17 @@
       });
     }
 
-    /* LEARNING HUB (FULL CURRICULUM, LADDERS & PATTERNS) */
-    function renderLearningHub() {
-      var container = document.getElementById('learning-bento-container');
-      container.innerHTML = '<div style="text-align:center; padding:20px; font-size:12px; color:#64748b;">Loading curriculum…</div>';
-
-      if (activeLearningTrack === 'HLD') {
-        sbClient.request('hld_modules?select=*&order=id.asc', 'GET', null, null, function(err, modules) {
-          modules = (!err && modules) ? modules : [];
-          if (modules.length === 0) {
-            container.innerHTML = '<div class="bento-card">No HLD modules found.</div>';
-            return;
-          }
-
-          var catMap = {};
-          var completedCount = 0;
-          for (var i = 0; i < modules.length; i++) {
-            if (modules[i].status === 'completed' || modules[i].status === 'mastered') completedCount++;
-            if (modules[i].track_category) catMap[modules[i].track_category] = true;
-          }
-
-          var categories = ["All"].concat(Object.keys(catMap));
-          var totalCount = modules.length;
-          var percentDone = Math.round((completedCount / totalCount) * 100) || 0;
-
-          var filteredModules = activeHldCategory === "All" ? modules : modules.filter(function(m) { return m.track_category === activeHldCategory; });
-          var grouped = {};
-          for (var j = 0; j < filteredModules.length; j++) {
-            var cat = filteredModules[j].track_category || 'General Concepts';
-            if (!grouped[cat]) grouped[cat] = [];
-            grouped[cat].push(filteredModules[j]);
-          }
-
-          var pillsHtml = '';
-          for (var c = 0; c < categories.length; c++) {
-            pillsHtml += '<span class="filter-chip ' + (activeHldCategory === categories[c] ? 'active' : '') + '" onclick="setHldCategory(\'' + categories[c] + '\')">' + categories[c] + '</span>';
-          }
-
-          var groupsHtml = '';
-          var groupKeys = Object.keys(grouped);
-          for (var g = 0; g < groupKeys.length; g++) {
-            var catName = groupKeys[g];
-            var items = grouped[catName];
-            var doneItems = 0;
-            for (var d = 0; d < items.length; d++) {
-              if (items[d].status === 'completed' || items[d].status === 'mastered') doneItems++;
-            }
-            var cardId = 'hld-cat-card-' + g;
-
-            var itemsHtml = '';
-            for (var it = 0; it < items.length; it++) {
-              var item = items[it];
-              var isDone = item.status === 'completed' || item.status === 'mastered';
-              itemsHtml += 
-                '<div class="ladder-card-clean ' + (isDone ? 'solved' : '') + '">' +
-                  '<div class="ladder-top-row">' +
-                    '<input type="checkbox" ' + (isDone ? 'checked' : '') + ' onchange="toggleHldModuleMastered(' + item.id + ', this.checked)">' +
-                    '<div class="ladder-content">' +
-                      '<span class="ladder-tier">' + (item.difficulty || 'Concept') + '</span>' +
-                      '<a href="' + (item.reference_url || '#') + '" target="_blank" class="ladder-title-text">' + escapeHtml(item.module_title) + '</a>' +
-                    '</div>' +
-                  '</div>' +
-                  '<div class="ladder-bottom-bar">' +
-                    '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(item.module_title).replace(/'/g, "\\'") + '\', \'HLD\')">📅 Schedule Event</button>' +
-                    (item.reference_url ? '<a href="' + item.reference_url + '" target="_blank" class="btn btn-secondary btn-sm">Read ↗</a>' : '') +
-                  '</div>' +
-                '</div>';
-            }
-
-            groupsHtml += 
-              '<div class="bento-card hld-category-card" id="' + cardId + '">' +
-                '<div class="hld-category-header" onclick="toggleHldCategory(\'' + cardId + '\')">' +
-                  '<div><strong>📌 ' + escapeHtml(catName) + '</strong> (' + doneItems + '/' + items.length + ')</div>' +
-                  '<span>▼</span>' +
-                '</div>' +
-                '<div class="hld-category-body"><div class="ladder-list">' + itemsHtml + '</div></div>' +
-              '</div>';
-          }
-
-          container.innerHTML = 
-            '<div class="bento-card">' +
-              '<div style="font-size:11px; color:#6366f1; font-weight:bold;">🏗️ SYSTEM DESIGN ROADMAP</div>' +
-              '<h2 style="font-size:16px; margin:4px 0 8px;">Awesome System Design Curriculum</h2>' +
-              '<div style="font-size:11px; color:#64748b; margin-bottom:4px;">PROGRESS: ' + completedCount + ' / ' + totalCount + ' (' + percentDone + '%)</div>' +
-              '<div style="width:100%; height:6px; background:#e2e8f0; border-radius:99px; overflow:hidden;">' +
-                '<div style="width:' + percentDone + '%; height:100%; background:#6366f1;"></div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="bento-pill-scroll">' + pillsHtml + '</div>' +
-            groupsHtml;
-        });
-        return;
-      }
-
-      if (activeLearningTrack === 'LLD') {
-        container.innerHTML = '<div class="bento-card" style="text-align:center; padding:20px;"><h3 style="font-size:14px; margin-bottom:4px;">Low-Level Design (LLD)</h3><p style="font-size:12px; color:#64748b;">Design Patterns and Machine Coding problems coming up next.</p></div>';
-        return;
-      }
-
-      sbClient.request('dsa_daily_drills?select=*&order=drill_date.desc&limit=1', 'GET', null, null, function(err, drills) {
-        drills = (!err && drills) ? drills : [];
-        if (drills.length === 0) {
-          container.innerHTML = '<div class="bento-card">No DSA drill found.</div>';
-          return;
-        }
-
-        CURRENT_DRILL = drills[0];
-        var drill = CURRENT_DRILL;
-        var pIds = drill.problem_ids || [];
-
-        sbClient.request('dsa_questions?select=*&id=in.(' + pIds.join(',') + ')', 'GET', null, null, function(qErr, questions) {
-          questions = (!qErr && questions) ? questions : [];
-          var qMap = {};
-          for (var i = 0; i < questions.length; i++) qMap[questions[i].id] = questions[i];
-          var hasNotes = drill.article_url && drill.article_url.trim().length > 0;
-
-          var cuesHtml = '';
-          var cues = drill.trigger_cues || [];
-          for (var c = 0; c < cues.length; c++) cuesHtml += '<li>' + escapeHtml(cues[c]) + '</li>';
-
-          var ladderHtml = '';
-          for (var p = 0; p < pIds.length; p++) {
-            var q = qMap[pIds[p]];
-            if (!q) continue;
-            var isSolved = q.status === 'solved';
-            var tier = p === 0 ? 'Foundation' : p === 1 ? 'Core SDE-2' : 'Curveball';
-
-            ladderHtml += 
-              '<div class="ladder-card-clean ' + (isSolved ? 'solved' : '') + '">' +
-                '<div class="ladder-top-row">' +
-                  '<input type="checkbox" ' + (isSolved ? 'checked' : '') + ' onchange="toggleProblemSolved(' + q.id + ', this.checked)">' +
-                  '<div class="ladder-content">' +
-                    '<span class="ladder-tier">' + tier + '</span>' +
-                    '<a href="' + q.url + '" target="_blank" class="ladder-title-text">' + escapeHtml(q.title) + '</a>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="ladder-bottom-bar">' +
-                  '<span style="font-size:10px; color:#64748b;">' + q.platform + ' • ' + q.difficulty + '</span>' +
-                  '<div>' +
-                    '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(q.title).replace(/'/g, "\\'") + '\', \'DSA\')">📅 Schedule Event</button> ' +
-                    '<a href="' + q.url + '" target="_blank" class="btn btn-secondary btn-sm">Solve ↗</a>' +
-                  '</div>' +
-                '</div>' +
-              '</div>';
-          }
-
-          container.innerHTML = 
-            '<div class="bento-card">' +
-              '<div style="font-size:10px; color:#6366f1; font-weight:bold;">⚡ PATTERN OF THE DAY (' + drill.drill_date + ')</div>' +
-              '<h2 style="font-size:15px; margin-top:4px;">' + escapeHtml(drill.pattern_name) + '</h2>' +
-              '<div style="margin:8px 0; background:#f4f6f8; padding:8px 10px; border-radius:8px;">' +
-                '<strong style="font-size:10px; color:#64748b; text-transform:uppercase;">Triggers:</strong>' +
-                '<ul style="font-size:11px; padding-left:14px; margin-top:3px;">' + cuesHtml + '</ul>' +
-              '</div>' +
-              (drill.common_pitfall ? '<div style="background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:6px 8px; font-size:11px; color:#b91c1c;"><strong>⚠️ Pitfall:</strong> ' + escapeHtml(drill.common_pitfall) + '</div>' : '') +
-            '</div>' +
-
-            '<div class="code-box">' +
-              '<div class="code-box-header">' +
-                '<span>☕ Java Skeleton</span>' +
-                '<button class="btn btn-secondary btn-sm" onclick="copyJavaTemplate()">Copy</button>' +
-              '</div>' +
-              '<pre><code id="java-code-content">' + escapeHtml(drill.template_code) + '</code></pre>' +
-            '</div>' +
-
-            '<div class="bento-card">' +
-              '<div style="font-size:10px; font-weight:bold; color:#64748b;">PATTERN NOTES & REFERENCE</div>' +
-              '<div style="font-size:12px; margin:4px 0 6px;">' +
-                (hasNotes ? '<a href="' + drill.article_url + '" target="_blank" style="color:#6366f1; word-break:break-all;">' + escapeHtml(drill.article_url) + ' ↗</a>' : '<span style="color:#64748b; font-style:italic;">No notes link attached yet</span>') +
-              '</div>' +
-              '<button class="btn btn-secondary btn-sm" onclick="openPatternNotesModal(\'' + escapeHtml(drill.pattern_name).replace(/'/g, "\\'") + '\', \'' + (drill.article_url || '') + '\')">' + (hasNotes ? '✏️ Edit Link' : '+ Add Notes Link') + '</button>' +
-            '</div>' +
-
-            '<div class="bento-card">' +
-              '<div style="font-size:10px; font-weight:bold; color:#64748b; text-transform:uppercase;">🪜 Problem Ladder</div>' +
-              '<div class="ladder-list">' + ladderHtml + '</div>' +
-            '</div>';
-        });
-      });
-    }
-
-    function setLearningTrack(track, el) {
-      activeLearningTrack = track;
-      var chips = document.querySelectorAll('#learning-track-pills .filter-chip');
-      for (var i = 0; i < chips.length; i++) chips[i].className = chips[i].className.replace(/\bactive\b/g, '').trim();
-      if (el) el.className += ' active';
-      renderLearningHub();
-    }
-
-    function setHldCategory(cat) {
-      activeHldCategory = cat;
-      renderLearningHub();
-    }
-
-    function toggleHldCategory(cardId) {
-      var card = document.getElementById(cardId);
-      if (card) {
-        if (card.className.indexOf('collapsed') !== -1) card.className = card.className.replace(/\bcollapsed\b/g, '');
-        else card.className += ' collapsed';
-      }
-    }
-
-    function toggleHldModuleMastered(moduleId, isCompleted) {
-      var newStatus = isCompleted ? 'completed' : 'todo';
-      sbClient.request('hld_modules?id=eq.' + moduleId, 'PATCH', { status: newStatus, completed_at: isCompleted ? new Date().toISOString() : null }, null, function() {
-        renderLearningHub();
-      });
-    }
-
-    function toggleProblemSolved(problemId, isCompleted) {
-      var newStatus = isCompleted ? 'solved' : 'todo';
-      sbClient.request('dsa_questions?id=eq.' + problemId, 'PATCH', { status: newStatus, last_attempted_at: isCompleted ? new Date().toISOString() : null }, null, function() {
-        renderLearningHub();
-      });
-    }
-
-    function copyJavaTemplate() {
-      var code = document.getElementById('java-code-content').innerText;
-      var ta = document.createElement('textarea');
-      ta.value = code;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      alert('Java template copied!');
-    }
-
-    function openPatternNotesModal(patternName, currentUrl) {
-      document.getElementById('edit-pattern-key').value = patternName;
-      document.getElementById('edit-pattern-label').innerText = patternName;
-      document.getElementById('edit-pattern-url').value = currentUrl && currentUrl !== 'null' ? currentUrl : '';
-      document.getElementById('pattern-notes-modal').style.display = 'block';
-    }
-
-    function savePatternNotesUrl() {
-      var patternName = document.getElementById('edit-pattern-key').value;
-      var newUrl = document.getElementById('edit-pattern-url').value.trim();
-      closeModal('pattern-notes-modal');
-
-      if (CURRENT_DRILL) CURRENT_DRILL.article_url = newUrl;
-      renderLearningHub();
-
-      sbClient.request('dsa_patterns?title=eq.' + encodeURIComponent(patternName), 'PATCH', { article_url: newUrl }, null, function() {});
-      sbClient.request('dsa_daily_drills?pattern_name=eq.' + encodeURIComponent(patternName), 'PATCH', { article_url: newUrl }, null, function() {});
-    }
-
     /* ==========================================================================
-       SIGNALS FEED & READER (FIXED POSTGREST REST ENDPOINT)
+       SIGNALS FEED & READER (RESTORED TAGS & COUNTS)
        ========================================================================== */
-    function signalMeter(score) {
-      var bars = '';
-      for (var i = 1; i <= 5; i++) bars += '<span class="bar ' + (i <= score ? 'on' : '') + '"></span>';
-      return '<span class="signal-meter">' + bars + '</span>';
-    }
+    function openNewspaperOverlay() {
+      document.getElementById('newspaper-overlay').style.display = 'block';
+      var tabsContainer = document.getElementById('news-tabs-bar');
+      var container = document.getElementById('news-content-list');
+      var newsEmpty = document.getElementById('news-empty');
+      document.getElementById('news-loading').style.display = 'none';
 
-    function fetchSupabaseSignals(isReset) {
-      if (isFetchingSignals) return;
-      isFetchingSignals = true;
-      var bentoLoader = document.getElementById('bento-loading');
-
-      if (isReset) {
-        signalsOffset = 0;
-        signalsHasMore = true;
-        if (bentoLoader) bentoLoader.style.display = 'block';
-      }
-
-      var from = signalsOffset;
-      var articlesLoaded = false, iposLoaded = !isReset;
-      var fetchedArticles = [];
-
-      var finishSignals = function() {
-        if (!articlesLoaded || !iposLoaded) return;
-        isFetchingSignals = false;
-        if (bentoLoader) bentoLoader.style.display = 'none';
-
-        if (ALL_ARTICLES.length > 0) {
-          var latestDate = ALL_ARTICLES[0].date || new Date().toISOString().split('T')[0];
-          document.getElementById('news-issue-date').textContent = formatEditorialDate(latestDate);
-        }
-
-        renderBentoSignals();
-      };
-
-      // Valid PostgREST single-column order
-      sbClient.request('articles?select=*&order=id.desc&offset=' + from + '&limit=' + SIGNALS_PAGE_SIZE, 'GET', null, null, function(err, data) {
-        fetchedArticles = (!err && data) ? data : [];
-        if (isReset) {
-          ALL_ARTICLES = fetchedArticles;
-        } else {
-          var existingMap = {};
-          for (var i = 0; i < ALL_ARTICLES.length; i++) existingMap[ALL_ARTICLES[i].id] = true;
-          for (var j = 0; j < fetchedArticles.length; j++) {
-            if (!existingMap[fetchedArticles[j].id]) ALL_ARTICLES.push(fetchedArticles[j]);
-          }
-        }
-
-        if (fetchedArticles.length < SIGNALS_PAGE_SIZE) signalsHasMore = false;
-        else signalsOffset += SIGNALS_PAGE_SIZE;
-
-        articlesLoaded = true;
-        finishSignals();
-      });
-
-      if (isReset) {
-        sbClient.request('ipo_evaluations?select=*&is_hidden=neq.true&order=score.desc', 'GET', null, null, function(err, data) {
-          if (!err && data) ALL_IPOS = data;
-          iposLoaded = true;
-          finishSignals();
-        });
-      }
-    }
-
-    function refreshSignalsFromTop() { fetchSupabaseSignals(true); }
-
-    function renderBentoSignals() {
-      var pillBox = document.getElementById('bento-track-pills');
-      var container = document.getElementById('bento-signals-container');
-      if (!pillBox || !container) return;
-
-      pillBox.innerHTML = '';
+      tabsContainer.innerHTML = '';
       container.innerHTML = '';
 
       var trackMap = {};
@@ -2492,82 +2190,22 @@
         }
       }
 
-      var dynamicTracks = ["All", "IPOs"].concat(Object.keys(trackMap).sort()).concat(["Archived"]);
-
+      var dynamicTracks = ["All"].concat(Object.keys(trackMap).sort()).concat(["Archived"]);
       for (var dt = 0; dt < dynamicTracks.length; dt++) {
         (function(track) {
-          var count = 0;
-          if (track === 'IPOs') count = ALL_IPOS.length;
-          else if (track === 'Archived') count = archivedSignals.length;
-          else if (track === 'All') count = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; }).length;
-          else count = ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(track.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; }).length;
+          var count = (track === 'Archived') ? archivedSignals.length : (track === 'All') 
+            ? ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; }).length 
+            : ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(track.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; }).length;
 
-          var chip = document.createElement('span');
-          chip.className = 'filter-chip ' + (activeTrack === track ? 'active' : '');
-          chip.innerText = track === 'IPOs' ? '📈 IPOs (' + count + ')' : track + ' (' + count + ')';
-          chip.onclick = function() {
+          var btn = document.createElement('button');
+          btn.className = 'tab-btn ' + (activeTrack === track ? 'active' : '');
+          btn.innerHTML = track + ' (' + count + ')';
+          btn.onclick = function() {
             activeTrack = track;
-            renderBentoSignals();
+            openNewspaperOverlay();
           };
-          pillBox.appendChild(chip);
+          tabsContainer.appendChild(btn);
         })(dynamicTracks[dt]);
-      }
-
-      if (activeTrack === 'IPOs') {
-        if (ALL_IPOS.length === 0) {
-          container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b; font-size:12px;">No evaluated IPOs found in database.</div>';
-          return;
-        }
-
-        for (var ip = 0; ip < ALL_IPOS.length; ip++) {
-          var ipo = ALL_IPOS[ip];
-          var gmpColor = (ipo.gmp_percent || 0) >= 30 ? '#16a34a' : (ipo.gmp_percent || 0) >= 15 ? '#d97706' : '#64748b';
-          var verdictBg = (ipo.score || 0) >= 75 ? 'background:#dcfce7; color:#166534;' : (ipo.score || 0) >= 50 ? 'background:#fef3c7; color:#92400e;' : 'background:#fee2e2; color:#991b1b;';
-          var reasonsList = Array.isArray(ipo.reasons) ? ipo.reasons : [];
-
-          var card = document.createElement('div');
-          card.className = 'bento-signal-card ipo-card';
-          card.id = 'ipo-card-' + ip;
-          card.style.borderLeft = '4px solid ' + ((ipo.score || 0) >= 75 ? '#22c55e' : (ipo.score || 0) >= 50 ? '#f59e0b' : '#ef4444');
-
-          var reasonsHtml = '';
-          for (var r = 0; r < reasonsList.length; r++) {
-            reasonsHtml += '<span class="pill pill-tag" style="background:#f4f6f8; font-size:10px;">' + escapeHtml(reasonsList[r]) + '</span>';
-          }
-
-          card.innerHTML = 
-            '<div onclick="toggleIpoExpand(' + ip + ')">' +
-              '<div class="bento-meta-bar">' +
-                '<div>' +
-                  '<span class="pill" style="' + verdictBg + ' font-weight:bold;">' + escapeHtml(ipo.verdict || 'EVALUATED') + '</span> ' +
-                  '<strong>Score: ' + (ipo.score || 0) + '/100</strong>' +
-                '</div>' +
-                '<div>' +
-                  '<button class="btn btn-secondary btn-sm" onclick="hideIpoCard(\'' + escapeHtml(ipo.symbol) + '\', event)">✕ Hide</button>' +
-                '</div>' +
-              '</div>' +
-              '<div>' +
-                '<h3 style="font-size:14px; font-weight:bold; margin-bottom:4px; color:#1e293b;">' + escapeHtml(ipo.company_name) + '</h3>' +
-                '<div style="font-size:11px; font-family:monospace;">' +
-                  '<span>Band: <strong>₹' + (ipo.issue_price || 0) + '</strong> | </span>' +
-                  '<span style="color:' + gmpColor + ';">GMP: <strong>₹' + (ipo.gmp || 0) + ' (+' + (ipo.gmp_percent || 0) + '%)</strong></span>' +
-                '</div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="ipo-expanded-body" style="margin-top:8px;">' +
-              (ipo.sector_analysis ? '<div style="background:#f8fafc; border-left:3px solid #6366f1; padding:6px 10px; margin-bottom:6px; font-size:11px;"><strong>Sector:</strong> ' + escapeHtml(ipo.sector_analysis) + '</div>' : '') +
-              (ipo.governance_risks ? '<div style="background:#fef2f2; border-left:3px solid #ef4444; padding:6px 10px; margin-bottom:6px; color:#991b1b; font-size:11px;"><strong>Risks:</strong> ' + escapeHtml(ipo.governance_risks) + '</div>' : '') +
-              (ipo.llm_verdict ? '<div class="bento-deep-dive"><strong>Take:</strong> ' + escapeHtml(ipo.llm_verdict) + '</div>' : '') +
-              reasonsHtml +
-              '<div class="bento-footer">' +
-                '<button class="btn btn-secondary btn-sm" onclick="createGlobalTask({ title: \'Apply IPO: ' + escapeHtml(ipo.company_name).replace(/'/g, "\\'") + '\', project: \'Finance\', tags: [\'ipo\', \'finance\'], source_type: \'ipo\' }); alert(\'Added to Tasks!\')">+ Add Reminder</button>' +
-                '<a class="btn btn-secondary btn-sm" href="https://www.google.com/search?q=' + encodeURIComponent(ipo.company_name + ' IPO') + '" target="_blank">Search ↗</a>' +
-              '</div>' +
-            '</div>';
-
-          container.appendChild(card);
-        }
-        return;
       }
 
       var filtered = [];
@@ -2576,79 +2214,39 @@
       } else if (activeTrack === 'All') {
         filtered = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; });
       } else {
-        filtered = ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(activeTrack.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; });
+        filtered = ALL_ARTICLES.filter(function(a) { 
+          return (a.track || '').toLowerCase().indexOf(activeTrack.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; 
+        });
       }
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b; font-size:12px;">No signals in this view.</div>';
+        if (newsEmpty) newsEmpty.style.display = 'block';
         return;
       }
+      if (newsEmpty) newsEmpty.style.display = 'none';
 
       for (var f = 0; f < filtered.length; f++) {
-        var article = filtered[f];
-        var isArchived = archivedSignals.indexOf(article.id) !== -1;
-        var tagsList = Array.isArray(article.tags) ? article.tags : [];
-        var targetUrl = article.url || article.link || ('https://www.google.com/search?q=' + encodeURIComponent(article.headline));
-
-        var aTagsHtml = '';
-        for (var at = 0; at < tagsList.length; at++) {
-          aTagsHtml += '<span class="pill pill-tag">#' + escapeHtml(tagsList[at]) + '</span>';
+        var art = filtered[f];
+        var isArchived = archivedSignals.indexOf(art.id) !== -1;
+        var tagsList = Array.isArray(art.tags) ? art.tags : [];
+        var tagsHtml = '';
+        for (var t = 0; t < tagsList.length; t++) {
+          tagsHtml += '<span class="pill pill-tag" style="background:#DDE3DE; color:#2F4F49; font-size:10px; margin-right:4px;">#' + escapeHtml(tagsList[t]) + '</span>';
         }
 
-        var artCard = document.createElement('div');
-        artCard.className = 'bento-signal-card';
-        artCard.innerHTML = 
-          '<div class="bento-meta-bar">' +
-            '<div>' +
-              signalMeter(article.relevance || 3) +
-              '<strong>' + escapeHtml(article.source || 'Signal') + '</strong> · ' + (article.date || '') +
-            '</div>' +
-            '<button class="btn btn-secondary btn-sm" onclick="toggleArchiveArticle(' + article.id + ')">' + (isArchived ? '↩ Unarchive' : '✓ Mark Read') + '</button>' +
-          '</div>' +
-          '<a href="' + targetUrl + '" target="_blank" class="bento-headline">' + escapeHtml(article.headline) + '</a>' +
-          '<p class="bento-body">' + escapeHtml(article.body) + '</p>' +
-          (article.deep_dive ? '<div class="bento-deep-dive">' + renderMarkdownText(article.deep_dive) + '</div>' : '') +
-          aTagsHtml +
-          '<div class="bento-footer">' +
-            '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'' + escapeHtml(article.headline).replace(/'/g, "\\'") + '\', \'' + (targetUrl || '') + '\', \'' + escapeHtml(article.track || 'General') + '\')">📅 Schedule Event</button>' +
-            '<a class="btn btn-secondary btn-sm" href="' + targetUrl + '" target="_blank">Read Source ↗</a>' +
-          '</div>';
-
-        container.appendChild(artCard);
-      }
-    }
-
-    function toggleIpoExpand(index) {
-      var card = document.getElementById('ipo-card-' + index);
-      if (card) {
-        if (card.className.indexOf('is-open') !== -1) card.className = card.className.replace(/\bis-open\b/g, '');
-        else card.className += ' is-open';
-      }
-    }
-
-    function hideIpoCard(symbol, event) {
-      if (event && event.stopPropagation) event.stopPropagation();
-      if (!confirm('Hide this IPO from your signals feed?')) return;
-      ALL_IPOS = ALL_IPOS.filter(function(item) { return item.symbol !== symbol; });
-      renderBentoSignals();
-      sbClient.request('ipo_evaluations?symbol=eq.' + encodeURIComponent(symbol), 'PATCH', { is_hidden: true }, null, function() {});
-    }
-
-    function openNewspaperOverlay() {
-      document.getElementById('newspaper-overlay').style.display = 'block';
-      var container = document.getElementById('news-content-list');
-      container.innerHTML = '';
-      document.getElementById('news-loading').style.display = 'none';
-
-      for (var f = 0; f < ALL_ARTICLES.length; f++) {
-        var art = ALL_ARTICLES[f];
         var card = document.createElement('article');
         card.className = 'news-article-item';
         card.innerHTML = 
-          '<div class="news-article-meta">' + escapeHtml(art.source || 'Signal') + ' · ' + (art.date || '') + '</div>' +
+          '<div class="news-article-meta">' + 
+            escapeHtml(art.source || 'Signal') + ' · ' + (art.date || '') + ' ' +
+            '<button style="background:none; border:none; color:#8B8C7F; cursor:pointer; margin-left:8px; text-decoration:underline;" onclick="toggleArchiveArticle(' + art.id + '); openNewspaperOverlay();">' + 
+              (isArchived ? '✓ Unarchive' : '✓ Mark Read') + 
+            '</button>' +
+          '</div>' +
           '<a href="' + (art.url || '#') + '" target="_blank" class="news-headline">' + escapeHtml(art.headline) + '</a>' +
           '<p class="news-body">' + escapeHtml(art.body) + '</p>' +
           (art.deep_dive ? '<div class="news-deep-dive-box">' + renderMarkdownText(art.deep_dive) + '</div>' : '') +
+          (tagsHtml ? '<div style="margin-top:8px;">' + tagsHtml + '</div>' : '') +
           '<a class="news-source-link" href="' + (art.url || '#') + '" target="_blank">Read original source →</a>';
         container.appendChild(card);
       }
