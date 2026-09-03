@@ -170,7 +170,7 @@
     .repeat-day-btn.active { background: #6366f1; border-color: #6366f1; color: #ffffff; }
 
     /* ==========================================================================
-       OVERHAULED FULLSCREEN LANDSCAPE FLIP CLOCK FOCUS HUD (SCREENSHOT ACCURATE)
+       OVERHAULED FULLSCREEN LANDSCAPE FLIP CLOCK FOCUS HUD (EXPLICIT PIXELS)
        ========================================================================== */
     .desk-hud-overlay {
       position: fixed;
@@ -182,7 +182,7 @@
       -webkit-box-orient: vertical;
       -webkit-flex-direction: column;
       flex-direction: column;
-      padding: 18px 24px;
+      padding: 16px 20px;
       overflow: hidden;
     }
 
@@ -197,13 +197,13 @@
       -webkit-align-items: center;
       align-items: center;
       width: 100%;
-      height: 40px;
+      height: 38px;
       position: relative;
       z-index: 10;
     }
     .hud-project-pill {
-      background: rgba(22, 26, 34, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #161a22;
+      border: 1px solid #2d3342;
       border-radius: 99px;
       padding: 5px 14px;
       display: -webkit-box;
@@ -218,7 +218,7 @@
       border: none;
       color: #94a3b8;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: bold;
       text-transform: uppercase;
       outline: none;
       cursor: pointer;
@@ -245,10 +245,10 @@
     }
     .flip-clock-heading {
       color: #ffffff;
-      font-size: clamp(16px, 2.5vw, 24px);
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: bold;
       letter-spacing: -0.01em;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       text-align: center;
       opacity: 0.95;
     }
@@ -265,13 +265,13 @@
       width: 100%;
     }
     
-    /* LARGE DUAL FLIP CARDS MATCHING REFERENCE SCREENSHOT */
+    /* EXPLICIT DIMENSIONS FOR TABLET & WEBKIT (NO CLAMP) */
     .flip-card-box {
-      width: clamp(150px, 32vw, 280px);
-      height: clamp(190px, 48vh, 360px);
+      width: 210px;
+      height: 270px;
       background: #141720;
-      border-radius: clamp(18px, 4vw, 32px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      border: 1px solid #222733;
       display: -webkit-box;
       display: -webkit-flex;
       display: flex;
@@ -281,10 +281,10 @@
       -webkit-box-pack: justify;
       -webkit-justify-content: space-between;
       justify-content: space-between;
-      padding: clamp(14px, 2.5vh, 22px) clamp(14px, 2.5vw, 24px);
+      padding: 16px 20px;
       position: relative;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
-      margin: 0 clamp(8px, 1.6vw, 18px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+      margin: 0 14px;
       overflow: hidden;
     }
     .flip-card-box.tilt-left {
@@ -300,14 +300,14 @@
       left: 0;
       right: 0;
       top: 50%;
-      height: 1.5px;
+      height: 2px;
       background: #000000;
       z-index: 4;
       opacity: 0.85;
     }
     .flip-card-header {
-      font-size: clamp(10px, 1.4vw, 13px);
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: bold;
       color: #64748b;
       font-family: monospace;
       letter-spacing: 0.06em;
@@ -315,19 +315,19 @@
       text-transform: uppercase;
     }
     .flip-card-digits {
-      font-size: clamp(84px, 20vh, 180px);
+      font-size: 115px;
       font-weight: 900;
       color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       text-align: center;
-      line-height: 0.95;
+      line-height: 0.9;
       letter-spacing: -0.05em;
       margin: auto 0;
       z-index: 2;
     }
     .flip-card-footer {
-      font-size: clamp(10px, 1.4vw, 13px);
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: bold;
       color: #475569;
       font-family: monospace;
       text-align: right;
@@ -340,20 +340,32 @@
       -webkit-box-pack: center;
       -webkit-justify-content: center;
       justify-content: center;
-      padding: 10px 0 8px 0;
+      padding: 12px 0 6px 0;
       position: relative;
       z-index: 10;
     }
     .hud-ctrl-btn {
-      background: rgba(22, 26, 34, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #161a22;
+      border: 1px solid #2d3342;
       color: #fff;
       border-radius: 99px;
-      padding: 10px 22px;
+      padding: 9px 20px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
       margin: 0 6px;
+    }
+
+    @media (max-width: 640px) {
+      .flip-card-box {
+        width: 140px;
+        height: 190px;
+        padding: 12px 14px;
+        margin: 0 6px;
+      }
+      .flip-card-digits {
+        font-size: 72px;
+      }
     }
 
     /* REPORTS */
@@ -1108,7 +1120,7 @@
 
     /* ==========================================================================
        LOOPS & HABIT TRACKING (5-DAY MATRIX & HEATMAP)
-       ========================================================================== */
+       ========================================================================= */
     function getLastFiveDays() {
       var days = [];
       var dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
@@ -1589,7 +1601,6 @@
       var hudEl = document.getElementById('desk-hud');
       hudEl.style.display = 'flex';
 
-      // Request fullscreen immersion and landscape lock on modern & webview devices
       try {
         if (hudEl.requestFullscreen) {
           hudEl.requestFullscreen();
@@ -1638,12 +1649,10 @@
       var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
       var dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
       
-      // Top header date and day labels matching reference photo
       var dateStr = months[now.getMonth()] + ' ' + (now.getDate() < 10 ? '0' : '') + now.getDate() + ', ' + now.getFullYear();
       document.getElementById('flip-card-date').innerText = dateStr;
       document.getElementById('flip-card-day').innerText = dayNames[now.getDay()];
 
-      // Display running stopwatch digits
       if (hours > 0) {
         document.getElementById('flip-digits-hours').innerText = hStr;
         document.getElementById('flip-digits-mins').innerText = mStr;
@@ -2656,7 +2665,6 @@
         }
       };
 
-      // Proper PostgREST pagination using Range header
       var rangeHeaders = {
         'Range': from + '-' + to,
         'Range-Unit': 'items'
