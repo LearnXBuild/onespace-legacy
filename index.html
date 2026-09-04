@@ -2447,12 +2447,9 @@
         signalsHasMore = true;
         if (bentoLoader) {
           bentoLoader.style.display = 'block';
-          bentoLoader.innerText = 'Loading unread signals (past 7 days)…';
+          bentoLoader.innerText = 'Loading all unread signals (past 7 days)…';
         }
       }
-
-      var from = signalsOffset;
-      var to = signalsOffset + SIGNALS_PAGE_SIZE - 1;
 
       var articlesDone = false;
       var iposDone = !isReset;
@@ -2463,12 +2460,6 @@
         isFetchingSignals = false;
         if (bentoLoader) bentoLoader.style.display = 'none';
 
-        var loadMoreIndicator = document.getElementById('signals-load-more');
-        if (loadMoreIndicator) loadMoreIndicator.style.display = 'none';
-
-        var newsLoadMoreIndicator = document.getElementById('news-load-more');
-        if (newsLoadMoreIndicator) newsLoadMoreIndicator.style.display = 'none';
-
         if (ALL_ARTICLES.length > 0) {
           var latestDate = ALL_ARTICLES[0].date || new Date().toISOString().split('T')[0];
           var issueDateEl = document.getElementById('news-issue-date');
@@ -2478,35 +2469,15 @@
         renderHingeSignals();
       };
 
-      var rangeHeaders = {
-        'Range': from + '-' + to,
-        'Range-Unit': 'items'
-      };
-
-      // Calculate date 7 days ago for filtering
+      // Calculate date 7 days ago
       var sevenDaysAgo = new Date();
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
       var sevenDaysStr = formatDateLocal(sevenDaysAgo);
 
-      sbClient.request('articles?select=*&date=gte.' + sevenDaysStr + '&order=date.desc,id.desc', 'GET', null, rangeHeaders, function(err, data) {
+      // Fetch all matching articles without pagination limits
+      sbClient.request('articles?select=*&date=gte.' + sevenDaysStr + '&order=date.desc,id.desc', 'GET', null, null, function(err, data) {
         fetchedArticles = (!err && data && Array.isArray(data)) ? data : [];
-        
-        if (isReset) {
-          ALL_ARTICLES = fetchedArticles;
-        } else {
-          var existingMap = {};
-          for (var i = 0; i < ALL_ARTICLES.length; i++) existingMap[ALL_ARTICLES[i].id] = true;
-          for (var j = 0; j < fetchedArticles.length; j++) {
-            if (!existingMap[fetchedArticles[j].id]) ALL_ARTICLES.push(fetchedArticles[j]);
-          }
-        }
-
-        if (fetchedArticles.length < SIGNALS_PAGE_SIZE) {
-          signalsHasMore = false;
-        } else {
-          signalsOffset += SIGNALS_PAGE_SIZE;
-        }
-
+        ALL_ARTICLES = fetchedArticles;
         articlesDone = true;
         finishSignals();
       });
