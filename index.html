@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>onespace</title>
-  <meta name="theme-color" content="#f4f6f8">
+  <meta name="theme-color" content="#000000">
   
   <style>
     * { -webkit-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -86,17 +86,6 @@
     .sub-item { font-size: 12px; color: #1e293b; padding: 2px 0; }
     .sub-item.done span { text-decoration: line-through; color: #64748b; }
 
-    /* LOOPS TABLE MATRIX */
-    .loops-table-wrap { width: 100%; overflow-x: auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; margin-top: 8px; }
-    .loops-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .loops-table th, .loops-table td { padding: 10px 8px; text-align: center; border-bottom: 1px solid #e2e8f0; }
-    .loops-table th:first-child, .loops-table td:first-child { text-align: left; padding-left: 14px; }
-    .loops-day-header { font-size: 10px; font-family: monospace; font-weight: bold; color: #64748b; }
-    .habit-title-cell { font-weight: bold; cursor: pointer; color: #1e293b; }
-    .habit-title-cell:hover { color: #6366f1; text-decoration: underline; }
-    .habit-check-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 13px; font-weight: bold; cursor: pointer; line-height: 26px; margin: 0 auto; }
-    .habit-check-btn.checked { color: #fff; border-color: transparent; }
-
     /* SIGNALS & HINGE CARDS */
     .bento-pill-scroll { overflow-x: auto; white-space: nowrap; padding: 4px 0 10px 0; width: 100%; }
     .bento-signal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
@@ -124,6 +113,15 @@
     .code-box { background: #0f172a; color: #f1f5f9; border-radius: 10px; border: 1px solid #334155; overflow: hidden; font-family: monospace; font-size: 11px; margin: 8px 0; }
     .code-box-header { background: #1e293b; padding: 8px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; border-bottom: 1px solid #334155; font-size: 10px; color: #94a3b8; }
     .code-box pre { margin: 0; padding: 12px; overflow-x: auto; line-height: 1.5; max-height: 300px; }
+
+    .ladder-card-clean { border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; background: #f4f6f8; margin-bottom: 8px; }
+    .ladder-card-clean.solved { background: #f0fdf4; border-color: #bbf7d0; }
+    .ladder-top-row { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start; width: 100%; }
+    .ladder-content { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-width: 0; padding-left: 6px; }
+    .ladder-tier { font-size: 9px; font-weight: bold; text-transform: uppercase; font-family: monospace; padding: 1px 5px; border-radius: 3px; background: #e0e7ff; color: #4338ca; display: inline-block; }
+    .ladder-title-text { font-size: 13px; font-weight: bold; color: #1e293b; text-decoration: none; line-height: 1.4; display: block; margin-top: 2px; }
+    .ladder-card-clean.solved .ladder-title-text { text-decoration: line-through; color: #64748b; }
+    .ladder-bottom-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding-top: 6px; border-top: 1px solid rgba(0, 0, 0, 0.05); margin-top: 4px; }
 
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
@@ -158,32 +156,203 @@
     }
     .repeat-day-btn.active { background: #6366f1; border-color: #6366f1; color: #ffffff; }
 
-    /* PITCH BLACK FLIP CLOCK FOCUS HUD */
-    .desk-hud-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000000; color: #ffffff; z-index: 600; display: none; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; padding: 18px 14px; }
-    .hud-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; width: 100%; }
-    .hud-project-pill { background: #161a22; border: 1px solid #2d3342; border-radius: 99px; padding: 4px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; }
-    .hud-project-select { background: transparent; border: none; color: #94a3b8; font-size: 11px; font-weight: bold; text-transform: uppercase; outline: none; cursor: pointer; }
+    /* ==========================================================================
+       PITCH BLACK FLIP CLOCK FOCUS HUD (EXPLICIT PIXELS - NO CSS CLAMP)
+       ========================================================================== */
+    .desk-hud-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #000000;
+      color: #ffffff;
+      z-index: 9999;
+      display: none;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      padding: 16px 20px;
+      overflow: hidden;
+    }
 
-    .flip-clock-canvas { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; align-items: center; width: 100%; }
-    .flip-clock-heading { color: #ffffff; font-size: 16px; font-weight: bold; letter-spacing: -0.02em; margin-bottom: 24px; text-align: center; }
-    .flip-cards-container { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; width: 100%; max-width: 480px; }
+    .hud-top-bar {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      width: 100%;
+      height: 38px;
+      position: relative;
+      z-index: 10;
+    }
+    .hud-project-pill {
+      background: #161a22;
+      border: 1px solid #2d3342;
+      border-radius: 99px;
+      padding: 5px 14px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    .hud-project-select {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      outline: none;
+      cursor: pointer;
+      font-family: monospace;
+    }
+
+    .flip-clock-canvas {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      flex: 1;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      width: 100%;
+    }
+    .flip-clock-heading {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      text-align: center;
+      opacity: 0.95;
+    }
+    .flip-cards-container {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      width: 100%;
+    }
     
     .flip-card-box {
-      width: 140px; height: 180px; background: #11141a; border-radius: 20px; border: 1px solid #222733;
-      display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
-      -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; padding: 12px 14px; position: relative;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.8);
-      margin: 0 7px;
+      width: 210px;
+      height: 270px;
+      background: #141720;
+      border-radius: 24px;
+      border: 1px solid #222733;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      padding: 16px 20px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+      margin: 0 14px;
+      overflow: hidden;
     }
-    .flip-card-box.tilt-left { -webkit-transform: rotate(-3deg); transform: rotate(-3deg); }
-    .flip-card-box.tilt-right { -webkit-transform: rotate(3deg); transform: rotate(3deg); }
-    .flip-card-divider { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #000000; z-index: 2; opacity: 0.7; }
-    .flip-card-header { font-size: 10px; font-weight: bold; color: #64748b; font-family: monospace; letter-spacing: 0.05em; text-align: center; }
-    .flip-card-digits { font-size: 64px; font-weight: 800; color: #ffffff; font-family: -apple-system, sans-serif; text-align: center; line-height: 1; margin: auto 0; letter-spacing: -0.04em; }
-    .flip-card-footer { font-size: 10px; font-weight: bold; color: #475569; font-family: monospace; text-align: right; }
+    .flip-card-box.tilt-left {
+      -webkit-transform: rotate(-3.5deg);
+      transform: rotate(-3.5deg);
+    }
+    .flip-card-box.tilt-right {
+      -webkit-transform: rotate(3.5deg);
+      transform: rotate(3.5deg);
+    }
+    .flip-card-divider {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 2px;
+      background: #000000;
+      z-index: 4;
+      opacity: 0.85;
+    }
+    .flip-card-header {
+      font-size: 12px;
+      font-weight: bold;
+      color: #64748b;
+      font-family: monospace;
+      letter-spacing: 0.06em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .flip-card-digits {
+      font-size: 115px;
+      font-weight: 900;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      margin: auto 0;
+      z-index: 2;
+    }
+    .flip-card-footer {
+      font-size: 12px;
+      font-weight: bold;
+      color: #475569;
+      font-family: monospace;
+      text-align: right;
+    }
 
-    .hud-controls-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; padding: 14px 0 6px 0; }
-    .hud-ctrl-btn { background: #161a22; border: 1px solid #2d3342; color: #fff; border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: bold; cursor: pointer; margin: 0 4px; }
+    .hud-controls-bar {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      padding: 12px 0 6px 0;
+      position: relative;
+      z-index: 10;
+    }
+    .hud-ctrl-btn {
+      background: #161a22;
+      border: 1px solid #2d3342;
+      color: #fff;
+      border-radius: 99px;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 0 6px;
+    }
+
+    @media (max-width: 640px) {
+      .flip-card-box {
+        width: 140px;
+        height: 190px;
+        padding: 12px 14px;
+        margin: 0 6px;
+      }
+      .flip-card-digits {
+        font-size: 72px;
+      }
+    }
 
     /* REPORTS */
     .report-table { width: 100%; border-collapse: collapse; font-size: 12px; }
@@ -213,8 +382,6 @@
       .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; z-index: 50; }
       .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 10px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
-      .flip-card-box { width: 115px; height: 155px; padding: 10px; margin: 0 4px; }
-      .flip-card-digits { font-size: 50px; }
     }
     @media (min-width: 641px) {
       .mobile-nav { display: none; }
@@ -237,7 +404,6 @@
     <nav class="sidebar-nav">
       <button class="nav-btn active" data-tab="calendar" onclick="switchTab('calendar')">Schedule</button>
       <button class="nav-btn" data-tab="tasks" onclick="switchTab('tasks')">Tasks & Backlog</button>
-      <button class="nav-btn" data-tab="loops" onclick="switchTab('loops')">Loops Habits</button>
       <button class="nav-btn" data-tab="learning" onclick="switchTab('learning')">Learning Hub</button>
       <button class="nav-btn" data-tab="signals" onclick="switchTab('signals')">Signals Feed</button>
       <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">Reports</button>
@@ -319,33 +485,7 @@
       </div>
     </section>
 
-    <!-- 3. LOOPS TAB (HABIT TRACKER & 5-DAY MATRIX) -->
-    <section id="sec-loops" class="content-section">
-      <header class="workspace-header">
-        <h1 class="section-title">LOOPS HABITS</h1>
-        <div>
-          <button class="btn btn-sm" onclick="openCreateHabitModal()">+ New Habit</button>
-        </div>
-      </header>
-
-      <div class="filter-bar">
-        <div style="font-size: 10px; font-weight:bold; color: #64748b; margin-bottom: 4px;">FILTER BY GROUP:</div>
-        <div class="filter-pills" id="loops-group-pills"></div>
-      </div>
-
-      <div class="loops-table-wrap">
-        <table class="loops-table" id="loops-matrix-table">
-          <thead>
-            <tr id="loops-matrix-header-row">
-              <th style="width: 45%;">HABIT</th>
-            </tr>
-          </thead>
-          <tbody id="loops-matrix-body"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 4. LEARNING HUB TAB -->
+    <!-- 3. LEARNING HUB TAB -->
     <section id="sec-learning" class="content-section">
       <header class="workspace-header">
         <h1 class="section-title">LEARNING HUB</h1>
@@ -363,7 +503,7 @@
       <div id="learning-bento-container"></div>
     </section>
 
-    <!-- 5. SIGNALS FEED TAB (HINGE CARD DISCOVERY FORMAT) -->
+    <!-- 4. SIGNALS FEED TAB (HINGE CARD DISCOVERY FORMAT) -->
     <section id="sec-signals" class="content-section">
       <header class="workspace-header">
         <h1 class="section-title">SIGNALS FEED</h1>
@@ -380,7 +520,7 @@
       <div id="hinge-card-container"></div>
     </section>
 
-    <!-- 6. REPORTS TAB -->
+    <!-- 5. REPORTS TAB -->
     <section id="sec-reports" class="content-section">
       <header class="workspace-header">
         <h1 class="section-title">REPORTS & LIMITS</h1>
@@ -397,7 +537,6 @@
   <div class="mobile-nav">
     <button class="nav-btn active" data-tab="calendar" onclick="switchTab('calendar')">Schedule</button>
     <button class="nav-btn" data-tab="tasks" onclick="switchTab('tasks')">Tasks</button>
-    <button class="nav-btn" data-tab="loops" onclick="switchTab('loops')">Loops</button>
     <button class="nav-btn" data-tab="learning" onclick="switchTab('learning')">Learning</button>
     <button class="nav-btn" data-tab="signals" onclick="switchTab('signals')">Signals</button>
     <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">Reports</button>
@@ -415,12 +554,15 @@
     <div class="flip-clock-canvas">
       <div class="flip-clock-heading" id="hud-sub-heading">What September - December is going to look like.</div>
       <div class="flip-cards-container">
+        <!-- LEFT TILTED HOURS/MINUTES CARD -->
         <div class="flip-card-box tilt-left">
           <div class="flip-card-header" id="flip-card-date">SEP 03, 2026</div>
           <div class="flip-card-digits" id="flip-digits-hours">00</div>
           <div class="flip-card-divider"></div>
           <div class="flip-card-footer" id="flip-card-ampm">AM</div>
         </div>
+
+        <!-- RIGHT TILTED MINUTES/SECONDS CARD -->
         <div class="flip-card-box tilt-right">
           <div class="flip-card-header" id="flip-card-day">THURSDAY</div>
           <div class="flip-card-digits" id="flip-digits-mins">00</div>
@@ -434,56 +576,6 @@
       <button class="hud-ctrl-btn" onclick="toggleGlobalTracking()"><span id="hud-pause-text">▶ Start Focus</span></button>
       <button class="hud-ctrl-btn" onclick="addFiveMinsToTracking()">+5 Mins</button>
       <button class="hud-ctrl-btn" style="background:#ef4444; border-color:#ef4444;" onclick="stopAndSaveTracking()">⏹ Stop & Save</button>
-    </div>
-  </div>
-
-  <!-- HABIT DETAIL & GITHUB HEATMAP MODAL -->
-  <div class="modal-overlay" id="habit-detail-modal">
-    <div class="modal" style="max-width: 500px;">
-      <div style="display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 8px;">
-        <h2 style="font-size: 15px; font-weight: bold;" id="hd-title">Habit Details</h2>
-        <span class="pill" id="hd-tag-pill" style="background:#e2e8f0;">Group</span>
-      </div>
-
-      <div style="display: -webkit-box; display: -webkit-flex; display: flex; margin-bottom: 12px;">
-        <div class="bento-card" style="padding: 10px; text-align: center; margin: 0 4px 0 0; -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;">
-          <div style="font-size: 10px; color: #64748b; font-family: monospace;">CURRENT STREAK</div>
-          <div style="font-size: 18px; font-weight: bold; margin-top: 2px;" id="hd-streak-current">0 days</div>
-        </div>
-        <div class="bento-card" style="padding: 10px; text-align: center; margin: 0 0 0 4px; -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;">
-          <div style="font-size: 10px; color: #64748b; font-family: monospace;">TOTAL LOGGED</div>
-          <div style="font-size: 18px; font-weight: bold; margin-top: 2px;" id="hd-total-completed">0</div>
-        </div>
-      </div>
-
-      <div style="font-size: 11px; font-weight: bold; color: #64748b; margin-bottom: 4px;">ACTIVITY HEATMAP (LAST 70 DAYS):</div>
-      <div id="hd-heatmap-svg-wrap" style="overflow-x: auto; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center;"></div>
-
-      <div class="modal-actions" style="display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between;">
-        <button class="btn btn-secondary btn-sm" onclick="scheduleHabitToCalendar(currentViewingHabit)">📅 Schedule Block</button>
-        <div>
-          <button class="btn btn-danger btn-sm" onclick="deleteCurrentHabit()">Delete</button>
-          <button class="btn btn-secondary btn-sm" onclick="closeModal('habit-detail-modal')">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CREATE HABIT MODAL -->
-  <div class="modal-overlay" id="create-habit-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">Create New Habit</h2>
-      <input type="text" id="nh-title" placeholder="Habit Title (e.g. 45m Outdoor Workout)">
-      <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block;">GROUP / CHALLENGE TAG:</label>
-      <input type="text" id="nh-tag" placeholder="e.g. 30 Day Hard, Mindfulness, Health">
-      <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block;">COLOR HEX:</label>
-      <input type="text" id="nh-color" value="#6366f1">
-      <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block;">TARGET DAYS:</label>
-      <input type="number" id="nh-target" value="30" min="1">
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('create-habit-modal')">Cancel</button>
-        <button class="btn" onclick="saveNewHabit()">Save Habit</button>
-      </div>
     </div>
   </div>
 
@@ -726,12 +818,6 @@
     var ALL_IPOS = [];
     var CURRENT_DRILL = null;
 
-    /* LOOPS STATE */
-    var ALL_HABITS = [];
-    var ALL_HABIT_LOGS = {};
-    var activeHabitGroup = "ALL";
-    var currentViewingHabit = null;
-
     var SIGNALS_PAGE_SIZE = 5;
     var signalsOffset = 0;
     var signalsHasMore = true;
@@ -894,11 +980,10 @@
 
       if (tab === 'calendar') renderScheduleCalendar();
       if (tab === 'tasks') renderTaskStack();
-      if (tab === 'loops') fetchHabitsAndLogs();
       if (tab === 'learning') renderLearningHub();
       if (tab === 'signals') {
         if (ALL_ARTICLES.length === 0) fetchSupabaseSignals(true);
-        else renderBentoSignals();
+        else renderHingeSignals();
       }
       if (tab === 'reports') renderReports();
 
@@ -932,265 +1017,6 @@
         if (!err && data) ALL_EVENTS = data;
         checkDone();
       });
-    }
-
-    /* ==========================================================================
-       LOOPS & HABIT TRACKING (5-DAY MATRIX & HEATMAP)
-       ========================================================================== */
-    function getLastFiveDays() {
-      var days = [];
-      var dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-      for (var i = 0; i < 5; i++) {
-        var d = new Date();
-        d.setDate(d.getDate() - i);
-        days.push({
-          dateStr: formatDateLocal(d),
-          shortName: i === 0 ? 'TODAY' : dayNames[d.getDay()],
-          dayNum: d.getDate()
-        });
-      }
-      return days;
-    }
-
-    function fetchHabitsAndLogs() {
-      sbClient.request('habit_loops?select=*&archived=neq.true&order=id.asc', 'GET', null, null, function(err, habits) {
-        if (!err && habits) ALL_HABITS = habits;
-
-        var past90 = new Date();
-        past90.setDate(past90.getDate() - 90);
-        var past90Str = formatDateLocal(past90);
-
-        sbClient.request('habit_logs?select=*&log_date=gte.' + past90Str, 'GET', null, null, function(lErr, logs) {
-          ALL_HABIT_LOGS = {};
-          if (!lErr && logs) {
-            for (var i = 0; i < logs.length; i++) {
-              var key = logs[i].habit_id + '_' + String(logs[i].log_date).split('T')[0];
-              ALL_HABIT_LOGS[key] = !!logs[i].completed;
-            }
-          }
-          renderLoopsMatrix();
-        });
-      });
-    }
-
-    function renderLoopsMatrix() {
-      var days = getLastFiveDays();
-      var headerRow = document.getElementById('loops-matrix-header-row');
-      headerRow.innerHTML = '<th style="width: 45%;">HABIT</th>';
-      for (var d = 0; d < days.length; d++) {
-        headerRow.innerHTML += '<th style="width: 11%;">' +
-          '<div class="loops-day-header">' + days[d].shortName + '</div>' +
-          '<div style="font-size:12px; font-weight:bold;">' + days[d].dayNum + '</div>' +
-        '</th>';
-      }
-
-      var groupPillsWrap = document.getElementById('loops-group-pills');
-      groupPillsWrap.innerHTML = '';
-      var groupMap = { 'ALL': true };
-      for (var h = 0; h < ALL_HABITS.length; h++) {
-        if (ALL_HABITS[h].tag) groupMap[ALL_HABITS[h].tag] = true;
-      }
-      var uniqueGroups = Object.keys(groupMap);
-      for (var ug = 0; ug < uniqueGroups.length; ug++) {
-        (function(gName) {
-          var pill = document.createElement('span');
-          pill.className = 'filter-chip ' + (activeHabitGroup === gName ? 'active' : '');
-          pill.innerText = gName;
-          pill.onclick = function() {
-            activeHabitGroup = gName;
-            renderLoopsMatrix();
-          };
-          groupPillsWrap.appendChild(pill);
-        })(uniqueGroups[ug]);
-      }
-
-      var tbody = document.getElementById('loops-matrix-body');
-      tbody.innerHTML = '';
-
-      var filteredHabits = ALL_HABITS.filter(function(hab) {
-        return activeHabitGroup === 'ALL' || hab.tag === activeHabitGroup;
-      });
-
-      if (filteredHabits.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px; color:#64748b;">No habits in this group. Tap + New Habit.</td></tr>';
-        return;
-      }
-
-      for (var i = 0; i < filteredHabits.length; i++) {
-        var habit = filteredHabits[i];
-        var tr = document.createElement('tr');
-
-        var titleTd = document.createElement('td');
-        titleTd.className = 'habit-title-cell';
-        titleTd.innerHTML = 
-          '<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:' + habit.color + '; margin-right:6px;"></span>' +
-          escapeHtml(habit.title) + 
-          '<div style="font-size:10px; color:#64748b; font-weight:normal; margin-left:14px;">' + escapeHtml(habit.tag || 'Daily') + '</div>';
-        
-        (function(targetHabit) {
-          titleTd.onclick = function() { openHabitDetailModal(targetHabit); };
-        })(habit);
-        tr.appendChild(titleTd);
-
-        for (var c = 0; c < days.length; c++) {
-          var checkTd = document.createElement('td');
-          var dateStr = days[c].dateStr;
-          var key = habit.id + '_' + dateStr;
-          var isDone = !!ALL_HABIT_LOGS[key];
-
-          var checkBtn = document.createElement('button');
-          checkBtn.className = 'habit-check-btn ' + (isDone ? 'checked' : '');
-          checkBtn.style.backgroundColor = isDone ? habit.color : '#f8fafc';
-          checkBtn.innerText = isDone ? '✓' : '—';
-
-          (function(hId, dStr, currentDone, btnEl, col) {
-            btnEl.onclick = function() {
-              toggleHabitCheck(hId, dStr, currentDone, btnEl, col);
-            };
-          })(habit.id, dateStr, isDone, checkBtn, habit.color);
-
-          checkTd.appendChild(checkBtn);
-          tr.appendChild(checkTd);
-        }
-
-        tbody.appendChild(tr);
-      }
-    }
-
-    function toggleHabitCheck(habitId, dateStr, currentDone, btnEl, color) {
-      var nextState = !currentDone;
-      var key = habitId + '_' + dateStr;
-      ALL_HABIT_LOGS[key] = nextState;
-
-      btnEl.className = 'habit-check-btn ' + (nextState ? 'checked' : '');
-      btnEl.style.backgroundColor = nextState ? color : '#f8fafc';
-      btnEl.innerText = nextState ? '✓' : '—';
-
-      btnEl.onclick = function() {
-        toggleHabitCheck(habitId, dateStr, nextState, btnEl, color);
-      };
-
-      if (nextState) {
-        sbClient.request('habit_logs', 'POST', {
-          habit_id: habitId,
-          log_date: dateStr,
-          completed: true
-        }, { 'Prefer': 'resolution=merge-duplicates' }, function(err) {});
-      } else {
-        sbClient.request('habit_logs?habit_id=eq.' + habitId + '&log_date=eq.' + dateStr, 'DELETE', null, null, function(err) {});
-      }
-    }
-
-    function openCreateHabitModal() {
-      document.getElementById('nh-title').value = '';
-      document.getElementById('nh-tag').value = activeHabitGroup !== 'ALL' ? activeHabitGroup : '30 Day Hard';
-      document.getElementById('nh-color').value = '#ef4444';
-      document.getElementById('nh-target').value = 30;
-      document.getElementById('create-habit-modal').style.display = 'block';
-    }
-
-    function saveNewHabit() {
-      var title = document.getElementById('nh-title').value.trim();
-      var tag = document.getElementById('nh-tag').value.trim() || 'General';
-      var color = document.getElementById('nh-color').value.trim() || '#6366f1';
-      var target_days = parseInt(document.getElementById('nh-target').value, 10) || 30;
-
-      if (!title) return;
-      closeModal('create-habit-modal');
-
-      sbClient.request('habit_loops', 'POST', {
-        title: title,
-        tag: tag,
-        color: color,
-        target_days: target_days
-      }, { 'Prefer': 'return=representation' }, function(err, data) {
-        if (!err && data && data[0]) {
-          ALL_HABITS.push(data[0]);
-          renderLoopsMatrix();
-        }
-      });
-    }
-
-    function openHabitDetailModal(habit) {
-      currentViewingHabit = habit;
-      document.getElementById('hd-title').innerText = habit.title;
-      document.getElementById('hd-tag-pill').innerText = habit.tag || 'General';
-      document.getElementById('hd-tag-pill').style.backgroundColor = habit.color;
-      document.getElementById('hd-tag-pill').style.color = getContrastTextColor(habit.color);
-
-      var totalCompleted = 0;
-      var currentStreak = 0;
-      var streakBroken = false;
-
-      for (var d = 0; d < 90; d++) {
-        var dt = new Date();
-        dt.setDate(dt.getDate() - d);
-        var dtStr = formatDateLocal(dt);
-        var isDone = !!ALL_HABIT_LOGS[habit.id + '_' + dtStr];
-        if (isDone) totalCompleted++;
-        if (!streakBroken) {
-          if (isDone) currentStreak++;
-          else if (d > 0) streakBroken = true;
-        }
-      }
-
-      document.getElementById('hd-streak-current').innerText = currentStreak + ' days';
-      document.getElementById('hd-total-completed').innerText = totalCompleted + ' / ' + (habit.target_days || 30);
-
-      var svgWrap = document.getElementById('hd-heatmap-svg-wrap');
-      var boxSize = 12, gap = 3, cols = 10, rows = 7;
-      var totalWidth = cols * (boxSize + gap);
-      var totalHeight = rows * (boxSize + gap);
-
-      var svgHtml = '<svg width="' + totalWidth + '" height="' + totalHeight + '" style="margin: 0 auto; display:block;">';
-
-      for (var col = 0; col < cols; col++) {
-        for (var row = 0; row < rows; row++) {
-          var dayOffset = (cols - 1 - col) * 7 + (6 - row);
-          var checkDate = new Date();
-          checkDate.setDate(checkDate.getDate() - dayOffset);
-          var cDateStr = formatDateLocal(checkDate);
-          var done = !!ALL_HABIT_LOGS[habit.id + '_' + cDateStr];
-
-          var x = col * (boxSize + gap);
-          var y = row * (boxSize + gap);
-          var fillColor = done ? habit.color : '#e2e8f0';
-
-          svgHtml += '<rect x="' + x + '" y="' + y + '" width="' + boxSize + '" height="' + boxSize + '" rx="2" fill="' + fillColor + '"><title>' + cDateStr + '</title></rect>';
-        }
-      }
-      svgHtml += '</svg>';
-      svgWrap.innerHTML = svgHtml;
-
-      document.getElementById('habit-detail-modal').style.display = 'block';
-    }
-
-    function scheduleHabitToCalendar(habit) {
-      if (!habit) return;
-      closeModal('habit-detail-modal');
-      openCalendarEventModal(null);
-      document.getElementById('cal-title').value = habit.title;
-      document.getElementById('cal-repeat-type').value = 'daily';
-      toggleRepeatDaysVisibility();
-
-      var untilDate = new Date();
-      untilDate.setDate(untilDate.getDate() + (habit.target_days || 30));
-      document.getElementById('cal-repeat-until').value = formatDateLocal(untilDate);
-      
-      var p = getProjectByName(habit.tag);
-      if (p) document.getElementById('cal-project-select').value = p.id;
-    }
-
-    function deleteCurrentHabit() {
-      if (!currentViewingHabit) return;
-      if (!confirm('Delete habit "' + currentViewingHabit.title + '" and all its logs?')) return;
-      var targetId = currentViewingHabit.id;
-      closeModal('habit-detail-modal');
-
-      ALL_HABITS = ALL_HABITS.filter(function(h) { return h.id !== targetId; });
-      renderLoopsMatrix();
-
-      sbClient.request('habit_loops?id=eq.' + targetId, 'DELETE', null, null, function() {});
     }
 
     /* ==========================================================================
@@ -1405,7 +1231,7 @@
     }
 
     /* ==========================================================================
-       PITCH BLACK FLIP CLOCK FOCUS HUD (EXPLICIT PIXELS FOR ANDROID 4.2)
+       PITCH BLACK FLIP CLOCK FOCUS HUD (RUNNING STOPWATCH & FULLSCREEN LANDSCAPE)
        ========================================================================== */
     function openDeskHud() {
       var select = document.getElementById('hud-project-select');
@@ -2176,259 +2002,6 @@
     }
 
     /* ==========================================================================
-       LEARNING HUB (FULL CURRICULUM, LADDERS & PATTERNS)
-       ========================================================================== */
-    function renderLearningHub() {
-      var container = document.getElementById('learning-bento-container');
-      if (!container) return;
-      container.innerHTML = '<div style="text-align:center; padding:20px; font-size:12px; color:#64748b; font-family:monospace;">Loading curriculum…</div>';
-
-      if (activeLearningTrack === 'HLD') {
-        sbClient.request('hld_modules?select=*&order=id.asc', 'GET', null, null, function(err, modules) {
-          modules = (!err && modules && Array.isArray(modules)) ? modules : [];
-          if (modules.length === 0) {
-            container.innerHTML = '<div class="bento-card">No HLD modules found.</div>';
-            return;
-          }
-
-          var catMap = {};
-          var completedCount = 0;
-          for (var i = 0; i < modules.length; i++) {
-            if (modules[i].status === 'completed' || modules[i].status === 'mastered') completedCount++;
-            if (modules[i].track_category) catMap[modules[i].track_category] = true;
-          }
-
-          var categories = ["All"].concat(Object.keys(catMap));
-          var totalCount = modules.length;
-          var percentDone = Math.round((completedCount / totalCount) * 100) || 0;
-
-          var filteredModules = activeHldCategory === "All" ? modules : modules.filter(function(m) { return m.track_category === activeHldCategory; });
-          var grouped = {};
-          for (var j = 0; j < filteredModules.length; j++) {
-            var cat = filteredModules[j].track_category || 'General Concepts';
-            if (!grouped[cat]) grouped[cat] = [];
-            grouped[cat].push(filteredModules[j]);
-          }
-
-          var pillsHtml = '';
-          for (var c = 0; c < categories.length; c++) {
-            pillsHtml += '<span class="filter-chip ' + (activeHldCategory === categories[c] ? 'active' : '') + '" onclick="setHldCategory(\'' + categories[c] + '\')">' + categories[c] + '</span>';
-          }
-
-          var groupsHtml = '';
-          var groupKeys = Object.keys(grouped);
-          for (var g = 0; g < groupKeys.length; g++) {
-            var catName = groupKeys[g];
-            var items = grouped[catName];
-            var doneItems = 0;
-            for (var d = 0; d < items.length; d++) {
-              if (items[d].status === 'completed' || items[d].status === 'mastered') doneItems++;
-            }
-            var cardId = 'hld-cat-card-' + g;
-
-            var itemsHtml = '';
-            for (var it = 0; it < items.length; it++) {
-              var item = items[it];
-              var isDone = item.status === 'completed' || item.status === 'mastered';
-              itemsHtml += 
-                '<div class="ladder-card-clean ' + (isDone ? 'solved' : '') + '">' +
-                  '<div class="ladder-top-row">' +
-                    '<input type="checkbox" ' + (isDone ? 'checked' : '') + ' onchange="toggleHldModuleMastered(' + item.id + ', this.checked)">' +
-                    '<div class="ladder-content">' +
-                      '<span class="ladder-tier">' + (item.difficulty || 'Concept') + '</span>' +
-                      '<a href="' + (item.reference_url || '#') + '" target="_blank" class="ladder-title-text">' + escapeHtml(item.module_title) + '</a>' +
-                    '</div>' +
-                  '</div>' +
-                  '<div class="ladder-bottom-bar">' +
-                    '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(item.module_title).replace(/'/g, "\\'") + '\', \'HLD\')">📅 Schedule Event</button>' +
-                    (item.reference_url ? '<a href="' + item.reference_url + '" target="_blank" class="btn btn-secondary btn-sm">Read ↗</a>' : '') +
-                  '</div>' +
-                '</div>';
-            }
-
-            groupsHtml += 
-              '<div class="bento-card hld-category-card" id="' + cardId + '">' +
-                '<div class="hld-category-header" onclick="toggleHldCategory(\'' + cardId + '\')">' +
-                  '<div><strong>📌 ' + escapeHtml(catName) + '</strong> (' + doneItems + '/' + items.length + ')</div>' +
-                  '<span>▼</span>' +
-                '</div>' +
-                '<div class="hld-category-body"><div class="ladder-list">' + itemsHtml + '</div></div>' +
-              '</div>';
-          }
-
-          container.innerHTML = 
-            '<div class="bento-card">' +
-              '<div style="font-size:11px; color:#6366f1; font-weight:bold;">🏗️ SYSTEM DESIGN ROADMAP</div>' +
-              '<h2 style="font-size:16px; margin:4px 0 8px;">Awesome System Design Curriculum</h2>' +
-              '<div style="font-size:11px; color:#64748b; margin-bottom:4px;">PROGRESS: ' + completedCount + ' / ' + totalCount + ' (' + percentDone + '%)</div>' +
-              '<div style="width:100%; height:6px; background:#e2e8f0; border-radius:99px; overflow:hidden;">' +
-                '<div style="width:' + percentDone + '%; height:100%; background:#6366f1;"></div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="bento-pill-scroll">' + pillsHtml + '</div>' +
-            groupsHtml;
-        });
-        return;
-      }
-
-      if (activeLearningTrack === 'LLD') {
-        container.innerHTML = '<div class="bento-card" style="text-align:center; padding:30px;"><h3 style="font-size:14px; margin-bottom:4px;">Low-Level Design (LLD)</h3><p style="font-size:12px; color:#64748b;">Design Patterns and Machine Coding problems coming up next.</p></div>';
-        return;
-      }
-
-      sbClient.request('dsa_daily_drills?select=*&order=drill_date.desc', 'GET', null, { 'Range': '0-0', 'Range-Unit': 'items' }, function(err, drills) {
-        drills = (!err && drills && Array.isArray(drills)) ? drills : [];
-        if (drills.length === 0) {
-          container.innerHTML = '<div class="bento-card" style="text-align:center; color:#64748b;">No DSA drill found in database.</div>';
-          return;
-        }
-
-        CURRENT_DRILL = drills[0];
-        var drill = CURRENT_DRILL;
-        var pIds = drill.problem_ids || [];
-
-        var qQuery = pIds.length > 0 ? 'dsa_questions?select=*&id=in.(' + pIds.join(',') + ')' : 'dsa_questions?select=*';
-        
-        sbClient.request(qQuery, 'GET', null, null, function(qErr, questions) {
-          questions = (!qErr && questions && Array.isArray(questions)) ? questions : [];
-          var qMap = {};
-          for (var i = 0; i < questions.length; i++) qMap[questions[i].id] = questions[i];
-          var hasNotes = drill.article_url && drill.article_url.trim().length > 0;
-
-          var cuesHtml = '';
-          var cues = drill.trigger_cues || [];
-          for (var c = 0; c < cues.length; c++) cuesHtml += '<li>' + escapeHtml(cues[c]) + '</li>';
-
-          var ladderHtml = '';
-          for (var p = 0; p < pIds.length; p++) {
-            var q = qMap[pIds[p]];
-            if (!q) continue;
-            var isSolved = q.status === 'solved';
-            var tier = p === 0 ? 'Foundation' : p === 1 ? 'Core SDE-2' : 'Curveball';
-
-            ladderHtml += 
-              '<div class="ladder-card-clean ' + (isSolved ? 'solved' : '') + '">' +
-                '<div class="ladder-top-row">' +
-                  '<input type="checkbox" ' + (isSolved ? 'checked' : '') + ' onchange="toggleProblemSolved(' + q.id + ', this.checked)">' +
-                  '<div class="ladder-content">' +
-                    '<span class="ladder-tier">' + tier + '</span>' +
-                    '<a href="' + (q.url || '#') + '" target="_blank" class="ladder-title-text">' + escapeHtml(q.title) + '</a>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="ladder-bottom-bar">' +
-                  '<span style="font-size:10px; color:#64748b;">' + (q.platform || 'LeetCode') + ' • ' + (q.difficulty || 'Medium') + '</span>' +
-                  '<div>' +
-                    '<button class="btn btn-secondary btn-sm" onclick="scheduleStudyToCalendar(\'' + escapeHtml(q.title).replace(/'/g, "\\'") + '\', \'DSA\')">📅 Schedule Event</button> ' +
-                    (q.url ? '<a href="' + q.url + '" target="_blank" class="btn btn-secondary btn-sm">Solve ↗</a>' : '') +
-                  '</div>' +
-                '</div>' +
-              '</div>';
-          }
-
-          container.innerHTML = 
-            '<div class="bento-card">' +
-              '<div style="font-size:10px; color:#6366f1; font-weight:bold;">⚡ PATTERN OF THE DAY (' + (drill.drill_date || 'Today') + ')</div>' +
-              '<h2 style="font-size:15px; margin-top:4px;">' + escapeHtml(drill.pattern_name) + '</h2>' +
-              (cues.length > 0 ? (
-                '<div style="margin:8px 0; background:#f4f6f8; padding:8px 10px; border-radius:8px;">' +
-                  '<strong style="font-size:10px; color:#64748b; text-transform:uppercase;">Triggers:</strong>' +
-                  '<ul style="font-size:11px; padding-left:14px; margin-top:3px;">' + cuesHtml + '</ul>' +
-                '</div>'
-              ) : '') +
-              (drill.common_pitfall ? '<div style="background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:6px 8px; font-size:11px; color:#b91c1c;"><strong>⚠️ Pitfall:</strong> ' + escapeHtml(drill.common_pitfall) + '</div>' : '') +
-            '</div>' +
-
-            (drill.template_code ? (
-              '<div class="code-box">' +
-                '<div class="code-box-header"><span>Java Skeleton</span><button class="btn btn-secondary btn-sm" onclick="copyJavaTemplate()">Copy</button></div>' +
-                '<pre><code id="java-code-content">' + escapeHtml(drill.template_code) + '</code></pre>' +
-              '</div>'
-            ) : '') +
-
-            '<div class="bento-card">' +
-              '<div style="font-size:10px; font-weight:bold; color:#64748b;">PATTERN NOTES & REFERENCE</div>' +
-              '<div style="font-size:12px; margin:4px 0 6px;">' +
-                (hasNotes ? '<a href="' + drill.article_url + '" target="_blank" style="color:#6366f1; word-break:break-all;">' + escapeHtml(drill.article_url) + ' ↗</a>' : '<span style="color:#64748b; font-style:italic;">No notes link attached yet</span>') +
-              '</div>' +
-              '<button class="btn btn-secondary btn-sm" onclick="openPatternNotesModal(\'' + escapeHtml(drill.pattern_name).replace(/'/g, "\\'") + '\', \'' + (drill.article_url || '') + '\')">' + (hasNotes ? '✏️ Edit Link' : '+ Add Notes Link') + '</button>' +
-            '</div>' +
-
-            (ladderHtml ? (
-              '<div class="bento-card">' +
-                '<div style="font-size:10px; font-weight:bold; color:#64748b; text-transform:uppercase;">🪜 Problem Ladder</div>' +
-                '<div class="ladder-list">' + ladderHtml + '</div>' +
-              '</div>'
-            ) : '');
-        });
-      });
-    }
-
-    function setLearningTrack(track, el) {
-      activeLearningTrack = track;
-      var chips = document.querySelectorAll('#learning-track-pills .filter-chip');
-      for (var i = 0; i < chips.length; i++) chips[i].className = chips[i].className.replace(/\bactive\b/g, '').trim();
-      if (el) el.className += ' active';
-      renderLearningHub();
-    }
-
-    function setHldCategory(cat) {
-      activeHldCategory = cat;
-      renderLearningHub();
-    }
-
-    function toggleHldCategory(cardId) {
-      var card = document.getElementById(cardId);
-      if (card) {
-        if (card.className.indexOf('collapsed') !== -1) card.className = card.className.replace(/\bcollapsed\b/g, '');
-        else card.className += ' collapsed';
-      }
-    }
-
-    function toggleHldModuleMastered(moduleId, isCompleted) {
-      var newStatus = isCompleted ? 'completed' : 'todo';
-      sbClient.request('hld_modules?id=eq.' + moduleId, 'PATCH', { status: newStatus, completed_at: isCompleted ? new Date().toISOString() : null }, null, function() {
-        renderLearningHub();
-      });
-    }
-
-    function toggleProblemSolved(problemId, isCompleted) {
-      var newStatus = isCompleted ? 'solved' : 'todo';
-      sbClient.request('dsa_questions?id=eq.' + problemId, 'PATCH', { status: newStatus, last_attempted_at: isCompleted ? new Date().toISOString() : null }, null, function() {
-        renderLearningHub();
-      });
-    }
-
-    function copyJavaTemplate() {
-      var code = document.getElementById('java-code-content').innerText;
-      var ta = document.createElement('textarea');
-      ta.value = code;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      alert('Java template copied!');
-    }
-
-    function openPatternNotesModal(patternName, currentUrl) {
-      document.getElementById('edit-pattern-key').value = patternName;
-      document.getElementById('edit-pattern-label').innerText = patternName;
-      document.getElementById('edit-pattern-url').value = currentUrl && currentUrl !== 'null' ? currentUrl : '';
-      document.getElementById('pattern-notes-modal').style.display = 'block';
-    }
-
-    function savePatternNotesUrl() {
-      var patternName = document.getElementById('edit-pattern-key').value;
-      var newUrl = document.getElementById('edit-pattern-url').value.trim();
-      closeModal('pattern-notes-modal');
-
-      if (CURRENT_DRILL) CURRENT_DRILL.article_url = newUrl;
-      renderLearningHub();
-
-      sbClient.request('dsa_patterns?title=eq.' + encodeURIComponent(patternName), 'PATCH', { article_url: newUrl }, null, function() {});
-      sbClient.request('dsa_daily_drills?pattern_name=eq.' + encodeURIComponent(patternName), 'PATCH', { article_url: newUrl }, null, function() {});
-    }
-
-    /* ==========================================================================
        SIGNALS FEED & HINGE CARD DISCOVERY ENGINE
        ========================================================================== */
     function signalMeter(score) {
@@ -2469,13 +2042,11 @@
         renderHingeSignals();
       };
 
-      // Calculate date 7 days ago
       var sevenDaysAgo = new Date();
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
       var sevenDaysStr = formatDateLocal(sevenDaysAgo);
 
-      // Fetch all matching articles without pagination limits
-      sbClient.request('articles?select=*&date=gte.' + sevenDaysStr + '&order=date.desc,id.desc', 'GET', null, null, function(err, data) {
+      sbClient.request('articles?select=*&is_read=is.false&date=gte.' + sevenDaysStr + '&order=date.desc,id.desc', 'GET', null, null, function(err, data) {
         fetchedArticles = (!err && data && Array.isArray(data)) ? data : [];
         ALL_ARTICLES = fetchedArticles;
         articlesDone = true;
@@ -2519,8 +2090,8 @@
           var count = 0;
           if (track === 'IPOs') count = ALL_IPOS.length;
           else if (track === 'Archived') count = archivedSignals.length;
-          else if (track === 'All') count = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; }).length;
-          else count = ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(track.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; }).length;
+          else if (track === 'All') count = ALL_ARTICLES.filter(function(a) { return !a.is_read && archivedSignals.indexOf(a.id) === -1; }).length;
+          else count = ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(track.toLowerCase()) !== -1 && !a.is_read && archivedSignals.indexOf(a.id) === -1; }).length;
 
           var chip = document.createElement('span');
           chip.className = 'filter-chip ' + (activeTrack === track ? 'active' : '');
@@ -2533,9 +2104,8 @@
         })(dynamicTracks[dt]);
       }
 
-      // Filter out already read/archived signals
       var unreadArticles = ALL_ARTICLES.filter(function(a) {
-        return archivedSignals.indexOf(a.id) === -1;
+        return !a.is_read && archivedSignals.indexOf(a.id) === -1;
       });
 
       if (activeTrack !== 'All' && activeTrack !== 'Archived' && activeTrack !== 'IPOs') {
@@ -2546,7 +2116,7 @@
 
       if (activeTrack === 'Archived') {
         unreadArticles = ALL_ARTICLES.filter(function(a) {
-          return archivedSignals.indexOf(a.id) !== -1;
+          return a.is_read || archivedSignals.indexOf(a.id) !== -1;
         });
       }
 
@@ -2555,7 +2125,6 @@
           container.innerHTML = '<div style="text-align:center; padding:40px; color:#64748b; font-size:12px;">No evaluated IPOs found.</div>';
           return;
         }
-        // Show first IPO card in hinge style
         var ipo = ALL_IPOS[0];
         var card = document.createElement('div');
         card.className = 'bento-signal-card';
@@ -2583,7 +2152,6 @@
         return;
       }
 
-      // DISPLAY EXACTLY ONE (THE FIRST) UNREAD ARTICLE HINGE STYLE
       var article = unreadArticles[0];
       var tagsList = Array.isArray(article.tags) ? article.tags : [];
       var targetUrl = article.url || article.link || ('https://www.google.com/search?q=' + encodeURIComponent(article.headline));
@@ -2616,11 +2184,31 @@
     }
 
     function markHingeReadAndNext(articleId) {
+      for (var i = 0; i < ALL_ARTICLES.length; i++) {
+        if (Number(ALL_ARTICLES[i].id) === Number(articleId)) {
+          ALL_ARTICLES[i].is_read = true;
+          break;
+        }
+      }
+
       if (archivedSignals.indexOf(articleId) === -1) {
         archivedSignals.push(articleId);
         localStorage.setItem('the_signal_archived_ids', JSON.stringify(archivedSignals));
       }
+
       renderHingeSignals();
+
+      sbClient.request('articles?id=eq.' + articleId, 'PATCH', { is_read: true }, null, function(err, resp) {
+        if (err) {
+          console.error('Failed to update is_read in DB:', err);
+        }
+      });
+    }
+
+    function hideIpoCard(symbol) {
+      ALL_IPOS = ALL_IPOS.filter(function(item) { return item.symbol !== symbol; });
+      renderHingeSignals();
+      sbClient.request('ipo_evaluations?symbol=eq.' + encodeURIComponent(symbol), 'PATCH', { is_hidden: true }, null, function() {});
     }
 
     function openNewspaperOverlay() {
@@ -2648,8 +2236,8 @@
       for (var dt = 0; dt < dynamicTracks.length; dt++) {
         (function(track) {
           var count = (track === 'Archived') ? archivedSignals.length : (track === 'All') 
-            ? ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; }).length 
-            : ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(track.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; }).length;
+            ? ALL_ARTICLES.filter(function(a) { return !a.is_read && archivedSignals.indexOf(a.id) === -1; }).length 
+            : ALL_ARTICLES.filter(function(a) { return (a.track || '').toLowerCase().indexOf(track.toLowerCase()) !== -1 && !a.is_read && archivedSignals.indexOf(a.id) === -1; }).length;
 
           var btn = document.createElement('button');
           btn.className = 'tab-btn ' + (activeTrack === track ? 'active' : '');
@@ -2664,12 +2252,12 @@
 
       var filtered = [];
       if (activeTrack === 'Archived') {
-        filtered = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) !== -1; });
+        filtered = ALL_ARTICLES.filter(function(a) { return a.is_read || archivedSignals.indexOf(a.id) !== -1; });
       } else if (activeTrack === 'All') {
-        filtered = ALL_ARTICLES.filter(function(a) { return archivedSignals.indexOf(a.id) === -1; });
+        filtered = ALL_ARTICLES.filter(function(a) { return !a.is_read && archivedSignals.indexOf(a.id) === -1; });
       } else {
         filtered = ALL_ARTICLES.filter(function(a) { 
-          return (a.track || '').toLowerCase().indexOf(activeTrack.toLowerCase()) !== -1 && archivedSignals.indexOf(a.id) === -1; 
+          return (a.track || '').toLowerCase().indexOf(activeTrack.toLowerCase()) !== -1 && !a.is_read && archivedSignals.indexOf(a.id) === -1; 
         });
       }
 
@@ -2681,7 +2269,7 @@
 
       for (var f = 0; f < filtered.length; f++) {
         var art = filtered[f];
-        var isArchived = archivedSignals.indexOf(art.id) !== -1;
+        var isArchived = art.is_read || archivedSignals.indexOf(art.id) !== -1;
         var tagsList = Array.isArray(art.tags) ? art.tags : [];
         var tagsHtml = '';
         for (var t = 0; t < tagsList.length; t++) {
@@ -2693,8 +2281,8 @@
         card.innerHTML = 
           '<div class="news-article-meta">' + 
             escapeHtml(art.source || 'Signal') + ' · ' + (art.date || '') + ' ' +
-            '<button style="background:none; border:none; color:#8B8C7F; cursor:pointer; margin-left:8px; text-decoration:underline;" onclick="toggleArchiveArticle(' + art.id + '); openNewspaperOverlay();">' + 
-              (isArchived ? '✓ Unarchive' : '✓ Mark Read') + 
+            '<button style="background:none; border:none; color:#8B8C7F; cursor:pointer; margin-left:8px; text-decoration:underline;" onclick="markHingeReadAndNext(' + art.id + '); openNewspaperOverlay();">' + 
+              (isArchived ? '✓ Read' : 'Mark Read') + 
             '</button>' +
           '</div>' +
           '<a href="' + (art.url || '#') + '" target="_blank" class="news-headline">' + escapeHtml(art.headline) + '</a>' +
@@ -2726,7 +2314,7 @@
     }
 
     /* ==========================================================================
-       PULL DOWN TO REFRESH & INFINITE SCROLL
+       PULL DOWN TO REFRESH (RESTORED FOR TOUCH & ANDROID 4.2)
        ========================================================================== */
     var touchStartY = 0;
     var isPulling = false;
@@ -2770,7 +2358,6 @@
         ptrIndicator.className = 'visible';
 
         syncAllSupabaseData();
-        fetchHabitsAndLogs();
         fetchSupabaseSignals(true);
 
         setTimeout(function() {
@@ -2788,7 +2375,6 @@
 
     // Initialize application safely
     syncAllSupabaseData();
-    fetchHabitsAndLogs();
     fetchSupabaseSignals(true);
   </script>
 </body>
