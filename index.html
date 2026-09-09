@@ -10,33 +10,12 @@
     * { -webkit-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     body { background: #f4f6f8; color: #1e293b; display: -webkit-box; display: -webkit-flex; display: flex; height: 100vh; overflow: hidden; -webkit-box-orient: horizontal; -webkit-flex-direction: row; flex-direction: row; }
 
-    #ptr-indicator {
-      position: fixed;
-      top: -50px;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-      background: #ffffff;
-      color: #1e293b;
-      border: 1px solid #cbd5e1;
-      padding: 6px 16px;
-      border-radius: 99px;
-      font-size: 11px;
-      font-weight: bold;
-      z-index: 999;
-      pointer-events: none;
-      display: none;
-      font-family: monospace;
-    }
-    #ptr-indicator.visible { top: 18px; display: block; }
-
     aside { width: 220px; border-right: 1px solid #e2e8f0; background: #ffffff; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; padding: 18px 12px; -webkit-flex-shrink: 0; flex-shrink: 0; }
     main { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; overflow-y: auto; background: #f4f6f8; padding-bottom: 80px; width: 100%; min-width: 0; }
     
     .sidebar-header { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 20px; padding: 0 4px; }
     .logo { font-size: 15px; font-weight: bold; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; color: #1e293b; text-transform: lowercase; }
     .brand-icon-wrap { width: 24px; height: 24px; border-radius: 6px; background: #6366f1; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-flex-shrink: 0; flex-shrink: 0; margin-right: 8px; color: #fff; font-size: 12px; font-weight: bold; }
-    .profile-icon-btn { background: #f3e8ff; border: 1px solid rgba(123, 31, 162, 0.15); border-radius: 50%; width: 32px; height: 32px; line-height: 30px; text-align: center; cursor: pointer; font-size: 14px; }
 
     nav.sidebar-nav { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; }
     nav.sidebar-nav button { display: block; width: 100%; text-align: left; padding: 10px 12px; background: none; border: 1px solid transparent; border-radius: 10px; font-size: 13px; font-weight: 600; color: #64748b; cursor: pointer; margin-bottom: 4px; }
@@ -50,79 +29,47 @@
 
     .btn { background: #1e293b; color: #fff; border: none; padding: 7px 14px; border-radius: 99px; font-size: 12px; font-weight: bold; cursor: pointer; display: inline-block; white-space: nowrap; text-decoration: none; }
     .btn-secondary { background: #ffffff; color: #1e293b; border: 1px solid #cbd5e1; }
-    .btn-danger { background: #ef4444; color: #fff; border: none; }
     .btn-sm { padding: 4px 10px; font-size: 11px; border-radius: 99px; }
 
-    input:not([type="checkbox"]):not([type="radio"]):not([type="color"]), select, textarea { 
-      border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 10px; font-size: 13px; width: 100%; background: #ffffff; color: #1e293b; outline: none; margin-bottom: 6px;
-    }
-    input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; margin-right: 6px; vertical-align: middle; }
-
-    .filter-bar { margin-bottom: 14px; background: #ffffff; padding: 12px 14px; border-radius: 14px; border: 1px solid #e2e8f0; }
-    .filter-pills { overflow-x: auto; white-space: nowrap; padding: 4px 0; }
+    .filter-pills { overflow-x: auto; white-space: nowrap; padding: 4px 0 10px 0; width: 100%; }
     .filter-chip { font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 99px; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; color: #64748b; display: inline-block; margin-right: 4px; }
     .filter-chip.active { background: #1e293b; color: #fff; border-color: #1e293b; }
-    
-    .stack-sections { width: 100%; }
-    .stack-section-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
-    .stack-section-header { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding: 12px 14px; cursor: pointer; background: #ffffff; }
-    .stack-title-group { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; font-size: 13px; font-weight: bold; }
-    .stack-badge { background: #f4f6f8; border: 1px solid #e2e8f0; color: #64748b; font-size: 10px; font-weight: bold; padding: 2px 7px; border-radius: 99px; font-family: monospace; margin-left: 8px; }
-    .stack-section-card.collapsed .stack-content { display: none; }
-    .stack-content { padding: 0 14px 14px 14px; border-top: 1px solid #e2e8f0; }
-
-    .reminder-card { background: #f4f6f8; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; margin-top: 8px; }
-    .reminder-card.completed { opacity: 0.65; }
-    .reminder-card.completed .reminder-title-text { text-decoration: line-through; color: #64748b; }
-    .reminder-row { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start; width: 100%; }
-    .reminder-circle { width: 18px; height: 18px; border: 2px solid #cbd5e1; border-radius: 50%; cursor: pointer; -webkit-flex-shrink: 0; flex-shrink: 0; margin-top: 2px; margin-right: 8px; text-align: center; line-height: 14px; background: #ffffff; }
-    .reminder-card.completed .reminder-circle { background: #6366f1; border-color: #6366f1; color: #fff; font-size: 11px; }
-    .reminder-title-text { font-size: 13px; font-weight: bold; color: #1e293b; -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; word-break: break-word; line-height: 1.4; }
-    .reminder-meta { margin-left: 26px; margin-top: 4px; }
-    .pill { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: bold; margin-right: 4px; }
-    .pill-tag { border: 1px solid #e2e8f0; background: #f1f5f9; }
-    .reminder-actions { margin-left: auto; }
-    .reminder-subtasks { margin-left: 26px; margin-top: 4px; border-left: 2px solid #e2e8f0; padding-left: 10px; }
-    .sub-item { font-size: 12px; color: #1e293b; padding: 2px 0; }
-    .sub-item.done span { text-decoration: line-through; color: #64748b; }
 
     /* SIGNALS & HINGE CARDS */
-    .bento-pill-scroll { overflow-x: auto; white-space: nowrap; padding: 4px 0 10px 0; width: 100%; }
     .bento-signal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
     .bento-meta-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; font-size: 11px; color: #64748b; font-family: monospace; margin-bottom: 8px; }
     .bento-headline { font-size: 16px; font-weight: bold; line-height: 1.35; color: #1e293b; text-decoration: none; display: block; margin-bottom: 8px; }
     .bento-body { font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 10px; }
     .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 12px; color: #0369a1; line-height: 1.5; margin: 8px 0; }
     .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid #e2e8f0; }
+
+    /* LEARNING & PATTERN CARDS */
+    .bento-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 14px; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .pattern-card { margin-bottom: 16px; }
+    .pattern-header { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 8px; }
+    .pattern-title { font-size: 16px; font-weight: bold; color: #1e293b; }
+    .pattern-badge { background: #e0e7ff; color: #4338ca; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 99px; font-family: monospace; }
+    .pattern-desc { font-size: 12px; color: #64748b; margin-bottom: 12px; line-height: 1.5; }
     
-    .signal-meter { display: inline-block; vertical-align: middle; margin-right: 4px; }
-    .signal-meter .bar { display: inline-block; width: 3px; background: #cbd5e1; border-radius: 1px; margin-right: 1px; }
-    .signal-meter .bar:nth-child(1) { height: 4px; }
-    .signal-meter .bar:nth-child(2) { height: 6px; }
-    .signal-meter .bar:nth-child(3) { height: 8px; }
-    .signal-meter .bar:nth-child(4) { height: 10px; }
-    .signal-meter .bar:nth-child(5) { height: 12px; }
-    .signal-meter .bar.on { background: #d97706; }
+    .callout-box { border-radius: 8px; padding: 10px 12px; font-size: 12px; margin-bottom: 8px; line-height: 1.5; }
+    .callout-tips { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+    .callout-pitfalls { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
 
-    .bento-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 12px; width: 100%; }
-    .hld-category-card { padding: 0 !important; overflow: hidden; }
-    .hld-category-header { padding: 14px 16px; cursor: pointer; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; background: #ffffff; }
-    .hld-category-card.collapsed .hld-category-body { display: none; }
-    .hld-category-body { padding: 0 14px 14px 14px; border-top: 1px solid #e2e8f0; }
+    .code-box { background: #0f172a; color: #f1f5f9; border-radius: 10px; border: 1px solid #334155; overflow: hidden; font-family: monospace; font-size: 11px; margin: 10px 0; }
+    .code-box-header { background: #1e293b; padding: 6px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; border-bottom: 1px solid #334155; font-size: 10px; color: #94a3b8; }
+    .code-box pre { margin: 0; padding: 12px; overflow-x: auto; line-height: 1.5; }
 
-    .code-box { background: #0f172a; color: #f1f5f9; border-radius: 10px; border: 1px solid #334155; overflow: hidden; font-family: monospace; font-size: 11px; margin: 8px 0; }
-    .code-box-header { background: #1e293b; padding: 8px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; border-bottom: 1px solid #334155; font-size: 10px; color: #94a3b8; }
-    .code-box pre { margin: 0; padding: 12px; overflow-x: auto; line-height: 1.5; max-height: 300px; }
+    .problem-list { margin-top: 10px; border-top: 1px solid #e2e8f0; padding-top: 10px; }
+    .problem-item { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding: 6px 0; }
+    .problem-item input[type="checkbox"] { width: 16px; height: 16px; margin-right: 10px; cursor: pointer; }
+    .problem-title { font-size: 13px; font-weight: 600; color: #1e293b; text-decoration: none; -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; }
+    .problem-item.solved .problem-title { text-decoration: line-through; color: #94a3b8; }
+    .problem-diff { font-size: 10px; font-weight: bold; font-family: monospace; padding: 2px 6px; border-radius: 4px; }
+    .diff-easy { background: #dcfce7; color: #15803d; }
+    .diff-medium { background: #fef3c7; color: #b45309; }
+    .diff-hard { background: #fee2e2; color: #b91c1c; }
 
-    .ladder-card-clean { border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; background: #f4f6f8; margin-bottom: 8px; }
-    .ladder-card-clean.solved { background: #f0fdf4; border-color: #bbf7d0; }
-    .ladder-top-row { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start; width: 100%; }
-    .ladder-content { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; min-width: 0; padding-left: 6px; }
-    .ladder-tier { font-size: 9px; font-weight: bold; text-transform: uppercase; font-family: monospace; padding: 1px 5px; border-radius: 3px; background: #e0e7ff; color: #4338ca; display: inline-block; }
-    .ladder-title-text { font-size: 13px; font-weight: bold; color: #1e293b; text-decoration: none; line-height: 1.4; display: block; margin-top: 2px; }
-    .ladder-card-clean.solved .ladder-title-text { text-decoration: line-through; color: #64748b; }
-    .ladder-bottom-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding-top: 6px; border-top: 1px solid rgba(0, 0, 0, 0.05); margin-top: 4px; }
-
+    /* NEWSPAPER OVERLAY */
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
     .news-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 1rem; }
@@ -142,245 +89,14 @@
     .news-deep-dive-box { margin-top: 0.5rem; padding: 0.75rem; background: #DDE3DE; border-left: 3px solid #2F4F49; font-family: monospace; font-size: 11px; color: #2F4F49; line-height: 1.5; }
     .news-source-link { display: inline-block; font-family: monospace; font-size: 11px; color: #B8842E; text-decoration: none; border-bottom: 1px solid #D9C7A0; padding-bottom: 1px; margin-top: 0.5rem; }
 
-    .schedule-bucket-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 10px; }
-    .schedule-bucket-header { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
-    .schedule-bucket-title { font-size: 13px; font-weight: bold; }
-    .schedule-bucket-subtitle { font-size: 10px; color: #64748b; font-family: monospace; }
-    .time-block-card { border: 1px solid #e2e8f0; background: #f4f6f8; padding: 8px 10px; border-radius: 8px; border-left: 4px solid #1e293b; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: start; -webkit-align-items: flex-start; align-items: flex-start; margin-bottom: 6px; width: 100%; }
-    .time-block-card.is-starred { border-left-color: #f59e0b; background: #fffdf5; }
-
-    /* REPEATING DAY BUTTONS */
-    .repeat-day-btn {
-      width: 30px; height: 30px; border-radius: 50%; border: 1px solid #cbd5e1; background: #ffffff;
-      color: #64748b; font-size: 11px; font-weight: bold; cursor: pointer; text-align: center; line-height: 28px;
-    }
-    .repeat-day-btn.active { background: #6366f1; border-color: #6366f1; color: #ffffff; }
-
-    /* ==========================================================================
-       PITCH BLACK FLIP CLOCK FOCUS HUD (EXPLICIT PIXELS - NO CSS CLAMP)
-       ========================================================================== */
-    .desk-hud-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #000000;
-      color: #ffffff;
-      z-index: 9999;
-      display: none;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      padding: 16px 20px;
-      overflow: hidden;
-    }
-
-    .hud-top-bar {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      justify-content: space-between;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      width: 100%;
-      height: 38px;
-      position: relative;
-      z-index: 10;
-    }
-    .hud-project-pill {
-      background: #161a22;
-      border: 1px solid #2d3342;
-      border-radius: 99px;
-      padding: 5px 14px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-    .hud-project-select {
-      background: transparent;
-      border: none;
-      color: #94a3b8;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      outline: none;
-      cursor: pointer;
-      font-family: monospace;
-    }
-
-    .flip-clock-canvas {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      flex: 1;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      width: 100%;
-    }
-    .flip-clock-heading {
-      color: #ffffff;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-      text-align: center;
-      opacity: 0.95;
-    }
-    .flip-cards-container {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      width: 100%;
-    }
-    
-    .flip-card-box {
-      width: 210px;
-      height: 270px;
-      background: #141720;
-      border-radius: 24px;
-      border: 1px solid #222733;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      justify-content: space-between;
-      padding: 16px 20px;
-      position: relative;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
-      margin: 0 14px;
-      overflow: hidden;
-    }
-    .flip-card-box.tilt-left {
-      -webkit-transform: rotate(-3.5deg);
-      transform: rotate(-3.5deg);
-    }
-    .flip-card-box.tilt-right {
-      -webkit-transform: rotate(3.5deg);
-      transform: rotate(3.5deg);
-    }
-    .flip-card-divider {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      height: 2px;
-      background: #000000;
-      z-index: 4;
-      opacity: 0.85;
-    }
-    .flip-card-header {
-      font-size: 12px;
-      font-weight: bold;
-      color: #64748b;
-      font-family: monospace;
-      letter-spacing: 0.06em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    .flip-card-digits {
-      font-size: 115px;
-      font-weight: 900;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      text-align: center;
-      line-height: 0.9;
-      letter-spacing: -0.05em;
-      margin: auto 0;
-      z-index: 2;
-    }
-    .flip-card-footer {
-      font-size: 12px;
-      font-weight: bold;
-      color: #475569;
-      font-family: monospace;
-      text-align: right;
-    }
-
-    .hud-controls-bar {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      padding: 12px 0 6px 0;
-      position: relative;
-      z-index: 10;
-    }
-    .hud-ctrl-btn {
-      background: #161a22;
-      border: 1px solid #2d3342;
-      color: #fff;
-      border-radius: 99px;
-      padding: 9px 20px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 0 6px;
-    }
-
-    @media (max-width: 640px) {
-      .flip-card-box {
-        width: 140px;
-        height: 190px;
-        padding: 12px 14px;
-        margin: 0 6px;
-      }
-      .flip-card-digits {
-        font-size: 72px;
-      }
-    }
-
-    /* REPORTS */
-    .report-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    .report-table th, .report-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e2e8f0; }
-    .report-table th { font-family: monospace; font-size: 10px; color: #64748b; text-transform: uppercase; background: #f4f6f8; }
-
-    .donut-chart-container { text-align: center; }
-    .donut-legend { margin-top: 8px; }
-    .legend-item { display: inline-block; font-size: 11px; font-weight: bold; color: #1e293b; margin: 3px 6px; }
-    .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 3px; }
-
-    .gantt-chart-container { margin-top: 8px; }
-    .gantt-time-scale { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; font-family: monospace; font-size: 9px; color: #64748b; margin-left: 30px; margin-right: 50px; padding-bottom: 2px; border-bottom: 1px dashed #e2e8f0; }
-    .gantt-row { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 4px; }
-    .gantt-day-label { width: 28px; font-family: monospace; font-size: 10px; font-weight: bold; color: #64748b; }
-    .gantt-bar-track { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; height: 18px; background: #f4f6f8; border-radius: 3px; position: relative; overflow: hidden; border: 1px solid #e2e8f0; }
-    .gantt-block { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
-    .gantt-time-label { width: 50px; font-family: monospace; font-size: 10px; font-weight: bold; color: #64748b; text-align: right; }
-
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: none; z-index: 1000; overflow-y: auto; padding: 14px; }
-    .modal { background: #ffffff; border-radius: 12px; width: 100%; max-width: 440px; margin: 20px auto; padding: 18px; border: 1px solid #e2e8f0; }
-    .modal-actions { text-align: right; margin-top: 14px; }
+    .pill { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: bold; margin-right: 4px; }
+    .pill-tag { border: 1px solid #e2e8f0; background: #f1f5f9; }
 
     @media (max-width: 640px) {
       body { -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; }
       aside { display: none; }
       .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; z-index: 50; }
-      .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 10px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
+      .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 11px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
     }
     @media (min-width: 641px) {
@@ -390,8 +106,6 @@
 </head>
 <body>
 
-  <div id="ptr-indicator">↓ Pull down to refresh</div>
-
   <!-- DESKTOP SIDEBAR -->
   <aside>
     <div class="sidebar-header">
@@ -399,112 +113,17 @@
         <div class="brand-icon-wrap">●</div>
         <span>onespace</span>
       </div>
-      <button class="profile-icon-btn" onclick="openProfileModal()">👤</button>
     </div>
     <nav class="sidebar-nav">
-      <button class="nav-btn active" data-tab="calendar" onclick="switchTab('calendar')">Schedule</button>
-      <button class="nav-btn" data-tab="tasks" onclick="switchTab('tasks')">Tasks & Backlog</button>
-      <button class="nav-btn" data-tab="learning" onclick="switchTab('learning')">Learning Hub</button>
-      <button class="nav-btn" data-tab="signals" onclick="switchTab('signals')">Signals Feed</button>
-      <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">Reports</button>
+      <button class="nav-btn active" data-tab="signals" onclick="switchTab('signals')">Signals</button>
+      <button class="nav-btn" data-tab="learning" onclick="switchTab('learning')">Learning</button>
+      <button class="nav-btn" data-tab="jobs" onclick="switchTab('jobs')">Jobs</button>
     </nav>
   </aside>
 
   <main id="main-scroll-container">
-    <!-- 1. SCHEDULE TAB -->
-    <section id="sec-calendar" class="content-section active">
-      <header class="workspace-header">
-        <h1 class="section-title">SCHEDULE CALENDAR</h1>
-        <div>
-          <button class="btn btn-secondary btn-sm" onclick="openCalendarEventModal(null)">+ Event</button>
-          <button class="btn btn-sm" onclick="openDeskHud()">🖥️ Focus Mode</button>
-        </div>
-      </header>
-
-      <div style="background:#ffffff; padding:8px 12px; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:12px;">
-        <input type="date" id="cal-view-date" onchange="renderScheduleCalendar()" style="width: 140px; margin: 0;">
-        <span style="font-weight:bold; font-size:12px; color:#64748b; margin-left:8px;" id="cal-day-label"></span>
-      </div>
-
-      <div id="calendar-render-area"></div>
-    </section>
-
-    <!-- 2. TASKS TAB -->
-    <section id="sec-tasks" class="content-section">
-      <header class="workspace-header">
-        <div>
-          <select id="task-project-filter" onchange="filterTasksByProjectSelect()" style="font-size:14px; font-weight:bold; border:none; background:transparent; width:auto; margin:0;">
-            <option value="ALL">ALL PROJECTS</option>
-          </select>
-        </div>
-        <div>
-          <button class="btn btn-secondary btn-sm" onclick="openProjectManagerModal()">📂 Projects</button>
-          <button class="btn btn-sm" onclick="openTaskModal()">+ Add Task</button>
-        </div>
-      </header>
-
-      <div class="filter-bar">
-        <input type="text" id="search-input" placeholder="Search tasks..." onkeyup="handleSearchInput()">
-        <div style="font-size: 10px; font-weight:bold; color: #64748b; margin-top: 2px;">FILTER BY TAGS:</div>
-        <div class="filter-pills" id="tag-filters"></div>
-      </div>
-
-      <div class="stack-sections">
-        <div class="stack-section-card" id="card-section-focus">
-          <div class="stack-section-header" onclick="toggleSectionCollapse('focus')">
-            <div class="stack-title-group">
-              <span>⚡ Focus / In Progress</span>
-              <span class="stack-badge" id="badge-focus">0</span>
-            </div>
-            <span>▼</span>
-          </div>
-          <div class="stack-content" id="list-focus"></div>
-        </div>
-
-        <div class="stack-section-card" id="card-section-backlog">
-          <div class="stack-section-header" onclick="toggleSectionCollapse('backlog')">
-            <div class="stack-title-group">
-              <span>📋 Backlog & To Do</span>
-              <span class="stack-badge" id="badge-backlog">0</span>
-            </div>
-            <span>▼</span>
-          </div>
-          <div class="stack-content" id="list-backlog"></div>
-        </div>
-
-        <div class="stack-section-card collapsed" id="card-section-completed">
-          <div class="stack-section-header" onclick="toggleSectionCollapse('completed')">
-            <div class="stack-title-group">
-              <span>✅ Completed Archive</span>
-              <span class="stack-badge" id="badge-completed">0</span>
-            </div>
-            <span>▼</span>
-          </div>
-          <div class="stack-content" id="list-completed"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. LEARNING HUB TAB -->
-    <section id="sec-learning" class="content-section">
-      <header class="workspace-header">
-        <h1 class="section-title">LEARNING HUB</h1>
-        <div>
-          <button class="btn btn-secondary btn-sm" onclick="renderLearningHub()">↻ Refresh</button>
-        </div>
-      </header>
-
-      <div class="bento-pill-scroll" id="learning-track-pills">
-        <span class="filter-chip active" onclick="setLearningTrack('DSA', this)">DSA</span>
-        <span class="filter-chip" onclick="setLearningTrack('LLD', this)">LLD</span>
-        <span class="filter-chip" onclick="setLearningTrack('HLD', this)">HLD</span>
-      </div>
-
-      <div id="learning-bento-container"></div>
-    </section>
-
-    <!-- 4. SIGNALS FEED TAB (HINGE CARD DISCOVERY FORMAT) -->
-    <section id="sec-signals" class="content-section">
+    <!-- 1. SIGNALS FEED TAB (HINGE CARD FORMAT) -->
+    <section id="sec-signals" class="content-section active">
       <header class="workspace-header">
         <h1 class="section-title">SIGNALS FEED</h1>
         <div>
@@ -513,90 +132,68 @@
         </div>
       </header>
 
-      <div class="bento-pill-scroll" id="bento-track-pills"></div>
-      <div id="bento-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Loading unread signals (past 7 days)…</div>
+      <div class="filter-pills" id="bento-track-pills"></div>
+      <div id="bento-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Loading unread signals…</div>
       
-      <!-- HINGE CARD SINGLE VIEW CONTAINER -->
       <div id="hinge-card-container"></div>
     </section>
 
-    <!-- 5. REPORTS TAB -->
-    <section id="sec-reports" class="content-section">
+    <!-- 2. LEARNING TAB (PATTERNS, TEMPLATES & PROBLEM CHECKBOXES) -->
+    <section id="sec-learning" class="content-section">
       <header class="workspace-header">
-        <h1 class="section-title">REPORTS & LIMITS</h1>
+        <h1 class="section-title">DSA PATTERNS & DRILLS</h1>
         <div>
-          <button class="btn btn-secondary btn-sm" onclick="openManualTimeModal()">+ Log Time</button>
-          <button class="btn btn-secondary btn-sm" onclick="renderReports()">↻ Refresh</button>
+          <button class="btn btn-secondary btn-sm" onclick="resetSolvedProblems()">Reset Checks</button>
         </div>
       </header>
-      <div id="report-container"></div>
+
+      <div class="filter-pills" id="learning-track-pills">
+        <span class="filter-chip active" onclick="filterDsaPatterns('ALL', this)">All Patterns</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('Two Pointers', this)">Two Pointers</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('Sliding Window', this)">Sliding Window</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('Fast & Slow Pointers', this)">Fast & Slow</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('Intervals', this)">Intervals</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('Monotonic Stack', this)">Monotonic Stack</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('Top K Elements', this)">Top K / Heaps</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('BFS / Graph', this)">BFS / DFS</span>
+        <span class="filter-chip" onclick="filterDsaPatterns('Dynamic Programming', this)">DP</span>
+      </div>
+
+      <div id="dsa-patterns-container"></div>
+    </section>
+
+    <!-- 3. JOBS TAB (EMPTY SHELL FOR UPCOMING SUPABASE TABLE) -->
+    <section id="sec-jobs" class="content-section">
+      <header class="workspace-header">
+        <h1 class="section-title">JOB TRACKER</h1>
+        <div>
+          <button class="btn btn-secondary btn-sm" disabled>+ Add Application</button>
+        </div>
+      </header>
+
+      <div class="bento-card" style="text-align:center; padding: 60px 20px;">
+        <div style="font-size: 32px; margin-bottom: 12px;">💼</div>
+        <h2 style="font-size: 16px; font-weight: bold; color: #1e293b; margin-bottom: 6px;">Job Applications Queue</h2>
+        <p style="font-size: 12px; color: #64748b; max-width: 380px; margin: 0 auto 16px;">
+          Job application pipeline tracking will be connected to your Supabase schema here.
+        </p>
+        <span class="pattern-badge">SCHEMA PENDING</span>
+      </div>
     </section>
   </main>
 
   <!-- MOBILE BOTTOM NAVIGATION -->
   <div class="mobile-nav">
-    <button class="nav-btn active" data-tab="calendar" onclick="switchTab('calendar')">Schedule</button>
-    <button class="nav-btn" data-tab="tasks" onclick="switchTab('tasks')">Tasks</button>
+    <button class="nav-btn active" data-tab="signals" onclick="switchTab('signals')">Signals</button>
     <button class="nav-btn" data-tab="learning" onclick="switchTab('learning')">Learning</button>
-    <button class="nav-btn" data-tab="signals" onclick="switchTab('signals')">Signals</button>
-    <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">Reports</button>
-  </div>
-
-  <!-- PITCH BLACK FLIP CLOCK FOCUS HUD -->
-  <div class="desk-hud-overlay" id="desk-hud">
-    <div class="hud-top-bar">
-      <button class="btn btn-secondary btn-sm" style="background:#161a22; color:#fff; border-color:#2d3342;" onclick="closeDeskHud()">✕ Exit</button>
-      <div class="hud-project-pill">
-        <select id="hud-project-select" class="hud-project-select" onchange="onHudProjectChange()"></select>
-      </div>
-    </div>
-
-    <div class="flip-clock-canvas">
-      <div class="flip-clock-heading" id="hud-sub-heading">What September - December is going to look like.</div>
-      <div class="flip-cards-container">
-        <!-- LEFT TILTED HOURS/MINUTES CARD -->
-        <div class="flip-card-box tilt-left">
-          <div class="flip-card-header" id="flip-card-date">SEP 03, 2026</div>
-          <div class="flip-card-digits" id="flip-digits-hours">00</div>
-          <div class="flip-card-divider"></div>
-          <div class="flip-card-footer" id="flip-card-ampm">AM</div>
-        </div>
-
-        <!-- RIGHT TILTED MINUTES/SECONDS CARD -->
-        <div class="flip-card-box tilt-right">
-          <div class="flip-card-header" id="flip-card-day">THURSDAY</div>
-          <div class="flip-card-digits" id="flip-digits-mins">00</div>
-          <div class="flip-card-divider"></div>
-          <div class="flip-card-footer" id="flip-card-secs">00</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hud-controls-bar">
-      <button class="hud-ctrl-btn" onclick="toggleGlobalTracking()"><span id="hud-pause-text">▶ Start Focus</span></button>
-      <button class="hud-ctrl-btn" onclick="addFiveMinsToTracking()">+5 Mins</button>
-      <button class="hud-ctrl-btn" style="background:#ef4444; border-color:#ef4444;" onclick="stopAndSaveTracking()">⏹ Stop & Save</button>
-    </div>
-  </div>
-
-  <!-- PROFILE / SETTINGS MODAL -->
-  <div class="modal-overlay" id="profile-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Workspace Settings</h2>
-      <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="closeModal('profile-modal'); openProjectManagerModal();">📂 Manage & Add Projects</button>
-      <button class="btn btn-secondary" style="width: 100%; text-align: left; margin-bottom: 6px;" onclick="exportData()">💾 Backup Workspace JSON</button>
-      <button class="btn btn-danger" style="width: 100%; text-align: left;" onclick="clearCompletedTasks()">🗑️ Clear Completed Tasks</button>
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('profile-modal')">Close</button>
-      </div>
-    </div>
+    <button class="nav-btn" data-tab="jobs" onclick="switchTab('jobs')">Jobs</button>
   </div>
 
   <!-- FULLSCREEN NEWSPAPER READER OVERLAY -->
   <div class="newspaper-overlay" id="newspaper-overlay">
     <div class="newspaper-wrap">
       <div class="news-top-bar">
-        <span id="news-issue-date">WEDNESDAY, AUGUST 26, 2026</span>
+        <span id="news-issue-date">WEDNESDAY, SEPTEMBER 9, 2026</span>
         <button class="news-exit-btn" onclick="closeNewspaperOverlay()">✕ Exit</button>
       </div>
       <h1 class="news-title">The Signal</h1>
@@ -609,171 +206,9 @@
     </div>
   </div>
 
-  <!-- PATTERN NOTES LINK EDIT MODAL -->
-  <div class="modal-overlay" id="pattern-notes-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Update Pattern Notes Link</h2>
-      <input type="hidden" id="edit-pattern-key">
-      <div style="font-size:11px; color:#64748b; margin-bottom:6px;">
-        PATTERN: <strong id="edit-pattern-label" style="color:#1e293b;"></strong>
-      </div>
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">NOTES URL:</label>
-      <input type="text" id="edit-pattern-url" placeholder="https://github.com/...">
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('pattern-notes-modal')">Cancel</button>
-        <button class="btn" onclick="savePatternNotesUrl()">Save Link</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MANAGE PROJECTS MODAL -->
-  <div class="modal-overlay" id="project-mgr-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Manage Projects</h2>
-      <div style="font-size: 11px; font-weight: bold; color: #64748b; margin-bottom: 4px;">+ CREATE OR UPDATE PROJECT</div>
-      <input type="text" id="new-proj-name" placeholder="Project Name">
-      <input type="text" id="new-proj-color" value="#6366f1" placeholder="Hex Color (#6366f1)">
-      <input type="number" id="new-proj-limit" placeholder="Weekly Limit (hrs)" min="0" step="0.5">
-      <button class="btn btn-sm" style="margin-bottom: 10px;" onclick="saveSupabaseProject()">Save Project</button>
-      <div style="font-size: 11px; font-weight: bold; color: #64748b; margin-bottom: 6px;">EXISTING PROJECTS</div>
-      <div id="project-list-wrapper"></div>
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('project-mgr-modal')">Done</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TASK MODAL -->
-  <div class="modal-overlay" id="task-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;" id="modal-title">Create Task</h2>
-      <input type="hidden" id="edit-task-id">
-      <input type="text" id="t-title" placeholder="Task Title">
-      <textarea id="t-desc" placeholder="Description / notes (optional)" rows="2"></textarea>
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">PROJECT:</label>
-      <select id="t-project"></select>
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">STATUS STACK:</label>
-      <select id="t-status">
-        <option value="in_progress">⚡ Focus / In Progress</option>
-        <option value="todo">📋 Backlog & To Do</option>
-        <option value="done">✅ Completed</option>
-      </select>
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">TAGS (comma separated):</label>
-      <input type="text" id="t-tags" placeholder="urgent, review">
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('task-modal')">Cancel</button>
-        <button class="btn" onclick="saveTask()">Save Task</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SUBTASK MODAL -->
-  <div class="modal-overlay" id="subtask-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Subtask</h2>
-      <input type="hidden" id="sub-parent-task-id">
-      <input type="text" id="sub-title" placeholder="Subtask Title">
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('subtask-modal')">Cancel</button>
-        <button class="btn" onclick="saveSubtask()">Save Subtask</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CALENDAR EVENT MODAL (ENHANCED WITH RECURRING DAYS) -->
-  <div class="modal-overlay" id="calendar-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;" id="cal-modal-title">Event Block</h2>
-      <input type="hidden" id="cal-edit-id">
-      <input type="hidden" id="cal-linked-task-id">
-      <input type="text" id="cal-title" placeholder="Event Title">
-      <textarea id="cal-desc" placeholder="Description (optional)" rows="2"></textarea>
-      
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">START DATE:</label>
-      <input type="date" id="cal-date">
-      
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">TIME BUCKET:</label>
-      <select id="cal-bucket-select">
-        <option value="morning">🌅 Morning (till 12 PM)</option>
-        <option value="afternoon">☀️ Afternoon (12 PM - 4 PM)</option>
-        <option value="evening">🌆 Evening (4 PM - 8 PM)</option>
-        <option value="others">🌙 Others / Night (8 PM onwards)</option>
-      </select>
-
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">START / END TIME:</label>
-      <div style="display: -webkit-box; display: -webkit-flex; display: flex;">
-        <input type="time" id="cal-start-time" style="margin-right: 6px;">
-        <input type="time" id="cal-end-time">
-      </div>
-
-      <!-- RECURRENCE SELECTION -->
-      <div style="margin-top: 6px;">
-        <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block; margin-bottom: 2px;">RECURRENCE:</label>
-        <select id="cal-repeat-type" onchange="toggleRepeatDaysVisibility()">
-          <option value="none">Does not repeat</option>
-          <option value="custom_days">Specific days of week</option>
-          <option value="daily">Every day</option>
-        </select>
-      </div>
-
-      <div id="cal-repeat-days-wrap" style="display: none; margin-top: 6px;">
-        <div style="font-size: 10px; font-weight: bold; color: #64748b; margin-bottom: 4px;">REPEAT ON:</div>
-        <div style="display: -webkit-box; display: -webkit-flex; display: flex;">
-          <button type="button" class="repeat-day-btn" data-day="1" onclick="toggleDayPill(this)" style="margin-right:4px;">M</button>
-          <button type="button" class="repeat-day-btn" data-day="2" onclick="toggleDayPill(this)" style="margin-right:4px;">T</button>
-          <button type="button" class="repeat-day-btn" data-day="3" onclick="toggleDayPill(this)" style="margin-right:4px;">W</button>
-          <button type="button" class="repeat-day-btn" data-day="4" onclick="toggleDayPill(this)" style="margin-right:4px;">T</button>
-          <button type="button" class="repeat-day-btn" data-day="5" onclick="toggleDayPill(this)" style="margin-right:4px;">F</button>
-          <button type="button" class="repeat-day-btn" data-day="6" onclick="toggleDayPill(this)" style="margin-right:4px;">S</button>
-          <button type="button" class="repeat-day-btn" data-day="0" onclick="toggleDayPill(this)">S</button>
-        </div>
-      </div>
-
-      <div id="cal-repeat-until-wrap" style="display: none; margin-top: 6px;">
-        <label style="font-size: 10px; font-weight: bold; color: #64748b; display: block; margin-bottom: 2px;">REPEAT UNTIL (optional):</label>
-        <input type="date" id="cal-repeat-until">
-      </div>
-
-      <div style="margin: 8px 0;">
-        <label><input type="checkbox" id="cal-starred"> ⭐ Priority Focus Block</label>
-      </div>
-
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">ASSIGN PROJECT:</label>
-      <select id="cal-project-select"></select>
-
-      <div class="modal-actions">
-        <button class="btn btn-danger btn-sm" id="cal-delete-btn" style="display:none; float:left;" onclick="deleteCalendarEvent()">Delete</button>
-        <button class="btn btn-secondary" onclick="closeModal('calendar-modal')">Cancel</button>
-        <button class="btn" onclick="saveCalendarEvent()">Save Event</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MANUAL TIME MODAL -->
-  <div class="modal-overlay" id="manual-time-modal">
-    <div class="modal">
-      <h2 style="font-size: 14px; font-weight:bold; margin-bottom: 10px;">Log Project Time</h2>
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">PROJECT:</label>
-      <select id="m-project-select"></select>
-      <label style="font-size: 10px; font-weight:bold; color: #64748b; display: block; margin-bottom: 2px;">START / END TIME:</label>
-      <div style="display: -webkit-box; display: -webkit-flex; display: flex;">
-        <input type="time" id="m-start-time" style="margin-right: 6px;">
-        <input type="time" id="m-end-time">
-      </div>
-      <div style="display: -webkit-box; display: -webkit-flex; display: flex;">
-        <input type="number" id="m-hours" placeholder="Hours" min="0" step="0.1" style="margin-right: 6px;">
-        <input type="number" id="m-minutes" placeholder="Minutes" min="0" max="59">
-      </div>
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('manual-time-modal')">Cancel</button>
-        <button class="btn" onclick="saveManualTime()">Save Time</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     /* ==========================================================================
-       ES5 MOTOR & NATIVE XHR ENGINE (SUPPORTS BRACE FOR ANDROID 4)
+       SUPABASE CLIENT ENGINE
        ========================================================================== */
     var SUPABASE_URL = 'https://srfhubczkyqgryphkpfb.supabase.co';
     var SUPABASE_ANON_KEY = 'sb_publishable_WNpgnNEFi329sp-lnqRPdg_huw4yojT';
@@ -811,28 +246,250 @@
       }
     };
 
-    var ALL_PROJECTS = [];
-    var ALL_TASKS = [];
-    var ALL_EVENTS = [];
     var ALL_ARTICLES = [];
     var ALL_IPOS = [];
-    var CURRENT_DRILL = null;
-
-    var SIGNALS_PAGE_SIZE = 5;
-    var signalsOffset = 0;
-    var signalsHasMore = true;
-    var isFetchingSignals = false;
-
     var activeTrack = "All";
-    var activeLearningTrack = "DSA";
-    var activeHldCategory = "All";
+    var isFetchingSignals = false;
+    var activeDsaFilter = "ALL";
+
     var archivedSignals = [];
     try {
       archivedSignals = JSON.parse(localStorage.getItem('the_signal_archived_ids') || '[]');
     } catch(e) { archivedSignals = []; }
 
-    var selectedFilterTags = [];
+    var solvedProblems = {};
+    try {
+      solvedProblems = JSON.parse(localStorage.getItem('dsa_solved_problems') || '{}');
+    } catch(e) { solvedProblems = {}; }
 
+    /* ==========================================================================
+       DSA CURATED PATTERNS DATA STORE
+       ========================================================================== */
+    var DSA_PATTERNS = [
+      {
+        id: "two-pointers",
+        title: "Two Pointers",
+        category: "Two Pointers",
+        description: "Use two references traversing from opposite ends or at differing positions in sorted arrays or strings to evaluate pair targets in O(N) time and O(1) memory.",
+        tips: "Sort the input if order is not strictly mandated. Be attentive to boundary conditions when indices cross (`left < right` vs `left <= right`).",
+        pitfalls: "Off-by-one errors; neglecting duplicated entries when pair uniqueness is required.",
+        template: 
+`public int[] twoPointers(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left < right) {
+        int sum = nums[left] + nums[right];
+        if (sum == target) return new int[]{left, right};
+        else if (sum < target) left++;
+        else right--;
+    }
+    return new int[]{-1, -1};
+}`,
+        problems: [
+          { id: "p1", title: "Two Sum II - Input Array Is Sorted", url: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/", diff: "Easy" },
+          { id: "p2", title: "3Sum", url: "https://leetcode.com/problems/3sum/", diff: "Medium" },
+          { id: "p3", title: "Container With Most Water", url: "https://leetcode.com/problems/container-with-most-water/", diff: "Medium" },
+          { id: "p4", title: "Trapping Rain Water", url: "https://leetcode.com/problems/trapping-rain-water/", diff: "Hard" }
+        ]
+      },
+      {
+        id: "sliding-window",
+        title: "Sliding Window",
+        category: "Sliding Window",
+        description: "Maintain a contiguous subarray/substring range using two indices (`start` and `end`), expanding the right edge and contracting the left edge dynamically when criteria are breached.",
+        tips: "Maintain an integer frequency array or HashMap to log window state in O(1). Differentiate early between fixed-size vs dynamic-size constraints.",
+        pitfalls: "Shrinking the window with an `if` statement instead of a `while` loop when multiple contractions are required to restore validity.",
+        template: 
+`public int slidingWindow(String s) {
+    int[] count = new int[128];
+    int start = 0, maxLen = 0;
+    for (int end = 0; end < s.length(); end++) {
+        char c = s.charAt(end);
+        count[c]++;
+        while (/* window condition broken */ count[c] > 1) {
+            count[s.charAt(start)]--;
+            start++;
+        }
+        maxLen = Math.max(maxLen, end - start + 1);
+    }
+    return maxLen;
+}`,
+        problems: [
+          { id: "p5", title: "Maximum Average Subarray I", url: "https://leetcode.com/problems/maximum-average-subarray-i/", diff: "Easy" },
+          { id: "p6", title: "Longest Substring Without Repeating Characters", url: "https://leetcode.com/problems/longest-substring-without-repeating-characters/", diff: "Medium" },
+          { id: "p7", title: "Minimum Size Subarray Sum", url: "https://leetcode.com/problems/minimum-size-subarray-sum/", diff: "Medium" },
+          { id: "p8", title: "Minimum Window Substring", url: "https://leetcode.com/problems/minimum-window-substring/", diff: "Hard" }
+        ]
+      },
+      {
+        id: "fast-slow-pointers",
+        title: "Fast & Slow Pointers (Floyd's Cycle)",
+        category: "Fast & Slow Pointers",
+        description: "Advance two pointers at different velocities (1 step vs 2 steps) through linked lists or sequences to detect cyclic loops and locate middle nodes in O(N) time and O(1) space.",
+        tips: "Always guard pointer traversal with `fast != null && fast.next != null` prior to dereferencing `fast.next.next`.",
+        pitfalls: "Null pointer exceptions caused by inadequate loop-guard checks; infinite loops when cycle entrance logic is skipped.",
+        template: 
+`public boolean hasCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) return true;
+    }
+    return false;
+}`,
+        problems: [
+          { id: "p9", title: "Linked List Cycle", url: "https://leetcode.com/problems/linked-list-cycle/", diff: "Easy" },
+          { id: "p10", title: "Middle of the Linked List", url: "https://leetcode.com/problems/middle-of-the-linked-list/", diff: "Easy" },
+          { id: "p11", title: "Linked List Cycle II", url: "https://leetcode.com/problems/linked-list-cycle-ii/", diff: "Medium" },
+          { id: "p12", title: "Find the Duplicate Number", url: "https://leetcode.com/problems/find-the-duplicate-number/", diff: "Medium" }
+        ]
+      },
+      {
+        id: "merge-intervals",
+        title: "Interval Scheduling & Merging",
+        category: "Intervals",
+        description: "Process overlapping time slots or coordinate segments by sorting by start time, comparing adjacent bounds, and expanding merged bounds monotonically.",
+        tips: "Sort intervals primarily by start time `(a, b) -> Integer.compare(a[0], b[0])`. Keep an active merged interval reference.",
+        pitfalls: "Assuming sorted order upon input; forgetting to push the trailing active interval after loop completion.",
+        template: 
+`public int[][] merge(int[][] intervals) {
+    if (intervals.length <= 1) return intervals;
+    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+    List<int[]> res = new ArrayList<>();
+    int[] curr = intervals[0];
+    res.add(curr);
+    for (int[] next : intervals) {
+        if (next[0] <= curr[1]) {
+            curr[1] = Math.max(curr[1], next[1]);
+        } else {
+            curr = next;
+            res.add(curr);
+        }
+    }
+    return res.toArray(new int[res.size()][]);
+}`,
+        problems: [
+          { id: "p13", title: "Merge Intervals", url: "https://leetcode.com/problems/merge-intervals/", diff: "Medium" },
+          { id: "p14", title: "Insert Interval", url: "https://leetcode.com/problems/insert-interval/", diff: "Medium" },
+          { id: "p15", title: "Non-overlapping Intervals", url: "https://leetcode.com/problems/non-overlapping-intervals/", diff: "Medium" },
+          { id: "p16", title: "Meeting Rooms II", url: "https://leetcode.com/problems/meeting-rooms-ii/", diff: "Medium" }
+        ]
+      },
+      {
+        id: "monotonic-stack",
+        title: "Monotonic Stack",
+        category: "Monotonic Stack",
+        description: "Maintain an ordered stack (strictly increasing or decreasing) to resolve 'Next Greater Element' or geometric area boundary problems in O(N) linear time.",
+        tips: "Store array indices in the stack instead of values to evaluate distances, heights, and boundary widths simultaneously.",
+        pitfalls: "Popping with `>=` vs `>` depending on strict vs non-strict inequalities; handling remaining indices lingering on stack post-iteration.",
+        template: 
+`public int[] nextGreaterElement(int[] nums) {
+    int[] res = new int[nums.length];
+    Arrays.fill(res, -1);
+    Deque<Integer> stack = new ArrayDeque<>();
+    for (int i = 0; i < nums.length; i++) {
+        while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+            res[stack.pop()] = nums[i];
+        }
+        stack.push(i);
+    }
+    return res;
+}`,
+        problems: [
+          { id: "p17", title: "Daily Temperatures", url: "https://leetcode.com/problems/daily-temperatures/", diff: "Medium" },
+          { id: "p18", title: "Next Greater Element I", url: "https://leetcode.com/problems/next-greater-element-i/", diff: "Easy" },
+          { id: "p19", title: "Largest Rectangle in Histogram", url: "https://leetcode.com/problems/largest-rectangle-in-histogram/", diff: "Hard" }
+        ]
+      },
+      {
+        id: "top-k-elements",
+        title: "Top K Elements (Heap / Priority Queue)",
+        category: "Top K Elements",
+        description: "Maintain a bounded Min-Heap of size K (or Max-Heap) to extract extreme subsets in O(N log K) without incurring a full O(N log N) sort penalty.",
+        tips: "For 'Top K Largest', maintain a Min-Heap and evict `pq.poll()` when `size > k`. The root will contain the K-th boundary.",
+        pitfalls: "Using a Max-Heap for Top-K Largest, which consumes O(N log N) space and time if elements are not trimmed immediately.",
+        template: 
+`public int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    for (int num : nums) {
+        minHeap.offer(num);
+        if (minHeap.size() > k) minHeap.poll();
+    }
+    return minHeap.peek();
+}`,
+        problems: [
+          { id: "p20", title: "Kth Largest Element in an Array", url: "https://leetcode.com/problems/kth-largest-element-in-an-array/", diff: "Medium" },
+          { id: "p21", title: "Top K Frequent Elements", url: "https://leetcode.com/problems/top-k-frequent-elements/", diff: "Medium" },
+          { id: "p22", title: "Find Median from Data Stream", url: "https://leetcode.com/problems/find-median-from-data-stream/", diff: "Hard" }
+        ]
+      },
+      {
+        id: "breadth-first-search",
+        title: "BFS / Level Order Traversal",
+        category: "BFS / Graph",
+        description: "Traverse tree levels and unweighted graphs using a FIFO queue to discover shortest paths and connected components.",
+        tips: "Track queue size at the beginning of each loop: `int levelSize = queue.size();` to segment depths accurately.",
+        pitfalls: "Adding nodes to queue without marking as visited immediately, inducing memory exhaustion in cyclic graphs.",
+        template: 
+`public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> res = new ArrayList<>();
+    if (root == null) return res;
+    Queue<TreeNode> q = new LinkedList<>();
+    q.offer(root);
+    while (!q.isEmpty()) {
+        int size = q.size();
+        List<Integer> level = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            TreeNode node = q.poll();
+            level.add(node.val);
+            if (node.left != null) q.offer(node.left);
+            if (node.right != null) q.offer(node.right);
+        }
+        res.add(level);
+    }
+    return res;
+}`,
+        problems: [
+          { id: "p23", title: "Binary Tree Level Order Traversal", url: "https://leetcode.com/problems/binary-tree-level-order-traversal/", diff: "Medium" },
+          { id: "p24", title: "Number of Islands", url: "https://leetcode.com/problems/number-of-islands/", diff: "Medium" },
+          { id: "p25", title: "Word Ladder", url: "https://leetcode.com/problems/word-ladder/", diff: "Hard" }
+        ]
+      },
+      {
+        id: "dynamic-programming",
+        title: "Dynamic Programming (0/1 Knapsack & Subsequences)",
+        category: "Dynamic Programming",
+        description: "Break complex optimization problems into overlapping subproblems, using recurrence relations and memoization tables to achieve polynomial runtimes.",
+        tips: "Define base cases first. Check if 2D space can be collapsed to 1D rolling arrays when state only relies on previous rows.",
+        pitfalls: "Iterating forward on 1D knapsack arrays, which mistakenly allows unbounded repetition of single-use elements.",
+        template: 
+`public int lengthOfLIS(int[] nums) {
+    if (nums.length == 0) return 0;
+    int[] dp = new int[nums.length];
+    Arrays.fill(dp, 1);
+    int maxLen = 1;
+    for (int i = 1; i < nums.length; i++) {
+        for (int j = 0; j < i; j++) {
+            if (nums[i] > nums[j]) {
+                dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+        }
+        maxLen = Math.max(maxLen, dp[i]);
+    }
+    return maxLen;
+}`,
+        problems: [
+          { id: "p26", title: "Climbing Stairs", url: "https://leetcode.com/problems/climbing-stairs/", diff: "Easy" },
+          { id: "p27", title: "Longest Increasing Subsequence", url: "https://leetcode.com/problems/longest-increasing-subsequence/", diff: "Medium" },
+          { id: "p28", title: "Coin Change", url: "https://leetcode.com/problems/coin-change/", diff: "Medium" },
+          { id: "p29", title: "Edit Distance", url: "https://leetcode.com/problems/edit-distance/", diff: "Hard" }
+        ]
+      }
+    ];
+
+    /* ==========================================================================
+       UTILITIES
+       ========================================================================== */
     function escapeHtml(str) {
       if (!str) return '';
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
@@ -845,17 +502,6 @@
       return '<div>' + clean.replace(/\n/g, '<br>') + '</div>';
     }
 
-    function getContrastTextColor(hexColor) {
-      if (!hexColor) return '#1e293b';
-      var hex = hexColor.replace('#', '');
-      if (hex.length === 3) hex = hex.charAt(0) + hex.charAt(0) + hex.charAt(1) + hex.charAt(1) + hex.charAt(2) + hex.charAt(2);
-      var r = parseInt(hex.substring(0, 2), 16) || 0;
-      var g = parseInt(hex.substring(2, 4), 16) || 0;
-      var b = parseInt(hex.substring(4, 6), 16) || 0;
-      var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-      return yiq >= 140 ? '#1e293b' : '#ffffff';
-    }
-
     function formatDateLocal(dateObj) {
       var year = dateObj.getFullYear();
       var month = String(dateObj.getMonth() + 1);
@@ -865,95 +511,21 @@
       return year + '-' + month + '-' + day;
     }
 
-    function formatTime24H(dateObj) {
-      var h = String(dateObj.getHours());
-      if (h.length < 2) h = '0' + h;
-      var m = String(dateObj.getMinutes());
-      if (m.length < 2) m = '0' + m;
-      return h + ':' + m;
-    }
-
     function formatEditorialDate(dateStr) {
-      if (!dateStr) return 'WEDNESDAY, AUGUST 26, 2026';
+      if (!dateStr) return 'WEDNESDAY, SEPTEMBER 9, 2026';
       var d = new Date(dateStr.indexOf('T') !== -1 ? dateStr : dateStr + 'T00:00:00');
       return d.toDateString().toUpperCase();
     }
 
-    function getISOWeekKey(d) {
-      var date = new Date(d.getTime());
-      date.setHours(0, 0, 0, 0);
-      date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-      var week1 = new Date(date.getFullYear(), 0, 4);
-      var weekNum = 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
-      var wStr = String(weekNum);
-      if (wStr.length < 2) wStr = '0' + wStr;
-      return date.getFullYear() + '-W' + wStr;
+    function signalMeter(score) {
+      var bars = '';
+      for (var i = 1; i <= 5; i++) bars += '<span class="bar ' + (i <= score ? 'on' : '') + '"></span>';
+      return '<span class="signal-meter">' + bars + '</span>';
     }
 
-    function getISOWeekDates(dateObj) {
-      var d = new Date(dateObj.getTime());
-      var day = d.getDay();
-      var diffToMon = d.getDate() - day + (day === 0 ? -6 : 1);
-      var monday = new Date(d.setDate(diffToMon));
-      var days = [];
-      for (var i = 0; i < 7; i++) {
-        var nextDay = new Date(monday.getTime() + i * 86400000);
-        days.push(formatDateLocal(nextDay));
-      }
-      return { startDate: days[0], endDate: days[6], allDays: days };
-    }
-
-    function getEventBucket(evt) {
-      if (evt.time_bucket) return evt.time_bucket.toLowerCase();
-      if (evt.start_time) {
-        var startH = parseInt(evt.start_time.split(':')[0], 10);
-        if (startH < 12) return 'morning';
-        if (startH < 16) return 'afternoon';
-        if (startH < 20) return 'evening';
-        return 'others';
-      }
-      return 'morning';
-    }
-
-    function loadMeta() {
-      var saved = localStorage.getItem('onespace_meta_data');
-      if (saved) {
-        try { return JSON.parse(saved); } catch(e) {}
-      }
-      return { tagColors: {} };
-    }
-
-    var metaData = loadMeta();
-    function saveMeta() { localStorage.setItem('onespace_meta_data', JSON.stringify(metaData)); }
-
-    var trackingState = {
-      isRunning: false,
-      isPaused: false,
-      startTime: null,
-      sessionStartTimestamp: null,
-      accumulatedSec: 0,
-      targetProjId: null,
-      timerId: null,
-      lastTickTime: Date.now()
-    };
-
-    function getProjectById(projId) {
-      if (!projId) return null;
-      for (var i = 0; i < ALL_PROJECTS.length; i++) {
-        if (Number(ALL_PROJECTS[i].id) === Number(projId)) return ALL_PROJECTS[i];
-      }
-      return null;
-    }
-
-    function getProjectByName(projName) {
-      if (!projName) return null;
-      for (var i = 0; i < ALL_PROJECTS.length; i++) {
-        if (ALL_PROJECTS[i].name.toLowerCase() === String(projName).toLowerCase()) return ALL_PROJECTS[i];
-      }
-      return null;
-    }
-
-    /* BULLETPROOF ES5 TAB SWITCHER */
+    /* ==========================================================================
+       TAB SWITCHING
+       ========================================================================== */
     function switchTab(tab) {
       var navBtns = document.querySelectorAll('.nav-btn');
       for (var i = 0; i < navBtns.length; i++) {
@@ -971,1057 +543,113 @@
       }
       
       var sec = document.getElementById('sec-' + tab);
-      if (sec) {
-        sec.className += ' active';
-      }
+      if (sec) sec.className += ' active';
 
       var mainContainer = document.getElementById('main-scroll-container');
       if (mainContainer) mainContainer.scrollTop = 0;
 
-      if (tab === 'calendar') renderScheduleCalendar();
-      if (tab === 'tasks') renderTaskStack();
-      if (tab === 'learning') renderLearningHub();
       if (tab === 'signals') {
         if (ALL_ARTICLES.length === 0) fetchSupabaseSignals(true);
         else renderHingeSignals();
-      }
-      if (tab === 'reports') renderReports();
-
-      if (tab === 'tasks' || tab === 'calendar') syncAllSupabaseData();
-    }
-
-    /* DATA SYNC */
-    function syncAllSupabaseData() {
-      var loadedCount = 0;
-      var checkDone = function() {
-        loadedCount++;
-        if (loadedCount === 3) {
-          updateProjectDropdowns();
-          renderTagFilters();
-          renderTaskStack();
-          renderScheduleCalendar();
-        }
-      };
-
-      sbClient.request('projects?select=*&order=name.asc', 'GET', null, null, function(err, data) {
-        if (!err && data) ALL_PROJECTS = data;
-        checkDone();
-      });
-
-      sbClient.request('tasks?select=*&order=id.desc', 'GET', null, null, function(err, data) {
-        if (!err && data) ALL_TASKS = data;
-        checkDone();
-      });
-
-      sbClient.request('schedule_events?select=*&order=start_time.asc', 'GET', null, null, function(err, data) {
-        if (!err && data) ALL_EVENTS = data;
-        checkDone();
-      });
-    }
-
-    /* ==========================================================================
-       SCHEDULE ENGINE (RECURRING DAYS SUPPORT)
-       ========================================================================== */
-    function toggleRepeatDaysVisibility() {
-      var rType = document.getElementById('cal-repeat-type').value;
-      var showDays = (rType === 'custom_days');
-      var showUntil = (rType !== 'none');
-      
-      document.getElementById('cal-repeat-days-wrap').style.display = showDays ? 'block' : 'none';
-      document.getElementById('cal-repeat-until-wrap').style.display = showUntil ? 'block' : 'none';
-    }
-
-    function toggleDayPill(btn) {
-      if (btn.className.indexOf('active') !== -1) {
-        btn.className = btn.className.replace(/\bactive\b/g, '').trim();
-      } else {
-        btn.className += ' active';
-      }
-    }
-
-    function getSelectedRepeatDays() {
-      var activeBtns = document.querySelectorAll('#cal-repeat-days-wrap .repeat-day-btn.active');
-      var days = [];
-      for (var i = 0; i < activeBtns.length; i++) {
-        days.push(parseInt(activeBtns[i].getAttribute('data-day'), 10));
-      }
-      return days;
-    }
-
-    function setSelectedRepeatDays(daysArray) {
-      var btns = document.querySelectorAll('#cal-repeat-days-wrap .repeat-day-btn');
-      daysArray = daysArray || [];
-      for (var i = 0; i < btns.length; i++) {
-        var dayVal = parseInt(btns[i].getAttribute('data-day'), 10);
-        if (daysArray.indexOf(dayVal) !== -1) {
-          if (btns[i].className.indexOf('active') === -1) btns[i].className += ' active';
-        } else {
-          btns[i].className = btns[i].className.replace(/\bactive\b/g, '').trim();
-        }
-      }
-    }
-
-    function renderScheduleCalendar() {
-      var viewInput = document.getElementById('cal-view-date');
-      if (!viewInput.value) viewInput.value = formatDateLocal(new Date());
-      var dateStr = viewInput.value.split('T')[0];
-      var activeDateObj = new Date(dateStr + 'T00:00:00');
-      var activeDayOfWeek = activeDateObj.getDay();
-
-      document.getElementById('cal-day-label').innerText = activeDateObj.toDateString();
-
-      var area = document.getElementById('calendar-render-area');
-      area.innerHTML = '';
-
-      var buckets = [
-        { id: 'morning', title: '🌅 Morning', subtitle: 'Till 12 PM' },
-        { id: 'afternoon', title: '☀️ Afternoon', subtitle: '12 PM - 4 PM' },
-        { id: 'evening', title: '🌆 Evening', subtitle: '4 PM - 8 PM' },
-        { id: 'others', title: '🌙 Others', subtitle: '8 PM onwards' }
-      ];
-
-      var dayEvents = ALL_EVENTS.filter(function(e) {
-        if (!e.event_date) return false;
-        var eventStartStr = String(e.event_date).split('T')[0];
-        if (dateStr < eventStartStr) return false;
-
-        if (e.repeat_until) {
-          var untilStr = String(e.repeat_until).split('T')[0];
-          if (dateStr > untilStr) return false;
-        }
-
-        if (!e.repeat_type || e.repeat_type === 'none') return eventStartStr === dateStr;
-        if (e.repeat_type === 'daily') return true;
-        if (e.repeat_type === 'custom_days') {
-          var repeatDays = e.repeat_days || [];
-          return repeatDays.indexOf(activeDayOfWeek) !== -1;
-        }
-        return false;
-      });
-
-      var html = '';
-      for (var b = 0; b < buckets.length; b++) {
-        var bucket = buckets[b];
-        var bucketEvents = dayEvents.filter(function(e) { return getEventBucket(e) === bucket.id; });
-        html += '<div class="schedule-bucket-card"><div class="schedule-bucket-header"><div class="schedule-bucket-title">' + bucket.title + ' (' + bucketEvents.length + ')</div></div>';
-        if (bucketEvents.length === 0) html += '<div style="font-size:11px; color:#64748b;">No blocks scheduled.</div>';
-        else {
-          for (var k = 0; k < bucketEvents.length; k++) {
-            var evt = bucketEvents[k];
-            html += '<div class="time-block-card ' + (evt.is_starred ? 'is-starred' : '') + '">' +
-              '<div><strong>' + (evt.is_starred ? '⭐ ' : '') + escapeHtml(evt.title) + '</strong>' +
-                '<div style="font-size:10px; color:#64748b; font-family:monospace;">' + 
-                  (evt.start_time ? evt.start_time.slice(0,5) + (evt.end_time ? ' - ' + evt.end_time.slice(0,5) : '') + ' | ' : '') + 
-                  escapeHtml(evt.project || 'General') + 
-                  (evt.repeat_type && evt.repeat_type !== 'none' ? ' (Recurring)' : '') +
-                '</div>' +
-              '</div>' +
-              '<button class="btn btn-secondary btn-sm" onclick="openCalendarEventModal(' + evt.id + ')">Edit</button>' +
-            '</div>';
-          }
-        }
-        html += '</div>';
-      }
-      area.innerHTML = html;
-    }
-
-    function openCalendarEventModal(eventId) {
-      updateProjectDropdowns();
-      var delBtn = document.getElementById('cal-delete-btn');
-      if (eventId) {
-        var numericId = Number(eventId);
-        var evt = null;
-        for (var i = 0; i < ALL_EVENTS.length; i++) {
-          if (Number(ALL_EVENTS[i].id) === numericId) { evt = ALL_EVENTS[i]; break; }
-        }
-        if (evt) {
-          document.getElementById('cal-edit-id').value = evt.id;
-          document.getElementById('cal-title').value = evt.title;
-          document.getElementById('cal-desc').value = evt.description || '';
-          document.getElementById('cal-date').value = evt.event_date ? String(evt.event_date).split('T')[0] : '';
-          document.getElementById('cal-bucket-select').value = evt.time_bucket || 'morning';
-          document.getElementById('cal-start-time').value = evt.start_time || '';
-          document.getElementById('cal-end-time').value = evt.end_time || '';
-          document.getElementById('cal-repeat-type').value = evt.repeat_type || 'none';
-          document.getElementById('cal-repeat-until').value = evt.repeat_until ? String(evt.repeat_until).split('T')[0] : '';
-          setSelectedRepeatDays(evt.repeat_days || []);
-          toggleRepeatDaysVisibility();
-          document.getElementById('cal-project-select').value = evt.project_id || (ALL_PROJECTS[0] ? ALL_PROJECTS[0].id : '');
-          document.getElementById('cal-starred').checked = !!evt.is_starred;
-          delBtn.style.display = 'inline-block';
-        }
-      } else {
-        document.getElementById('cal-edit-id').value = '';
-        document.getElementById('cal-title').value = '';
-        document.getElementById('cal-desc').value = '';
-        document.getElementById('cal-date').value = document.getElementById('cal-view-date').value || formatDateLocal(new Date());
-        document.getElementById('cal-bucket-select').value = 'morning';
-        document.getElementById('cal-start-time').value = '';
-        document.getElementById('cal-end-time').value = '';
-        document.getElementById('cal-repeat-type').value = 'none';
-        document.getElementById('cal-repeat-until').value = '';
-        setSelectedRepeatDays([]);
-        toggleRepeatDaysVisibility();
-        document.getElementById('cal-starred').checked = false;
-        delBtn.style.display = 'none';
-      }
-      document.getElementById('calendar-modal').style.display = 'block';
-    }
-
-    function saveCalendarEvent() {
-      var title = document.getElementById('cal-title').value.trim();
-      if (!title) return;
-      var editId = document.getElementById('cal-edit-id').value;
-      var event_date = document.getElementById('cal-date').value;
-      var time_bucket = document.getElementById('cal-bucket-select').value;
-      var start_time = document.getElementById('cal-start-time').value || null;
-      var end_time = document.getElementById('cal-end-time').value || null;
-      var project_id = Number(document.getElementById('cal-project-select').value);
-      var projObj = getProjectById(project_id);
-      var project = projObj ? projObj.name : 'General';
-      var is_starred = document.getElementById('cal-starred').checked;
-      var description = document.getElementById('cal-desc').value;
-
-      var repeat_type = document.getElementById('cal-repeat-type').value;
-      var repeat_days = (repeat_type === 'custom_days') ? getSelectedRepeatDays() : [];
-      var repeat_until = document.getElementById('cal-repeat-until').value || null;
-
-      closeModal('calendar-modal');
-
-      var payload = {
-        title: title,
-        description: description,
-        event_date: event_date,
-        time_bucket: time_bucket,
-        start_time: start_time,
-        end_time: end_time,
-        project_id: project_id,
-        project: project,
-        is_starred: is_starred,
-        repeat_type: repeat_type,
-        repeat_days: repeat_days,
-        repeat_until: repeat_until,
-        updated_at: new Date().toISOString()
-      };
-
-      if (editId) {
-        var numericId = Number(editId);
-        sbClient.request('schedule_events?id=eq.' + numericId, 'PATCH', payload, null, function() {
-          syncAllSupabaseData();
-        });
-      } else {
-        sbClient.request('schedule_events', 'POST', payload, { 'Prefer': 'return=representation' }, function(err, data) {
-          if (!err && data && data[0]) {
-            ALL_EVENTS.push(data[0]);
-            renderScheduleCalendar();
-          }
-        });
-      }
-    }
-
-    function deleteCalendarEvent() {
-      var editId = document.getElementById('cal-edit-id').value;
-      if (!editId) return;
-      if (confirm("Delete this block?")) {
-        closeModal('calendar-modal');
-        sbClient.request('schedule_events?id=eq.' + editId, 'DELETE', null, null, function() {
-          syncAllSupabaseData();
-        });
+      } else if (tab === 'learning') {
+        renderDsaPatterns();
       }
     }
 
     /* ==========================================================================
-       PITCH BLACK FLIP CLOCK FOCUS HUD (RUNNING STOPWATCH & FULLSCREEN LANDSCAPE)
+       DSA PATTERNS RENDERER
        ========================================================================== */
-    function openDeskHud() {
-      var select = document.getElementById('hud-project-select');
-      select.innerHTML = '<option value="">⚡ UNSCHEDULED FOCUS</option>';
-      for (var i = 0; i < ALL_PROJECTS.length; i++) {
-        select.innerHTML += '<option value="' + ALL_PROJECTS[i].id + '">' + escapeHtml(ALL_PROJECTS[i].name).toUpperCase() + '</option>';
+    function filterDsaPatterns(cat, btn) {
+      activeDsaFilter = cat;
+      var chips = document.querySelectorAll('#learning-track-pills .filter-chip');
+      for (var i = 0; i < chips.length; i++) {
+        chips[i].className = chips[i].className.replace(/\bactive\b/g, '').trim();
       }
-
-      var hudEl = document.getElementById('desk-hud');
-      hudEl.style.display = 'flex';
-
-      try {
-        if (hudEl.requestFullscreen) {
-          hudEl.requestFullscreen();
-        } else if (hudEl.webkitRequestFullscreen) {
-          hudEl.webkitRequestFullscreen();
-        }
-        if (screen.orientation && screen.orientation.lock) {
-          screen.orientation.lock('landscape').catch(function() {});
-        }
-      } catch(e) {}
-
-      updateFlipClockFace();
+      if (btn) btn.className += ' active';
+      renderDsaPatterns();
     }
 
-    function closeDeskHud() {
-      try {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        }
-        if (screen.orientation && screen.orientation.unlock) {
-          screen.orientation.unlock();
-        }
-      } catch(e) {}
-
-      document.getElementById('desk-hud').style.display = 'none';
-    }
-
-    function updateFlipClockFace() {
-      var totalSec = trackingState.accumulatedSec || 0;
-      var hours = Math.floor(totalSec / 3600);
-      var minutes = Math.floor((totalSec % 3600) / 60);
-      var seconds = totalSec % 60;
-
-      var hStr = String(hours);
-      if (hStr.length < 2) hStr = '0' + hStr;
-
-      var mStr = String(minutes);
-      if (mStr.length < 2) mStr = '0' + mStr;
-
-      var sStr = String(seconds);
-      if (sStr.length < 2) sStr = '0' + sStr;
-
-      var now = new Date();
-      var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-      var dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-      
-      var dateStr = months[now.getMonth()] + ' ' + (now.getDate() < 10 ? '0' : '') + now.getDate() + ', ' + now.getFullYear();
-      document.getElementById('flip-card-date').innerText = dateStr;
-      document.getElementById('flip-card-day').innerText = dayNames[now.getDay()];
-
-      if (hours > 0) {
-        document.getElementById('flip-digits-hours').innerText = hStr;
-        document.getElementById('flip-digits-mins').innerText = mStr;
-        document.getElementById('flip-card-ampm').innerText = sStr + 's';
-      } else {
-        document.getElementById('flip-digits-hours').innerText = mStr;
-        document.getElementById('flip-digits-mins').innerText = sStr;
-        document.getElementById('flip-card-ampm').innerText = (now.getHours() >= 12 ? 'PM' : 'AM');
-      }
-
-      document.getElementById('flip-card-secs').innerText = '00';
-
-      var projObj = getProjectById(trackingState.targetProjId);
-      var projName = projObj ? projObj.name : 'Unassigned';
-      
-      if (trackingState.isRunning && !trackingState.isPaused) {
-        document.getElementById('hud-sub-heading').innerText = 'Focus Session: ' + projName;
-      } else if (trackingState.isPaused) {
-        document.getElementById('hud-sub-heading').innerText = 'Focus Paused: ' + projName;
-      } else {
-        document.getElementById('hud-sub-heading').innerText = 'What September - December is going to look like.';
+    function toggleProblemCheck(problemId, isChecked) {
+      solvedProblems[problemId] = isChecked;
+      localStorage.setItem('dsa_solved_problems', JSON.stringify(solvedProblems));
+      var itemEl = document.getElementById('problem-row-' + problemId);
+      if (itemEl) {
+        if (isChecked) itemEl.className += ' solved';
+        else itemEl.className = itemEl.className.replace(/\bsolved\b/g, '').trim();
       }
     }
 
-    function onHudProjectChange() {
-      var val = document.getElementById('hud-project-select').value;
-      trackingState.targetProjId = val ? Number(val) : null;
-      updateFlipClockFace();
+    function resetSolvedProblems() {
+      if (!confirm("Reset all DSA problem checkboxes?")) return;
+      solvedProblems = {};
+      localStorage.removeItem('dsa_solved_problems');
+      renderDsaPatterns();
     }
 
-    function toggleGlobalTracking() {
-      var btn = document.getElementById('hud-pause-text');
-      if (!trackingState.isRunning) {
-        trackingState.isRunning = true;
-        trackingState.isPaused = false;
-        trackingState.lastTickTime = Date.now();
-        if (!trackingState.sessionStartTimestamp) trackingState.sessionStartTimestamp = new Date();
-        
-        trackingState.timerId = setInterval(function() {
-          if (!trackingState.isRunning || trackingState.isPaused) return;
-          var now = Date.now();
-          var delta = Math.floor((now - trackingState.lastTickTime) / 1000);
-          if (delta > 0) {
-            trackingState.accumulatedSec += delta;
-            trackingState.lastTickTime = now;
-          }
-          updateFlipClockFace();
-        }, 1000);
-        btn.innerText = '⏸ Pause';
-      } else if (trackingState.isRunning && !trackingState.isPaused) {
-        trackingState.isPaused = true;
-        btn.innerText = '▶ Resume';
-      } else {
-        trackingState.isPaused = false;
-        trackingState.lastTickTime = Date.now();
-        btn.innerText = '⏸ Pause';
-      }
-      updateFlipClockFace();
-    }
-
-    function addFiveMinsToTracking() {
-      trackingState.accumulatedSec += 300;
-      updateFlipClockFace();
-    }
-
-    function stopAndSaveTracking() {
-      if (!trackingState.isRunning && trackingState.accumulatedSec === 0) {
-        closeDeskHud();
-        return;
-      }
-      clearInterval(trackingState.timerId);
-      var projObj = getProjectById(trackingState.targetProjId);
-      var projName = projObj ? projObj.name : 'General';
-      var projId = projObj ? projObj.id : (ALL_PROJECTS[0] ? ALL_PROJECTS[0].id : null);
-      var savedSec = trackingState.accumulatedSec;
-
-      var now = new Date();
-      var startDateTime = trackingState.sessionStartTimestamp || new Date(now.getTime() - savedSec * 1000);
-
-      trackingState.isRunning = false;
-      trackingState.isPaused = false;
-      trackingState.accumulatedSec = 0;
-      trackingState.sessionStartTimestamp = null;
-      trackingState.timerId = null;
-
-      document.getElementById('hud-pause-text').innerText = '▶ Start Focus';
-      closeDeskHud();
-
-      if (projId && savedSec > 0) {
-        sbClient.request('project_time_logs', 'POST', {
-          project_id: projId,
-          duration_seconds: savedSec,
-          source: 'focus_mode',
-          log_date: formatDateLocal(now),
-          start_time: formatTime24H(startDateTime),
-          end_time: formatTime24H(now)
-        }, null, function() {
-          renderReports();
-        });
-      }
-
-      alert('Saved ' + formatTime(savedSec) + ' to ' + projName + '!');
-    }
-
-    /* CROSS-MODULE SCHEDULERS */
-    function scheduleReadingToCalendar(headline, sourceUrl, track) {
-      openCalendarEventModal(null);
-      document.getElementById('cal-title').value = 'Read: ' + headline;
-      document.getElementById('cal-desc').value = sourceUrl || '';
-      document.getElementById('cal-bucket-select').value = 'evening';
-      var p = getProjectByName(track);
-      if (p) document.getElementById('cal-project-select').value = p.id;
-    }
-
-    function scheduleStudyToCalendar(title, trackType) {
-      openCalendarEventModal(null);
-      document.getElementById('cal-title').value = 'Study ' + trackType + ': ' + title;
-      document.getElementById('cal-bucket-select').value = 'morning';
-      var p = getProjectByName('Engineering');
-      if (p) document.getElementById('cal-project-select').value = p.id;
-    }
-
-    /* TASKS & BACKLOG ENGINE */
-    function createGlobalTask(taskObj) {
-      var cleanPayload = {
-        title: String(taskObj.title).trim(),
-        description: taskObj.description ? String(taskObj.description).trim() : null,
-        project_id: taskObj.project_id || null,
-        project: taskObj.project || 'General',
-        status: taskObj.status || 'todo',
-        tags: Array.isArray(taskObj.tags) ? taskObj.tags : [taskObj.tags],
-        parent_id: taskObj.parent_id ? Number(taskObj.parent_id) : null,
-        source_type: taskObj.source_type || 'manual'
-      };
-      sbClient.request('tasks', 'POST', cleanPayload, { 'Prefer': 'return=representation' }, function(err, data) {
-        if (!err && data && data[0]) {
-          ALL_TASKS.unshift(data[0]);
-          renderTaskStack();
-          renderTagFilters();
-        }
-      });
-    }
-
-    function renderTaskStack() {
-      var searchQuery = (document.getElementById('search-input').value || '').toLowerCase();
-      var selectedFilter = document.getElementById('task-project-filter').value;
-      var isAll = !selectedFilter || selectedFilter === 'ALL';
-
-      var focusList = document.getElementById('list-focus');
-      var backlogList = document.getElementById('list-backlog');
-      var completedList = document.getElementById('list-completed');
-
-      focusList.innerHTML = ''; backlogList.innerHTML = ''; completedList.innerHTML = '';
-      var fc = 0, bc = 0, cc = 0;
-
-      var subtaskMap = {};
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        var sub = ALL_TASKS[i];
-        if (sub.parent_id) {
-          var pId = Number(sub.parent_id);
-          if (!subtaskMap[pId]) subtaskMap[pId] = [];
-          subtaskMap[pId].push(sub);
-        }
-      }
-
-      for (var j = 0; j < ALL_TASKS.length; j++) {
-        var task = ALL_TASKS[j];
-        if (task.parent_id) continue;
-
-        var taskProj = getProjectById(task.project_id) || getProjectByName(task.project);
-        var taskProjId = taskProj ? String(taskProj.id) : null;
-        if (!isAll && taskProjId !== selectedFilter) continue;
-
-        var taskTags = task.tags || [];
-        var matchesSearch = task.title.toLowerCase().indexOf(searchQuery) !== -1;
-        if (!matchesSearch) {
-          for (var t = 0; t < taskTags.length; t++) {
-            if (taskTags[t].toLowerCase().indexOf(searchQuery) !== -1) { matchesSearch = true; break; }
-          }
-        }
-
-        var matchesTags = true;
-        if (selectedFilterTags.length > 0) {
-          for (var st = 0; st < selectedFilterTags.length; st++) {
-            if (taskTags.indexOf(selectedFilterTags[st]) === -1) { matchesTags = false; break; }
-          }
-        }
-
-        if (!matchesSearch || !matchesTags) continue;
-
-        var status = task.status || 'todo';
-        var projName = taskProj ? taskProj.name : (task.project || 'General');
-        var projColor = taskProj ? taskProj.color : '#e2e8f0';
-        var textColor = getContrastTextColor(projColor);
-        var subs = subtaskMap[Number(task.id)] || [];
-
-        var tagsHtml = '';
-        for (var tg = 0; tg < taskTags.length; tg++) {
-          tagsHtml += '<span class="pill pill-tag">#' + escapeHtml(taskTags[tg]) + '</span>';
-        }
-
-        var subsHtml = '';
-        if (subs.length > 0) {
-          subsHtml += '<div class="reminder-subtasks">';
-          for (var s = 0; s < subs.length; s++) {
-            var subItem = subs[s];
-            subsHtml += 
-              '<div class="sub-item ' + (subItem.status === 'done' ? 'done' : '') + '">' +
-                '<input type="checkbox" ' + (subItem.status === 'done' ? 'checked' : '') + ' onchange="toggleSubtaskStatus(' + subItem.id + ')">' +
-                '<span>' + escapeHtml(subItem.title) + '</span>' +
-              '</div>';
-          }
-          subsHtml += '</div>';
-        }
-
-        var card = document.createElement('div');
-        card.className = 'reminder-card ' + (status === 'done' ? 'completed' : '');
-        card.innerHTML = 
-          '<div class="reminder-row">' +
-            '<div class="reminder-circle" onclick="toggleTaskStatus(' + task.id + ')">' + (status === 'done' ? '✓' : '') + '</div>' +
-            '<div class="reminder-title-text">' + escapeHtml(task.title) + '</div>' +
-            '<div class="reminder-actions">' +
-              '<button class="btn btn-secondary btn-sm" onclick="scheduleTaskToCalendar(' + task.id + ', \'' + escapeHtml(task.title).replace(/'/g, "\\'") + '\', ' + (task.project_id || (taskProj ? taskProj.id : 'null')) + ', \'' + escapeHtml(task.description || '').replace(/'/g, "\\'") + '\')">📅</button> ' +
-              '<button class="btn btn-secondary btn-sm" onclick="openTaskModal(' + task.id + ')">✏️</button> ' +
-              '<button class="btn btn-secondary btn-sm" onclick="deleteTask(' + task.id + ')">✕</button>' +
-            '</div>' +
-          '</div>' +
-          '<div class="reminder-meta">' +
-            '<span class="pill" style="background:' + projColor + '; color:' + textColor + ';">' + escapeHtml(projName) + '</span>' +
-            tagsHtml +
-          '</div>' +
-          (task.description ? '<div style="font-size:11px; color:#64748b; margin-left:26px; margin-top:3px;">' + escapeHtml(task.description) + '</div>' : '') +
-          subsHtml +
-          '<div style="margin-top:6px; margin-left:26px;">' +
-            '<button style="background:none; border:none; font-size:11px; color:#64748b; font-weight:bold; cursor:pointer;" onclick="openSubtaskModal(' + task.id + ')">+ Subtask</button> ' +
-            (status !== 'in_progress' ? '<button style="background:none; border:none; font-size:11px; color:#6366f1; font-weight:bold; cursor:pointer; margin-left:6px;" onclick="moveTask(' + task.id + ', \'in_progress\')">⚡ Focus</button>' : '') +
-            (status !== 'todo' ? '<button style="background:none; border:none; font-size:11px; color:#6366f1; font-weight:bold; cursor:pointer; margin-left:6px;" onclick="moveTask(' + task.id + ', \'todo\')">📋 Backlog</button>' : '') +
-            (status !== 'done' ? '<button style="background:none; border:none; font-size:11px; color:#6366f1; font-weight:bold; cursor:pointer; margin-left:6px;" onclick="moveTask(' + task.id + ', \'done\')">✅ Done</button>' : '') +
-          '</div>';
-
-        if (status === 'in_progress') { focusList.appendChild(card); fc++; }
-        else if (status === 'done') { completedList.appendChild(card); cc++; }
-        else { backlogList.appendChild(card); bc++; }
-      }
-      document.getElementById('badge-focus').innerText = fc;
-      document.getElementById('badge-backlog').innerText = bc;
-      document.getElementById('badge-completed').innerText = cc;
-    }
-
-    function toggleTaskStatus(taskId) {
-      var numericId = Number(taskId);
-      var task = null;
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        if (Number(ALL_TASKS[i].id) === numericId) { task = ALL_TASKS[i]; break; }
-      }
-      if (!task) return;
-      var ns = task.status === 'done' ? 'todo' : 'done';
-      task.status = ns;
-      renderTaskStack();
-      sbClient.request('tasks?id=eq.' + numericId, 'PATCH', { status: ns, updated_at: new Date().toISOString() }, null, function() {});
-    }
-
-    function toggleSubtaskStatus(subId) {
-      var numericId = Number(subId);
-      var sub = null;
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        if (Number(ALL_TASKS[i].id) === numericId) { sub = ALL_TASKS[i]; break; }
-      }
-      if (!sub) return;
-      var ns = sub.status === 'done' ? 'todo' : 'done';
-      sub.status = ns;
-      renderTaskStack();
-      sbClient.request('tasks?id=eq.' + numericId, 'PATCH', { status: ns, updated_at: new Date().toISOString() }, null, function() {});
-    }
-
-    function moveTask(taskId, newStatus) {
-      var numericId = Number(taskId);
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        if (Number(ALL_TASKS[i].id) === numericId) { ALL_TASKS[i].status = newStatus; break; }
-      }
-      renderTaskStack();
-      sbClient.request('tasks?id=eq.' + numericId, 'PATCH', { status: newStatus, updated_at: new Date().toISOString() }, null, function() {});
-    }
-
-    function scheduleTaskToCalendar(taskId, title, projectId, desc) {
-      openCalendarEventModal(null);
-      document.getElementById('cal-title').value = title;
-      document.getElementById('cal-desc').value = desc || '';
-      if (projectId) document.getElementById('cal-project-select').value = projectId;
-      document.getElementById('cal-linked-task-id').value = taskId;
-      document.getElementById('cal-date').value = document.getElementById('cal-view-date').value || formatDateLocal(new Date());
-    }
-
-    function openTaskModal(taskId) {
-      updateProjectDropdowns();
-      var generalProj = getProjectByName('General');
-      var defaultProjId = generalProj ? generalProj.id : (ALL_PROJECTS[0] ? ALL_PROJECTS[0].id : '');
-
-      if (taskId) {
-        var numericId = Number(taskId);
-        var task = null;
-        for (var i = 0; i < ALL_TASKS.length; i++) {
-          if (Number(ALL_TASKS[i].id) === numericId) { task = ALL_TASKS[i]; break; }
-        }
-        document.getElementById('modal-title').innerText = 'Edit Task';
-        document.getElementById('edit-task-id').value = task.id;
-        document.getElementById('t-title').value = task.title;
-        document.getElementById('t-desc').value = task.description || '';
-        document.getElementById('t-project').value = task.project_id || defaultProjId;
-        document.getElementById('t-status').value = task.status || 'todo';
-        document.getElementById('t-tags').value = (task.tags || []).join(', ');
-      } else {
-        document.getElementById('modal-title').innerText = 'Create Task';
-        document.getElementById('edit-task-id').value = '';
-        document.getElementById('t-title').value = '';
-        document.getElementById('t-desc').value = '';
-        document.getElementById('t-project').value = defaultProjId;
-        document.getElementById('t-status').value = 'in_progress';
-        document.getElementById('t-tags').value = '';
-      }
-      document.getElementById('task-modal').style.display = 'block';
-    }
-
-    function saveTask() {
-      var title = document.getElementById('t-title').value.trim();
-      if (!title) return;
-      var editId = document.getElementById('edit-task-id').value;
-      var status = document.getElementById('t-status').value;
-      var tagsRaw = document.getElementById('t-tags').value.split(',');
-      var tags = [];
-      for (var k = 0; k < tagsRaw.length; k++) {
-        var cleanTag = tagsRaw[k].trim().toLowerCase();
-        if (cleanTag) tags.push(cleanTag);
-      }
-      var description = document.getElementById('t-desc').value;
-      var project_id = Number(document.getElementById('t-project').value);
-      var projObj = getProjectById(project_id);
-      var project = projObj ? projObj.name : 'General';
-
-      if (editId) {
-        var numericId = Number(editId);
-        for (var i = 0; i < ALL_TASKS.length; i++) {
-          if (Number(ALL_TASKS[i].id) === numericId) {
-            ALL_TASKS[i].title = title;
-            ALL_TASKS[i].description = description;
-            ALL_TASKS[i].project_id = project_id;
-            ALL_TASKS[i].project = project;
-            ALL_TASKS[i].status = status;
-            ALL_TASKS[i].tags = tags;
-            break;
-          }
-        }
-        renderTaskStack();
-        closeModal('task-modal');
-        sbClient.request('tasks?id=eq.' + numericId, 'PATCH', {
-          title: title, description: description, project_id: project_id, project: project, status: status, tags: tags, updated_at: new Date().toISOString()
-        }, null, function() {});
-      } else {
-        closeModal('task-modal');
-        createGlobalTask({ title: title, description: description, project_id: project_id, project: project, status: status, tags: tags });
-      }
-      renderTagFilters();
-    }
-
-    function deleteTask(id) {
-      if (!confirm("Delete this task?")) return;
-      var numericId = Number(id);
-      ALL_TASKS = ALL_TASKS.filter(function(t) { return Number(t.id) !== numericId && Number(t.parent_id) !== numericId; });
-      renderTaskStack();
-      sbClient.request('tasks?id=eq.' + numericId, 'DELETE', null, null, function() {});
-    }
-
-    function openSubtaskModal(parentTaskId) {
-      document.getElementById('sub-parent-task-id').value = parentTaskId;
-      document.getElementById('sub-title').value = '';
-      document.getElementById('subtask-modal').style.display = 'block';
-    }
-
-    function saveSubtask() {
-      var parentId = Number(document.getElementById('sub-parent-task-id').value);
-      var title = document.getElementById('sub-title').value.trim();
-      if (!title) return;
-      var parentTask = null;
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        if (Number(ALL_TASKS[i].id) === parentId) { parentTask = ALL_TASKS[i]; break; }
-      }
-      closeModal('subtask-modal');
-      createGlobalTask({
-        title: title,
-        project_id: parentTask ? parentTask.project_id : null,
-        project: parentTask ? parentTask.project : 'General',
-        status: 'todo',
-        parent_id: parentId,
-        source_type: 'manual'
-      });
-    }
-
-    function handleSearchInput() { renderTaskStack(); }
-
-    function renderTagFilters() {
-      var container = document.getElementById('tag-filters');
+    function renderDsaPatterns() {
+      var container = document.getElementById('dsa-patterns-container');
+      if (!container) return;
       container.innerHTML = '';
-      var tagMap = {};
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        var tags = ALL_TASKS[i].tags || [];
-        for (var j = 0; j < tags.length; j++) tagMap[tags[j]] = true;
-      }
-      var uniqueTags = Object.keys(tagMap);
-      if (uniqueTags.length === 0) {
-        container.innerHTML = '<span style="font-size:11px; color:#64748b;">No tags available</span>';
+
+      var filtered = DSA_PATTERNS.filter(function(p) {
+        return activeDsaFilter === 'ALL' || p.category === activeDsaFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b;">No patterns found in this track.</div>';
         return;
       }
-      for (var k = 0; k < uniqueTags.length; k++) {
-        (function(tg) {
-          var chip = document.createElement('span');
-          chip.className = 'filter-chip ' + (selectedFilterTags.indexOf(tg) !== -1 ? 'active' : '');
-          chip.innerText = '#' + tg;
-          chip.onclick = function() {
-            var idx = selectedFilterTags.indexOf(tg);
-            if (idx !== -1) selectedFilterTags.splice(idx, 1);
-            else selectedFilterTags.push(tg);
-            renderTagFilters();
-            renderTaskStack();
-          };
-          container.appendChild(chip);
-        })(uniqueTags[k]);
-      }
-    }
 
-    function filterTasksByProjectSelect() {
-      selectedFilterTags = [];
-      renderTagFilters();
-      renderTaskStack();
-    }
+      for (var i = 0; i < filtered.length; i++) {
+        var p = filtered[i];
+        var card = document.createElement('div');
+        card.className = 'bento-card pattern-card';
 
-    /* PROJECTS MANAGEMENT */
-    function openProjectManagerModal() {
-      renderProjectManagerList();
-      document.getElementById('project-mgr-modal').style.display = 'block';
-    }
+        var problemsHtml = '';
+        for (var j = 0; j < p.problems.length; j++) {
+          var prob = p.problems[j];
+          var isSolved = !!solvedProblems[prob.id];
+          var diffClass = prob.diff === 'Easy' ? 'diff-easy' : prob.diff === 'Medium' ? 'diff-medium' : 'diff-hard';
 
-    function saveSupabaseProject() {
-      var nameInput = document.getElementById('new-proj-name');
-      var colorInput = document.getElementById('new-proj-color');
-      var limitInput = document.getElementById('new-proj-limit');
-
-      var name = nameInput.value.trim();
-      var color = colorInput.value.trim() || '#6366f1';
-      var weekly_limit_hours = limitInput.value ? parseFloat(limitInput.value) : null;
-      if (!name) return;
-
-      var payload = { name: name, color: color, weekly_limit_hours: weekly_limit_hours, updated_at: new Date().toISOString() };
-      sbClient.request('projects', 'POST', payload, { 'Prefer': 'return=representation' }, function(err, data) {
-        if (!err && data && data[0]) ALL_PROJECTS.push(data[0]);
-        renderProjectManagerList();
-        updateProjectDropdowns();
-        renderTaskStack();
-      });
-      nameInput.value = '';
-    }
-
-    function deleteSupabaseProject(projectId, projName) {
-      if (!confirm('Delete project "' + projName + '"?')) return;
-      ALL_PROJECTS = ALL_PROJECTS.filter(function(p) { return Number(p.id) !== Number(projectId); });
-      renderProjectManagerList();
-      updateProjectDropdowns();
-      sbClient.request('projects?id=eq.' + projectId, 'DELETE', null, null, function() {});
-    }
-
-    function renderProjectManagerList() {
-      var wrapper = document.getElementById('project-list-wrapper');
-      wrapper.innerHTML = '';
-      for (var i = 0; i < ALL_PROJECTS.length; i++) {
-        var proj = ALL_PROJECTS[i];
-        var item = document.createElement('div');
-        item.style.cssText = "padding:8px; background:#f4f6f8; border:1px solid #e2e8f0; border-radius:8px; margin-bottom:6px;";
-        item.innerHTML = '<span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:' + proj.color + '; margin-right:6px;"></span><strong>' + escapeHtml(proj.name) + '</strong> <button class="btn btn-danger btn-sm" style="float:right;" onclick="deleteSupabaseProject(' + proj.id + ', \'' + escapeHtml(proj.name) + '\')">Delete</button>';
-        wrapper.appendChild(item);
-      }
-    }
-
-    function updateProjectDropdowns() {
-      var taskProj = document.getElementById('task-project-filter');
-      var calProj = document.getElementById('cal-project-select');
-      var mProj = document.getElementById('m-project-select');
-      var tModalProj = document.getElementById('t-project');
-
-      var currTaskFilter = taskProj ? taskProj.value : 'ALL';
-      var filterOpts = '<option value="ALL">ALL PROJECTS</option>';
-      var selectOpts = '';
-
-      for (var i = 0; i < ALL_PROJECTS.length; i++) {
-        var p = ALL_PROJECTS[i];
-        filterOpts += '<option value="' + p.id + '">' + escapeHtml(p.name.toUpperCase()) + '</option>';
-        selectOpts += '<option value="' + p.id + '">' + escapeHtml(p.name) + '</option>';
-      }
-
-      if (taskProj) { taskProj.innerHTML = filterOpts; taskProj.value = currTaskFilter; }
-      if (calProj) calProj.innerHTML = selectOpts;
-      if (mProj) mProj.innerHTML = selectOpts;
-      if (tModalProj) tModalProj.innerHTML = selectOpts;
-    }
-
-    /* REPORTS & TIME LOGS */
-    function openProfileModal() { document.getElementById('profile-modal').style.display = 'block'; }
-
-    function clearCompletedTasks() {
-      if (!confirm("Delete completed tasks?")) return;
-      var completedIds = [];
-      for (var i = 0; i < ALL_TASKS.length; i++) {
-        if (ALL_TASKS[i].status === 'done') completedIds.push(Number(ALL_TASKS[i].id));
-      }
-      if (completedIds.length === 0) { closeModal('profile-modal'); return; }
-      ALL_TASKS = ALL_TASKS.filter(function(t) { return t.status !== 'done' && completedIds.indexOf(Number(t.parent_id)) === -1; });
-      renderTaskStack();
-      closeModal('profile-modal');
-      sbClient.request('tasks?id=in.(' + completedIds.join(',') + ')', 'DELETE', null, null, function() {});
-    }
-
-    function exportData() {
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ projects: ALL_PROJECTS, tasks: ALL_TASKS, events: ALL_EVENTS, meta: metaData }));
-      var a = document.createElement('a');
-      a.setAttribute("href", dataStr);
-      a.setAttribute("download", "onespace_backup_" + Date.now() + ".json");
-      document.body.appendChild(a);
-      a.click();
-      a.parentNode.removeChild(a);
-    }
-
-    function openManualTimeModal() {
-      updateProjectDropdowns();
-      document.getElementById('manual-time-modal').style.display = 'block';
-    }
-
-    function saveManualTime() {
-      var projId = Number(document.getElementById('m-project-select').value);
-      var projObj = getProjectById(projId);
-      var projName = projObj ? projObj.name : 'General';
-      var hrs = parseFloat(document.getElementById('m-hours').value) || 0;
-      var mins = parseFloat(document.getElementById('m-minutes').value) || 0;
-      var totalSec = Math.round((hrs * 3600) + (mins * 60));
-
-      var startTime = document.getElementById('m-start-time').value || null;
-      var endTime = document.getElementById('m-end-time').value || null;
-
-      if (startTime && endTime && totalSec === 0) {
-        var sh = parseInt(startTime.split(':')[0], 10), sm = parseInt(startTime.split(':')[1], 10);
-        var eh = parseInt(endTime.split(':')[0], 10), em = parseInt(endTime.split(':')[1], 10);
-        var diff = (eh * 60 + em) - (sh * 60 + sm);
-        if (diff < 0) diff += 1440;
-        totalSec = diff * 60;
-      }
-
-      if (projId && totalSec > 0) {
-        closeModal('manual-time-modal');
-        document.getElementById('m-hours').value = '';
-        document.getElementById('m-minutes').value = '';
-        document.getElementById('m-start-time').value = '';
-        document.getElementById('m-end-time').value = '';
-
-        sbClient.request('project_time_logs', 'POST', {
-          project_id: projId,
-          duration_seconds: totalSec,
-          source: 'manual',
-          log_date: formatDateLocal(new Date()),
-          start_time: startTime,
-          end_time: endTime
-        }, null, function() {
-          renderReports();
-          alert('Logged ' + formatTime(totalSec) + ' to ' + projName + '!');
-        });
-      }
-    }
-
-    function timeStringToMinutes(timeStr) {
-      if (!timeStr) return null;
-      var parts = timeStr.split(':');
-      return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
-    }
-
-    function renderReports() {
-      var container = document.getElementById('report-container');
-      container.innerHTML = '<div style="text-align:center; padding:20px; color:#64748b;">Loading time logs…</div>';
-
-      var currentWeekKey = getISOWeekKey(new Date());
-      var weekInfo = getISOWeekDates(new Date());
-      var startDate = weekInfo.startDate;
-      var endDate = weekInfo.endDate;
-      var allDays = weekInfo.allDays;
-
-      sbClient.request('project_time_logs?select=project_id,duration_seconds,log_date,start_time,end_time&log_date=gte.' + startDate + '&log_date=lte.' + endDate, 'GET', null, null, function(err, logs) {
-        logs = (!err && logs) ? logs : [];
-        var aggregatedTimes = {};
-        var rawDayLogs = {};
-        for (var d = 0; d < allDays.length; d++) rawDayLogs[allDays[d]] = [];
-        var totalWeeklySec = 0;
-
-        for (var i = 0; i < logs.length; i++) {
-          var pId = Number(logs[i].project_id);
-          var sec = Number(logs[i].duration_seconds) || 0;
-          var dateStr = String(logs[i].log_date).split('T')[0];
-
-          aggregatedTimes[pId] = (aggregatedTimes[pId] || 0) + sec;
-          totalWeeklySec += sec;
-          if (rawDayLogs[dateStr]) rawDayLogs[dateStr].push(logs[i]);
-        }
-
-        var TOTAL_WEEK_CAPACITY_SEC = 7 * 24 * 3600;
-        var unscheduledSec = Math.max(0, TOTAL_WEEK_CAPACITY_SEC - totalWeeklySec);
-
-        var radius = 68;
-        var circumference = 2 * Math.PI * radius;
-        var strokeOffset = 0;
-        var donutSvg = '<circle cx="100" cy="100" r="' + radius + '" fill="transparent" stroke="#f1f5f9" stroke-width="20" />';
-        var donutLegend = '';
-
-        for (var p = 0; p < ALL_PROJECTS.length; p++) {
-          var proj = ALL_PROJECTS[p];
-          var projSec = aggregatedTimes[proj.id] || 0;
-          if (projSec > 0) {
-            var percentOfCapacity = projSec / TOTAL_WEEK_CAPACITY_SEC;
-            var percentOfTracked = totalWeeklySec > 0 ? (projSec / totalWeeklySec) * 100 : 0;
-            var dashLength = percentOfCapacity * circumference;
-
-            donutSvg += '<circle cx="100" cy="100" r="' + radius + '" fill="transparent" stroke="' + proj.color + '" stroke-width="20" stroke-dasharray="' + dashLength + ' ' + (circumference - dashLength) + '" stroke-dashoffset="' + (-strokeOffset) + '" transform="rotate(-90 100 100)" />';
-            strokeOffset += dashLength;
-
-            donutLegend += '<div class="legend-item"><span class="legend-dot" style="background:' + proj.color + ';"></span><span>' + escapeHtml(proj.name) + ' (' + Math.round(percentOfTracked) + '%)</span></div>';
-          }
-        }
-
-        donutLegend += '<div class="legend-item"><span class="legend-dot" style="background:#cbd5e1;"></span><span style="color:#64748b;">Unscheduled (' + Math.round((unscheduledSec / TOTAL_WEEK_CAPACITY_SEC) * 100) + '%)</span></div>';
-
-        var dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        var ganttRows = '';
-
-        for (var dayIdx = 0; dayIdx < allDays.length; dayIdx++) {
-          var dStr = allDays[dayIdx];
-          var dayLogs = rawDayLogs[dStr] || [];
-          var dayTotalSec = 0;
-          var blocksHtml = '';
-
-          for (var dl = 0; dl < dayLogs.length; dl++) {
-            var log = dayLogs[dl];
-            var pr = getProjectById(log.project_id);
-            var col = pr ? pr.color : '#6366f1';
-            var durMins = Math.max(1, Math.round((Number(log.duration_seconds) || 0) / 60));
-            dayTotalSec += (Number(log.duration_seconds) || 0);
-
-            var startMin = timeStringToMinutes(log.start_time);
-            if (startMin === null) startMin = 540;
-
-            var leftPercent = Math.max(0, Math.min(100, (startMin / 1440) * 100));
-            var widthPercent = Math.max(1, Math.min(100 - leftPercent, (durMins / 1440) * 100));
-
-            blocksHtml += '<div class="gantt-block" style="left:' + leftPercent + '%; width:' + widthPercent + '%; background:' + col + ';"></div>';
-          }
-
-          ganttRows += 
-            '<div class="gantt-row">' +
-              '<span class="gantt-day-label">' + dayNames[dayIdx] + '</span>' +
-              '<div class="gantt-bar-track">' + blocksHtml + '</div>' +
-              '<span class="gantt-time-label">' + (dayTotalSec > 0 ? formatTime(dayTotalSec) : '—') + '</span>' +
+          problemsHtml += 
+            '<div class="problem-item ' + (isSolved ? 'solved' : '') + '" id="problem-row-' + prob.id + '">' +
+              '<input type="checkbox" ' + (isSolved ? 'checked' : '') + ' onchange="toggleProblemCheck(\'' + prob.id + '\', this.checked)">' +
+              '<a href="' + prob.url + '" target="_blank" class="problem-title">' + escapeHtml(prob.title) + ' ↗</a>' +
+              '<span class="problem-diff ' + diffClass + '">' + prob.diff + '</span>' +
             '</div>';
         }
 
-        var tableRows = '';
-        for (var t = 0; t < ALL_PROJECTS.length; t++) {
-          var project = ALL_PROJECTS[t];
-          var secLogged = aggregatedTimes[Number(project.id)] || 0;
-          var limit = project.weekly_limit_hours;
-          var statusStr = limit ? (secLogged / 3600 >= limit ? '<span style="color:#ef4444; font-weight:bold;">Limit Reached</span>' : '<span style="color:#22c55e; font-weight:bold;">On Track</span>') : '<span style="color:#64748b;">Logged</span>';
-
-          tableRows += 
-            '<tr>' +
-              '<td><span class="pill" style="background:' + project.color + '; color:' + getContrastTextColor(project.color) + ';">' + escapeHtml(project.name) + '</span></td>' +
-              '<td><strong>' + formatTime(secLogged) + '</strong></td>' +
-              '<td>' + (limit ? limit + 'h' : '—') + '</td>' +
-              '<td>' + statusStr + '</td>' +
-            '</tr>';
-        }
-
-        container.innerHTML = 
-          '<div class="bento-card donut-chart-container">' +
-            '<div style="font-weight:bold; font-size:13px; margin-bottom:6px;">🥧 WEEKLY ALLOCATION (168h TOTAL)</div>' +
-            '<svg width="200" height="200" viewBox="0 0 200 200">' + donutSvg + '</svg>' +
-            '<div style="font-weight:bold; font-size:16px; margin-top:4px;">' + formatTime(totalWeeklySec) + '</div>' +
-            '<div class="donut-legend">' + donutLegend + '</div>' +
+        card.innerHTML = 
+          '<div class="pattern-header">' +
+            '<div class="pattern-title">' + escapeHtml(p.title) + '</div>' +
+            '<span class="pattern-badge">' + p.problems.length + ' Problems</span>' +
           '</div>' +
-
-          '<div class="bento-card">' +
-            '<div style="font-weight:bold; font-size:13px; margin-bottom:6px;">📊 24-HOUR GANTT TIMELINE (' + startDate + ' → ' + endDate + ')</div>' +
-            '<div class="gantt-time-scale"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>' +
-            '<div class="gantt-chart-container">' + ganttRows + '</div>' +
+          '<div class="pattern-desc">' + escapeHtml(p.description) + '</div>' +
+          '<div class="callout-box callout-tips"><strong>💡 Execution Tips:</strong> ' + escapeHtml(p.tips) + '</div>' +
+          '<div class="callout-box callout-pitfalls"><strong>⚠️ Common Pitfalls:</strong> ' + escapeHtml(p.pitfalls) + '</div>' +
+          '<div class="code-box">' +
+            '<div class="code-box-header"><span>Java Skeleton</span><span>Template</span></div>' +
+            '<pre><code>' + escapeHtml(p.template) + '</code></pre>' +
           '</div>' +
-
-          '<div class="bento-card">' +
-            '<div style="font-weight:bold; font-size:14px; margin-bottom:8px;">📋 WEEKLY SUMMARY (' + currentWeekKey + ')</div>' +
-            '<table class="report-table">' +
-              '<thead><tr><th>Project</th><th>Time</th><th>Limit</th><th>Status</th></tr></thead>' +
-              '<tbody>' + (tableRows || '<tr><td colspan="4">No projects</td></tr>') + '</tbody>' +
-            '</table>' +
+          '<div class="problem-list">' +
+            problemsHtml +
           '</div>';
-      });
+
+        container.appendChild(card);
+      }
     }
 
     /* ==========================================================================
-       SIGNALS FEED & HINGE CARD DISCOVERY ENGINE
+       SIGNALS FEED & HINGE DISCOVERY ENGINE
        ========================================================================== */
-    function signalMeter(score) {
-      var bars = '';
-      for (var i = 1; i <= 5; i++) bars += '<span class="bar ' + (i <= score ? 'on' : '') + '"></span>';
-      return '<span class="signal-meter">' + bars + '</span>';
-    }
-
     function fetchSupabaseSignals(isReset) {
       if (isFetchingSignals) return;
       isFetchingSignals = true;
       var bentoLoader = document.getElementById('bento-loading');
 
-      if (isReset) {
-        signalsOffset = 0;
-        signalsHasMore = true;
-        if (bentoLoader) {
-          bentoLoader.style.display = 'block';
-          bentoLoader.innerText = 'Loading all unread signals (past 7 days)…';
-        }
+      if (isReset && bentoLoader) {
+        bentoLoader.style.display = 'block';
+        bentoLoader.innerText = 'Loading all unread signals…';
       }
 
       var articlesDone = false;
@@ -2174,10 +802,7 @@
         aTagsHtml +
         '<div class="bento-footer">' +
           '<button class="btn btn-sm" onclick="markHingeReadAndNext(' + article.id + ')">✓ Read & Next</button>' +
-          '<div>' +
-            '<button class="btn btn-secondary btn-sm" onclick="scheduleReadingToCalendar(\'' + escapeHtml(article.headline).replace(/'/g, "\\'") + '\', \'' + (targetUrl || '') + '\', \'' + escapeHtml(article.track || 'General') + '\')">📅 Schedule</button>' +
-            '<a class="btn btn-secondary btn-sm" style="margin-left:4px;" href="' + targetUrl + '" target="_blank">Source ↗</a>' +
-          '</div>' +
+          '<a class="btn btn-secondary btn-sm" href="' + targetUrl + '" target="_blank">Source ↗</a>' +
         '</div>';
 
       container.appendChild(hingeCard);
@@ -2199,9 +824,7 @@
       renderHingeSignals();
 
       sbClient.request('articles?id=eq.' + articleId, 'PATCH', { is_read: true }, null, function(err, resp) {
-        if (err) {
-          console.error('Failed to update is_read in DB:', err);
-        }
+        if (err) console.error('Failed to update is_read in DB:', err);
       });
     }
 
@@ -2211,6 +834,9 @@
       sbClient.request('ipo_evaluations?symbol=eq.' + encodeURIComponent(symbol), 'PATCH', { is_hidden: true }, null, function() {});
     }
 
+    /* ==========================================================================
+       READER OVERLAY
+       ========================================================================== */
     function openNewspaperOverlay() {
       document.getElementById('newspaper-overlay').style.display = 'block';
       var tabsContainer = document.getElementById('news-tabs-bar');
@@ -2296,86 +922,9 @@
 
     function closeNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'none'; }
 
-    function formatTime(sec) {
-      var h = Math.floor(sec / 3600);
-      var m = Math.floor((sec % 3600) / 60);
-      var s = sec % 60;
-      return (h > 0 ? h + 'h ' : '') + m + 'm ' + s + 's';
-    }
-
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
-    function toggleSectionCollapse(id) {
-      var c = document.getElementById('card-section-' + id);
-      if (c) {
-        if (c.className.indexOf('collapsed') !== -1) c.className = c.className.replace(/\bcollapsed\b/g, '').trim();
-        else c.className += ' collapsed';
-      }
-    }
-
-    /* ==========================================================================
-       PULL DOWN TO REFRESH (RESTORED FOR TOUCH & ANDROID 4.2)
-       ========================================================================== */
-    var touchStartY = 0;
-    var isPulling = false;
-    var pullDistance = 0;
-    var ptrIndicator = document.getElementById('ptr-indicator');
-    var mainScroll = document.getElementById('main-scroll-container');
-
-    mainScroll.addEventListener('touchstart', function(e) {
-      if (mainScroll.scrollTop <= 5) {
-        touchStartY = e.touches[0].clientY;
-        isPulling = true;
-        pullDistance = 0;
-      } else {
-        isPulling = false;
-      }
-    }, false);
-
-    mainScroll.addEventListener('touchmove', function(e) {
-      if (!isPulling) return;
-      var currentY = e.touches[0].clientY;
-      pullDistance = currentY - touchStartY;
-
-      if (pullDistance > 65) {
-        ptrIndicator.innerText = "↻ Release to refresh...";
-        ptrIndicator.className = 'visible';
-      } else if (pullDistance > 20) {
-        ptrIndicator.innerText = "↓ Pull down to refresh";
-        ptrIndicator.className = 'visible';
-      } else if (pullDistance < 0) {
-        ptrIndicator.className = '';
-      }
-    }, false);
-
-    mainScroll.addEventListener('touchend', function() {
-      if (!isPulling) return;
-      var triggered = pullDistance > 65;
-      isPulling = false;
-
-      if (triggered) {
-        ptrIndicator.innerText = "Syncing with Supabase...";
-        ptrIndicator.className = 'visible';
-
-        syncAllSupabaseData();
-        fetchSupabaseSignals(true);
-
-        setTimeout(function() {
-          ptrIndicator.innerText = "✓ Updated";
-          setTimeout(function() {
-            ptrIndicator.className = '';
-            pullDistance = 0;
-          }, 400);
-        }, 800);
-      } else {
-        ptrIndicator.className = '';
-        pullDistance = 0;
-      }
-    }, false);
-
-    // Initialize application safely
-    syncAllSupabaseData();
+    // Init
     fetchSupabaseSignals(true);
+    renderDsaPatterns();
   </script>
 </body>
 </html>
