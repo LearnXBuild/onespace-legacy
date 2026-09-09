@@ -43,31 +43,8 @@
     .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 12px; color: #0369a1; line-height: 1.5; margin: 8px 0; }
     .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid #e2e8f0; }
 
-    /* LEARNING & PATTERN CARDS */
     .bento-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 14px; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .pattern-card { margin-bottom: 16px; }
-    .pattern-header { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 8px; }
-    .pattern-title { font-size: 16px; font-weight: bold; color: #1e293b; }
     .pattern-badge { background: #e0e7ff; color: #4338ca; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 99px; font-family: monospace; }
-    .pattern-desc { font-size: 12px; color: #64748b; margin-bottom: 12px; line-height: 1.5; }
-    
-    .callout-box { border-radius: 8px; padding: 10px 12px; font-size: 12px; margin-bottom: 8px; line-height: 1.5; }
-    .callout-tips { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
-    .callout-pitfalls { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
-
-    .code-box { background: #0f172a; color: #f1f5f9; border-radius: 10px; border: 1px solid #334155; overflow: hidden; font-family: monospace; font-size: 11px; margin: 10px 0; }
-    .code-box-header { background: #1e293b; padding: 6px 12px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; border-bottom: 1px solid #334155; font-size: 10px; color: #94a3b8; }
-    .code-box pre { margin: 0; padding: 12px; overflow-x: auto; line-height: 1.5; }
-
-    .problem-list { margin-top: 10px; border-top: 1px solid #e2e8f0; padding-top: 10px; }
-    .problem-item { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding: 6px 0; }
-    .problem-item input[type="checkbox"] { width: 16px; height: 16px; margin-right: 10px; cursor: pointer; }
-    .problem-title { font-size: 13px; font-weight: 600; color: #1e293b; text-decoration: none; -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; }
-    .problem-item.solved .problem-title { text-decoration: line-through; color: #94a3b8; }
-    .problem-diff { font-size: 10px; font-weight: bold; font-family: monospace; padding: 2px 6px; border-radius: 4px; }
-    .diff-easy { background: #dcfce7; color: #15803d; }
-    .diff-medium { background: #fef3c7; color: #b45309; }
-    .diff-hard { background: #fee2e2; color: #b91c1c; }
 
     /* NEWSPAPER OVERLAY */
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
@@ -91,6 +68,15 @@
 
     .pill { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: bold; margin-right: 4px; }
     .pill-tag { border: 1px solid #e2e8f0; background: #f1f5f9; }
+
+    .signal-meter { display: inline-block; vertical-align: middle; margin-right: 4px; }
+    .signal-meter .bar { display: inline-block; width: 3px; background: #cbd5e1; border-radius: 1px; margin-right: 1px; }
+    .signal-meter .bar:nth-child(1) { height: 4px; }
+    .signal-meter .bar:nth-child(2) { height: 6px; }
+    .signal-meter .bar:nth-child(3) { height: 8px; }
+    .signal-meter .bar:nth-child(4) { height: 10px; }
+    .signal-meter .bar:nth-child(5) { height: 12px; }
+    .signal-meter .bar.on { background: #d97706; }
 
     @media (max-width: 640px) {
       body { -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; }
@@ -138,28 +124,23 @@
       <div id="hinge-card-container"></div>
     </section>
 
-    <!-- 2. LEARNING TAB (PATTERNS, TEMPLATES & PROBLEM CHECKBOXES) -->
+    <!-- 2. LEARNING TAB (EMPTY SHELL FOR REDESIGNED PATTERNS) -->
     <section id="sec-learning" class="content-section">
       <header class="workspace-header">
-        <h1 class="section-title">DSA PATTERNS & DRILLS</h1>
+        <h1 class="section-title">LEARNING HUB</h1>
         <div>
-          <button class="btn btn-secondary btn-sm" onclick="resetSolvedProblems()">Reset Checks</button>
+          <button class="btn btn-secondary btn-sm" disabled>↻ Refresh</button>
         </div>
       </header>
 
-      <div class="filter-pills" id="learning-track-pills">
-        <span class="filter-chip active" onclick="filterDsaPatterns('ALL', this)">All Patterns</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('Two Pointers', this)">Two Pointers</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('Sliding Window', this)">Sliding Window</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('Fast & Slow Pointers', this)">Fast & Slow</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('Intervals', this)">Intervals</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('Monotonic Stack', this)">Monotonic Stack</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('Top K Elements', this)">Top K / Heaps</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('BFS / Graph', this)">BFS / DFS</span>
-        <span class="filter-chip" onclick="filterDsaPatterns('Dynamic Programming', this)">DP</span>
+      <div class="bento-card" style="text-align:center; padding: 60px 20px;">
+        <div style="font-size: 32px; margin-bottom: 12px;">📚</div>
+        <h2 style="font-size: 16px; font-weight: bold; color: #1e293b; margin-bottom: 6px;">Curriculum & Patterns</h2>
+        <p style="font-size: 12px; color: #64748b; max-width: 380px; margin: 0 auto 16px;">
+          DSA patterns and learning modules are currently removed and ready for your custom curriculum.
+        </p>
+        <span class="pattern-badge">PENDING PATTERNS LIST</span>
       </div>
-
-      <div id="dsa-patterns-container"></div>
     </section>
 
     <!-- 3. JOBS TAB (EMPTY SHELL FOR UPCOMING SUPABASE TABLE) -->
@@ -250,242 +231,11 @@
     var ALL_IPOS = [];
     var activeTrack = "All";
     var isFetchingSignals = false;
-    var activeDsaFilter = "ALL";
 
     var archivedSignals = [];
     try {
       archivedSignals = JSON.parse(localStorage.getItem('the_signal_archived_ids') || '[]');
     } catch(e) { archivedSignals = []; }
-
-    var solvedProblems = {};
-    try {
-      solvedProblems = JSON.parse(localStorage.getItem('dsa_solved_problems') || '{}');
-    } catch(e) { solvedProblems = {}; }
-
-    /* ==========================================================================
-       DSA CURATED PATTERNS DATA STORE
-       ========================================================================== */
-    var DSA_PATTERNS = [
-      {
-        id: "two-pointers",
-        title: "Two Pointers",
-        category: "Two Pointers",
-        description: "Use two references traversing from opposite ends or at differing positions in sorted arrays or strings to evaluate pair targets in O(N) time and O(1) memory.",
-        tips: "Sort the input if order is not strictly mandated. Be attentive to boundary conditions when indices cross (`left < right` vs `left <= right`).",
-        pitfalls: "Off-by-one errors; neglecting duplicated entries when pair uniqueness is required.",
-        template: 
-`public int[] twoPointers(int[] nums, int target) {
-    int left = 0, right = nums.length - 1;
-    while (left < right) {
-        int sum = nums[left] + nums[right];
-        if (sum == target) return new int[]{left, right};
-        else if (sum < target) left++;
-        else right--;
-    }
-    return new int[]{-1, -1};
-}`,
-        problems: [
-          { id: "p1", title: "Two Sum II - Input Array Is Sorted", url: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/", diff: "Easy" },
-          { id: "p2", title: "3Sum", url: "https://leetcode.com/problems/3sum/", diff: "Medium" },
-          { id: "p3", title: "Container With Most Water", url: "https://leetcode.com/problems/container-with-most-water/", diff: "Medium" },
-          { id: "p4", title: "Trapping Rain Water", url: "https://leetcode.com/problems/trapping-rain-water/", diff: "Hard" }
-        ]
-      },
-      {
-        id: "sliding-window",
-        title: "Sliding Window",
-        category: "Sliding Window",
-        description: "Maintain a contiguous subarray/substring range using two indices (`start` and `end`), expanding the right edge and contracting the left edge dynamically when criteria are breached.",
-        tips: "Maintain an integer frequency array or HashMap to log window state in O(1). Differentiate early between fixed-size vs dynamic-size constraints.",
-        pitfalls: "Shrinking the window with an `if` statement instead of a `while` loop when multiple contractions are required to restore validity.",
-        template: 
-`public int slidingWindow(String s) {
-    int[] count = new int[128];
-    int start = 0, maxLen = 0;
-    for (int end = 0; end < s.length(); end++) {
-        char c = s.charAt(end);
-        count[c]++;
-        while (/* window condition broken */ count[c] > 1) {
-            count[s.charAt(start)]--;
-            start++;
-        }
-        maxLen = Math.max(maxLen, end - start + 1);
-    }
-    return maxLen;
-}`,
-        problems: [
-          { id: "p5", title: "Maximum Average Subarray I", url: "https://leetcode.com/problems/maximum-average-subarray-i/", diff: "Easy" },
-          { id: "p6", title: "Longest Substring Without Repeating Characters", url: "https://leetcode.com/problems/longest-substring-without-repeating-characters/", diff: "Medium" },
-          { id: "p7", title: "Minimum Size Subarray Sum", url: "https://leetcode.com/problems/minimum-size-subarray-sum/", diff: "Medium" },
-          { id: "p8", title: "Minimum Window Substring", url: "https://leetcode.com/problems/minimum-window-substring/", diff: "Hard" }
-        ]
-      },
-      {
-        id: "fast-slow-pointers",
-        title: "Fast & Slow Pointers (Floyd's Cycle)",
-        category: "Fast & Slow Pointers",
-        description: "Advance two pointers at different velocities (1 step vs 2 steps) through linked lists or sequences to detect cyclic loops and locate middle nodes in O(N) time and O(1) space.",
-        tips: "Always guard pointer traversal with `fast != null && fast.next != null` prior to dereferencing `fast.next.next`.",
-        pitfalls: "Null pointer exceptions caused by inadequate loop-guard checks; infinite loops when cycle entrance logic is skipped.",
-        template: 
-`public boolean hasCycle(ListNode head) {
-    ListNode slow = head, fast = head;
-    while (fast != null && fast.next != null) {
-        slow = slow.next;
-        fast = fast.next.next;
-        if (slow == fast) return true;
-    }
-    return false;
-}`,
-        problems: [
-          { id: "p9", title: "Linked List Cycle", url: "https://leetcode.com/problems/linked-list-cycle/", diff: "Easy" },
-          { id: "p10", title: "Middle of the Linked List", url: "https://leetcode.com/problems/middle-of-the-linked-list/", diff: "Easy" },
-          { id: "p11", title: "Linked List Cycle II", url: "https://leetcode.com/problems/linked-list-cycle-ii/", diff: "Medium" },
-          { id: "p12", title: "Find the Duplicate Number", url: "https://leetcode.com/problems/find-the-duplicate-number/", diff: "Medium" }
-        ]
-      },
-      {
-        id: "merge-intervals",
-        title: "Interval Scheduling & Merging",
-        category: "Intervals",
-        description: "Process overlapping time slots or coordinate segments by sorting by start time, comparing adjacent bounds, and expanding merged bounds monotonically.",
-        tips: "Sort intervals primarily by start time `(a, b) -> Integer.compare(a[0], b[0])`. Keep an active merged interval reference.",
-        pitfalls: "Assuming sorted order upon input; forgetting to push the trailing active interval after loop completion.",
-        template: 
-`public int[][] merge(int[][] intervals) {
-    if (intervals.length <= 1) return intervals;
-    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
-    List<int[]> res = new ArrayList<>();
-    int[] curr = intervals[0];
-    res.add(curr);
-    for (int[] next : intervals) {
-        if (next[0] <= curr[1]) {
-            curr[1] = Math.max(curr[1], next[1]);
-        } else {
-            curr = next;
-            res.add(curr);
-        }
-    }
-    return res.toArray(new int[res.size()][]);
-}`,
-        problems: [
-          { id: "p13", title: "Merge Intervals", url: "https://leetcode.com/problems/merge-intervals/", diff: "Medium" },
-          { id: "p14", title: "Insert Interval", url: "https://leetcode.com/problems/insert-interval/", diff: "Medium" },
-          { id: "p15", title: "Non-overlapping Intervals", url: "https://leetcode.com/problems/non-overlapping-intervals/", diff: "Medium" },
-          { id: "p16", title: "Meeting Rooms II", url: "https://leetcode.com/problems/meeting-rooms-ii/", diff: "Medium" }
-        ]
-      },
-      {
-        id: "monotonic-stack",
-        title: "Monotonic Stack",
-        category: "Monotonic Stack",
-        description: "Maintain an ordered stack (strictly increasing or decreasing) to resolve 'Next Greater Element' or geometric area boundary problems in O(N) linear time.",
-        tips: "Store array indices in the stack instead of values to evaluate distances, heights, and boundary widths simultaneously.",
-        pitfalls: "Popping with `>=` vs `>` depending on strict vs non-strict inequalities; handling remaining indices lingering on stack post-iteration.",
-        template: 
-`public int[] nextGreaterElement(int[] nums) {
-    int[] res = new int[nums.length];
-    Arrays.fill(res, -1);
-    Deque<Integer> stack = new ArrayDeque<>();
-    for (int i = 0; i < nums.length; i++) {
-        while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
-            res[stack.pop()] = nums[i];
-        }
-        stack.push(i);
-    }
-    return res;
-}`,
-        problems: [
-          { id: "p17", title: "Daily Temperatures", url: "https://leetcode.com/problems/daily-temperatures/", diff: "Medium" },
-          { id: "p18", title: "Next Greater Element I", url: "https://leetcode.com/problems/next-greater-element-i/", diff: "Easy" },
-          { id: "p19", title: "Largest Rectangle in Histogram", url: "https://leetcode.com/problems/largest-rectangle-in-histogram/", diff: "Hard" }
-        ]
-      },
-      {
-        id: "top-k-elements",
-        title: "Top K Elements (Heap / Priority Queue)",
-        category: "Top K Elements",
-        description: "Maintain a bounded Min-Heap of size K (or Max-Heap) to extract extreme subsets in O(N log K) without incurring a full O(N log N) sort penalty.",
-        tips: "For 'Top K Largest', maintain a Min-Heap and evict `pq.poll()` when `size > k`. The root will contain the K-th boundary.",
-        pitfalls: "Using a Max-Heap for Top-K Largest, which consumes O(N log N) space and time if elements are not trimmed immediately.",
-        template: 
-`public int findKthLargest(int[] nums, int k) {
-    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-    for (int num : nums) {
-        minHeap.offer(num);
-        if (minHeap.size() > k) minHeap.poll();
-    }
-    return minHeap.peek();
-}`,
-        problems: [
-          { id: "p20", title: "Kth Largest Element in an Array", url: "https://leetcode.com/problems/kth-largest-element-in-an-array/", diff: "Medium" },
-          { id: "p21", title: "Top K Frequent Elements", url: "https://leetcode.com/problems/top-k-frequent-elements/", diff: "Medium" },
-          { id: "p22", title: "Find Median from Data Stream", url: "https://leetcode.com/problems/find-median-from-data-stream/", diff: "Hard" }
-        ]
-      },
-      {
-        id: "breadth-first-search",
-        title: "BFS / Level Order Traversal",
-        category: "BFS / Graph",
-        description: "Traverse tree levels and unweighted graphs using a FIFO queue to discover shortest paths and connected components.",
-        tips: "Track queue size at the beginning of each loop: `int levelSize = queue.size();` to segment depths accurately.",
-        pitfalls: "Adding nodes to queue without marking as visited immediately, inducing memory exhaustion in cyclic graphs.",
-        template: 
-`public List<List<Integer>> levelOrder(TreeNode root) {
-    List<List<Integer>> res = new ArrayList<>();
-    if (root == null) return res;
-    Queue<TreeNode> q = new LinkedList<>();
-    q.offer(root);
-    while (!q.isEmpty()) {
-        int size = q.size();
-        List<Integer> level = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            TreeNode node = q.poll();
-            level.add(node.val);
-            if (node.left != null) q.offer(node.left);
-            if (node.right != null) q.offer(node.right);
-        }
-        res.add(level);
-    }
-    return res;
-}`,
-        problems: [
-          { id: "p23", title: "Binary Tree Level Order Traversal", url: "https://leetcode.com/problems/binary-tree-level-order-traversal/", diff: "Medium" },
-          { id: "p24", title: "Number of Islands", url: "https://leetcode.com/problems/number-of-islands/", diff: "Medium" },
-          { id: "p25", title: "Word Ladder", url: "https://leetcode.com/problems/word-ladder/", diff: "Hard" }
-        ]
-      },
-      {
-        id: "dynamic-programming",
-        title: "Dynamic Programming (0/1 Knapsack & Subsequences)",
-        category: "Dynamic Programming",
-        description: "Break complex optimization problems into overlapping subproblems, using recurrence relations and memoization tables to achieve polynomial runtimes.",
-        tips: "Define base cases first. Check if 2D space can be collapsed to 1D rolling arrays when state only relies on previous rows.",
-        pitfalls: "Iterating forward on 1D knapsack arrays, which mistakenly allows unbounded repetition of single-use elements.",
-        template: 
-`public int lengthOfLIS(int[] nums) {
-    if (nums.length == 0) return 0;
-    int[] dp = new int[nums.length];
-    Arrays.fill(dp, 1);
-    int maxLen = 1;
-    for (int i = 1; i < nums.length; i++) {
-        for (int j = 0; j < i; j++) {
-            if (nums[i] > nums[j]) {
-                dp[i] = Math.max(dp[i], dp[j] + 1);
-            }
-        }
-        maxLen = Math.max(maxLen, dp[i]);
-    }
-    return maxLen;
-}`,
-        problems: [
-          { id: "p26", title: "Climbing Stairs", url: "https://leetcode.com/problems/climbing-stairs/", diff: "Easy" },
-          { id: "p27", title: "Longest Increasing Subsequence", url: "https://leetcode.com/problems/longest-increasing-subsequence/", diff: "Medium" },
-          { id: "p28", title: "Coin Change", url: "https://leetcode.com/problems/coin-change/", diff: "Medium" },
-          { id: "p29", title: "Edit Distance", url: "https://leetcode.com/problems/edit-distance/", diff: "Hard" }
-        ]
-      }
-    ];
 
     /* ==========================================================================
        UTILITIES
@@ -551,91 +301,6 @@
       if (tab === 'signals') {
         if (ALL_ARTICLES.length === 0) fetchSupabaseSignals(true);
         else renderHingeSignals();
-      } else if (tab === 'learning') {
-        renderDsaPatterns();
-      }
-    }
-
-    /* ==========================================================================
-       DSA PATTERNS RENDERER
-       ========================================================================== */
-    function filterDsaPatterns(cat, btn) {
-      activeDsaFilter = cat;
-      var chips = document.querySelectorAll('#learning-track-pills .filter-chip');
-      for (var i = 0; i < chips.length; i++) {
-        chips[i].className = chips[i].className.replace(/\bactive\b/g, '').trim();
-      }
-      if (btn) btn.className += ' active';
-      renderDsaPatterns();
-    }
-
-    function toggleProblemCheck(problemId, isChecked) {
-      solvedProblems[problemId] = isChecked;
-      localStorage.setItem('dsa_solved_problems', JSON.stringify(solvedProblems));
-      var itemEl = document.getElementById('problem-row-' + problemId);
-      if (itemEl) {
-        if (isChecked) itemEl.className += ' solved';
-        else itemEl.className = itemEl.className.replace(/\bsolved\b/g, '').trim();
-      }
-    }
-
-    function resetSolvedProblems() {
-      if (!confirm("Reset all DSA problem checkboxes?")) return;
-      solvedProblems = {};
-      localStorage.removeItem('dsa_solved_problems');
-      renderDsaPatterns();
-    }
-
-    function renderDsaPatterns() {
-      var container = document.getElementById('dsa-patterns-container');
-      if (!container) return;
-      container.innerHTML = '';
-
-      var filtered = DSA_PATTERNS.filter(function(p) {
-        return activeDsaFilter === 'ALL' || p.category === activeDsaFilter;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b;">No patterns found in this track.</div>';
-        return;
-      }
-
-      for (var i = 0; i < filtered.length; i++) {
-        var p = filtered[i];
-        var card = document.createElement('div');
-        card.className = 'bento-card pattern-card';
-
-        var problemsHtml = '';
-        for (var j = 0; j < p.problems.length; j++) {
-          var prob = p.problems[j];
-          var isSolved = !!solvedProblems[prob.id];
-          var diffClass = prob.diff === 'Easy' ? 'diff-easy' : prob.diff === 'Medium' ? 'diff-medium' : 'diff-hard';
-
-          problemsHtml += 
-            '<div class="problem-item ' + (isSolved ? 'solved' : '') + '" id="problem-row-' + prob.id + '">' +
-              '<input type="checkbox" ' + (isSolved ? 'checked' : '') + ' onchange="toggleProblemCheck(\'' + prob.id + '\', this.checked)">' +
-              '<a href="' + prob.url + '" target="_blank" class="problem-title">' + escapeHtml(prob.title) + ' ↗</a>' +
-              '<span class="problem-diff ' + diffClass + '">' + prob.diff + '</span>' +
-            '</div>';
-        }
-
-        card.innerHTML = 
-          '<div class="pattern-header">' +
-            '<div class="pattern-title">' + escapeHtml(p.title) + '</div>' +
-            '<span class="pattern-badge">' + p.problems.length + ' Problems</span>' +
-          '</div>' +
-          '<div class="pattern-desc">' + escapeHtml(p.description) + '</div>' +
-          '<div class="callout-box callout-tips"><strong>💡 Execution Tips:</strong> ' + escapeHtml(p.tips) + '</div>' +
-          '<div class="callout-box callout-pitfalls"><strong>⚠️ Common Pitfalls:</strong> ' + escapeHtml(p.pitfalls) + '</div>' +
-          '<div class="code-box">' +
-            '<div class="code-box-header"><span>Java Skeleton</span><span>Template</span></div>' +
-            '<pre><code>' + escapeHtml(p.template) + '</code></pre>' +
-          '</div>' +
-          '<div class="problem-list">' +
-            problemsHtml +
-          '</div>';
-
-        container.appendChild(card);
       }
     }
 
@@ -922,9 +587,8 @@
 
     function closeNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'none'; }
 
-    // Init
+    // Init default tab
     fetchSupabaseSignals(true);
-    renderDsaPatterns();
   </script>
 </body>
 </html>
