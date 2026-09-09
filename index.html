@@ -21,7 +21,7 @@
     nav.sidebar-nav button { display: block; width: 100%; text-align: left; padding: 10px 12px; background: none; border: 1px solid transparent; border-radius: 10px; font-size: 13px; font-weight: 600; color: #64748b; cursor: pointer; margin-bottom: 4px; }
     nav.sidebar-nav button.active { background: #6366f1; color: #fff; font-weight: bold; }
 
-    .content-section { display: none; padding: 18px 14px; max-width: 860px; margin: 0 auto; width: 100%; }
+    .content-section { display: none; padding: 18px 14px; max-width: 760px; margin: 0 auto; width: 100%; }
     .content-section.active { display: block !important; }
 
     header.workspace-header { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }
@@ -35,22 +35,89 @@
     .filter-chip { font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 99px; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; color: #64748b; display: inline-block; margin-right: 4px; }
     .filter-chip.active { background: #1e293b; color: #fff; border-color: #1e293b; }
 
-    /* SIGNALS & HINGE CARDS */
-    .bento-signal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-    .bento-meta-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; font-size: 11px; color: #64748b; font-family: monospace; margin-bottom: 8px; }
-    .bento-headline { font-size: 16px; font-weight: bold; line-height: 1.35; color: #1e293b; text-decoration: none; display: block; margin-bottom: 8px; }
-    .bento-body { font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 10px; }
-    .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 12px; color: #0369a1; line-height: 1.5; margin: 8px 0; }
-    .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid #e2e8f0; }
+    /* ==========================================================================
+       SWIPEABLE HINGE/BUMBLE CARD DECK
+       ========================================================================== */
+    .hinge-deck-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 480px;
+      margin-top: 6px;
+      perspective: 1000px;
+    }
+
+    .bento-signal-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-y;
+      cursor: grab;
+      transition: box-shadow 0.2s ease;
+    }
+    .bento-signal-card:active {
+      cursor: grabbing;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+    }
+    .bento-signal-card.fly-right {
+      transition: transform 0.35s ease-out, opacity 0.35s ease-out !important;
+      transform: translate3d(120%, 0, 0) rotate(25deg) !important;
+      opacity: 0 !important;
+    }
+    .bento-signal-card.fly-left {
+      transition: transform 0.35s ease-out, opacity 0.35s ease-out !important;
+      transform: translate3d(-120%, 0, 0) rotate(-25deg) !important;
+      opacity: 0 !important;
+    }
+    .bento-signal-card.snap-back {
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      transform: translate3d(0, 0, 0) rotate(0deg) !important;
+    }
+
+    /* Floating visual stamps on swipe */
+    .swipe-stamp {
+      position: absolute;
+      top: 20px;
+      padding: 6px 14px;
+      font-size: 16px;
+      font-weight: 900;
+      border-radius: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+      transition: opacity 0.1s ease;
+    }
+    .swipe-stamp.read {
+      right: 20px;
+      color: #16a34a;
+      border: 3px solid #16a34a;
+      transform: rotate(12deg);
+    }
+    .swipe-stamp.star {
+      left: 20px;
+      color: #d97706;
+      border: 3px solid #d97706;
+      transform: rotate(-12deg);
+    }
+
+    .bento-meta-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; font-size: 11px; color: #64748b; font-family: monospace; margin-bottom: 12px; }
+    .bento-headline { font-size: 17px; font-weight: 800; line-height: 1.35; color: #1e293b; text-decoration: none; display: block; margin-bottom: 10px; }
+    .bento-body { font-size: 13.5px; line-height: 1.6; color: #334155; margin-bottom: 12px; }
+    .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 12px 14px; border-radius: 0 10px 10px 0; font-size: 12px; color: #0369a1; line-height: 1.5; margin: 10px 0; }
+    .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 1px solid #e2e8f0; }
 
     .bento-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 14px; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
     .pattern-badge { background: #e0e7ff; color: #4338ca; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 99px; font-family: monospace; }
 
-    /* STARRED BUTTON */
-    .star-btn { background: none; border: 1px solid #cbd5e1; border-radius: 99px; padding: 4px 10px; font-size: 11px; font-weight: bold; cursor: pointer; color: #64748b; margin-right: 6px; }
+    .star-btn { background: none; border: 1px solid #cbd5e1; border-radius: 99px; padding: 6px 14px; font-size: 11px; font-weight: bold; cursor: pointer; color: #64748b; margin-right: 6px; }
     .star-btn.starred { background: #fef3c7; border-color: #f59e0b; color: #b45309; }
 
-    /* NEWSPAPER OVERLAY */
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
     .news-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 1rem; }
@@ -111,7 +178,7 @@
   </aside>
 
   <main id="main-scroll-container">
-    <!-- 1. SIGNALS FEED TAB (HINGE CARD FORMAT) -->
+    <!-- 1. SIGNALS FEED TAB -->
     <section id="sec-signals" class="content-section active">
       <header class="workspace-header">
         <h1 class="section-title">SIGNALS FEED</h1>
@@ -124,7 +191,8 @@
       <div class="filter-pills" id="bento-track-pills"></div>
       <div id="bento-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Connecting to live stream…</div>
       
-      <div id="hinge-card-container"></div>
+      <!-- HINGE/BUMBLE SWIPEABLE CARD DECK -->
+      <div class="hinge-deck-wrapper" id="hinge-card-container"></div>
     </section>
 
     <!-- 2. JOBS TAB -->
@@ -224,15 +292,6 @@
       return '<div>' + clean.replace(/\n/g, '<br>') + '</div>';
     }
 
-    function formatDateLocal(dateObj) {
-      var year = dateObj.getFullYear();
-      var month = String(dateObj.getMonth() + 1);
-      if (month.length < 2) month = '0' + month;
-      var day = String(dateObj.getDate());
-      if (day.length < 2) day = '0' + day;
-      return year + '-' + month + '-' + day;
-    }
-
     function formatEditorialDate(dateStr) {
       if (!dateStr) return 'WEDNESDAY, SEPTEMBER 9, 2026';
       var d = new Date(dateStr.indexOf('T') !== -1 ? dateStr : dateStr + 'T00:00:00');
@@ -283,7 +342,7 @@
 
       if (isReset && bentoLoader) {
         bentoLoader.style.display = 'block';
-        bentoLoader.innerText = 'Syncing latest unread signals…';
+        bentoLoader.innerText = 'Syncing unread signals…';
       }
 
       var articlesDone = false;
@@ -304,7 +363,7 @@
         renderHingeSignals();
       };
 
-      // Strict server-side filter: only unread articles, sorted by latest date and ID
+      // Server-side filter: only unread articles, sorted by latest date and ID
       sbClient.request('articles?select=*&is_read=is.false&order=date.desc,id.desc', 'GET', null, null, function(err, data) {
         fetchedArticles = (!err && data && Array.isArray(data)) ? data : [];
         ALL_ARTICLES = fetchedArticles;
@@ -398,16 +457,15 @@
 
       if (visibleArticles.length === 0) {
         container.innerHTML = 
-          '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:14px; border:1px solid #e2e8f0;">' +
-            '<div style="font-size:24px; margin-bottom:8px;">🎉</div>' +
+          '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:18px; border:1px solid #e2e8f0;">' +
+            '<div style="font-size:26px; margin-bottom:8px;">🎉</div>' +
             '<h3 style="font-size:15px; font-weight:bold; color:#1e293b;">You\'re all caught up!</h3>' +
-            '<p style="font-size:12px; color:#64748b; margin-top:4px;">No unread articles in this view.</p>' +
+            '<p style="font-size:12px; color:#64748b; margin-top:4px;">No unread signals in this queue.</p>' +
             '<button class="btn btn-sm" style="margin-top:14px;" onclick="activeTrack=\'All\'; renderHingeSignals();">View All Tracks</button>' +
           '</div>';
         return;
       }
 
-      // Render the current unread article
       var article = visibleArticles[0];
       var tagsList = Array.isArray(article.tags) ? article.tags : [];
       var targetUrl = article.url || article.link || ('https://www.google.com/search?q=' + encodeURIComponent(article.headline));
@@ -421,10 +479,13 @@
 
       var hingeCard = document.createElement('div');
       hingeCard.className = 'bento-signal-card';
+      hingeCard.id = 'active-swipe-card';
       hingeCard.innerHTML = 
+        '<div class="swipe-stamp read" id="stamp-read">✓ READ</div>' +
+        '<div class="swipe-stamp star" id="stamp-star">★ STAR</div>' +
         '<div class="bento-meta-bar">' +
           '<div>' + signalMeter(article.relevance || 3) + ' <strong>' + escapeHtml(article.source || 'Signal') + '</strong> · ' + (article.date || '') + '</div>' +
-          '<span style="font-size:10px; font-family:monospace; color:#64748b;">' + visibleArticles.length + ' remaining</span>' +
+          '<span style="font-size:10px; font-family:monospace; color:#64748b;">' + visibleArticles.length + ' unread · Swipe &rarr;</span>' +
         '</div>' +
         '<a href="' + targetUrl + '" target="_blank" class="bento-headline">' + escapeHtml(article.headline) + '</a>' +
         '<p class="bento-body">' + escapeHtml(article.body) + '</p>' +
@@ -439,6 +500,99 @@
         '</div>';
 
       container.appendChild(hingeCard);
+      attachSwipeGestures(hingeCard, article.id);
+    }
+
+    /* ==========================================================================
+       GESTURE ENGINE: BUMBLE / TINDER STYLE DRAG & SWIPE
+       ========================================================================== */
+    function attachSwipeGestures(card, articleId) {
+      var startX = 0, startY = 0, currentX = 0, currentY = 0;
+      var isDragging = false;
+      var readStamp = card.querySelector('#stamp-read');
+      var starStamp = card.querySelector('#stamp-star');
+      var SWIPE_THRESHOLD = 90; // Pixels required to commit swipe
+
+      function onStart(e) {
+        // Prevent drag interference when tapping on source links or buttons
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        
+        isDragging = true;
+        var touch = e.touches ? e.touches[0] : e;
+        startX = touch.clientX;
+        startY = touch.clientY;
+        currentX = startX;
+        currentY = startY;
+        card.className = 'bento-signal-card'; // Remove snap transitions during drag
+      }
+
+      function onMove(e) {
+        if (!isDragging) return;
+        var touch = e.touches ? e.touches[0] : e;
+        currentX = touch.clientX;
+        currentY = touch.clientY;
+        
+        var deltaX = currentX - startX;
+        var deltaY = currentY - startY;
+
+        // If predominantly vertical drag, allow normal scroll
+        if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaX) < 15) return;
+
+        if (e.cancelable) e.preventDefault();
+
+        // Authentic card rotation physics
+        var rotate = deltaX * 0.08;
+        card.style.transform = 'translate3d(' + deltaX + 'px, ' + (deltaY * 0.2) + 'px, 0) rotate(' + rotate + 'deg)';
+
+        // Fade in floating action stamps dynamically
+        if (deltaX > 20) {
+          if (readStamp) readStamp.style.opacity = Math.min(1, (deltaX - 20) / 70);
+          if (starStamp) starStamp.style.opacity = 0;
+        } else if (deltaX < -20) {
+          if (starStamp) starStamp.style.opacity = Math.min(1, (-deltaX - 20) / 70);
+          if (readStamp) readStamp.style.opacity = 0;
+        } else {
+          if (readStamp) readStamp.style.opacity = 0;
+          if (starStamp) starStamp.style.opacity = 0;
+        }
+      }
+
+      function onEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        var deltaX = currentX - startX;
+
+        if (deltaX > SWIPE_THRESHOLD) {
+          // SWIPE RIGHT: MARK READ
+          card.className = 'bento-signal-card fly-right';
+          setTimeout(function() {
+            markHingeReadAndNext(articleId);
+          }, 240);
+        } else if (deltaX < -SWIPE_THRESHOLD) {
+          // SWIPE LEFT: STAR & MARK READ
+          card.className = 'bento-signal-card fly-left';
+          toggleStarSignal(articleId);
+          setTimeout(function() {
+            markHingeReadAndNext(articleId);
+          }, 240);
+        } else {
+          // INCOMPLETE DRAG: SNAP BACK
+          card.className = 'bento-signal-card snap-back';
+          card.style.transform = '';
+          if (readStamp) readStamp.style.opacity = 0;
+          if (starStamp) starStamp.style.opacity = 0;
+        }
+      }
+
+      // Touch listener attachments (Mobile & Tablet)
+      card.addEventListener('touchstart', onStart, { passive: true });
+      card.addEventListener('touchmove', onMove, { passive: false });
+      card.addEventListener('touchend', onEnd, false);
+
+      // Mouse listener attachments (Desktop)
+      card.addEventListener('mousedown', onStart);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onEnd);
     }
 
     function toggleStarSignal(articleId) {
@@ -568,7 +722,7 @@
 
     function closeNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'none'; }
 
-    // Init
+    // Initialize Signals on page load
     fetchSupabaseSignals(true);
   </script>
 </body>
