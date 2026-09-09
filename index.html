@@ -36,14 +36,13 @@
     .filter-chip.active { background: #1e293b; color: #fff; border-color: #1e293b; }
 
     /* ==========================================================================
-       SWIPEABLE HINGE/BUMBLE CARD DECK
+       SWIPEABLE CARDS (SIGNALS & JOBS)
        ========================================================================== */
     .hinge-deck-wrapper {
       position: relative;
       width: 100%;
       min-height: 480px;
       margin-top: 6px;
-      perspective: 1000px;
     }
 
     .bento-signal-card {
@@ -64,13 +63,13 @@
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
     }
     .bento-signal-card.fly-right {
-      transition: transform 0.35s ease-out, opacity 0.35s ease-out !important;
-      transform: translate3d(120%, 0, 0) rotate(25deg) !important;
+      transition: transform 0.32s ease-out, opacity 0.32s ease-out !important;
+      transform: translate3d(120%, 0, 0) rotate(22deg) !important;
       opacity: 0 !important;
     }
     .bento-signal-card.fly-left {
-      transition: transform 0.35s ease-out, opacity 0.35s ease-out !important;
-      transform: translate3d(-120%, 0, 0) rotate(-25deg) !important;
+      transition: transform 0.32s ease-out, opacity 0.32s ease-out !important;
+      transform: translate3d(-120%, 0, 0) rotate(-22deg) !important;
       opacity: 0 !important;
     }
     .bento-signal-card.snap-back {
@@ -78,12 +77,11 @@
       transform: translate3d(0, 0, 0) rotate(0deg) !important;
     }
 
-    /* Floating visual stamps on swipe */
     .swipe-stamp {
       position: absolute;
       top: 20px;
       padding: 6px 14px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 900;
       border-radius: 8px;
       letter-spacing: 0.08em;
@@ -93,16 +91,16 @@
       z-index: 50;
       transition: opacity 0.1s ease;
     }
-    .swipe-stamp.read {
+    .swipe-stamp.right-stamp {
       right: 20px;
       color: #16a34a;
       border: 3px solid #16a34a;
       transform: rotate(12deg);
     }
-    .swipe-stamp.star {
+    .swipe-stamp.left-stamp {
       left: 20px;
-      color: #d97706;
-      border: 3px solid #d97706;
+      color: #dc2626;
+      border: 3px solid #dc2626;
       transform: rotate(-12deg);
     }
 
@@ -112,12 +110,34 @@
     .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 12px 14px; border-radius: 0 10px 10px 0; font-size: 12px; color: #0369a1; line-height: 1.5; margin: 10px 0; }
     .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 1px solid #e2e8f0; }
 
-    .bento-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 14px; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .pattern-badge { background: #e0e7ff; color: #4338ca; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 99px; font-family: monospace; }
+    .score-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      font-family: monospace;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+    .score-high { background: #dcfce7; color: #15803d; }
+    .score-med { background: #fef3c7; color: #b45309; }
+    .score-low { background: #fee2e2; color: #b91c1c; }
+
+    .pill { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: bold; margin-right: 4px; }
+    .pill-tag { border: 1px solid #e2e8f0; background: #f1f5f9; }
 
     .star-btn { background: none; border: 1px solid #cbd5e1; border-radius: 99px; padding: 6px 14px; font-size: 11px; font-weight: bold; cursor: pointer; color: #64748b; margin-right: 6px; }
     .star-btn.starred { background: #fef3c7; border-color: #f59e0b; color: #b45309; }
 
+    .signal-meter { display: inline-block; vertical-align: middle; margin-right: 4px; }
+    .signal-meter .bar { display: inline-block; width: 3px; background: #cbd5e1; border-radius: 1px; margin-right: 1px; }
+    .signal-meter .bar:nth-child(1) { height: 4px; }
+    .signal-meter .bar:nth-child(2) { height: 6px; }
+    .signal-meter .bar:nth-child(3) { height: 8px; }
+    .signal-meter .bar:nth-child(4) { height: 10px; }
+    .signal-meter .bar:nth-child(5) { height: 12px; }
+    .signal-meter .bar.on { background: #d97706; }
+
+    /* NEWSPAPER OVERLAY */
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
     .news-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 1rem; }
@@ -136,18 +156,6 @@
     .news-body { font-size: 0.95rem; line-height: 1.6; color: #22261F; }
     .news-deep-dive-box { margin-top: 0.5rem; padding: 0.75rem; background: #DDE3DE; border-left: 3px solid #2F4F49; font-family: monospace; font-size: 11px; color: #2F4F49; line-height: 1.5; }
     .news-source-link { display: inline-block; font-family: monospace; font-size: 11px; color: #B8842E; text-decoration: none; border-bottom: 1px solid #D9C7A0; padding-bottom: 1px; margin-top: 0.5rem; }
-
-    .pill { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: bold; margin-right: 4px; }
-    .pill-tag { border: 1px solid #e2e8f0; background: #f1f5f9; }
-
-    .signal-meter { display: inline-block; vertical-align: middle; margin-right: 4px; }
-    .signal-meter .bar { display: inline-block; width: 3px; background: #cbd5e1; border-radius: 1px; margin-right: 1px; }
-    .signal-meter .bar:nth-child(1) { height: 4px; }
-    .signal-meter .bar:nth-child(2) { height: 6px; }
-    .signal-meter .bar:nth-child(3) { height: 8px; }
-    .signal-meter .bar:nth-child(4) { height: 10px; }
-    .signal-meter .bar:nth-child(5) { height: 12px; }
-    .signal-meter .bar.on { background: #d97706; }
 
     @media (max-width: 640px) {
       body { -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; }
@@ -191,27 +199,22 @@
       <div class="filter-pills" id="bento-track-pills"></div>
       <div id="bento-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Connecting to live stream…</div>
       
-      <!-- HINGE/BUMBLE SWIPEABLE CARD DECK -->
       <div class="hinge-deck-wrapper" id="hinge-card-container"></div>
     </section>
 
-    <!-- 2. JOBS TAB -->
+    <!-- 2. JOBS TAB (SWIPEABLE OPPORTUNITIES) -->
     <section id="sec-jobs" class="content-section">
       <header class="workspace-header">
-        <h1 class="section-title">JOB TRACKER</h1>
+        <h1 class="section-title">JOB OPPORTUNITIES</h1>
         <div>
-          <button class="btn btn-secondary btn-sm" disabled>+ Add Application</button>
+          <button class="btn btn-secondary btn-sm" onclick="fetchSupabaseJobs(true)">↻ Refresh</button>
         </div>
       </header>
 
-      <div class="bento-card" style="text-align:center; padding: 60px 20px;">
-        <div style="font-size: 32px; margin-bottom: 12px;">💼</div>
-        <h2 style="font-size: 16px; font-weight: bold; color: #1e293b; margin-bottom: 6px;">Job Applications Queue</h2>
-        <p style="font-size: 12px; color: #64748b; max-width: 380px; margin: 0 auto 16px;">
-          Job application pipeline tracking will be connected to your Supabase schema here.
-        </p>
-        <span class="pattern-badge">SCHEMA PENDING</span>
-      </div>
+      <div class="filter-pills" id="jobs-status-pills"></div>
+      <div id="jobs-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Fetching job recommendations…</div>
+      
+      <div class="hinge-deck-wrapper" id="jobs-card-container"></div>
     </section>
   </main>
 
@@ -275,10 +278,14 @@
       }
     };
 
+    /* APPLICATION STATE */
     var ALL_ARTICLES = [];
     var ALL_IPOS = [];
+    var ALL_JOBS = [];
     var activeTrack = "All";
+    var activeJobFilter = "unseen";
     var isFetchingSignals = false;
+    var isFetchingJobs = false;
 
     function escapeHtml(str) {
       if (!str) return '';
@@ -302,6 +309,11 @@
       var bars = '';
       for (var i = 1; i <= 5; i++) bars += '<span class="bar ' + (i <= score ? 'on' : '') + '"></span>';
       return '<span class="signal-meter">' + bars + '</span>';
+    }
+
+    function cleanTitle(title) {
+      if (!title) return 'Software Engineer';
+      return title.replace(/_/g, ' ').replace(/\(Backend - Java API\)/gi, '(Backend / Java API)');
     }
 
     function switchTab(tab) {
@@ -329,7 +341,232 @@
       if (tab === 'signals') {
         if (ALL_ARTICLES.length === 0) fetchSupabaseSignals(true);
         else renderHingeSignals();
+      } else if (tab === 'jobs') {
+        if (ALL_JOBS.length === 0) fetchSupabaseJobs(true);
+        else renderHingeJobs();
       }
+    }
+
+    /* ==========================================================================
+       JOBS ENGINE (FETCH, SORT BY FIT_SCORE, HINGE SWIPE)
+       ========================================================================== */
+    function fetchSupabaseJobs(isReset) {
+      if (isFetchingJobs) return;
+      isFetchingJobs = true;
+      var loader = document.getElementById('jobs-loading');
+      if (isReset && loader) {
+        loader.style.display = 'block';
+        loader.innerText = 'Syncing jobs ranked by score…';
+      }
+
+      // Fetch all opportunities sorted by highest fit score first, then created_at
+      sbClient.request('job_opportunities?select=*&order=fit_score.desc,created_at.desc', 'GET', null, null, function(err, data) {
+        isFetchingJobs = false;
+        if (loader) loader.style.display = 'none';
+        ALL_JOBS = (!err && data && Array.isArray(data)) ? data : [];
+        renderHingeJobs();
+      });
+    }
+
+    function renderHingeJobs() {
+      var pillBox = document.getElementById('jobs-status-pills');
+      var container = document.getElementById('jobs-card-container');
+      if (!pillBox || !container) return;
+
+      pillBox.innerHTML = '';
+      container.innerHTML = '';
+
+      var unseenCount = 0;
+      var shortlistedCount = 0;
+      var passedCount = 0;
+
+      for (var i = 0; i < ALL_JOBS.length; i++) {
+        var st = ALL_JOBS[i].status || 'unseen';
+        if (st === 'shortlisted') shortlistedCount++;
+        else if (st === 'passed') passedCount++;
+        else unseenCount++;
+      }
+
+      var filters = [
+        { id: 'unseen', label: '🔥 Unseen Queue (' + unseenCount + ')' },
+        { id: 'shortlisted', label: '⭐ Shortlisted (' + shortlistedCount + ')' },
+        { id: 'passed', label: '👁️ Passed / Viewed (' + passedCount + ')' },
+        { id: 'all', label: 'All Jobs (' + ALL_JOBS.length + ')' }
+      ];
+
+      for (var f = 0; f < filters.length; f++) {
+        (function(flt) {
+          var chip = document.createElement('span');
+          chip.className = 'filter-chip ' + (activeJobFilter === flt.id ? 'active' : '');
+          chip.innerText = flt.label;
+          chip.onclick = function() {
+            activeJobFilter = flt.id;
+            renderHingeJobs();
+          };
+          pillBox.appendChild(chip);
+        })(filters[f]);
+      }
+
+      var visibleJobs = ALL_JOBS.filter(function(j) {
+        var s = j.status || 'unseen';
+        if (activeJobFilter === 'all') return true;
+        return s === activeJobFilter;
+      });
+
+      if (visibleJobs.length === 0) {
+        container.innerHTML = 
+          '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:18px; border:1px solid #e2e8f0;">' +
+            '<div style="font-size:28px; margin-bottom:8px;">🎯</div>' +
+            '<h3 style="font-size:15px; font-weight:bold; color:#1e293b;">Queue cleared!</h3>' +
+            '<p style="font-size:12px; color:#64748b; margin-top:4px;">No roles in this bucket. Swipe through all or refresh.</p>' +
+            '<button class="btn btn-sm" style="margin-top:14px;" onclick="activeJobFilter=\'unseen\'; renderHingeJobs();">View Unseen</button>' +
+          '</div>';
+        return;
+      }
+
+      var job = visibleJobs[0];
+      var score = job.fit_score || 0;
+      var scoreClass = score >= 85 ? 'score-high' : score >= 70 ? 'score-med' : 'score-low';
+
+      var atsList = [];
+      if (job.ats_keywords) {
+        atsList = job.ats_keywords.split(',').map(function(k) { return k.trim(); });
+      }
+
+      var atsHtml = '';
+      for (var a = 0; a < atsList.length; a++) {
+        if (atsList[a]) atsHtml += '<span class="pill pill-tag">#' + escapeHtml(atsList[a]) + '</span>';
+      }
+
+      var card = document.createElement('div');
+      card.className = 'bento-signal-card';
+      card.id = 'active-job-card';
+      card.innerHTML = 
+        '<div class="swipe-stamp right-stamp" id="job-stamp-shortlist">★ SHORTLIST</div>' +
+        '<div class="swipe-stamp left-stamp" id="job-stamp-pass">✕ PASS</div>' +
+        
+        '<div class="bento-meta-bar">' +
+          '<div>' +
+            '<span class="score-badge ' + scoreClass + '">Match Score: ' + score + '%</span> ' +
+            '<strong>' + escapeHtml(job.company || 'Tech Company') + '</strong> · ' + escapeHtml(job.location || 'Remote') +
+          '</div>' +
+          '<span style="font-size:10px; font-family:monospace; color:#64748b;">' + visibleJobs.length + ' left · Swipe &rarr;</span>' +
+        '</div>' +
+
+        '<a href="' + (job.url || '#') + '" target="_blank" class="bento-headline">' + escapeHtml(cleanTitle(job.title)) + '</a>' +
+
+        (job.job_summary ? '<p class="bento-body">' + escapeHtml(job.job_summary) + '</p>' : '') +
+
+        (job.analysis ? '<div class="bento-deep-dive"><strong>Fit Analysis:</strong> ' + escapeHtml(job.analysis) + '</div>' : '') +
+
+        (job.resume_changes ? (
+          '<div style="background:#fefce8; border-left:3px solid #eab308; padding:10px 12px; border-radius:0 8px 8px 0; font-size:11.5px; color:#854d0e; line-height:1.5; margin:8px 0;">' +
+            '<strong>Tailored Resume Changes:</strong> ' + escapeHtml(job.resume_changes) +
+          '</div>'
+        ) : '') +
+
+        (atsHtml ? '<div style="margin: 10px 0 6px 0;">' + atsHtml + '</div>' : '') +
+
+        '<div class="bento-footer">' +
+          '<div>' +
+            '<button class="btn btn-secondary btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'passed\')">✕ Pass</button> ' +
+            '<button class="btn btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'shortlisted\')">★ Shortlist / Will Apply</button>' +
+          '</div>' +
+          '<div>' +
+            (job.resume_drive_link ? '<a class="btn btn-secondary btn-sm" href="' + job.resume_drive_link + '" target="_blank" style="margin-right:4px;">📄 View Resume</a>' : '') +
+            (job.url ? '<a class="btn btn-sm" href="' + job.url + '" target="_blank">Apply ↗</a>' : '') +
+          '</div>' +
+        '</div>';
+
+      container.appendChild(card);
+      attachJobSwipeGestures(card, job.id);
+    }
+
+    function markJobStatus(jobId, newStatus) {
+      for (var i = 0; i < ALL_JOBS.length; i++) {
+        if (ALL_JOBS[i].id === jobId) {
+          ALL_JOBS[i].status = newStatus;
+          break;
+        }
+      }
+      renderHingeJobs();
+
+      sbClient.request('job_opportunities?id=eq.' + jobId, 'PATCH', { status: newStatus }, null, function(err) {
+        if (err) console.error('Failed to update job status:', err);
+      });
+    }
+
+    function attachJobSwipeGestures(card, jobId) {
+      var startX = 0, startY = 0, currentX = 0, currentY = 0;
+      var isDragging = false;
+      var shortlistStamp = card.querySelector('#job-stamp-shortlist');
+      var passStamp = card.querySelector('#job-stamp-pass');
+      var SWIPE_THRESHOLD = 90;
+
+      function onStart(e) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        isDragging = true;
+        var touch = e.touches ? e.touches[0] : e;
+        startX = touch.clientX;
+        startY = touch.clientY;
+        currentX = startX;
+        currentY = startY;
+        card.className = 'bento-signal-card';
+      }
+
+      function onMove(e) {
+        if (!isDragging) return;
+        var touch = e.touches ? e.touches[0] : e;
+        currentX = touch.clientX;
+        currentY = touch.clientY;
+        var deltaX = currentX - startX;
+        var deltaY = currentY - startY;
+
+        if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaX) < 15) return;
+        if (e.cancelable) e.preventDefault();
+
+        var rotate = deltaX * 0.08;
+        card.style.transform = 'translate3d(' + deltaX + 'px, ' + (deltaY * 0.2) + 'px, 0) rotate(' + rotate + 'deg)';
+
+        if (deltaX > 20) {
+          if (shortlistStamp) shortlistStamp.style.opacity = Math.min(1, (deltaX - 20) / 70);
+          if (passStamp) passStamp.style.opacity = 0;
+        } else if (deltaX < -20) {
+          if (passStamp) passStamp.style.opacity = Math.min(1, (-deltaX - 20) / 70);
+          if (shortlistStamp) shortlistStamp.style.opacity = 0;
+        } else {
+          if (shortlistStamp) shortlistStamp.style.opacity = 0;
+          if (passStamp) passStamp.style.opacity = 0;
+        }
+      }
+
+      function onEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        var deltaX = currentX - startX;
+
+        if (deltaX > SWIPE_THRESHOLD) {
+          // SWIPE RIGHT: SHORTLIST
+          card.className = 'bento-signal-card fly-right';
+          setTimeout(function() { markJobStatus(jobId, 'shortlisted'); }, 240);
+        } else if (deltaX < -SWIPE_THRESHOLD) {
+          // SWIPE LEFT: PASS / VIEWED
+          card.className = 'bento-signal-card fly-left';
+          setTimeout(function() { markJobStatus(jobId, 'passed'); }, 240);
+        } else {
+          card.className = 'bento-signal-card snap-back';
+          card.style.transform = '';
+          if (shortlistStamp) shortlistStamp.style.opacity = 0;
+          if (passStamp) passStamp.style.opacity = 0;
+        }
+      }
+
+      card.addEventListener('touchstart', onStart, { passive: true });
+      card.addEventListener('touchmove', onMove, { passive: false });
+      card.addEventListener('touchend', onEnd, false);
+      card.addEventListener('mousedown', onStart);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onEnd);
     }
 
     /* ==========================================================================
@@ -363,7 +600,6 @@
         renderHingeSignals();
       };
 
-      // Server-side filter: only unread articles, sorted by latest date and ID
       sbClient.request('articles?select=*&is_read=is.false&order=date.desc,id.desc', 'GET', null, null, function(err, data) {
         fetchedArticles = (!err && data && Array.isArray(data)) ? data : [];
         ALL_ARTICLES = fetchedArticles;
@@ -481,8 +717,8 @@
       hingeCard.className = 'bento-signal-card';
       hingeCard.id = 'active-swipe-card';
       hingeCard.innerHTML = 
-        '<div class="swipe-stamp read" id="stamp-read">✓ READ</div>' +
-        '<div class="swipe-stamp star" id="stamp-star">★ STAR</div>' +
+        '<div class="swipe-stamp right-stamp" id="stamp-read">✓ READ</div>' +
+        '<div class="swipe-stamp left-stamp" id="stamp-star">★ STAR</div>' +
         '<div class="bento-meta-bar">' +
           '<div>' + signalMeter(article.relevance || 3) + ' <strong>' + escapeHtml(article.source || 'Signal') + '</strong> · ' + (article.date || '') + '</div>' +
           '<span style="font-size:10px; font-family:monospace; color:#64748b;">' + visibleArticles.length + ' unread · Swipe &rarr;</span>' +
@@ -500,30 +736,25 @@
         '</div>';
 
       container.appendChild(hingeCard);
-      attachSwipeGestures(hingeCard, article.id);
+      attachSignalSwipeGestures(hingeCard, article.id);
     }
 
-    /* ==========================================================================
-       GESTURE ENGINE: BUMBLE / TINDER STYLE DRAG & SWIPE
-       ========================================================================== */
-    function attachSwipeGestures(card, articleId) {
+    function attachSignalSwipeGestures(card, articleId) {
       var startX = 0, startY = 0, currentX = 0, currentY = 0;
       var isDragging = false;
       var readStamp = card.querySelector('#stamp-read');
       var starStamp = card.querySelector('#stamp-star');
-      var SWIPE_THRESHOLD = 90; // Pixels required to commit swipe
+      var SWIPE_THRESHOLD = 90;
 
       function onStart(e) {
-        // Prevent drag interference when tapping on source links or buttons
         if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
-        
         isDragging = true;
         var touch = e.touches ? e.touches[0] : e;
         startX = touch.clientX;
         startY = touch.clientY;
         currentX = startX;
         currentY = startY;
-        card.className = 'bento-signal-card'; // Remove snap transitions during drag
+        card.className = 'bento-signal-card';
       }
 
       function onMove(e) {
@@ -531,20 +762,15 @@
         var touch = e.touches ? e.touches[0] : e;
         currentX = touch.clientX;
         currentY = touch.clientY;
-        
         var deltaX = currentX - startX;
         var deltaY = currentY - startY;
 
-        // If predominantly vertical drag, allow normal scroll
         if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaX) < 15) return;
-
         if (e.cancelable) e.preventDefault();
 
-        // Authentic card rotation physics
         var rotate = deltaX * 0.08;
         card.style.transform = 'translate3d(' + deltaX + 'px, ' + (deltaY * 0.2) + 'px, 0) rotate(' + rotate + 'deg)';
 
-        // Fade in floating action stamps dynamically
         if (deltaX > 20) {
           if (readStamp) readStamp.style.opacity = Math.min(1, (deltaX - 20) / 70);
           if (starStamp) starStamp.style.opacity = 0;
@@ -563,20 +789,13 @@
         var deltaX = currentX - startX;
 
         if (deltaX > SWIPE_THRESHOLD) {
-          // SWIPE RIGHT: MARK READ
           card.className = 'bento-signal-card fly-right';
-          setTimeout(function() {
-            markHingeReadAndNext(articleId);
-          }, 240);
+          setTimeout(function() { markHingeReadAndNext(articleId); }, 240);
         } else if (deltaX < -SWIPE_THRESHOLD) {
-          // SWIPE LEFT: STAR & MARK READ
           card.className = 'bento-signal-card fly-left';
           toggleStarSignal(articleId);
-          setTimeout(function() {
-            markHingeReadAndNext(articleId);
-          }, 240);
+          setTimeout(function() { markHingeReadAndNext(articleId); }, 240);
         } else {
-          // INCOMPLETE DRAG: SNAP BACK
           card.className = 'bento-signal-card snap-back';
           card.style.transform = '';
           if (readStamp) readStamp.style.opacity = 0;
@@ -584,12 +803,9 @@
         }
       }
 
-      // Touch listener attachments (Mobile & Tablet)
       card.addEventListener('touchstart', onStart, { passive: true });
       card.addEventListener('touchmove', onMove, { passive: false });
       card.addEventListener('touchend', onEnd, false);
-
-      // Mouse listener attachments (Desktop)
       card.addEventListener('mousedown', onStart);
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onEnd);
@@ -722,7 +938,7 @@
 
     function closeNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'none'; }
 
-    // Initialize Signals on page load
+    // Init default Signals
     fetchSupabaseSignals(true);
   </script>
 </body>
