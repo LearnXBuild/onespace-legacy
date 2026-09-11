@@ -21,7 +21,7 @@
     nav.sidebar-nav button { display: block; width: 100%; text-align: left; padding: 10px 12px; background: none; border: 1px solid transparent; border-radius: 10px; font-size: 13px; font-weight: 600; color: #64748b; cursor: pointer; margin-bottom: 4px; }
     nav.sidebar-nav button.active { background: #6366f1; color: #fff; font-weight: bold; }
 
-    .content-section { display: none; padding: 18px 14px; max-width: 760px; margin: 0 auto; width: 100%; }
+    .content-section { display: none; padding: 18px 14px; max-width: 820px; margin: 0 auto; width: 100%; }
     .content-section.active { display: block !important; }
 
     header.workspace-header { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }
@@ -34,6 +34,178 @@
     .filter-pills { overflow-x: auto; white-space: nowrap; padding: 4px 0 10px 0; width: 100%; }
     .filter-chip { font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 99px; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; color: #64748b; display: inline-block; margin-right: 4px; }
     .filter-chip.active { background: #1e293b; color: #fff; border-color: #1e293b; }
+
+    /* ==========================================================================
+       FOCUS 2x2 GRID & 7-DAY STACKED CHART
+       ========================================================================== */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .focus-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border-top: 4px solid #cbd5e1;
+    }
+
+    .focus-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .focus-timer-pill {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 99px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: monospace;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .focus-timer-pill:hover { background: #f1f5f9; }
+
+    .focus-edit-btn {
+      background: none;
+      border: none;
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+    }
+    .focus-edit-btn:hover { color: #1e293b; text-decoration: underline; }
+
+    .focus-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    .focus-card-desc {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.45;
+      flex: 1;
+      margin-bottom: 12px;
+      word-break: break-word;
+    }
+
+    .focus-edit-input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      display: none;
+    }
+
+    .focus-card-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 10px;
+    }
+
+    /* 7-Day Stacked Chart Container */
+    .stacked-chart-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .stacked-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .chart-day-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+    .chart-day-row.is-today .chart-day-label {
+      color: #6366f1;
+      font-weight: 800;
+    }
+
+    .chart-day-label {
+      width: 48px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: monospace;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+
+    .chart-track {
+      flex: 1;
+      height: 18px;
+      background: #f1f5f9;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    .chart-segment {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .chart-day-total {
+      width: 58px;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: 700;
+      color: #1e293b;
+      text-align: right;
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+    }
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
 
     /* ==========================================================================
        SWIPEABLE CARDS (SIGNALS & JOBS)
@@ -163,6 +335,7 @@
       .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; z-index: 50; }
       .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 11px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
+      .focus-grid { grid-template-columns: 1fr; }
     }
     @media (min-width: 641px) {
       .mobile-nav { display: none; }
@@ -181,6 +354,7 @@
     </div>
     <nav class="sidebar-nav">
       <button class="nav-btn active" data-tab="signals" onclick="switchTab('signals')">Signals</button>
+      <button class="nav-btn" data-tab="focus" onclick="switchTab('focus')">Focus</button>
       <button class="nav-btn" data-tab="jobs" onclick="switchTab('jobs')">Jobs</button>
     </nav>
   </aside>
@@ -202,7 +376,35 @@
       <div class="hinge-deck-wrapper" id="hinge-card-container"></div>
     </section>
 
-    <!-- 2. JOBS TAB (SWIPEABLE OPPORTUNITIES) -->
+    <!-- 2. FOCUS TAB (2x2 GRID & 7-DAY STACKED BAR CHART) -->
+    <section id="sec-focus" class="content-section">
+      <header class="workspace-header">
+        <h1 class="section-title">FOCUS BUCKETS</h1>
+        <div>
+          <button class="btn btn-secondary btn-sm" onclick="loadFocusData()">↻ Refresh</button>
+        </div>
+      </header>
+
+      <!-- 2x2 Grid for 4 Core Buckets -->
+      <div class="focus-grid" id="focus-grid-container"></div>
+
+      <!-- 7-Day Stacked Bar Chart -->
+      <div class="stacked-chart-card">
+        <div class="stacked-chart-header">
+          <div>
+            <strong style="font-size:13px; text-transform:uppercase; letter-spacing:0.05em; color:#1e293b;">CURRENT WEEK DISTRIBUTION</strong>
+            <div style="font-size:11px; font-family:monospace; color:#64748b; margin-top:2px;" id="focus-week-label">7-Day Focus Stack</div>
+          </div>
+          <div style="font-size:13px; font-weight:800; font-family:monospace; color:#6366f1;" id="focus-week-total">0.0 hrs</div>
+        </div>
+
+        <div id="focus-days-bars-container"></div>
+
+        <div class="chart-legend" id="focus-chart-legend"></div>
+      </div>
+    </section>
+
+    <!-- 3. JOBS TAB -->
     <section id="sec-jobs" class="content-section">
       <header class="workspace-header">
         <h1 class="section-title">JOB OPPORTUNITIES</h1>
@@ -221,6 +423,7 @@
   <!-- MOBILE BOTTOM NAVIGATION -->
   <div class="mobile-nav">
     <button class="nav-btn active" data-tab="signals" onclick="switchTab('signals')">Signals</button>
+    <button class="nav-btn" data-tab="focus" onclick="switchTab('focus')">Focus</button>
     <button class="nav-btn" data-tab="jobs" onclick="switchTab('jobs')">Jobs</button>
   </div>
 
@@ -287,6 +490,26 @@
     var isFetchingSignals = false;
     var isFetchingJobs = false;
 
+    /* FOCUS STATE */
+    var FOCUS_BUCKETS = [
+      { bucket_key: 'office_work', title: 'Office Work', description: 'Core deliverables and non-negotiable codebase tasks.', color: '#3b82f6' },
+      { bucket_key: 'side_gig', title: 'Wallet Pass Generator (Side Gig)', description: 'Client-delivery feature development & pass generation.', color: '#8b5cf6' },
+      { bucket_key: 'job_machinery', title: 'Job Search Machinery', description: 'Pipeline applications, logistics, and daily DSA maintenance.', color: '#f59e0b' },
+      { bucket_key: 'systems_mastery', title: 'Systems Mastery', description: 'AI Systems learning, core scale architecture, deep research.', color: '#10b981' }
+    ];
+    var FOCUS_SESSIONS = [];
+
+    // Active timers map: bucket_key -> { remainingSec, totalSec, intervalId, isRunning }
+    var activeTimers = {};
+    for (var b = 0; b < FOCUS_BUCKETS.length; b++) {
+      activeTimers[FOCUS_BUCKETS[b].bucket_key] = {
+        remainingSec: 25 * 60,
+        totalSec: 25 * 60,
+        intervalId: null,
+        isRunning: false
+      };
+    }
+
     function escapeHtml(str) {
       if (!str) return '';
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
@@ -314,6 +537,12 @@
     function cleanTitle(title) {
       if (!title) return 'Software Engineer';
       return title.replace(/_/g, ' ').replace(/\(Backend - Java API\)/gi, '(Backend / Java API)');
+    }
+
+    function formatTimeSec(sec) {
+      var m = Math.floor(sec / 60);
+      var s = sec % 60;
+      return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
     }
 
     function switchTab(tab) {
@@ -344,11 +573,318 @@
       } else if (tab === 'jobs') {
         if (ALL_JOBS.length === 0) fetchSupabaseJobs(true);
         else renderHingeJobs();
+      } else if (tab === 'focus') {
+        loadFocusData();
       }
     }
 
     /* ==========================================================================
-       JOBS ENGINE (FETCH, SORT BY FIT_SCORE, HINGE SWIPE)
+       BEEP SOUND SYNTHESIZER (WEB AUDIO API)
+       ========================================================================== */
+    function playBeepSound() {
+      try {
+        var AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        var ctx = new AudioCtx();
+
+        var playTone = function(timeOffset, freq) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + timeOffset);
+
+          gain.gain.setValueAtTime(0.3, ctx.currentTime + timeOffset);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + timeOffset + 0.25);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(ctx.currentTime + timeOffset);
+          osc.stop(ctx.currentTime + timeOffset + 0.25);
+        };
+
+        playTone(0, 880);
+        playTone(0.3, 880);
+        playTone(0.6, 1174.66);
+      } catch(e) {
+        console.warn('Audio tone could not play automatically:', e);
+      }
+    }
+
+    /* ==========================================================================
+       FOCUS BUCKETS & 7-DAY STACKED BAR ENGINE
+       ========================================================================== */
+    function loadFocusData() {
+      // 1. Fetch Buckets (to load latest user edits)
+      sbClient.request('focus_buckets?select=*&order=id.asc', 'GET', null, null, function(err, buckets) {
+        if (!err && buckets && buckets.length > 0) {
+          FOCUS_BUCKETS = buckets;
+        }
+        renderFocusGrid();
+
+        // 2. Fetch completed sessions for current week
+        var weekInfo = getISOWeekDates();
+        var mondayStr = weekInfo.monday.toISOString();
+
+        sbClient.request('focus_sessions?select=*&created_at=gte.' + mondayStr, 'GET', null, null, function(sErr, sessions) {
+          FOCUS_SESSIONS = (!sErr && sessions && Array.isArray(sessions)) ? sessions : [];
+          render7DayStackedChart();
+        });
+      });
+    }
+
+    function renderFocusGrid() {
+      var container = document.getElementById('focus-grid-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      for (var i = 0; i < FOCUS_BUCKETS.length; i++) {
+        var b = FOCUS_BUCKETS[i];
+        var state = activeTimers[b.bucket_key];
+
+        var card = document.createElement('div');
+        card.className = 'focus-card';
+        card.style.borderTopColor = b.color;
+        card.id = 'focus-card-' + b.bucket_key;
+
+        card.innerHTML = 
+          '<div>' +
+            '<div class="focus-card-top">' +
+              '<span class="focus-timer-pill" onclick="promptSetTimer(\'' + b.bucket_key + '\')">' +
+                '⏱️ <span id="timer-display-' + b.bucket_key + '">' + formatTimeSec(state.remainingSec) + '</span>' +
+              '</span>' +
+              '<button class="focus-edit-btn" onclick="toggleEditBucketDesc(\'' + b.bucket_key + '\')">✏️ Edit</button>' +
+            '</div>' +
+            '<div class="focus-card-title">' + escapeHtml(b.title) + '</div>' +
+            '<p class="focus-card-desc" id="desc-view-' + b.bucket_key + '">' + escapeHtml(b.description || 'Set current objective...') + '</p>' +
+            '<textarea class="focus-edit-input" id="desc-input-' + b.bucket_key + '" rows="2">' + escapeHtml(b.description || '') + '</textarea>' +
+          '</div>' +
+          '<div class="focus-card-controls">' +
+            '<button class="btn btn-sm" id="btn-toggle-' + b.bucket_key + '" onclick="toggleTimer(\'' + b.bucket_key + '\')">' +
+              (state.isRunning ? '⏸ Pause' : '▶ Start') +
+            '</button>' +
+            '<button class="btn btn-secondary btn-sm" onclick="resetTimer(\'' + b.bucket_key + '\')">Reset</button>' +
+          '</div>';
+
+        container.appendChild(card);
+      }
+    }
+
+    function toggleEditBucketDesc(key) {
+      var viewEl = document.getElementById('desc-view-' + key);
+      var inputEl = document.getElementById('desc-input-' + key);
+      if (!viewEl || !inputEl) return;
+
+      if (inputEl.style.display === 'block') {
+        var updatedText = inputEl.value.trim();
+        viewEl.innerText = updatedText || 'Set current objective...';
+        viewEl.style.display = 'block';
+        inputEl.style.display = 'none';
+
+        for (var i = 0; i < FOCUS_BUCKETS.length; i++) {
+          if (FOCUS_BUCKETS[i].bucket_key === key) {
+            FOCUS_BUCKETS[i].description = updatedText;
+            break;
+          }
+        }
+
+        sbClient.request('focus_buckets?bucket_key=eq.' + key, 'PATCH', { description: updatedText }, null, function(err) {
+          if (err) console.error('Failed to update bucket description:', err);
+        });
+      } else {
+        viewEl.style.display = 'none';
+        inputEl.style.display = 'block';
+        inputEl.focus();
+      }
+    }
+
+    function promptSetTimer(key) {
+      var state = activeTimers[key];
+      var currentMins = Math.round(state.totalSec / 60);
+      var input = prompt('Set countdown minutes for this bucket:', currentMins);
+      if (input === null) return;
+      var newMins = parseInt(input, 10);
+      if (!isNaN(newMins) && newMins > 0) {
+        if (state.intervalId) clearInterval(state.intervalId);
+        state.isRunning = false;
+        state.totalSec = newMins * 60;
+        state.remainingSec = newMins * 60;
+
+        var display = document.getElementById('timer-display-' + key);
+        if (display) display.innerText = formatTimeSec(state.remainingSec);
+        var toggleBtn = document.getElementById('btn-toggle-' + key);
+        if (toggleBtn) toggleBtn.innerText = '▶ Start';
+      }
+    }
+
+    function toggleTimer(key) {
+      var state = activeTimers[key];
+      var toggleBtn = document.getElementById('btn-toggle-' + key);
+
+      if (state.isRunning) {
+        clearInterval(state.intervalId);
+        state.isRunning = false;
+        if (toggleBtn) toggleBtn.innerText = '▶ Start';
+      } else {
+        state.isRunning = true;
+        if (toggleBtn) toggleBtn.innerText = '⏸ Pause';
+
+        state.intervalId = setInterval(function() {
+          state.remainingSec--;
+
+          var display = document.getElementById('timer-display-' + key);
+          if (display) display.innerText = formatTimeSec(state.remainingSec);
+
+          if (state.remainingSec <= 0) {
+            clearInterval(state.intervalId);
+            state.isRunning = false;
+            state.remainingSec = state.totalSec;
+            if (toggleBtn) toggleBtn.innerText = '▶ Start';
+            if (display) display.innerText = formatTimeSec(state.remainingSec);
+
+            playBeepSound();
+
+            // Record completed session to Supabase
+            sbClient.request('focus_sessions', 'POST', {
+              bucket_key: key,
+              duration_seconds: state.totalSec
+            }, null, function(err) {
+              loadFocusData();
+            });
+
+            alert('🔔 Focus session complete for: ' + key.replace(/_/g, ' ').toUpperCase() + '!');
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer(key) {
+      var state = activeTimers[key];
+      if (state.intervalId) clearInterval(state.intervalId);
+      state.isRunning = false;
+      state.remainingSec = state.totalSec;
+
+      var display = document.getElementById('timer-display-' + key);
+      if (display) display.innerText = formatTimeSec(state.remainingSec);
+      var toggleBtn = document.getElementById('btn-toggle-' + key);
+      if (toggleBtn) toggleBtn.innerText = '▶ Start';
+    }
+
+    /* 7-Day Stacked Horizontal Bars */
+    function getISOWeekDates() {
+      var now = new Date();
+      var day = now.getDay();
+      var diffToMon = now.getDate() - day + (day === 0 ? -6 : 1);
+      var monday = new Date(now.setDate(diffToMon));
+      monday.setHours(0, 0, 0, 0);
+
+      var days = [];
+      var dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+      for (var i = 0; i < 7; i++) {
+        var d = new Date(monday.getTime() + i * 86400000);
+        days.push({
+          dateStr: d.toISOString().split('T')[0],
+          shortName: dayNames[i],
+          isToday: d.toDateString() === new Date().toDateString()
+        });
+      }
+
+      return { monday: monday, days: days };
+    }
+
+    function render7DayStackedChart() {
+      var container = document.getElementById('focus-days-bars-container');
+      var legendContainer = document.getElementById('focus-chart-legend');
+      var weekTotalEl = document.getElementById('focus-week-total');
+      if (!container || !legendContainer) return;
+
+      container.innerHTML = '';
+      legendContainer.innerHTML = '';
+
+      var weekInfo = getISOWeekDates();
+      var days = weekInfo.days;
+
+      // Group durations by day and bucket
+      var dayDurations = {};
+      var bucketTotals = { office_work: 0, side_gig: 0, job_machinery: 0, systems_mastery: 0 };
+      var weekTotalSeconds = 0;
+
+      for (var d = 0; d < days.length; d++) {
+        dayDurations[days[d].dateStr] = { office_work: 0, side_gig: 0, job_machinery: 0, systems_mastery: 0, total: 0 };
+      }
+
+      for (var s = 0; s < FOCUS_SESSIONS.length; s++) {
+        var sess = FOCUS_SESSIONS[s];
+        var dateKey = sess.created_at ? sess.created_at.split('T')[0] : '';
+        var dur = sess.duration_seconds || 0;
+
+        if (dayDurations[dateKey] && dayDurations[dateKey][sess.bucket_key] !== undefined) {
+          dayDurations[dateKey][sess.bucket_key] += dur;
+          dayDurations[dateKey].total += dur;
+          bucketTotals[sess.bucket_key] += dur;
+          weekTotalSeconds += dur;
+        }
+      }
+
+      if (weekTotalEl) {
+        weekTotalEl.innerText = (weekTotalSeconds / 3600).toFixed(1) + ' hrs';
+      }
+
+      // Determine highest daily total to scale bars proportionally, minimum 3 hours scale
+      var maxDailyTotal = 3 * 3600;
+      for (var dk in dayDurations) {
+        if (dayDurations[dk].total > maxDailyTotal) maxDailyTotal = dayDurations[dk].total;
+      }
+
+      // Render the 7 horizontal daily stacked bars
+      for (var j = 0; j < days.length; j++) {
+        var dayObj = days[j];
+        var stats = dayDurations[dayObj.dateStr] || { office_work: 0, side_gig: 0, job_machinery: 0, systems_mastery: 0, total: 0 };
+
+        var row = document.createElement('div');
+        row.className = 'chart-day-row ' + (dayObj.isToday ? 'is-today' : '');
+
+        var segmentsHtml = '';
+        for (var b = 0; b < FOCUS_BUCKETS.length; b++) {
+          var bKey = FOCUS_BUCKETS[b].bucket_key;
+          var bCol = FOCUS_BUCKETS[b].color;
+          var durSec = stats[bKey] || 0;
+
+          if (durSec > 0) {
+            var widthPercent = (durSec / maxDailyTotal) * 100;
+            segmentsHtml += '<div class="chart-segment" style="width:' + widthPercent + '%; background:' + bCol + ';" title="' + escapeHtml(FOCUS_BUCKETS[b].title) + ': ' + (durSec / 60).toFixed(0) + ' mins"></div>';
+          }
+        }
+
+        var totalHoursFormatted = stats.total > 0 ? (stats.total / 3600).toFixed(1) + 'h' : '—';
+
+        row.innerHTML = 
+          '<span class="chart-day-label">' + dayObj.shortName + '</span>' +
+          '<div class="chart-track">' + segmentsHtml + '</div>' +
+          '<span class="chart-day-total">' + totalHoursFormatted + '</span>';
+
+        container.appendChild(row);
+      }
+
+      // Render chart legend with distribution percentages
+      for (var k = 0; k < FOCUS_BUCKETS.length; k++) {
+        var bucket = FOCUS_BUCKETS[k];
+        var totalSec = bucketTotals[bucket.bucket_key] || 0;
+        var percent = weekTotalSeconds > 0 ? Math.round((totalSec / weekTotalSeconds) * 100) : 0;
+
+        var legendItem = document.createElement('div');
+        legendItem.className = 'legend-item';
+        legendItem.innerHTML = 
+          '<span class="legend-dot" style="background:' + bucket.color + ';"></span>' +
+          '<span>' + escapeHtml(bucket.title) + ' · <strong>' + (totalSec / 3600).toFixed(1) + 'h</strong> (' + percent + '%)</span>';
+
+        legendContainer.appendChild(legendItem);
+      }
+    }
+
+    /* ==========================================================================
+       JOBS ENGINE (FIT SCORE RANKED, HINGE SWIPES)
        ========================================================================== */
     function fetchSupabaseJobs(isReset) {
       if (isFetchingJobs) return;
@@ -359,7 +895,6 @@
         loader.innerText = 'Syncing jobs ranked by score…';
       }
 
-      // Fetch all opportunities sorted by highest fit score first, then created_at
       sbClient.request('job_opportunities?select=*&order=fit_score.desc,created_at.desc', 'GET', null, null, function(err, data) {
         isFetchingJobs = false;
         if (loader) loader.style.display = 'none';
@@ -388,7 +923,7 @@
       }
 
       var filters = [
-        { id: 'unseen', label: '🔥 Unseen Queue (' + unseenCount + ')' },
+        { id: 'unseen', label: '🔥 Unseen (' + unseenCount + ')' },
         { id: 'shortlisted', label: '⭐ Shortlisted (' + shortlistedCount + ')' },
         { id: 'passed', label: '👁️ Passed / Viewed (' + passedCount + ')' },
         { id: 'all', label: 'All Jobs (' + ALL_JOBS.length + ')' }
@@ -418,7 +953,7 @@
           '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:18px; border:1px solid #e2e8f0;">' +
             '<div style="font-size:28px; margin-bottom:8px;">🎯</div>' +
             '<h3 style="font-size:15px; font-weight:bold; color:#1e293b;">Queue cleared!</h3>' +
-            '<p style="font-size:12px; color:#64748b; margin-top:4px;">No roles in this bucket. Swipe through all or refresh.</p>' +
+            '<p style="font-size:12px; color:#64748b; margin-top:4px;">No roles in this bucket.</p>' +
             '<button class="btn btn-sm" style="margin-top:14px;" onclick="activeJobFilter=\'unseen\'; renderHingeJobs();">View Unseen</button>' +
           '</div>';
         return;
@@ -546,11 +1081,9 @@
         var deltaX = currentX - startX;
 
         if (deltaX > SWIPE_THRESHOLD) {
-          // SWIPE RIGHT: SHORTLIST
           card.className = 'bento-signal-card fly-right';
           setTimeout(function() { markJobStatus(jobId, 'shortlisted'); }, 240);
         } else if (deltaX < -SWIPE_THRESHOLD) {
-          // SWIPE LEFT: PASS / VIEWED
           card.className = 'bento-signal-card fly-left';
           setTimeout(function() { markJobStatus(jobId, 'passed'); }, 240);
         } else {
@@ -938,7 +1471,7 @@
 
     function closeNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'none'; }
 
-    // Init default Signals
+    // Init Signals
     fetchSupabaseSignals(true);
   </script>
 </body>
