@@ -29,15 +29,14 @@
 
     .btn { background: #1e293b; color: #fff; border: none; padding: 7px 14px; border-radius: 99px; font-size: 12px; font-weight: bold; cursor: pointer; display: inline-block; white-space: nowrap; text-decoration: none; }
     .btn-secondary { background: #ffffff; color: #1e293b; border: 1px solid #cbd5e1; }
+    .btn-danger { background: #ef4444; color: #fff; border: none; }
     .btn-sm { padding: 4px 10px; font-size: 11px; border-radius: 99px; }
 
     .filter-pills { overflow-x: auto; white-space: nowrap; padding: 4px 0 10px 0; width: 100%; }
     .filter-chip { font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 99px; border: 1px solid #e2e8f0; background: #ffffff; cursor: pointer; color: #64748b; display: inline-block; margin-right: 4px; }
     .filter-chip.active { background: #1e293b; color: #fff; border-color: #1e293b; }
 
-    /* ==========================================================================
-       FOCUS 2x2 GRID & 7-DAY STACKED CHART
-       ========================================================================== */
+    /* FOCUS 2x2 GRID & 7-DAY STACKED CHART */
     .focus-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -125,7 +124,6 @@
       padding-top: 10px;
     }
 
-    /* 7-Day Stacked Chart Container */
     .stacked-chart-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -207,9 +205,98 @@
       border-radius: 50%;
     }
 
-    /* ==========================================================================
-       SWIPEABLE CARDS (SIGNALS & JOBS)
-       ========================================================================== */
+    /* FULLSCREEN FOCUS HUD OVERLAY */
+    .focus-hud-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #090d16;
+      color: #ffffff;
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    .focus-hud-top {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .focus-hud-badge {
+      font-size: 11px;
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-weight: bold;
+    }
+
+    .focus-hud-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .focus-hud-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: #f8fafc;
+    }
+
+    .focus-hud-desc {
+      font-size: 13px;
+      color: #94a3b8;
+      max-width: 440px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+
+    .focus-hud-digits {
+      font-size: 96px;
+      font-weight: 900;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      line-height: 1;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .focus-hud-elapsed {
+      font-size: 12px;
+      font-family: monospace;
+      color: #64748b;
+      margin-top: 14px;
+    }
+
+    .focus-hud-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .focus-hud-btn {
+      padding: 12px 28px;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 1px solid transparent;
+      outline: none;
+    }
+    .focus-hud-btn-primary { background: #ffffff; color: #0f172a; }
+    .focus-hud-btn-danger { background: #ef4444; color: #ffffff; }
+
+    /* SWIPEABLE CARDS (SIGNALS & JOBS) */
     .hinge-deck-wrapper {
       position: relative;
       width: 100%;
@@ -309,7 +396,6 @@
     .signal-meter .bar:nth-child(5) { height: 12px; }
     .signal-meter .bar.on { background: #d97706; }
 
-    /* NEWSPAPER OVERLAY */
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
     .news-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 1rem; }
@@ -336,6 +422,7 @@
       .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 11px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
       .focus-grid { grid-template-columns: 1fr; }
+      .focus-hud-digits { font-size: 64px; }
     }
     @media (min-width: 641px) {
       .mobile-nav { display: none; }
@@ -399,7 +486,6 @@
         </div>
 
         <div id="focus-days-bars-container"></div>
-
         <div class="chart-legend" id="focus-chart-legend"></div>
       </div>
     </section>
@@ -419,6 +505,26 @@
       <div class="hinge-deck-wrapper" id="jobs-card-container"></div>
     </section>
   </main>
+
+  <!-- FULLSCREEN FOCUS HUD MODAL -->
+  <div class="focus-hud-overlay" id="focus-hud-modal">
+    <div class="focus-hud-top">
+      <span class="focus-hud-badge" id="hud-badge" style="background:#3b82f6; color:#ffffff;">FOCUS SESSION</span>
+      <button class="btn btn-secondary btn-sm" style="background:#161f30; border-color:#2a364f; color:#ffffff;" onclick="minimizeHud()">✕ Minimize</button>
+    </div>
+
+    <div class="focus-hud-center">
+      <div class="focus-hud-title" id="hud-title">Bucket Name</div>
+      <div class="focus-hud-desc" id="hud-desc">Active task notes</div>
+      <div class="focus-hud-digits" id="hud-digits">25:00</div>
+      <div class="focus-hud-elapsed" id="hud-elapsed">Elapsed: 00:00</div>
+    </div>
+
+    <div class="focus-hud-controls">
+      <button class="focus-hud-btn focus-hud-btn-primary" id="hud-toggle-btn" onclick="hudToggleActiveTimer()">⏸ Pause</button>
+      <button class="focus-hud-btn focus-hud-btn-danger" onclick="hudStopAndSave()">⏹ Stop & Save</button>
+    </div>
+  </div>
 
   <!-- MOBILE BOTTOM NAVIGATION -->
   <div class="mobile-nav">
@@ -481,7 +587,6 @@
       }
     };
 
-    /* APPLICATION STATE */
     var ALL_ARTICLES = [];
     var ALL_IPOS = [];
     var ALL_JOBS = [];
@@ -499,16 +604,18 @@
     ];
     var FOCUS_SESSIONS = [];
 
-    // Active timers map: bucket_key -> { remainingSec, totalSec, intervalId, isRunning }
+    // activeTimers: bucket_key -> { remainingSec, totalSec, intervalId, isRunning, elapsedSec }
     var activeTimers = {};
     for (var b = 0; b < FOCUS_BUCKETS.length; b++) {
       activeTimers[FOCUS_BUCKETS[b].bucket_key] = {
         remainingSec: 25 * 60,
         totalSec: 25 * 60,
+        elapsedSec: 0,
         intervalId: null,
         isRunning: false
       };
     }
+    var currentActiveHudKey = null;
 
     function escapeHtml(str) {
       if (!str) return '';
@@ -540,6 +647,7 @@
     }
 
     function formatTimeSec(sec) {
+      if (sec < 0) sec = 0;
       var m = Math.floor(sec / 60);
       var s = sec % 60;
       return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
@@ -578,9 +686,7 @@
       }
     }
 
-    /* ==========================================================================
-       BEEP SOUND SYNTHESIZER (WEB AUDIO API)
-       ========================================================================== */
+    /* BEEP AUDIO SYNTHESIZER (WEB AUDIO API) */
     function playBeepSound() {
       try {
         var AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -593,36 +699,41 @@
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, ctx.currentTime + timeOffset);
 
-          gain.gain.setValueAtTime(0.3, ctx.currentTime + timeOffset);
-          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + timeOffset + 0.25);
+          gain.gain.setValueAtTime(0.35, ctx.currentTime + timeOffset);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + timeOffset + 0.28);
 
           osc.connect(gain);
           gain.connect(ctx.destination);
 
           osc.start(ctx.currentTime + timeOffset);
-          osc.stop(ctx.currentTime + timeOffset + 0.25);
+          osc.stop(ctx.currentTime + timeOffset + 0.28);
         };
 
         playTone(0, 880);
         playTone(0.3, 880);
         playTone(0.6, 1174.66);
       } catch(e) {
-        console.warn('Audio tone could not play automatically:', e);
+        console.warn('Audio could not be synthesized:', e);
       }
     }
 
     /* ==========================================================================
-       FOCUS BUCKETS & 7-DAY STACKED BAR ENGINE
+       FOCUS BUCKETS & 7-DAY STACKED ENGINE
        ========================================================================== */
+    function getBucketObj(key) {
+      for (var i = 0; i < FOCUS_BUCKETS.length; i++) {
+        if (FOCUS_BUCKETS[i].bucket_key === key) return FOCUS_BUCKETS[i];
+      }
+      return null;
+    }
+
     function loadFocusData() {
-      // 1. Fetch Buckets (to load latest user edits)
       sbClient.request('focus_buckets?select=*&order=id.asc', 'GET', null, null, function(err, buckets) {
         if (!err && buckets && buckets.length > 0) {
           FOCUS_BUCKETS = buckets;
         }
         renderFocusGrid();
 
-        // 2. Fetch completed sessions for current week
         var weekInfo = getISOWeekDates();
         var mondayStr = weekInfo.monday.toISOString();
 
@@ -647,6 +758,27 @@
         card.style.borderTopColor = b.color;
         card.id = 'focus-card-' + b.bucket_key;
 
+        var controlsHtml = '';
+        if (state.isRunning) {
+          controlsHtml = 
+            '<button class="btn btn-sm" id="btn-toggle-' + b.bucket_key + '" onclick="toggleTimer(\'' + b.bucket_key + '\')">⏸ Pause</button>' +
+            '<div>' +
+              '<button class="btn btn-secondary btn-sm" style="margin-right:4px;" onclick="openFullscreenHud(\'' + b.bucket_key + '\')">⛶ Fullscreen</button>' +
+              '<button class="btn btn-danger btn-sm" onclick="stopAndSaveTimer(\'' + b.bucket_key + '\')">⏹ Stop & Save</button>' +
+            '</div>';
+        } else if (state.elapsedSec > 0) {
+          controlsHtml = 
+            '<button class="btn btn-sm" id="btn-toggle-' + b.bucket_key + '" onclick="toggleTimer(\'' + b.bucket_key + '\')">▶ Resume</button>' +
+            '<div>' +
+              '<button class="btn btn-secondary btn-sm" style="margin-right:4px;" onclick="openFullscreenHud(\'' + b.bucket_key + '\')">⛶ Fullscreen</button>' +
+              '<button class="btn btn-danger btn-sm" onclick="stopAndSaveTimer(\'' + b.bucket_key + '\')">⏹ Stop & Save</button>' +
+            '</div>';
+        } else {
+          controlsHtml = 
+            '<button class="btn btn-sm" id="btn-toggle-' + b.bucket_key + '" onclick="toggleTimer(\'' + b.bucket_key + '\')">▶ Start</button>' +
+            '<button class="btn btn-secondary btn-sm" onclick="openFullscreenHud(\'' + b.bucket_key + '\')">⛶ Fullscreen</button>';
+        }
+
         card.innerHTML = 
           '<div>' +
             '<div class="focus-card-top">' +
@@ -659,11 +791,8 @@
             '<p class="focus-card-desc" id="desc-view-' + b.bucket_key + '">' + escapeHtml(b.description || 'Set current objective...') + '</p>' +
             '<textarea class="focus-edit-input" id="desc-input-' + b.bucket_key + '" rows="2">' + escapeHtml(b.description || '') + '</textarea>' +
           '</div>' +
-          '<div class="focus-card-controls">' +
-            '<button class="btn btn-sm" id="btn-toggle-' + b.bucket_key + '" onclick="toggleTimer(\'' + b.bucket_key + '\')">' +
-              (state.isRunning ? '⏸ Pause' : '▶ Start') +
-            '</button>' +
-            '<button class="btn btn-secondary btn-sm" onclick="resetTimer(\'' + b.bucket_key + '\')">Reset</button>' +
+          '<div class="focus-card-controls" id="controls-' + b.bucket_key + '">' +
+            controlsHtml +
           '</div>';
 
         container.appendChild(card);
@@ -700,74 +829,169 @@
 
     function promptSetTimer(key) {
       var state = activeTimers[key];
+      if (state.isRunning) {
+        alert('Pause or stop the timer first before changing time.');
+        return;
+      }
       var currentMins = Math.round(state.totalSec / 60);
-      var input = prompt('Set countdown minutes for this bucket:', currentMins);
+      var input = prompt('Set countdown duration (minutes):', currentMins);
       if (input === null) return;
       var newMins = parseInt(input, 10);
       if (!isNaN(newMins) && newMins > 0) {
-        if (state.intervalId) clearInterval(state.intervalId);
-        state.isRunning = false;
         state.totalSec = newMins * 60;
         state.remainingSec = newMins * 60;
-
-        var display = document.getElementById('timer-display-' + key);
-        if (display) display.innerText = formatTimeSec(state.remainingSec);
-        var toggleBtn = document.getElementById('btn-toggle-' + key);
-        if (toggleBtn) toggleBtn.innerText = '▶ Start';
+        state.elapsedSec = 0;
+        renderFocusGrid();
+        updateHudFace(key);
       }
     }
 
     function toggleTimer(key) {
       var state = activeTimers[key];
-      var toggleBtn = document.getElementById('btn-toggle-' + key);
 
       if (state.isRunning) {
         clearInterval(state.intervalId);
         state.isRunning = false;
-        if (toggleBtn) toggleBtn.innerText = '▶ Start';
+        renderFocusGrid();
+        updateHudFace(key);
       } else {
+        // Pause any other running bucket to maintain single-focus state
+        for (var k in activeTimers) {
+          if (k !== key && activeTimers[k].isRunning) {
+            clearInterval(activeTimers[k].intervalId);
+            activeTimers[k].isRunning = false;
+          }
+        }
+
         state.isRunning = true;
-        if (toggleBtn) toggleBtn.innerText = '⏸ Pause';
+        renderFocusGrid();
+        updateHudFace(key);
 
         state.intervalId = setInterval(function() {
           state.remainingSec--;
+          state.elapsedSec++;
 
           var display = document.getElementById('timer-display-' + key);
           if (display) display.innerText = formatTimeSec(state.remainingSec);
+          updateHudFace(key);
 
           if (state.remainingSec <= 0) {
             clearInterval(state.intervalId);
             state.isRunning = false;
-            state.remainingSec = state.totalSec;
-            if (toggleBtn) toggleBtn.innerText = '▶ Start';
-            if (display) display.innerText = formatTimeSec(state.remainingSec);
-
             playBeepSound();
+            var durationToLog = state.elapsedSec;
 
-            // Record completed session to Supabase
-            sbClient.request('focus_sessions', 'POST', {
-              bucket_key: key,
-              duration_seconds: state.totalSec
-            }, null, function(err) {
-              loadFocusData();
-            });
+            // Reset back to initial configured time
+            state.remainingSec = state.totalSec;
+            state.elapsedSec = 0;
+            renderFocusGrid();
+            updateHudFace(key);
+            closeFullscreenHud();
 
-            alert('🔔 Focus session complete for: ' + key.replace(/_/g, ' ').toUpperCase() + '!');
+            // Log session directly to Supabase
+            if (durationToLog > 0) {
+              sbClient.request('focus_sessions', 'POST', {
+                bucket_key: key,
+                duration_seconds: durationToLog
+              }, null, function(err) {
+                loadFocusData();
+              });
+            }
+
+            alert('🔔 Focus session complete: ' + key.replace(/_/g, ' ').toUpperCase() + '!');
           }
         }, 1000);
       }
     }
 
-    function resetTimer(key) {
+    function stopAndSaveTimer(key) {
       var state = activeTimers[key];
       if (state.intervalId) clearInterval(state.intervalId);
       state.isRunning = false;
-      state.remainingSec = state.totalSec;
 
-      var display = document.getElementById('timer-display-' + key);
-      if (display) display.innerText = formatTimeSec(state.remainingSec);
-      var toggleBtn = document.getElementById('btn-toggle-' + key);
-      if (toggleBtn) toggleBtn.innerText = '▶ Start';
+      var loggedSeconds = state.elapsedSec;
+      state.remainingSec = state.totalSec;
+      state.elapsedSec = 0;
+
+      renderFocusGrid();
+      updateHudFace(key);
+      closeFullscreenHud();
+
+      if (loggedSeconds >= 10) {
+        sbClient.request('focus_sessions', 'POST', {
+          bucket_key: key,
+          duration_seconds: loggedSeconds
+        }, null, function(err) {
+          loadFocusData();
+        });
+        alert('✓ Saved ' + formatTimeSec(loggedSeconds) + ' to ' + key.replace(/_/g, ' ').toUpperCase() + '!');
+      } else if (loggedSeconds > 0) {
+        alert('Session under 10 seconds discarded.');
+      }
+    }
+
+    /* FULLSCREEN HUD MODAL ENGINE */
+    function openFullscreenHud(key) {
+      currentActiveHudKey = key;
+      var bObj = getBucketObj(key);
+      var state = activeTimers[key];
+
+      var modal = document.getElementById('focus-hud-modal');
+      var badge = document.getElementById('hud-badge');
+      var title = document.getElementById('hud-title');
+      var desc = document.getElementById('hud-desc');
+
+      if (bObj) {
+        badge.innerText = bObj.title;
+        badge.style.backgroundColor = bObj.color;
+        title.innerText = bObj.title;
+        desc.innerText = bObj.description || 'Deep focus execution';
+      }
+
+      updateHudFace(key);
+      modal.style.display = 'flex';
+
+      try {
+        if (modal.requestFullscreen) modal.requestFullscreen();
+        else if (modal.webkitRequestFullscreen) modal.webkitRequestFullscreen();
+      } catch(e) {}
+    }
+
+    function updateHudFace(key) {
+      if (!currentActiveHudKey || currentActiveHudKey !== key) return;
+      var state = activeTimers[key];
+      var digits = document.getElementById('hud-digits');
+      var elapsed = document.getElementById('hud-elapsed');
+      var toggleBtn = document.getElementById('hud-toggle-btn');
+
+      if (digits) digits.innerText = formatTimeSec(state.remainingSec);
+      if (elapsed) elapsed.innerText = 'Elapsed: ' + formatTimeSec(state.elapsedSec);
+      if (toggleBtn) toggleBtn.innerText = state.isRunning ? '⏸ Pause' : '▶ Resume';
+    }
+
+    function hudToggleActiveTimer() {
+      if (currentActiveHudKey) {
+        toggleTimer(currentActiveHudKey);
+      }
+    }
+
+    function hudStopAndSave() {
+      if (currentActiveHudKey) {
+        stopAndSaveTimer(currentActiveHudKey);
+      }
+    }
+
+    function minimizeHud() {
+      closeFullscreenHud();
+    }
+
+    function closeFullscreenHud() {
+      try {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      } catch(e) {}
+      document.getElementById('focus-hud-modal').style.display = 'none';
+      currentActiveHudKey = null;
     }
 
     /* 7-Day Stacked Horizontal Bars */
@@ -805,7 +1029,6 @@
       var weekInfo = getISOWeekDates();
       var days = weekInfo.days;
 
-      // Group durations by day and bucket
       var dayDurations = {};
       var bucketTotals = { office_work: 0, side_gig: 0, job_machinery: 0, systems_mastery: 0 };
       var weekTotalSeconds = 0;
@@ -831,13 +1054,11 @@
         weekTotalEl.innerText = (weekTotalSeconds / 3600).toFixed(1) + ' hrs';
       }
 
-      // Determine highest daily total to scale bars proportionally, minimum 3 hours scale
       var maxDailyTotal = 3 * 3600;
       for (var dk in dayDurations) {
         if (dayDurations[dk].total > maxDailyTotal) maxDailyTotal = dayDurations[dk].total;
       }
 
-      // Render the 7 horizontal daily stacked bars
       for (var j = 0; j < days.length; j++) {
         var dayObj = days[j];
         var stats = dayDurations[dayObj.dateStr] || { office_work: 0, side_gig: 0, job_machinery: 0, systems_mastery: 0, total: 0 };
@@ -867,7 +1088,6 @@
         container.appendChild(row);
       }
 
-      // Render chart legend with distribution percentages
       for (var k = 0; k < FOCUS_BUCKETS.length; k++) {
         var bucket = FOCUS_BUCKETS[k];
         var totalSec = bucketTotals[bucket.bucket_key] || 0;
@@ -884,7 +1104,7 @@
     }
 
     /* ==========================================================================
-       JOBS ENGINE (FIT SCORE RANKED, HINGE SWIPES)
+       JOBS ENGINE
        ========================================================================== */
     function fetchSupabaseJobs(isReset) {
       if (isFetchingJobs) return;
@@ -989,9 +1209,7 @@
         '</div>' +
 
         '<a href="' + (job.url || '#') + '" target="_blank" class="bento-headline">' + escapeHtml(cleanTitle(job.title)) + '</a>' +
-
         (job.job_summary ? '<p class="bento-body">' + escapeHtml(job.job_summary) + '</p>' : '') +
-
         (job.analysis ? '<div class="bento-deep-dive"><strong>Fit Analysis:</strong> ' + escapeHtml(job.analysis) + '</div>' : '') +
 
         (job.resume_changes ? (
@@ -1005,7 +1223,7 @@
         '<div class="bento-footer">' +
           '<div>' +
             '<button class="btn btn-secondary btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'passed\')">✕ Pass</button> ' +
-            '<button class="btn btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'shortlisted\')">★ Shortlist / Will Apply</button>' +
+            '<button class="btn btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'shortlisted\')">★ Shortlist</button>' +
           '</div>' +
           '<div>' +
             (job.resume_drive_link ? '<a class="btn btn-secondary btn-sm" href="' + job.resume_drive_link + '" target="_blank" style="margin-right:4px;">📄 View Resume</a>' : '') +
@@ -1103,7 +1321,7 @@
     }
 
     /* ==========================================================================
-       SIGNALS ENGINE (SERVER-DRIVEN UNREAD, STARRED, & ORDERED)
+       SIGNALS ENGINE
        ========================================================================== */
     function fetchSupabaseSignals(isReset) {
       if (isFetchingSignals) return;
@@ -1377,9 +1595,7 @@
       sbClient.request('ipo_evaluations?symbol=eq.' + encodeURIComponent(symbol), 'PATCH', { is_hidden: true }, null, function() {});
     }
 
-    /* ==========================================================================
-       READER OVERLAY
-       ========================================================================== */
+    /* READER OVERLAY */
     function openNewspaperOverlay() {
       document.getElementById('newspaper-overlay').style.display = 'block';
       var tabsContainer = document.getElementById('news-tabs-bar');
