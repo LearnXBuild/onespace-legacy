@@ -37,349 +37,69 @@
     .filter-chip.active { background: #1e293b; color: #fff; border-color: #1e293b; }
 
     /* FOCUS 2x2 GRID & 7-DAY STACKED CHART */
-    .focus-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .focus-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 16px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 200px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-      border-top: 4px solid #cbd5e1;
-    }
-
-    .focus-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .focus-timer-pill {
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 99px;
-      padding: 3px 8px;
-      font-size: 11px;
-      font-weight: 700;
-      font-family: monospace;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
+    .focus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
+    .focus-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); border-top: 4px solid #cbd5e1; }
+    .focus-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .focus-timer-pill { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 99px; padding: 3px 8px; font-size: 11px; font-weight: 700; font-family: monospace; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
     .focus-timer-pill:hover { background: #f1f5f9; }
-
-    .focus-edit-btn {
-      background: none;
-      border: none;
-      font-size: 11px;
-      font-weight: 600;
-      color: #64748b;
-      cursor: pointer;
-    }
+    .focus-edit-btn { background: none; border: none; font-size: 11px; font-weight: 600; color: #64748b; cursor: pointer; }
     .focus-edit-btn:hover { color: #1e293b; text-decoration: underline; }
+    .focus-card-title { font-size: 14px; font-weight: 800; color: #1e293b; margin-bottom: 6px; }
+    .focus-card-desc { font-size: 12px; color: #475569; line-height: 1.45; flex: 1; margin-bottom: 12px; word-break: break-word; }
+    .focus-edit-input { width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 8px; font-size: 12px; margin-bottom: 8px; display: none; }
+    .focus-card-controls { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #f1f5f9; padding-top: 10px; }
 
-    .focus-card-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: #1e293b;
-      margin-bottom: 6px;
-    }
+    .stacked-chart-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .stacked-chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .chart-day-row { display: flex; align-items: center; margin-bottom: 10px; gap: 12px; }
+    .chart-day-row.is-today .chart-day-label { color: #6366f1; font-weight: 800; }
+    .chart-day-label { width: 48px; font-size: 11px; font-weight: 700; font-family: monospace; color: #64748b; text-transform: uppercase; }
+    .chart-track { flex: 1; height: 18px; background: #f1f5f9; border-radius: 6px; overflow: hidden; display: flex; position: relative; }
+    .chart-segment { height: 100%; transition: width 0.3s ease; }
+    .chart-day-total { width: 58px; font-size: 11px; font-family: monospace; font-weight: 700; color: #1e293b; text-align: right; }
+    .chart-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #f1f5f9; }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #475569; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-    .focus-card-desc {
-      font-size: 12px;
-      color: #475569;
-      line-height: 1.45;
-      flex: 1;
-      margin-bottom: 12px;
-      word-break: break-word;
-    }
-
-    .focus-edit-input {
-      width: 100%;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      padding: 6px 8px;
-      font-size: 12px;
-      margin-bottom: 8px;
-      display: none;
-    }
-
-    .focus-card-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid #f1f5f9;
-      padding-top: 10px;
-    }
-
-    .stacked-chart-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 18px 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-    }
-
-    .stacked-chart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .chart-day-row {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      gap: 12px;
-    }
-    .chart-day-row.is-today .chart-day-label {
-      color: #6366f1;
-      font-weight: 800;
-    }
-
-    .chart-day-label {
-      width: 48px;
-      font-size: 11px;
-      font-weight: 700;
-      font-family: monospace;
-      color: #64748b;
-      text-transform: uppercase;
-    }
-
-    .chart-track {
-      flex: 1;
-      height: 18px;
-      background: #f1f5f9;
-      border-radius: 6px;
-      overflow: hidden;
-      display: flex;
-      position: relative;
-    }
-
-    .chart-segment {
-      height: 100%;
-      transition: width 0.3s ease;
-    }
-
-    .chart-day-total {
-      width: 58px;
-      font-size: 11px;
-      font-family: monospace;
-      font-weight: 700;
-      color: #1e293b;
-      text-align: right;
-    }
-
-    .chart-legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid #f1f5f9;
-    }
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      color: #475569;
-    }
-    .legend-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-
-    /* FULLSCREEN FOCUS HUD OVERLAY */
-    .focus-hud-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #090d16;
-      color: #ffffff;
-      z-index: 9999;
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 30px 20px;
-    }
-
-    .focus-hud-top {
-      width: 100%;
-      max-width: 600px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .focus-hud-badge {
-      font-size: 11px;
-      font-family: monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 4px 12px;
-      border-radius: 99px;
-      font-weight: bold;
-    }
-
-    .focus-hud-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .focus-hud-title {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      color: #f8fafc;
-    }
-
-    .focus-hud-desc {
-      font-size: 13px;
-      color: #94a3b8;
-      max-width: 440px;
-      line-height: 1.5;
-      margin-bottom: 30px;
-    }
-
-    .focus-hud-digits {
-      font-size: 96px;
-      font-weight: 900;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      letter-spacing: -0.04em;
-      color: #ffffff;
-      line-height: 1;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .focus-hud-elapsed {
-      font-size: 12px;
-      font-family: monospace;
-      color: #64748b;
-      margin-top: 14px;
-    }
-
-    .focus-hud-controls {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .focus-hud-btn {
-      padding: 12px 28px;
-      border-radius: 99px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      border: 1px solid transparent;
-      outline: none;
-    }
+    /* FULLSCREEN FOCUS HUD */
+    .focus-hud-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #090d16; color: #ffffff; z-index: 9999; display: none; flex-direction: column; justify-content: space-between; align-items: center; padding: 30px 20px; }
+    .focus-hud-top { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; }
+    .focus-hud-badge { font-size: 11px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 99px; font-weight: bold; }
+    .focus-hud-center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .focus-hud-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; color: #f8fafc; }
+    .focus-hud-desc { font-size: 13px; color: #94a3b8; max-width: 440px; line-height: 1.5; margin-bottom: 30px; }
+    .focus-hud-digits { font-size: 96px; font-weight: 900; letter-spacing: -0.04em; color: #ffffff; line-height: 1; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .focus-hud-elapsed { font-size: 12px; font-family: monospace; color: #64748b; margin-top: 14px; }
+    .focus-hud-controls { display: flex; gap: 12px; margin-bottom: 20px; }
+    .focus-hud-btn { padding: 12px 28px; border-radius: 99px; font-size: 14px; font-weight: bold; cursor: pointer; border: 1px solid transparent; outline: none; }
     .focus-hud-btn-primary { background: #ffffff; color: #0f172a; }
     .focus-hud-btn-danger { background: #ef4444; color: #ffffff; }
 
-    /* SWIPEABLE CARDS (SIGNALS & JOBS) */
-    .hinge-deck-wrapper {
-      position: relative;
-      width: 100%;
-      min-height: 480px;
-      margin-top: 6px;
-    }
+    /* HINGE / BUMBLE CARDS */
+    .hinge-deck-wrapper { position: relative; width: 100%; min-height: 480px; margin-top: 6px; }
+    .bento-signal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 22px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); position: relative; user-select: none; -webkit-user-select: none; touch-action: pan-y; cursor: grab; transition: box-shadow 0.2s ease; }
+    .bento-signal-card:active { cursor: grabbing; box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12); }
+    .bento-signal-card.fly-right { transition: transform 0.32s ease-out, opacity 0.32s ease-out !important; transform: translate3d(120%, 0, 0) rotate(22deg) !important; opacity: 0 !important; }
+    .bento-signal-card.fly-left { transition: transform 0.32s ease-out, opacity 0.32s ease-out !important; transform: translate3d(-120%, 0, 0) rotate(-22deg) !important; opacity: 0 !important; }
+    .bento-signal-card.snap-back { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; transform: translate3d(0, 0, 0) rotate(0deg) !important; }
 
-    .bento-signal-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      position: relative;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: pan-y;
-      cursor: grab;
-      transition: box-shadow 0.2s ease;
-    }
-    .bento-signal-card:active {
-      cursor: grabbing;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
-    }
-    .bento-signal-card.fly-right {
-      transition: transform 0.32s ease-out, opacity 0.32s ease-out !important;
-      transform: translate3d(120%, 0, 0) rotate(22deg) !important;
-      opacity: 0 !important;
-    }
-    .bento-signal-card.fly-left {
-      transition: transform 0.32s ease-out, opacity 0.32s ease-out !important;
-      transform: translate3d(-120%, 0, 0) rotate(-22deg) !important;
-      opacity: 0 !important;
-    }
-    .bento-signal-card.snap-back {
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-      transform: translate3d(0, 0, 0) rotate(0deg) !important;
-    }
+    .swipe-stamp { position: absolute; top: 20px; padding: 6px 14px; font-size: 15px; font-weight: 900; border-radius: 8px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0; pointer-events: none; z-index: 50; transition: opacity 0.1s ease; }
+    .swipe-stamp.right-stamp { right: 20px; color: #16a34a; border: 3px solid #16a34a; transform: rotate(12deg); }
+    .swipe-stamp.left-stamp { left: 20px; color: #64748b; border: 3px solid #64748b; transform: rotate(-12deg); }
 
-    .swipe-stamp {
-      position: absolute;
-      top: 20px;
-      padding: 6px 14px;
-      font-size: 15px;
-      font-weight: 900;
-      border-radius: 8px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 50;
-      transition: opacity 0.1s ease;
-    }
-    .swipe-stamp.right-stamp {
-      right: 20px;
-      color: #16a34a;
-      border: 3px solid #16a34a;
-      transform: rotate(12deg);
-    }
-    .swipe-stamp.left-stamp {
-      left: 20px;
-      color: #dc2626;
-      border: 3px solid #dc2626;
-      transform: rotate(-12deg);
-    }
-
-    .bento-meta-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; font-size: 11px; color: #64748b; font-family: monospace; margin-bottom: 12px; }
+    .bento-meta-bar { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #64748b; font-family: monospace; margin-bottom: 12px; }
     .bento-headline { font-size: 17px; font-weight: 800; line-height: 1.35; color: #1e293b; text-decoration: none; display: block; margin-bottom: 10px; }
     .bento-body { font-size: 13.5px; line-height: 1.6; color: #334155; margin-bottom: 12px; }
     .bento-deep-dive { background: #f0f9ff; border-left: 3px solid #0284c7; padding: 12px 14px; border-radius: 0 10px 10px 0; font-size: 12px; color: #0369a1; line-height: 1.5; margin: 10px 0; }
-    .bento-footer { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 1px solid #e2e8f0; }
+    .bento-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 1px solid #e2e8f0; flex-wrap: wrap; gap: 8px; }
 
-    .score-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      font-family: monospace;
-      padding: 3px 9px;
-      border-radius: 6px;
-    }
+    .score-badge { display: inline-block; font-size: 11px; font-weight: 800; font-family: monospace; padding: 3px 9px; border-radius: 6px; }
     .score-high { background: #dcfce7; color: #15803d; }
     .score-med { background: #fef3c7; color: #b45309; }
     .score-low { background: #fee2e2; color: #b91c1c; }
+
+    .applied-checkbox-label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #1e293b; cursor: pointer; user-select: none; }
+    .applied-checkbox-label input { width: 16px; height: 16px; cursor: pointer; }
 
     .pill { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: bold; margin-right: 4px; }
     .pill-tag { border: 1px solid #e2e8f0; background: #f1f5f9; }
@@ -396,9 +116,16 @@
     .signal-meter .bar:nth-child(5) { height: 12px; }
     .signal-meter .bar.on { background: #d97706; }
 
+    /* PAGINATED SHORTLIST TABLE / LIST */
+    .paginated-jobs-container { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+    .job-list-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .job-list-card.is-applied { border-left: 4px solid #16a34a; background: #fcfdfc; }
+    .pagination-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 12px 14px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; }
+
+    /* NEWSPAPER OVERLAY */
     .newspaper-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #E8E5D9; color: #22261F; z-index: 500; overflow-y: auto; display: none; padding: 1.25rem 1rem 5rem; line-height: 1.6; }
     .newspaper-wrap { max-width: 680px; margin: 0 auto; }
-    .news-top-bar { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; -webkit-box-align: center; -webkit-align-items: center; align-items: center; margin-bottom: 1rem; }
+    .news-top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
     #news-issue-date { font-family: monospace; font-size: 10px; text-transform: uppercase; color: #8B8C7F; }
     .news-exit-btn { background: transparent; border: 1px solid #B9B6A5; font-size: 13px; padding: 4px 8px; border-radius: 4px; color: #22261F; cursor: pointer; }
     h1.news-title { font-size: 2.2rem; font-weight: bold; text-align: center; line-height: 1; color: #22261F; margin: 0.3rem 0; }
@@ -416,17 +143,15 @@
     .news-source-link { display: inline-block; font-family: monospace; font-size: 11px; color: #B8842E; text-decoration: none; border-bottom: 1px solid #D9C7A0; padding-bottom: 1px; margin-top: 0.5rem; }
 
     @media (max-width: 640px) {
-      body { -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column; }
+      body { flex-direction: column; }
       aside { display: none; }
-      .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; z-index: 50; }
-      .mobile-nav button { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; background: none; border: none; font-size: 11px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
+      .mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 52px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; align-items: center; z-index: 50; }
+      .mobile-nav button { flex: 1; background: none; border: none; font-size: 11px; font-weight: bold; color: #64748b; height: 100%; text-align: center; }
       .mobile-nav button.active { color: #6366f1; }
       .focus-grid { grid-template-columns: 1fr; }
       .focus-hud-digits { font-size: 64px; }
     }
-    @media (min-width: 641px) {
-      .mobile-nav { display: none; }
-    }
+    @media (min-width: 641px) { .mobile-nav { display: none; } }
   </style>
 </head>
 <body>
@@ -472,10 +197,8 @@
         </div>
       </header>
 
-      <!-- 2x2 Grid for 4 Core Buckets -->
       <div class="focus-grid" id="focus-grid-container"></div>
 
-      <!-- 7-Day Stacked Bar Chart -->
       <div class="stacked-chart-card">
         <div class="stacked-chart-header">
           <div>
@@ -502,7 +225,11 @@
       <div class="filter-pills" id="jobs-status-pills"></div>
       <div id="jobs-loading" style="text-align:center; padding:20px; color:#64748b; font-size:12px; font-family:monospace;">Fetching job recommendations…</div>
       
+      <!-- HINGE CARD SWIPE VIEW (UNSEEN) -->
       <div class="hinge-deck-wrapper" id="jobs-card-container"></div>
+
+      <!-- PAGINATED LIST VIEW (SHORTLISTED & HIDE TABS) -->
+      <div id="jobs-paginated-container" style="display:none;"></div>
     </section>
   </main>
 
@@ -592,6 +319,8 @@
     var ALL_JOBS = [];
     var activeTrack = "All";
     var activeJobFilter = "unseen";
+    var jobPage = 1;
+    var JOBS_PER_PAGE = 5;
     var isFetchingSignals = false;
     var isFetchingJobs = false;
 
@@ -604,7 +333,6 @@
     ];
     var FOCUS_SESSIONS = [];
 
-    // activeTimers: bucket_key -> { remainingSec, totalSec, intervalId, isRunning, elapsedSec }
     var activeTimers = {};
     for (var b = 0; b < FOCUS_BUCKETS.length; b++) {
       activeTimers[FOCUS_BUCKETS[b].bucket_key] = {
@@ -680,13 +408,13 @@
         else renderHingeSignals();
       } else if (tab === 'jobs') {
         if (ALL_JOBS.length === 0) fetchSupabaseJobs(true);
-        else renderHingeJobs();
+        else renderJobsView();
       } else if (tab === 'focus') {
         loadFocusData();
       }
     }
 
-    /* BEEP AUDIO SYNTHESIZER (WEB AUDIO API) */
+    /* BEEP AUDIO SYNTHESIZER */
     function playBeepSound() {
       try {
         var AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -698,13 +426,10 @@
           var gain = ctx.createGain();
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, ctx.currentTime + timeOffset);
-
           gain.gain.setValueAtTime(0.35, ctx.currentTime + timeOffset);
           gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + timeOffset + 0.28);
-
           osc.connect(gain);
           gain.connect(ctx.destination);
-
           osc.start(ctx.currentTime + timeOffset);
           osc.stop(ctx.currentTime + timeOffset + 0.28);
         };
@@ -713,7 +438,7 @@
         playTone(0.3, 880);
         playTone(0.6, 1174.66);
       } catch(e) {
-        console.warn('Audio could not be synthesized:', e);
+        console.warn('Audio synthesis warning:', e);
       }
     }
 
@@ -855,7 +580,6 @@
         renderFocusGrid();
         updateHudFace(key);
       } else {
-        // Pause any other running bucket to maintain single-focus state
         for (var k in activeTimers) {
           if (k !== key && activeTimers[k].isRunning) {
             clearInterval(activeTimers[k].intervalId);
@@ -881,14 +605,12 @@
             playBeepSound();
             var durationToLog = state.elapsedSec;
 
-            // Reset back to initial configured time
             state.remainingSec = state.totalSec;
             state.elapsedSec = 0;
             renderFocusGrid();
             updateHudFace(key);
             closeFullscreenHud();
 
-            // Log session directly to Supabase
             if (durationToLog > 0) {
               sbClient.request('focus_sessions', 'POST', {
                 bucket_key: key,
@@ -934,8 +656,6 @@
     function openFullscreenHud(key) {
       currentActiveHudKey = key;
       var bObj = getBucketObj(key);
-      var state = activeTimers[key];
-
       var modal = document.getElementById('focus-hud-modal');
       var badge = document.getElementById('hud-badge');
       var title = document.getElementById('hud-title');
@@ -970,20 +690,14 @@
     }
 
     function hudToggleActiveTimer() {
-      if (currentActiveHudKey) {
-        toggleTimer(currentActiveHudKey);
-      }
+      if (currentActiveHudKey) toggleTimer(currentActiveHudKey);
     }
 
     function hudStopAndSave() {
-      if (currentActiveHudKey) {
-        stopAndSaveTimer(currentActiveHudKey);
-      }
+      if (currentActiveHudKey) stopAndSaveTimer(currentActiveHudKey);
     }
 
-    function minimizeHud() {
-      closeFullscreenHud();
-    }
+    function minimizeHud() { closeFullscreenHud(); }
 
     function closeFullscreenHud() {
       try {
@@ -994,7 +708,7 @@
       currentActiveHudKey = null;
     }
 
-    /* 7-Day Stacked Horizontal Bars */
+    /* 7-DAY STACKED CALENDAR */
     function getISOWeekDates() {
       var now = new Date();
       var day = now.getDay();
@@ -1104,7 +818,7 @@
     }
 
     /* ==========================================================================
-       JOBS ENGINE
+       JOBS ENGINE: HINGE DISCOVERY & PAGINATED SHORTLIST/PASS TRACKER
        ========================================================================== */
     function fetchSupabaseJobs(isReset) {
       if (isFetchingJobs) return;
@@ -1115,21 +829,26 @@
         loader.innerText = 'Syncing jobs ranked by score…';
       }
 
+      // Auto purge hidden jobs older than 7 days when refreshing
+      sbClient.request('rpc/cleanup_expired_hidden_jobs', 'POST', {}, null, function() {});
+
       sbClient.request('job_opportunities?select=*&order=fit_score.desc,created_at.desc', 'GET', null, null, function(err, data) {
         isFetchingJobs = false;
         if (loader) loader.style.display = 'none';
         ALL_JOBS = (!err && data && Array.isArray(data)) ? data : [];
-        renderHingeJobs();
+        renderJobsView();
       });
     }
 
-    function renderHingeJobs() {
+    function renderJobsView() {
       var pillBox = document.getElementById('jobs-status-pills');
-      var container = document.getElementById('jobs-card-container');
-      if (!pillBox || !container) return;
+      var hingeDeck = document.getElementById('jobs-card-container');
+      var paginatedWrap = document.getElementById('jobs-paginated-container');
+      if (!pillBox || !hingeDeck || !paginatedWrap) return;
 
       pillBox.innerHTML = '';
-      container.innerHTML = '';
+      hingeDeck.innerHTML = '';
+      paginatedWrap.innerHTML = '';
 
       var unseenCount = 0;
       var shortlistedCount = 0;
@@ -1143,9 +862,9 @@
       }
 
       var filters = [
-        { id: 'unseen', label: '🔥 Unseen (' + unseenCount + ')' },
+        { id: 'unseen', label: '🔥 Unseen Queue (' + unseenCount + ')' },
         { id: 'shortlisted', label: '⭐ Shortlisted (' + shortlistedCount + ')' },
-        { id: 'passed', label: '👁️ Passed / Viewed (' + passedCount + ')' },
+        { id: 'passed', label: '👁️ Passed / Hidden (' + passedCount + ')' },
         { id: 'all', label: 'All Jobs (' + ALL_JOBS.length + ')' }
       ];
 
@@ -1156,7 +875,8 @@
           chip.innerText = flt.label;
           chip.onclick = function() {
             activeJobFilter = flt.id;
-            renderHingeJobs();
+            jobPage = 1;
+            renderJobsView();
           };
           pillBox.appendChild(chip);
         })(filters[f]);
@@ -1168,84 +888,195 @@
         return s === activeJobFilter;
       });
 
+      // MODE 1: UNSEEN QUEUE -> HINGE CARD SWIPE VIEW
+      if (activeJobFilter === 'unseen') {
+        hingeDeck.style.display = 'block';
+        paginatedWrap.style.display = 'none';
+
+        if (visibleJobs.length === 0) {
+          hingeDeck.innerHTML = 
+            '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:18px; border:1px solid #e2e8f0;">' +
+              '<div style="font-size:28px; margin-bottom:8px;">🎯</div>' +
+              '<h3 style="font-size:15px; font-weight:bold; color:#1e293b;">Queue cleared!</h3>' +
+              '<p style="font-size:12px; color:#64748b; margin-top:4px;">No unseen roles. Check your Shortlist tab.</p>' +
+              '<button class="btn btn-sm" style="margin-top:14px;" onclick="activeJobFilter=\'shortlisted\'; jobPage=1; renderJobsView();">View Shortlist</button>' +
+            '</div>';
+          return;
+        }
+
+        var job = visibleJobs[0];
+        var score = job.fit_score || 0;
+        var scoreClass = score >= 85 ? 'score-high' : score >= 70 ? 'score-med' : 'score-low';
+        var isApplied = !!job.is_applied;
+
+        var atsList = [];
+        if (job.ats_keywords) {
+          atsList = job.ats_keywords.split(',').map(function(k) { return k.trim(); });
+        }
+        var atsHtml = '';
+        for (var a = 0; a < atsList.length; a++) {
+          if (atsList[a]) atsHtml += '<span class="pill pill-tag">#' + escapeHtml(atsList[a]) + '</span>';
+        }
+
+        var card = document.createElement('div');
+        card.className = 'bento-signal-card';
+        card.id = 'active-job-card';
+        card.innerHTML = 
+          '<div class="swipe-stamp right-stamp" id="job-stamp-shortlist">★ SHORTLIST</div>' +
+          '<div class="swipe-stamp left-stamp" id="job-stamp-pass">👁️ HIDE</div>' +
+          
+          '<div class="bento-meta-bar">' +
+            '<div>' +
+              '<span class="score-badge ' + scoreClass + '">Match Score: ' + score + '%</span> ' +
+              '<strong>' + escapeHtml(job.company || 'Tech Company') + '</strong> · ' + escapeHtml(job.location || 'Remote') +
+            '</div>' +
+            '<span style="font-size:10px; font-family:monospace; color:#64748b;">' + visibleJobs.length + ' left · Swipe &rarr;</span>' +
+          '</div>' +
+
+          '<a href="' + (job.url || '#') + '" target="_blank" class="bento-headline">' + escapeHtml(cleanTitle(job.title)) + '</a>' +
+          (job.job_summary ? '<p class="bento-body">' + escapeHtml(job.job_summary) + '</p>' : '') +
+          (job.analysis ? '<div class="bento-deep-dive"><strong>Fit Analysis:</strong> ' + escapeHtml(job.analysis) + '</div>' : '') +
+
+          (job.resume_changes ? (
+            '<div style="background:#fefce8; border-left:3px solid #eab308; padding:10px 12px; border-radius:0 8px 8px 0; font-size:11.5px; color:#854d0e; line-height:1.5; margin:8px 0;">' +
+              '<strong>Tailored Resume Changes:</strong> ' + escapeHtml(job.resume_changes) +
+            '</div>'
+          ) : '') +
+
+          (atsHtml ? '<div style="margin: 10px 0 6px 0;">' + atsHtml + '</div>' : '') +
+
+          '<div class="bento-footer">' +
+            '<div style="display:flex; align-items:center; gap:8px;">' +
+              '<label class="applied-checkbox-label">' +
+                '<input type="checkbox" ' + (isApplied ? 'checked' : '') + ' onchange="toggleJobApplied(\'' + job.id + '\', this.checked)"> Applied' +
+              '</label>' +
+              '<button class="btn btn-secondary btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'passed\')">👁️ Hide / Pass</button>' +
+              '<button class="btn btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'shortlisted\')">★ Shortlist</button>' +
+              '<button class="btn btn-danger btn-sm" onclick="deleteJobPermanent(\'' + job.id + '\')">🗑️ Delete</button>' +
+            '</div>' +
+            '<div style="display:flex; gap:6px;">' +
+              (job.resume_drive_link ? '<a class="btn btn-secondary btn-sm" href="' + job.resume_drive_link + '" target="_blank">📄 Resume</a>' : '') +
+              (job.url ? '<a class="btn btn-sm" href="' + job.url + '" target="_blank">Apply ↗</a>' : '') +
+            '</div>' +
+          '</div>';
+
+        hingeDeck.appendChild(card);
+        attachJobSwipeGestures(card, job.id);
+        return;
+      }
+
+      // MODE 2: SHORTLISTED / PASSED / ALL -> PAGINATED TRACKER LIST
+      hingeDeck.style.display = 'none';
+      paginatedWrap.style.display = 'block';
+
       if (visibleJobs.length === 0) {
-        container.innerHTML = 
-          '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:18px; border:1px solid #e2e8f0;">' +
-            '<div style="font-size:28px; margin-bottom:8px;">🎯</div>' +
-            '<h3 style="font-size:15px; font-weight:bold; color:#1e293b;">Queue cleared!</h3>' +
-            '<p style="font-size:12px; color:#64748b; margin-top:4px;">No roles in this bucket.</p>' +
-            '<button class="btn btn-sm" style="margin-top:14px;" onclick="activeJobFilter=\'unseen\'; renderHingeJobs();">View Unseen</button>' +
+        paginatedWrap.innerHTML = 
+          '<div style="text-align:center; padding:50px 20px; background:#ffffff; border-radius:14px; border:1px solid #e2e8f0; color:#64748b; font-size:13px;">' +
+            'No roles in this filter category.' +
           '</div>';
         return;
       }
 
-      var job = visibleJobs[0];
-      var score = job.fit_score || 0;
-      var scoreClass = score >= 85 ? 'score-high' : score >= 70 ? 'score-med' : 'score-low';
+      var totalPages = Math.ceil(visibleJobs.length / JOBS_PER_PAGE) || 1;
+      if (jobPage > totalPages) jobPage = totalPages;
 
-      var atsList = [];
-      if (job.ats_keywords) {
-        atsList = job.ats_keywords.split(',').map(function(k) { return k.trim(); });
+      var startIdx = (jobPage - 1) * JOBS_PER_PAGE;
+      var pageJobs = visibleJobs.slice(startIdx, startIdx + JOBS_PER_PAGE);
+
+      var listHtml = '<div class="paginated-jobs-container">';
+      for (var k = 0; k < pageJobs.length; k++) {
+        var j = pageJobs[k];
+        var sc = j.fit_score || 0;
+        var scClass = sc >= 85 ? 'score-high' : sc >= 70 ? 'score-med' : 'score-low';
+        var app = !!j.is_applied;
+
+        listHtml += 
+          '<div class="job-list-card ' + (app ? 'is-applied' : '') + '">' +
+            '<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">' +
+              '<div>' +
+                '<span class="score-badge ' + scClass + '">' + sc + '% Match</span> ' +
+                '<strong>' + escapeHtml(j.company || 'Company') + '</strong> · <span style="color:#64748b; font-size:12px;">' + escapeHtml(j.location || 'Remote') + '</span>' +
+              '</div>' +
+              '<label class="applied-checkbox-label">' +
+                '<input type="checkbox" ' + (app ? 'checked' : '') + ' onchange="toggleJobApplied(\'' + j.id + '\', this.checked)"> Applied' +
+              '</label>' +
+            '</div>' +
+            '<a href="' + (j.url || '#') + '" target="_blank" style="font-size:14px; font-weight:800; color:#1e293b; text-decoration:none; display:block; margin-bottom:6px;">' +
+              escapeHtml(cleanTitle(j.title)) + ' ↗' +
+            '</a>' +
+            (j.job_summary ? '<div style="font-size:12px; color:#475569; line-height:1.45; margin-bottom:8px;">' + escapeHtml(j.job_summary) + '</div>' : '') +
+            '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; border-top:1px solid #f1f5f9; padding-top:8px;">' +
+              '<div style="display:flex; gap:4px;">' +
+                (j.status !== 'shortlisted' ? '<button class="btn btn-secondary btn-sm" onclick="markJobStatus(\'' + j.id + '\', \'shortlisted\')">★ Shortlist</button>' : '') +
+                (j.status !== 'passed' ? '<button class="btn btn-secondary btn-sm" onclick="markJobStatus(\'' + j.id + '\', \'passed\')">👁️ Hide</button>' : '') +
+                '<button class="btn btn-danger btn-sm" onclick="deleteJobPermanent(\'' + j.id + '\')">🗑️ Delete</button>' +
+              '</div>' +
+              '<div style="display:flex; gap:6px;">' +
+                (j.resume_drive_link ? '<a class="btn btn-secondary btn-sm" href="' + j.resume_drive_link + '" target="_blank">📄 Resume PDF</a>' : '') +
+                (j.url ? '<a class="btn btn-sm" href="' + j.url + '" target="_blank">Apply Link ↗</a>' : '') +
+              '</div>' +
+            '</div>' +
+          '</div>';
       }
+      listHtml += '</div>';
 
-      var atsHtml = '';
-      for (var a = 0; a < atsList.length; a++) {
-        if (atsList[a]) atsHtml += '<span class="pill pill-tag">#' + escapeHtml(atsList[a]) + '</span>';
-      }
-
-      var card = document.createElement('div');
-      card.className = 'bento-signal-card';
-      card.id = 'active-job-card';
-      card.innerHTML = 
-        '<div class="swipe-stamp right-stamp" id="job-stamp-shortlist">★ SHORTLIST</div>' +
-        '<div class="swipe-stamp left-stamp" id="job-stamp-pass">✕ PASS</div>' +
-        
-        '<div class="bento-meta-bar">' +
-          '<div>' +
-            '<span class="score-badge ' + scoreClass + '">Match Score: ' + score + '%</span> ' +
-            '<strong>' + escapeHtml(job.company || 'Tech Company') + '</strong> · ' + escapeHtml(job.location || 'Remote') +
-          '</div>' +
-          '<span style="font-size:10px; font-family:monospace; color:#64748b;">' + visibleJobs.length + ' left · Swipe &rarr;</span>' +
-        '</div>' +
-
-        '<a href="' + (job.url || '#') + '" target="_blank" class="bento-headline">' + escapeHtml(cleanTitle(job.title)) + '</a>' +
-        (job.job_summary ? '<p class="bento-body">' + escapeHtml(job.job_summary) + '</p>' : '') +
-        (job.analysis ? '<div class="bento-deep-dive"><strong>Fit Analysis:</strong> ' + escapeHtml(job.analysis) + '</div>' : '') +
-
-        (job.resume_changes ? (
-          '<div style="background:#fefce8; border-left:3px solid #eab308; padding:10px 12px; border-radius:0 8px 8px 0; font-size:11.5px; color:#854d0e; line-height:1.5; margin:8px 0;">' +
-            '<strong>Tailored Resume Changes:</strong> ' + escapeHtml(job.resume_changes) +
-          '</div>'
-        ) : '') +
-
-        (atsHtml ? '<div style="margin: 10px 0 6px 0;">' + atsHtml + '</div>' : '') +
-
-        '<div class="bento-footer">' +
-          '<div>' +
-            '<button class="btn btn-secondary btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'passed\')">✕ Pass</button> ' +
-            '<button class="btn btn-sm" onclick="markJobStatus(\'' + job.id + '\', \'shortlisted\')">★ Shortlist</button>' +
-          '</div>' +
-          '<div>' +
-            (job.resume_drive_link ? '<a class="btn btn-secondary btn-sm" href="' + job.resume_drive_link + '" target="_blank" style="margin-right:4px;">📄 View Resume</a>' : '') +
-            (job.url ? '<a class="btn btn-sm" href="' + job.url + '" target="_blank">Apply ↗</a>' : '') +
-          '</div>' +
+      listHtml += 
+        '<div class="pagination-bar">' +
+          '<button class="btn btn-secondary btn-sm" ' + (jobPage <= 1 ? 'disabled style="opacity:0.5;"' : '') + ' onclick="changeJobPage(-1)">← Previous</button>' +
+          '<span style="font-size:12px; font-family:monospace; font-weight:700; color:#64748b;">Page ' + jobPage + ' of ' + totalPages + ' (' + visibleJobs.length + ' roles)</span>' +
+          '<button class="btn btn-secondary btn-sm" ' + (jobPage >= totalPages ? 'disabled style="opacity:0.5;"' : '') + ' onclick="changeJobPage(1)">Next →</button>' +
         '</div>';
 
-      container.appendChild(card);
-      attachJobSwipeGestures(card, job.id);
+      paginatedWrap.innerHTML = listHtml;
     }
 
-    function markJobStatus(jobId, newStatus) {
+    function changeJobPage(delta) {
+      jobPage += delta;
+      renderJobsView();
+    }
+
+    function toggleJobApplied(jobId, isApplied) {
       for (var i = 0; i < ALL_JOBS.length; i++) {
         if (ALL_JOBS[i].id === jobId) {
-          ALL_JOBS[i].status = newStatus;
+          ALL_JOBS[i].is_applied = isApplied;
           break;
         }
       }
-      renderHingeJobs();
+      renderJobsView();
 
-      sbClient.request('job_opportunities?id=eq.' + jobId, 'PATCH', { status: newStatus }, null, function(err) {
+      sbClient.request('job_opportunities?id=eq.' + jobId, 'PATCH', { is_applied: isApplied }, null, function(err) {
+        if (err) console.error('Failed to update applied status:', err);
+      });
+    }
+
+    function markJobStatus(jobId, newStatus) {
+      var hiddenAt = (newStatus === 'passed') ? new Date().toISOString() : null;
+
+      for (var i = 0; i < ALL_JOBS.length; i++) {
+        if (ALL_JOBS[i].id === jobId) {
+          ALL_JOBS[i].status = newStatus;
+          ALL_JOBS[i].hidden_at = hiddenAt;
+          break;
+        }
+      }
+      renderJobsView();
+
+      var payload = { status: newStatus };
+      if (newStatus === 'passed') payload.hidden_at = hiddenAt;
+
+      sbClient.request('job_opportunities?id=eq.' + jobId, 'PATCH', payload, null, function(err) {
         if (err) console.error('Failed to update job status:', err);
+      });
+    }
+
+    function deleteJobPermanent(jobId) {
+      if (!confirm("Permanently delete this job opportunity?")) return;
+
+      ALL_JOBS = ALL_JOBS.filter(function(j) { return j.id !== jobId; });
+      renderJobsView();
+
+      sbClient.request('job_opportunities?id=eq.' + jobId, 'DELETE', null, null, function(err) {
+        if (err) console.error('Failed to delete job from Supabase:', err);
       });
     }
 
@@ -1257,7 +1088,7 @@
       var SWIPE_THRESHOLD = 90;
 
       function onStart(e) {
-        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
         isDragging = true;
         var touch = e.touches ? e.touches[0] : e;
         startX = touch.clientX;
