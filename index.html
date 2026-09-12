@@ -50,13 +50,16 @@
     .focus-card-controls { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #f1f5f9; padding-top: 10px; }
 
     .stacked-chart-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .stacked-chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .chart-day-row { display: flex; align-items: center; margin-bottom: 10px; gap: 12px; }
+    .stacked-chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    
+    .scale-ruler { display: flex; justify-content: space-between; margin-left: 56px; margin-right: 68px; margin-bottom: 8px; font-family: monospace; font-size: 10px; color: #94a3b8; }
+    .chart-day-row { display: flex; align-items: center; margin-bottom: 10px; gap: 8px; }
     .chart-day-row.is-today .chart-day-label { color: #6366f1; font-weight: 800; }
     .chart-day-label { width: 48px; font-size: 11px; font-weight: 700; font-family: monospace; color: #64748b; text-transform: uppercase; }
     .chart-track { flex: 1; height: 18px; background: #f1f5f9; border-radius: 6px; overflow: hidden; display: flex; position: relative; }
     .chart-segment { height: 100%; transition: width 0.3s ease; }
-    .chart-day-total { width: 58px; font-size: 11px; font-family: monospace; font-weight: 700; color: #1e293b; text-align: right; }
+    .chart-day-total { width: 60px; font-size: 11px; font-family: monospace; font-weight: 700; color: #1e293b; text-align: right; }
+    
     .chart-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #f1f5f9; }
     .legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #475569; }
     .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -116,7 +119,7 @@
     .signal-meter .bar:nth-child(5) { height: 12px; }
     .signal-meter .bar.on { background: #d97706; }
 
-    /* PAGINATED SHORTLIST TABLE / LIST */
+    /* PAGINATED SHORTLIST */
     .paginated-jobs-container { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
     .job-list-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
     .job-list-card.is-applied { border-left: 4px solid #16a34a; background: #fcfdfc; }
@@ -150,6 +153,7 @@
       .mobile-nav button.active { color: #6366f1; }
       .focus-grid { grid-template-columns: 1fr; }
       .focus-hud-digits { font-size: 64px; }
+      .scale-ruler { margin-left: 56px; margin-right: 68px; }
     }
     @media (min-width: 641px) { .mobile-nav { display: none; } }
   </style>
@@ -188,7 +192,7 @@
       <div class="hinge-deck-wrapper" id="hinge-card-container"></div>
     </section>
 
-    <!-- 2. FOCUS TAB (2x2 GRID & 7-DAY STACKED BAR CHART) -->
+    <!-- 2. FOCUS TAB (2x2 GRID & 7-DAY STACKED BAR CHART NORMALIZED TO 24 HOURS) -->
     <section id="sec-focus" class="content-section">
       <header class="workspace-header">
         <h1 class="section-title">FOCUS BUCKETS</h1>
@@ -202,10 +206,18 @@
       <div class="stacked-chart-card">
         <div class="stacked-chart-header">
           <div>
-            <strong style="font-size:13px; text-transform:uppercase; letter-spacing:0.05em; color:#1e293b;">CURRENT WEEK DISTRIBUTION</strong>
-            <div style="font-size:11px; font-family:monospace; color:#64748b; margin-top:2px;" id="focus-week-label">7-Day Focus Stack</div>
+            <strong style="font-size:13px; text-transform:uppercase; letter-spacing:0.05em; color:#1e293b;">CURRENT WEEK DISTRIBUTION (24h NORMALIZED)</strong>
+            <div style="font-size:11px; font-family:monospace; color:#64748b; margin-top:2px;" id="focus-week-label">Monday to Sunday Breakdown</div>
           </div>
           <div style="font-size:13px; font-weight:800; font-family:monospace; color:#6366f1;" id="focus-week-total">0.0 hrs</div>
+        </div>
+
+        <div class="scale-ruler">
+          <span>0h</span>
+          <span>6h</span>
+          <span>12h</span>
+          <span>18h</span>
+          <span>24h</span>
         </div>
 
         <div id="focus-days-bars-container"></div>
@@ -443,7 +455,7 @@
     }
 
     /* ==========================================================================
-       FOCUS BUCKETS & 7-DAY STACKED ENGINE
+       FOCUS BUCKETS & 7-DAY STACKED ENGINE (24-HOUR NORMALIZED)
        ========================================================================== */
     function getBucketObj(key) {
       for (var i = 0; i < FOCUS_BUCKETS.length; i++) {
@@ -708,7 +720,7 @@
       currentActiveHudKey = null;
     }
 
-    /* 7-DAY STACKED CALENDAR */
+    /* 7-DAY STACKED CALENDAR (NORMALIZED STRICTLY TO 24 HOURS) */
     function getISOWeekDates() {
       var now = new Date();
       var day = now.getDay();
@@ -768,10 +780,8 @@
         weekTotalEl.innerText = (weekTotalSeconds / 3600).toFixed(1) + ' hrs';
       }
 
-      var maxDailyTotal = 3 * 3600;
-      for (var dk in dayDurations) {
-        if (dayDurations[dk].total > maxDailyTotal) maxDailyTotal = dayDurations[dk].total;
-      }
+      // Exact 24-hour normalization constant (86,400 seconds = 100% width)
+      var DAY_24H_SECONDS = 24 * 3600;
 
       for (var j = 0; j < days.length; j++) {
         var dayObj = days[j];
@@ -787,7 +797,7 @@
           var durSec = stats[bKey] || 0;
 
           if (durSec > 0) {
-            var widthPercent = (durSec / maxDailyTotal) * 100;
+            var widthPercent = (durSec / DAY_24H_SECONDS) * 100;
             segmentsHtml += '<div class="chart-segment" style="width:' + widthPercent + '%; background:' + bCol + ';" title="' + escapeHtml(FOCUS_BUCKETS[b].title) + ': ' + (durSec / 60).toFixed(0) + ' mins"></div>';
           }
         }
@@ -829,7 +839,7 @@
         loader.innerText = 'Syncing jobs ranked by score…';
       }
 
-      // Auto purge hidden jobs older than 7 days when refreshing
+      // Trigger server-side purge of passed jobs older than 7 days
       sbClient.request('rpc/cleanup_expired_hidden_jobs', 'POST', {}, null, function() {});
 
       sbClient.request('job_opportunities?select=*&order=fit_score.desc,created_at.desc', 'GET', null, null, function(err, data) {
@@ -1518,7 +1528,7 @@
 
     function closeNewspaperOverlay() { document.getElementById('newspaper-overlay').style.display = 'none'; }
 
-    // Init Signals
+    // Init Signals on load
     fetchSupabaseSignals(true);
   </script>
 </body>
